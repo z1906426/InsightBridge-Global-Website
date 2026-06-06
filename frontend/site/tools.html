@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a3a5c" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
+
+<title>Interactive Hotel Pricing Calculator (MARE v2.0, Illustrative) | InsightBridge Global</title>
+<meta name="description" content="A free, transparent interactive hotel dynamic-pricing calculator illustrating the InsightBridge MARE v2.0 demand-weighting logic. Adjust real demand drivers — cross-border flow, holiday compression, weekend effect, OTA booking pace, competitive saturation — and see the recommended nightly rate and projected RevPAR, bounded by floor/ceiling guardrails.">
+<meta name="author" content="Dr. Tong Yin">
+
+<link rel="canonical" href="tools.html">
+<link rel="alternate" hreflang="en" href="tools.html">
+<link rel="alternate" hreflang="zh-Hans" href="tools.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://insightbridge.global/tools.html">
+<meta property="og:title" content="Interactive Hotel Pricing Calculator (MARE v2.0, Illustrative) | InsightBridge Global">
+<meta property="og:description" content="Free, transparent dynamic-pricing calculator illustrating the InsightBridge MARE v2.0 demand-weighting logic. No paywall, no email gate.">
+<meta property="og:image" content="https://insightbridge.global/assets/hero-main.jpg">
+<meta property="og:site_name" content="InsightBridge Global LLC">
+
+<!-- JSON-LD: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "InsightBridge Interactive Hotel Pricing Calculator (MARE v2.0, Illustrative)",
+  "url": "https://insightbridge.global/tools.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "browserRequirements": "Requires JavaScript",
+  "isAccessibleForFree": true,
+  "description": "A transparent, illustrative implementation of the MARE v2.0 demand-weighting logic for hotel dynamic pricing. Computes a recommended nightly rate from five weighted demand drivers (cross-border flow 0.18, holiday compression 0.16, weekend effect 0.14, OTA booking pace 0.12, competitive saturation 0.12), bounded by floor/ceiling guardrails, and reports projected RevPAR. The production MARE v2.0 engine uses an XGBoost + LSTM hybrid with additional signals and a full guardrail system.",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "creator": {"@type": "Organization", "name": "InsightBridge Global LLC", "url": "https://insightbridge.global"},
+  "publisher": {"@type": "Organization", "name": "InsightBridge Global LLC"}
+}
+</script>
+
+
+
+<style type="text/css">@font-face {font-family:Instrument Serif;font-style:normal;font-weight:400;src:url(cf-fonts/s/instrument-serif/5.2.8/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Instrument Serif;font-style:normal;font-weight:400;src:url(cf-fonts/s/instrument-serif/5.2.8/latin-ext/400/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Instrument Serif;font-style:italic;font-weight:400;src:url(cf-fonts/s/instrument-serif/5.2.8/latin-ext/400/italic.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Instrument Serif;font-style:italic;font-weight:400;src:url(cf-fonts/s/instrument-serif/5.2.8/latin/400/italic.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:400;src:url(cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:500;src:url(cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:600;src:url(cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Inter;font-style:normal;font-weight:700;src:url(cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}</style>
+
+<style>
+  :root{
+    --navy:#1a3a5c; --navy-2:#24507e; --accent:#c9a14a; --danger:#c0392b;
+    --bg:#f7f6f3; --surface:#ffffff; --surface-2:#f0eee9; --border:#e2ddd3;
+    --text:#1c1c1a; --text-soft:#5a564e; --shadow:0 1px 3px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --navy:#7fa8d4; --navy-2:#9cc0e6; --accent:#d8bd72; --danger:#e06a5c;
+      --bg:#111110; --surface:#1a1a18; --surface-2:#22221f; --border:#33322e;
+      --text:#ece9e2; --text-soft:#a39e93; --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.65;font-size:16px}
+  h1,h2,h3,.serif{font-family:'Instrument Serif','Georgia',serif;font-weight:400;letter-spacing:.2px;line-height:1.2}
+  a{color:var(--navy);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* lang toggle */
+  html[data-lang="en"] .lang-cn{display:none}
+  html[data-lang="cn"] .lang-en{display:none}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--border)}
+  .hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+  .hdr__brand{display:flex;align-items:center;gap:12px;font-family:'Instrument Serif',serif;font-size:1.35rem;color:var(--text)}
+  .hdr__brand img{height:44px;width:auto;border-radius:4px;display:block}
+  .hdr__nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .hdr__nav a{color:var(--text-soft);font-size:.92rem;font-weight:500}
+  .hdr__nav a:hover{color:var(--navy)}
+  .langbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:600;cursor:pointer}
+  .langbtn:hover{border-color:var(--navy)}
+  @media (max-width:600px){.hdr__nav a{display:none}}
+
+  /* hero */
+  .hero{padding:54px 0 24px}
+  .eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .hero h1{font-size:clamp(2rem,4vw,3rem);margin:0 0 14px}
+  .hero p{max-width:760px;color:var(--text-soft);font-size:1.08rem;margin:0}
+  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .badge{font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-soft)}
+
+  /* layout */
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px;padding:30px 0 10px;align-items:start}
+  @media (max-width:920px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+  .card+.card{margin-top:22px}
+  .card h2{font-size:1.6rem;margin:0 0 6px}
+  .card h3{font-size:1.15rem;margin:22px 0 8px;font-family:'Inter',sans-serif;font-weight:700}
+  .muted{color:var(--text-soft)}
+  .lead{color:var(--text-soft);font-size:1rem;margin:0 0 8px}
+
+  /* controls */
+  .field{margin:16px 0}
+  .field label{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:.92rem;margin-bottom:6px}
+  .field .val{color:var(--navy);font-weight:700;font-variant-numeric:tabular-nums}
+  .field .wt{color:var(--text-soft);font-weight:500;font-size:.78rem}
+  input[type=range]{width:100%;accent-color:var(--navy)}
+  input[type=number],select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2);color:var(--text);font-size:1rem;font-family:inherit}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:480px){.row2{grid-template-columns:1fr}}
+  .drivers{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
+
+  /* outputs */
+  .metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+  @media (max-width:480px){.metrics{grid-template-columns:1fr}}
+  .metric{background:linear-gradient(180deg,var(--surface-2),var(--surface));border:1px solid var(--border);border-radius:14px;padding:16px}
+  .metric .k{font-size:.8rem;color:var(--text-soft);font-weight:600;margin-bottom:6px}
+  .metric .v{font-size:2rem;font-family:'Instrument Serif',serif;color:var(--text);font-variant-numeric:tabular-nums;line-height:1}
+  .metric .d{font-size:.82rem;font-weight:600;margin-top:6px}
+  .metric .d.up{color:#1e7d4f} .metric .d.flat{color:var(--text-soft)}
+  @media (prefers-color-scheme:dark){.metric .d.up{color:#4cc38a}}
+  .guard{margin-top:12px;font-size:.85rem;color:var(--text-soft);background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .guard b{color:var(--text)}
+
+  canvas{width:100%;height:300px;display:block;margin-top:6px}
+
+  /* methodology table */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border)}
+  th{font-weight:700;color:var(--text)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  code{background:var(--surface-2);border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:.9em}
+  .formula{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9rem;overflow-x:auto;color:var(--text)}
+  .note{border-left:3px solid var(--accent);padding:10px 14px;background:var(--surface-2);border-radius:0 10px 10px 0;color:var(--text-soft);font-size:.92rem;margin:14px 0}
+
+  footer{border-top:1px solid var(--border);margin-top:48px;padding:26px 0;background:var(--surface)}
+  .ft{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:.88rem;color:var(--text-soft)}
+  .ft a{color:var(--text-soft)}
+  .ft__links{display:flex;gap:16px;flex-wrap:wrap}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"></head>
+<body>
+
+<header>
+  <div class="container hdr">
+    <a class="hdr__brand" href="index.html">
+      <img src="assets/logo-en.jpg" alt="InsightBridge Global" onerror="this.style.display='none'">
+      <span>InsightBridge</span>
+    </a>
+    <nav class="hdr__nav">
+      <a href="index.html"><span class="lang-en">Home</span><span class="lang-cn">首页</span></a>
+      <a href="index.html#ai-model"><span class="lang-en">AI Model</span><span class="lang-cn">AI模型</span></a>
+      <a href="index.html#publications"><span class="lang-en">Publications</span><span class="lang-cn">出版研究</span></a>
+      <a href="index.html#contact"><span class="lang-en">Contact</span><span class="lang-cn">联系我们</span></a>
+      <button class="langbtn" id="langToggle" type="button" aria-label="Switch language">中文</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow"><span class="lang-en">Open Tool · No Paywall · No Email Gate</span><span class="lang-cn">开放工具 · 无付费墙 · 无邮箱门槛</span></span>
+    <h1>
+      <span class="lang-en">Interactive Hotel Pricing Calculator</span>
+      <span class="lang-cn">交互式酒店定价计算器</span>
+    </h1>
+    <p>
+      <span class="lang-en">A transparent, illustrative implementation of the demand-weighting logic inside <b>MARE v2.0</b>, the InsightBridge dynamic-pricing engine. Move the real demand drivers below and watch the recommended nightly rate respond — bounded by the same kind of floor / ceiling guardrails the production engine uses.</span>
+      <span class="lang-cn">这是 InsightBridge 动态定价引擎 <b>MARE v2.0</b> 内部需求加权逻辑的一个透明、示意性实现。拖动下方真实的需求驱动因子,即可看到推荐房价随之变化——并受与生产引擎同类的价格下限/上限护栏约束。</span>
+    </p>
+    <div class="badges">
+      <span class="badge">XGBoost + LSTM <span class="lang-en">(production)</span><span class="lang-cn">(生产模型)</span></span>
+      <span class="badge"><span class="lang-en">5 weighted demand drivers</span><span class="lang-cn">5 个加权需求因子</span></span>
+      <span class="badge"><span class="lang-en">Guardrail-bounded</span><span class="lang-cn">护栏约束</span></span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="grid">
+
+    <!-- LEFT: methodology (cite-ready text) -->
+    <div>
+      <div class="card">
+        <span class="eyebrow"><span class="lang-en">Research Brief</span><span class="lang-cn">研究简报</span></span>
+        <h2><span class="lang-en">Why weighted demand beats static rules</span><span class="lang-cn">为何加权需求优于静态规则</span></h2>
+        <p class="lead">
+          <span class="lang-en"><b>Executive summary:</b> Rule-based revenue management applies fixed if-then rate rules (e.g. "raise rates on weekends") that ignore real-time demand. AI dynamic pricing instead learns the relative weight of each demand driver and re-prices continuously, capturing revenue that static rules leave on the table — especially during compressed holiday and event windows. In live InsightBridge deployments this approach delivered a 6–12% ADR uplift and reduced effective OTA commission share by 3–5 percentage points.</span>
+          <span class="lang-cn"><b>执行摘要:</b> 基于规则的收益管理使用固定的「如果—就」定价规则(例如「周末涨价」),无法响应实时需求。AI 动态定价则学习每个需求驱动因子的相对权重并持续重新定价,捕捉静态规则错失的收入——尤其在节假日和活动导致的需求压缩窗口。在 InsightBridge 的真实部署中,该方法实现了 6–12% 的 ADR 提升,并将有效 OTA 佣金占比降低了 3–5 个百分点。</span>
+        </p>
+
+        <h3><span class="lang-en">MARE v2.0 demand drivers (relative weights)</span><span class="lang-cn">MARE v2.0 需求驱动因子(相对权重)</span></h3>
+        <table>
+          <thead><tr>
+            <th><span class="lang-en">Demand driver</span><span class="lang-cn">需求驱动因子</span></th>
+            <th class="num"><span class="lang-en">Weight</span><span class="lang-cn">权重</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="lang-en">Cross-border visitor flow (e.g. Zhuhai–Macau)</span><span class="lang-cn">跨境客流(如珠海—澳门)</span></td><td class="num">0.18</td></tr>
+            <tr><td><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动需求压缩</span></td><td class="num">0.16</td></tr>
+            <tr><td><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span></td><td class="num">0.14</td></tr>
+            <tr><td><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span></td><td class="num">0.12</td></tr>
+            <tr><td><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span></td><td class="num">0.12</td></tr>
+          </tbody>
+        </table>
+
+        <h3><span class="lang-en">The formula (fully readable, no hidden math)</span><span class="lang-cn">计算公式(完全可读,无隐藏数学)</span></h3>
+        <div class="formula">
+demand_index = Σ ( weightᵢ × intensityᵢ ) / Σ weightᵢ<br>
+recommended_rate = base_rate × ( 1 + max_uplift × demand_index )<br>
+recommended_rate = clamp( recommended_rate , floor , ceiling )<br>
+projected_RevPAR = recommended_rate × occupancy
+        </div>
+
+        <div class="note">
+          <span class="lang-en"><b>Honest scope.</b> This calculator is a simplified, transparent illustration of the MARE v2.0 demand-weighting logic — not the engine itself. The production MARE v2.0 uses an XGBoost + LSTM hybrid trained on additional signals, plus a guardrail system (GM approval, competitor-deviation limits, price floors/ceilings). Figures here are illustrative and not a forecast for any specific property.</span>
+          <span class="lang-cn"><b>诚实声明。</b> 本计算器是 MARE v2.0 需求加权逻辑的简化、透明示意,并非引擎本身。生产版 MARE v2.0 采用基于更多信号训练的 XGBoost + LSTM 混合模型,并配有护栏系统(总经理审批、竞品偏离限制、价格下限/上限)。此处数值仅为示意,不构成对任何具体物业的预测。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: interactive matrix -->
+    <div>
+      <div class="card">
+        <h2><span class="lang-en">Yield Optimizer</span><span class="lang-cn">收益优化器</span></h2>
+        <p class="lead"><span class="lang-en">Adjust your property and the demand drivers — outputs update instantly.</span><span class="lang-cn">调整你的物业参数与需求因子——结果实时更新。</span></p>
+
+        <div class="row2">
+          <div class="field">
+            <label><span class="lang-en">Base / floor rate</span><span class="lang-cn">基准 / 下限房价</span> <span class="val" id="baseVal"></span></label>
+            <input type="number" id="baseRate" min="20" max="9000" step="10" value="650">
+          </div>
+          <div class="field">
+            <label><span class="lang-en">Ceiling (guardrail)</span><span class="lang-cn">上限(护栏)</span> <span class="val" id="ceilVal"></span></label>
+            <input type="number" id="ceiling" min="20" max="20000" step="10" value="1100">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label><span class="lang-en">Currency</span><span class="lang-cn">货币</span></label>
+            <select id="cur">
+              <option value="$">$ USD</option>
+              <option value="MOP$" selected>MOP$ 澳门元</option>
+              <option value="HK$">HK$ 港元</option>
+              <option value="¥">¥ 人民币</option>
+              <option value="€">€ EUR</option>
+              <option value="£">£ GBP</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><span class="lang-en">Expected occupancy</span><span class="lang-cn">预期入住率</span> <span class="val"><span id="occVal">72</span>%</span></label>
+            <input type="range" id="occ" min="0" max="100" value="72">
+          </div>
+        </div>
+        <div class="field">
+          <label><span class="lang-en">Max premium at full demand</span><span class="lang-cn">满需求时最大溢价</span> <span class="val">+<span id="upVal">35</span>%</span></label>
+          <input type="range" id="uplift" min="0" max="80" value="35">
+        </div>
+
+        <div class="drivers">
+          <h3 style="margin-top:10px"><span class="lang-en">Demand drivers (intensity today)</span><span class="lang-cn">需求驱动因子(当日强度)</span></h3>
+          <div class="field">
+            <label><span class="lang-en">Cross-border flow</span><span class="lang-cn">跨境客流</span> <span><span class="wt">w 0.18</span> &nbsp; <span class="val"><span id="d0v">60</span>%</span></span></label>
+            <input type="range" class="driver" data-w="0.18" id="d0" min="0" max="100" value="60">
+          </div>
+          <div class="field">
+            <label><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动压缩</span> <span><span class="wt">w 0.16</span> &nbsp; <span class="val"><span id="d1v">40</span>%</span></span></label>
+            <input type="range" class="driver" data-w="0.16" id="d1" min="0" max="100" value="40">
+          </div>
+          <div class="field">
+            <label><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span> <span><span class="wt">w 0.14</span> &nbsp; <span class="val"><span id="d2v">50</span>%</span></span></label>
+            <input type="range" class="driver" data-w="0.14" id="d2" min="0" max="100" value="50">
+          </div>
+          <div class="field">
+            <label><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span> <span><span class="wt">w 0.12</span> &nbsp; <span class="val"><span id="d3v">55</span>%</span></span></label>
+            <input type="range" class="driver" data-w="0.12" id="d3" min="0" max="100" value="55">
+          </div>
+          <div class="field">
+            <label><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span> <span><span class="wt">w 0.12</span> &nbsp; <span class="val"><span id="d4v">45</span>%</span></span></label>
+            <input type="range" class="driver" data-w="0.12" id="d4" min="0" max="100" value="45">
+          </div>
+        </div>
+
+        <h3><span class="lang-en">Algorithmic output</span><span class="lang-cn">算法输出</span></h3>
+        <div class="metrics">
+          <div class="metric">
+            <div class="k"><span class="lang-en">Recommended nightly rate</span><span class="lang-cn">推荐每晚房价</span></div>
+            <div class="v" id="outRate">—</div>
+            <div class="d up" id="outDelta">—</div>
+          </div>
+          <div class="metric">
+            <div class="k"><span class="lang-en">Projected RevPAR</span><span class="lang-cn">预测 RevPAR</span></div>
+            <div class="v" id="outRevpar">—</div>
+            <div class="d flat"><span class="lang-en">demand index</span><span class="lang-cn">需求指数</span> <span id="outIdx">—</span></div>
+          </div>
+        </div>
+        <div class="guard" id="guardMsg"></div>
+
+        <h3><span class="lang-en">Rate vs. demand index</span><span class="lang-cn">房价 vs. 需求指数</span></h3>
+        <canvas id="chart" width="600" height="300" role="img" aria-label="Recommended rate as a function of demand index"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIVE MARKET RATES (real, licensed data via Makcorps; cached server-side) -->
+<div class="container">
+  <div class="card" id="liveCard" style="margin-top:22px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <h2 style="margin:0"><span class="lang-en">Live Market Rates</span><span class="lang-cn">实时市场房价</span></h2>
+      <span class="badge"><span class="lang-en">Source: Makcorps · licensed API</span><span class="lang-cn">数据来源:Makcorps · 授权 API</span></span>
+    </div>
+    <p class="lead" id="liveMeta" style="margin-top:8px"></p>
+    <div id="liveBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container ft">
+    <p>© 2026 InsightBridge Strategy &amp; AI Research. <span class="lang-en">All rights reserved. Tool is illustrative.</span><span class="lang-cn">版权所有。本工具为示意用途。</span></p>
+    <div class="ft__links">
+      <a href="https://insightbridge.global/cdn-cgi/l/email-protection#7910171f163910170a101e110d1b0b101d1e1c571e15161b1815"><span class="__cf_email__" data-cfemail="e48d8a828ba48d8a978d838c9086968d808381ca83888b868588">[email&#160;protected]</span></a>
+      <a href="index.html#ai-model"><span class="lang-en">MARE v2.0</span><span class="lang-cn">MARE v2.0</span></a>
+      <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-cn">隐私政策</span></a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+
+  // ---- language toggle ----
+  var html = document.documentElement;
+  $("langToggle").addEventListener("click", function(){
+    var en = html.getAttribute("data-lang") === "en";
+    html.setAttribute("data-lang", en ? "cn" : "en");
+    html.setAttribute("lang", en ? "zh-Hans" : "en");
+    this.textContent = en ? "EN" : "中文";
+    render();
+  });
+
+  var drivers = ["d0","d1","d2","d3","d4"];
+
+  function fmt(n, cur){
+    return cur + Math.round(n).toLocaleString("en-US");
+  }
+
+  function compute(){
+    var base = Math.max(0, +$("baseRate").value || 0);
+    var ceil = Math.max(base, +$("ceiling").value || 0);
+    var occ  = (+$("occ").value || 0) / 100;
+    var maxUp = (+$("uplift").value || 0) / 100;
+
+    var wSum = 0, contrib = 0;
+    drivers.forEach(function(id){
+      var el = $(id);
+      var w = +el.getAttribute("data-w");
+      var intensity = (+el.value || 0) / 100;
+      wSum += w;
+      contrib += w * intensity;
+    });
+    var demandIndex = wSum > 0 ? (contrib / wSum) : 0; // 0..1
+    var raw = base * (1 + maxUp * demandIndex);
+    var clamped = Math.min(Math.max(raw, base), ceil);
+    var hitCeiling = raw > ceil + 0.5;
+    return {base:base, ceil:ceil, occ:occ, maxUp:maxUp, demandIndex:demandIndex,
+            raw:raw, rate:clamped, revpar:clamped*occ, hitCeiling:hitCeiling};
+  }
+
+  function rateForIndex(base, maxUp, ceil, idx){
+    return Math.min(base * (1 + maxUp * idx), ceil);
+  }
+
+  function render(){
+    var cur = $("cur").value;
+    var r = compute();
+
+    // sync slider value labels
+    $("baseVal").textContent = fmt(r.base, cur);
+    $("ceilVal").textContent = fmt(r.ceil, cur);
+    $("occVal").textContent = Math.round(r.occ*100);
+    $("upVal").textContent = Math.round(r.maxUp*100);
+    drivers.forEach(function(id,i){ $("d"+i+"v").textContent = $(id).value; });
+
+    $("outRate").textContent = fmt(r.rate, cur);
+    $("outRevpar").textContent = fmt(r.revpar, cur);
+    $("outIdx").textContent = r.demandIndex.toFixed(2);
+
+    var delta = r.rate - r.base;
+    var pct = r.base > 0 ? (delta / r.base * 100) : 0;
+    var dEl = $("outDelta");
+    var en = html.getAttribute("data-lang") === "en";
+    if (delta > 0.5){
+      dEl.className = "d up";
+      dEl.textContent = "+" + fmt(delta, cur) + " (" + pct.toFixed(1) + "%) " + (en ? "vs base" : "相对基准");
+    } else {
+      dEl.className = "d flat";
+      dEl.textContent = en ? "at floor" : "处于下限";
+    }
+
+    var g = $("guardMsg");
+    if (r.hitCeiling){
+      g.innerHTML = en
+        ? "<b>Ceiling guardrail active.</b> The weighted demand would price above your ceiling of " + fmt(r.ceil,cur) + "; the recommendation is capped. In production this is where GM approval / competitor-deviation rules trigger."
+        : "<b>上限护栏已触发。</b> 加权需求会把价格推高至超过你的上限 " + fmt(r.ceil,cur) + ",推荐价已被封顶。在生产环境中,这正是触发总经理审批 / 竞品偏离规则的位置。";
+    } else {
+      g.innerHTML = en
+        ? "Recommendation is within the floor–ceiling band. Demand index " + r.demandIndex.toFixed(2) + " of 1.00."
+        : "推荐价位于下限—上限区间内。需求指数为 " + r.demandIndex.toFixed(2) + " / 1.00。";
+    }
+    draw(r);
+  }
+
+  // ---- canvas chart ----
+  function themeColors(){
+    var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return dark
+      ? {line:"#7fa8d4", pt:"#e06a5c", grid:"#33322e", axis:"#a39e93", ceil:"#d8bd72", text:"#ece9e2"}
+      : {line:"#1a3a5c", pt:"#c0392b", grid:"#e2ddd3", axis:"#5a564e", ceil:"#c9a14a", text:"#1c1c1a"};
+  }
+
+  function draw(r){
+    r = r || compute();
+    var c = $("chart");
+    var dpr = window.devicePixelRatio || 1;
+    var cssW = c.clientWidth || 600, cssH = 300;
+    c.width = cssW * dpr; c.height = cssH * dpr;
+    var ctx = c.getContext("2d");
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,cssW,cssH);
+
+    var col = themeColors();
+    var padL = 56, padR = 16, padT = 14, padB = 34;
+    var w = cssW - padL - padR, h = cssH - padT - padB;
+
+    // y-domain: base .. ceiling (with small headroom)
+    var yMin = r.base, yMax = Math.max(r.ceil, r.base*(1+r.maxUp));
+    if (yMax <= yMin) yMax = yMin + 1;
+    var X = function(idx){ return padL + idx * w; };               // idx 0..1
+    var Y = function(val){ return padT + h - ((val - yMin)/(yMax - yMin)) * h; };
+
+    // grid + y labels
+    ctx.font = "11px Inter, sans-serif";
+    ctx.fillStyle = col.axis; ctx.strokeStyle = col.grid; ctx.lineWidth = 1;
+    var cur = $("cur").value;
+    for (var i=0;i<=4;i++){
+      var v = yMin + (yMax-yMin)*i/4;
+      var y = Y(v);
+      ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+w,y); ctx.stroke();
+      ctx.fillText(cur + Math.round(v).toLocaleString("en-US"), 6, y+3);
+    }
+    // x labels
+    ctx.textAlign = "center";
+    for (var j=0;j<=5;j++){
+      var idx = j/5; var x = X(idx);
+      ctx.fillText(idx.toFixed(1), x, padT+h+20);
+    }
+    var en = html.getAttribute("data-lang") === "en";
+    ctx.fillText(en ? "demand index →" : "需求指数 →", padL+w/2, padT+h+32);
+    ctx.textAlign = "start";
+
+    // ceiling line
+    ctx.strokeStyle = col.ceil; ctx.setLineDash([5,4]); ctx.lineWidth = 1.5;
+    var yc = Y(r.ceil);
+    if (yc >= padT && yc <= padT+h){
+      ctx.beginPath(); ctx.moveTo(padL,yc); ctx.lineTo(padL+w,yc); ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // curve
+    ctx.strokeStyle = col.line; ctx.lineWidth = 3; ctx.beginPath();
+    for (var k=0;k<=60;k++){
+      var ix = k/60;
+      var val = rateForIndex(r.base, r.maxUp, r.ceil, ix);
+      var px = X(ix), py = Y(val);
+      if (k===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+
+    // current point
+    var cx = X(r.demandIndex), cy = Y(r.rate);
+    ctx.fillStyle = col.pt;
+    ctx.beginPath(); ctx.arc(cx,cy,6,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle = col.text; ctx.lineWidth = 1.5; ctx.stroke();
+  }
+
+  // ---- wire events ----
+  ["baseRate","ceiling","occ","uplift","cur","d0","d1","d2","d3","d4"].forEach(function(id){
+    var el = $(id);
+    el.addEventListener("input", render);
+    el.addEventListener("change", render);
+  });
+  window.addEventListener("resize", function(){ draw(); });
+
+  // hook so the live-rates panel can push an observed market ceiling into the calculator
+  window.__ibSetCeiling = function(v){
+    var e = $("ceiling");
+    if (!e || !isFinite(v)) return;
+    var base = +$("baseRate").value || 0;
+    e.value = Math.max(Math.round(v), base); // ceiling can't sit below the floor
+    render();
+    e.scrollIntoView({block:"center", behavior:"smooth"});
+  };
+
+  render();
+})();
+</script>
+
+<script>
+/* Live market rates — reads the server-cached data/rates.json (no API key client-side). */
+(function(){
+  "use strict";
+  var DATA = null, ERR = false;
+  var SYMS = {USD:"$", EUR:"€", GBP:"£", CNY:"¥", HKD:"HK$", MOP:"MOP$", INR:"₹"};
+  var meta = document.getElementById("liveMeta");
+  var body = document.getElementById("liveBody");
+  var isEN = function(){ return document.documentElement.getAttribute("data-lang") === "en"; };
+  var esc = function(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+
+  function money(n, cur){
+    var sym = SYMS[cur] || (cur ? cur + " " : "");
+    return sym + Math.round(n).toLocaleString("en-US");
+  }
+  function fmtDate(iso){ try { return new Date(iso).toLocaleString(); } catch(e){ return iso; } }
+
+  function render(){
+    var en = isEN();
+    if (ERR || !DATA){
+      meta.textContent = "";
+      body.innerHTML = '<div class="note" style="margin:0">' +
+        (en
+          ? "Live rates will appear here after the first scheduled update from the Makcorps API. No placeholder or simulated figures are shown."
+          : "实时房价将在 Makcorps API 首次定时更新后显示。此处不展示任何占位或模拟数据。") +
+        '</div>';
+      return;
+    }
+    var d = DATA, cur = d.currency || "USD", s = d.stats || {};
+    meta.innerHTML = (en
+      ? ('Market: <b>' + esc(d.city) + '</b> · stay ' + esc(d.checkin) + ' → ' + esc(d.checkout) +
+         ' · ' + (s.hotelCount||0) + ' hotels · range ' + money(s.minPrice||0,cur) + '–' + money(s.maxPrice||0,cur) +
+         ' (median ' + money(s.medianPrice||0,cur) + ') · updated ' + fmtDate(d.generatedAt))
+      : ('市场:<b>' + esc(d.city) + '</b> · 入住 ' + esc(d.checkin) + ' → ' + esc(d.checkout) +
+         ' · ' + (s.hotelCount||0) + ' 家酒店 · 区间 ' + money(s.minPrice||0,cur) + '–' + money(s.maxPrice||0,cur) +
+         '(中位 ' + money(s.medianPrice||0,cur) + ') · 更新于 ' + fmtDate(d.generatedAt)));
+
+    var rows = (d.hotels||[]).slice(0, 25).map(function(h){
+      var stars = h.rating ? (h.rating + "★" + (h.reviewCount ? " ("+h.reviewCount+")" : "")) : "—";
+      return '<tr' + (h.watch ? ' style="background:var(--surface-2)"' : '') + '>' +
+        '<td>' + esc(h.name) + (h.watch ? ' <span class="wt">★watch</span>' : '') + '</td>' +
+        '<td>' + stars + '</td>' +
+        '<td>' + esc(h.cheapestVendor||"—") + '</td>' +
+        '<td class="num">' + money(h.cheapestPrice||0, cur) + '</td>' +
+      '</tr>';
+    }).join("");
+
+    body.innerHTML =
+      '<div style="margin:6px 0 12px"><button class="langbtn" id="useCeil" type="button">' +
+        (en ? "Use market max (" + money(s.maxPrice||0,cur) + ") as my ceiling" : "用市场最高价(" + money(s.maxPrice||0,cur) + ")作为我的上限") +
+      '</button></div>' +
+      '<table><thead><tr>' +
+        '<th>' + (en?"Hotel":"酒店") + '</th>' +
+        '<th>' + (en?"Rating":"评分") + '</th>' +
+        '<th>' + (en?"Cheapest OTA":"最低 OTA") + '</th>' +
+        '<th class="num">' + (en?"From":"起价") + '</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table>';
+
+    var btn = document.getElementById("useCeil");
+    if (btn) btn.addEventListener("click", function(){
+      if (window.__ibSetCeiling) window.__ibSetCeiling(s.maxPrice||0);
+    });
+  }
+
+  // align the calculator's currency to the live data so "use market max" is same-unit
+  function syncCurrency(){
+    var sel = document.getElementById("cur");
+    if (!sel || !DATA) return;
+    var sym = SYMS[DATA.currency];
+    if (!sym) return;
+    for (var i = 0; i < sel.options.length; i++){
+      if (sel.options[i].value === sym){
+        if (sel.value !== sym){ sel.value = sym; sel.dispatchEvent(new Event("change", {bubbles:true})); }
+        return;
+      }
+    }
+  }
+
+  fetch("data/rates.json", {cache:"no-store"})
+    .then(function(r){ if (!r.ok) throw new Error("no data"); return r.json(); })
+    .then(function(j){ DATA = j; syncCurrency(); render(); })
+    .catch(function(){ ERR = true; render(); });
+
+  var lt = document.getElementById("langToggle");
+  if (lt) lt.addEventListener("click", function(){ render(); });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a07a6f68283910dd',t:'MTc4MDc4MDU1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

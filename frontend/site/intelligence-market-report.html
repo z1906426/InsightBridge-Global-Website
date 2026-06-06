@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InsightBridge Global Intelligence — Hotel AI Market Report</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --ink: #1a1a1a;
+  --ink-mid: #3a3a3a;
+  --ink-light: #5a5a5a;
+  --ink-muted: #8a8a8a;
+  --bg: #fafaf8;
+  --bg-warm: #f5f3ef;
+  --bg-blue: #f0f4f8;
+  --accent: #1a3a5c;
+  --accent-mid: #2a5a8c;
+  --accent-light: #3a7abd;
+  --gold: #b8960c;
+  --gold-light: #d4af37;
+  --border: #e0ddd6;
+  --card: #ffffff;
+  --green: #16a34a;
+  --green-light: #4ade80;
+  --orange: #ea580c;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --teal: #0d9488;
+  --chart-bg: #0d1117;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(160deg, #080e18 0%, #0f1b2d 30%, #1a3a5c 70%, #1e4a6e 100%);
+  padding: 80px 32px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background: radial-gradient(ellipse at 25% 40%, rgba(212,175,55,0.06) 0%, transparent 55%),
+              radial-gradient(ellipse at 75% 60%, rgba(58,122,189,0.05) 0%, transparent 50%);
+}
+.cover-label {
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--gold-light);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  position:relative;
+}
+.cover-title-zh {
+  font-family:'Cormorant Garamond','Noto Serif SC',serif;
+  font-size:36px;
+  font-weight:700;
+  color:#fff;
+  line-height:1.35;
+  margin-bottom:12px;
+  position:relative;
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.cover-title-en {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:500;
+  font-style:italic;
+  color:rgba(255,255,255,0.6);
+  line-height:1.4;
+  margin-bottom:28px;
+  position:relative;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.cover-sub {
+  font-size:14px;
+  color:rgba(255,255,255,0.4);
+  position:relative;
+  font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.5px;
+}
+.cover-divider {
+  width:60px;
+  height:2px;
+  background:var(--gold);
+  margin:24px auto 20px;
+  position:relative;
+}
+.cover-byline {
+  font-size:13px;
+  color:rgba(255,255,255,0.45);
+  position:relative;
+}
+.cover-byline strong { color:rgba(255,255,255,0.7); }
+
+/* ── CONTAINER ── */
+.container {
+  max-width:820px;
+  margin:0 auto;
+  padding:0 28px;
+}
+
+/* ── EXECUTIVE SUMMARY ── */
+.exec-summary {
+  background: var(--bg-warm);
+  border-left:4px solid var(--gold);
+  padding:36px 36px;
+  margin:48px 0;
+  border-radius:0 8px 8px 0;
+}
+.exec-label {
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--gold);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.exec-text {
+  font-size:16.5px;
+  line-height:1.9;
+  color:var(--ink-mid);
+}
+.exec-text strong { color:var(--ink); }
+
+/* ── SECTIONS ── */
+.section {
+  margin-bottom:56px;
+}
+.section-num {
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--gold);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+h2.s-title {
+  font-family:'Cormorant Garamond','Noto Serif SC',serif;
+  font-size:26px;
+  font-weight:700;
+  color:var(--ink);
+  line-height:1.35;
+  margin-bottom:4px;
+}
+h3.s-sub {
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;
+  font-weight:500;
+  font-style:italic;
+  color:var(--ink-muted);
+  margin-bottom:24px;
+}
+.s-body {
+  font-size:16px;
+  line-height:1.9;
+  color:var(--ink-mid);
+  margin-bottom:18px;
+}
+.s-body strong { color:var(--ink); }
+
+/* ── SOURCE TAGS ── */
+.source-tag {
+  display:inline-block;
+  background:#e8e5de;
+  color:var(--ink-light);
+  font-size:11px;
+  font-family:'JetBrains Mono',monospace;
+  padding:2px 8px;
+  border-radius:3px;
+  margin-left:4px;
+  vertical-align:super;
+  line-height:1;
+  cursor:help;
+}
+
+/* ── KEY STAT CARDS ── */
+.stat-row {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
+  margin:28px 0;
+}
+.stat-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:24px;
+  text-align:center;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.stat-card:hover {
+  border-color:var(--accent-mid);
+  box-shadow:0 4px 16px rgba(26,58,92,0.06);
+}
+.stat-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
+  font-weight:700;
+  color:var(--accent);
+  line-height:1.1;
+}
+.stat-unit {
+  font-size:14px;
+  color:var(--ink-muted);
+  font-family:'JetBrains Mono',monospace;
+}
+.stat-label {
+  font-size:13px;
+  color:var(--ink-light);
+  margin-top:6px;
+  line-height:1.4;
+}
+.stat-source {
+  font-size:10px;
+  color:var(--ink-muted);
+  font-family:'JetBrains Mono',monospace;
+  margin-top:6px;
+}
+
+/* ── CHART CONTAINERS ── */
+.chart-block {
+  background:var(--chart-bg);
+  border-radius:12px;
+  padding:32px 28px 24px;
+  margin:32px 0;
+  position:relative;
+  overflow:hidden;
+}
+.chart-block::before {
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--green-light),var(--blue),var(--gold-light));
+}
+.chart-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.chart-badge {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--green-light);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.chart-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+}
+.chart-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:12px;
+  color:rgba(255,255,255,0.3);
+  font-weight:600;
+  padding:4px 10px;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:4px;
+}
+.chart-logo span { color:var(--gold-light); }
+.chart-svg { width:100%; overflow-x:auto; }
+.chart-svg svg { width:100%; height:auto; display:block; }
+.chart-legend {
+  display:flex;
+  gap:18px;
+  margin-top:16px;
+  flex-wrap:wrap;
+}
+.legend-i {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:rgba(255,255,255,0.5);
+  font-family:'JetBrains Mono',monospace;
+}
+.legend-dot {
+  width:9px;height:9px;border-radius:50%;
+}
+.chart-source {
+  font-size:9.5px;
+  color:rgba(255,255,255,0.25);
+  font-family:'JetBrains Mono',monospace;
+  margin-top:14px;
+  line-height:1.5;
+}
+
+/* ── TABLES ── */
+.table-wrap {
+  overflow-x:auto;
+  margin:24px 0;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+thead th {
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
+  padding:12px 16px;
+  text-align:left;
+  font-size:13px;
+  letter-spacing:0.3px;
+}
+tbody td {
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+  line-height:1.6;
+  color:var(--ink-mid);
+}
+tbody tr:nth-child(even) { background:var(--bg-warm); }
+tbody tr:hover { background:#eef2f6; }
+.td-country {
+  font-weight:600;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.maturity-badge {
+  display:inline-block;
+  padding:2px 10px;
+  border-radius:12px;
+  font-size:11px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.m-very-high { background:#dcfce7; color:#166534; }
+.m-high { background:#dbeafe; color:#1e40af; }
+.m-high-growth { background:#fef3c7; color:#92400e; }
+.m-mid-high { background:#e0e7ff; color:#3730a3; }
+.m-mid { background:#f3f4f6; color:#4b5563; }
+
+/* ── CALLOUT ── */
+.callout {
+  background:var(--bg-warm);
+  border-left:4px solid var(--gold);
+  padding:24px 28px;
+  margin:28px 0;
+  border-radius:0 8px 8px 0;
+}
+.callout-zh {
+  font-family:'Cormorant Garamond','Noto Serif SC',serif;
+  font-size:19px;
+  font-weight:600;
+  line-height:1.6;
+  color:var(--accent);
+}
+.callout-en {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:16px;
+  color:var(--ink-light);
+  margin-top:6px;
+}
+
+/* ── PAIN POINTS GRID ── */
+.pain-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin:24px 0;
+}
+.pain-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:24px;
+  border-top:3px solid var(--accent);
+  transition:box-shadow 0.2s;
+}
+.pain-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+.pain-card-icon {
+  font-size:24px;
+  margin-bottom:10px;
+}
+.pain-card-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:6px;
+  line-height:1.3;
+}
+.pain-card-desc {
+  font-size:14px;
+  color:var(--ink-light);
+  line-height:1.6;
+}
+
+/* ── TREND ITEMS ── */
+.trend-item {
+  display:flex;
+  gap:18px;
+  margin-bottom:24px;
+  align-items:flex-start;
+}
+.trend-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  font-weight:700;
+  color:var(--accent);
+  line-height:1;
+  flex-shrink:0;
+  width:40px;
+  text-align:center;
+}
+.trend-body {}
+.trend-title {
+  font-weight:700;
+  font-size:16px;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+.trend-desc {
+  font-size:15px;
+  color:var(--ink-light);
+  line-height:1.7;
+}
+
+/* ── CTA ── */
+.cta-block {
+  background:linear-gradient(135deg,#0f1b2d,#1a3a5c);
+  border-radius:12px;
+  padding:44px 36px;
+  text-align:center;
+  margin:48px 0;
+  position:relative;
+  overflow:hidden;
+}
+.cta-block::before {
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at 70% 30%,rgba(212,175,55,0.05) 0%,transparent 50%);
+}
+.cta-label {
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-light);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;position:relative;
+}
+.cta-h {
+  font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;
+  color:#fff;margin-bottom:8px;position:relative;
+}
+.cta-p {
+  font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px;
+  position:relative;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6;
+}
+.cta-btn {
+  display:inline-block;padding:14px 36px;background:var(--gold);
+  color:#fff;font-size:14px;font-weight:600;border-radius:6px;
+  text-decoration:none;transition:all 0.2s;position:relative;
+  letter-spacing:0.5px;
+}
+.cta-btn:hover { background:var(--gold-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,150,12,0.3); }
+
+/* ── REFERENCES ── */
+.ref-section {
+  background:var(--bg-warm);
+  border-radius:8px;
+  padding:32px 32px;
+  margin:48px 0;
+  border:1px solid var(--border);
+}
+.ref-label {
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;
+}
+.ref-list {
+  list-style:none;
+  counter-reset:ref;
+}
+.ref-list li {
+  counter-increment:ref;
+  font-size:13.5px;
+  color:var(--ink-light);
+  line-height:1.7;
+  margin-bottom:8px;
+  padding-left:28px;
+  position:relative;
+}
+.ref-list li::before {
+  content:'['counter(ref)']';
+  position:absolute;
+  left:0;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--ink-muted);
+  top:2px;
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  background:var(--accent);
+  padding:32px 24px;
+  text-align:center;
+}
+.footer-t {
+  font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:4px;
+}
+.footer-t a { color:var(--gold-light);text-decoration:none; }
+
+/* ── CLOSING QUOTE ── */
+.closing {
+  text-align:center;
+  padding:48px 0;
+  border-top:1px solid var(--border);
+  margin-top:48px;
+}
+.closing-q {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:600;color:var(--accent);
+  line-height:1.6;max-width:560px;margin:0 auto 10px;
+}
+.closing-q-en {
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;color:var(--ink-muted);
+  max-width:560px;margin:0 auto;
+}
+
+@media(max-width:640px){
+  .cover-title-zh{font-size:26px;}
+  .cover-title-en{font-size:17px;}
+  .stat-row{grid-template-columns:1fr;}
+  .pain-grid{grid-template-columns:1fr;}
+  .chart-block{padding:20px 16px 16px;}
+}
+
+/* ── Site Header ── */
+.site-header {
+  background: var(--accent);
+  padding: 12px 0;
+  border-bottom: 3px solid var(--gold-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.logo-text span { color: var(--gold-light); }
+.header-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.header-nav a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.header-nav a:hover { color: #fff; }
+.header-nav a.active { color: var(--gold-light); }
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  background: var(--bg-warm);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+}
+.breadcrumb-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 13px;
+  color: var(--ink-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.breadcrumb-inner a { color: var(--accent); text-decoration: none; }
+.breadcrumb-inner a:hover { text-decoration: underline; }
+.breadcrumb-sep { color: var(--border); }
+</style>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wmy0pmiggq");
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"></head>
+<body>
+
+<!-- Site Header -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="logo-text">Insight<span>Bridge</span> Global</a>
+    <nav class="header-nav">
+      <a href="index.html#intelligence" class="active">Intelligence</a>
+      <a href="index.html#ai-model">AI Model</a>
+      <a href="index.html#framework">Framework</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">InsightBridge Global</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="index.html#intelligence">Global Intelligence</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Market Report · April 2026</span>
+  </div>
+</div>
+
+<!-- ═══════ COVER ═══════ -->
+<header class="cover">
+  <div class="cover-label">InsightBridge Global Intelligence</div>
+  <h1 class="cover-title-zh">全球酒店业 AI 转型市场分析报告</h1>
+  <div class="cover-title-en">Global Hotel Industry AI Transformation: Market Analysis Report</div>
+  <div class="cover-sub">Pain Points · Trends · Country Opportunities</div>
+  <div class="cover-divider"></div>
+  <div class="cover-byline"><strong>Dr. Tong Yin</strong> · InsightBridge Strategy & AI Research · April 2026</div>
+</header>
+
+<div class="container">
+
+<!-- ═══════ EXECUTIVE SUMMARY ═══════ -->
+<div class="exec-summary">
+  <div class="exec-label">Executive Summary / 核心结论</div>
+  <div class="exec-text">
+    全球酒店业已经从<strong>"复苏周期"进入"效率竞争周期"</strong>。疫情后的报复性旅游需求逐渐正常化，酒店不再单纯依靠涨价和入住率恢复来提升利润，而是必须应对人工成本攀升、员工持续短缺、分销成本高企、客户体验碎片化以及数据系统割裂等长期结构性挑战。<strong>AI 正在成为酒店业下一阶段竞争的核心基础设施。</strong>
+    <br><br>
+    The global hotel industry has transitioned from a <strong>"recovery cycle" to an "efficiency competition cycle."</strong> Post-pandemic revenge travel has normalized; hotels can no longer rely on rate increases and occupancy recovery alone. They must confront structural challenges—rising labor costs, persistent staffing shortages, high distribution costs, fragmented guest experiences, and siloed data systems. <strong>AI is emerging as the critical infrastructure for the next phase of competitive differentiation.</strong>
+  </div>
+</div>
+
+<!-- ═══════ KEY STATS ═══════ -->
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="stat-num">386,000</div>
+    <div class="stat-unit">hotels</div>
+    <div class="stat-label">全球星级酒店总量<br>Global Rated Hotels</div>
+    <div class="stat-source">Source: GARD Database [1]</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">277,700</div>
+    <div class="stat-unit">3★ and above</div>
+    <div class="stat-label">三星及以上酒店<br>~72% of Total Supply</div>
+    <div class="stat-source">Source: GARD Database [1]</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">70%+</div>
+    <div class="stat-unit">of hotels</div>
+    <div class="stat-label">仍依赖人工定价<br>Still Use Manual Pricing</div>
+    <div class="stat-source">Source: CBRE / STR [7][8]</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">8–15%</div>
+    <div class="stat-unit">net profit</div>
+    <div class="stat-label">AI定价潜在提升空间<br>Potential AI Pricing Uplift</div>
+    <div class="stat-source">Source: PwC [2]</div>
+  </div>
+</div>
+
+<!-- ═══════ CHART 1: GLOBAL HOTEL DISTRIBUTION ═══════ -->
+<div class="chart-block">
+  <div class="chart-head">
+    <div>
+      <div class="chart-badge">Chart 1 · Market Structure</div>
+      <div class="chart-title">Global 3★+ Hotel Distribution by Region</div>
+    </div>
+    <div class="chart-logo">Insight<span>Bridge</span></div>
+  </div>
+  <div class="chart-svg">
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <line x1="120" y1="40" x2="120" y2="250" stroke="#1e2a3a" stroke-width="0.5"/>
+      <line x1="120" y1="250" x2="690" y2="250" stroke="#1e2a3a" stroke-width="0.5"/>
+      <!-- Horizontal grid lines -->
+      <line x1="120" y1="82" x2="690" y2="82" stroke="#1e2a3a" stroke-width="0.3" stroke-dasharray="3,3"/>
+      <line x1="120" y1="124" x2="690" y2="124" stroke="#1e2a3a" stroke-width="0.3" stroke-dasharray="3,3"/>
+      <line x1="120" y1="166" x2="690" y2="166" stroke="#1e2a3a" stroke-width="0.3" stroke-dasharray="3,3"/>
+      <line x1="120" y1="208" x2="690" y2="208" stroke="#1e2a3a" stroke-width="0.3" stroke-dasharray="3,3"/>
+      <!-- X labels -->
+      <text x="112" y="45" fill="#5a6a7a" font-size="9" font-family="JetBrains Mono" text-anchor="end">500K</text>
+      <text x="112" y="87" fill="#5a6a7a" font-size="9" font-family="JetBrains Mono" text-anchor="end">400K</text>
+      <text x="112" y="129" fill="#5a6a7a" font-size="9" font-family="JetBrains Mono" text-anchor="end">300K</text>
+      <text x="112" y="171" fill="#5a6a7a" font-size="9" font-family="JetBrains Mono" text-anchor="end">200K</text>
+      <text x="112" y="213" fill="#5a6a7a" font-size="9" font-family="JetBrains Mono" text-anchor="end">100K</text>
+      <text x="112" y="254" fill="#5a6a7a" font-size="9" font-family="JetBrains Mono" text-anchor="end">0</text>
+
+      <!-- Bars (rooms in key markets) -->
+      <!-- US: ~5.7M rooms → scale to ~475K shown -->
+      <rect x="145" y="48" width="60" height="202" rx="3" fill="#3b82f6" opacity="0.85"/>
+      <text x="175" y="270" fill="#8a9aaa" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="600">USA</text>
+      <text x="175" y="42" fill="#3b82f6" font-size="10" font-family="JetBrains Mono" text-anchor="middle">~5.7M</text>
+
+      <!-- China: ~3.8M rooms → 320 height-->
+      <rect x="230" y="82" width="60" height="168" rx="3" fill="#8b5cf6" opacity="0.85"/>
+      <text x="260" y="270" fill="#8a9aaa" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="600">China</text>
+      <text x="260" y="76" fill="#8b5cf6" font-size="10" font-family="JetBrains Mono" text-anchor="middle">~3.8M</text>
+
+      <!-- Middle East: ~693K -->
+      <rect x="315" y="185" width="60" height="65" rx="3" fill="#f59e0b" opacity="0.85"/>
+      <text x="345" y="270" fill="#8a9aaa" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="600">Middle East</text>
+      <text x="345" y="179" fill="#f59e0b" font-size="10" font-family="JetBrains Mono" text-anchor="middle">~693K</text>
+
+      <!-- SE Asia: ~1.2M -->
+      <rect x="400" y="145" width="60" height="105" rx="3" fill="#14b8a6" opacity="0.85"/>
+      <text x="430" y="270" fill="#8a9aaa" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="600">SE Asia</text>
+      <text x="430" y="139" fill="#14b8a6" font-size="10" font-family="JetBrains Mono" text-anchor="middle">~1.2M</text>
+
+      <!-- Europe: ~4.5M -->
+      <rect x="485" y="62" width="60" height="188" rx="3" fill="#6366f1" opacity="0.85"/>
+      <text x="515" y="270" fill="#8a9aaa" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="600">Europe</text>
+      <text x="515" y="56" fill="#6366f1" font-size="10" font-family="JetBrains Mono" text-anchor="middle">~4.5M</text>
+
+      <!-- HK/MO/SG: ~209K -->
+      <rect x="570" y="214" width="60" height="36" rx="3" fill="#ec4899" opacity="0.85"/>
+      <text x="600" y="270" fill="#8a9aaa" font-size="9" font-family="Source Sans 3" text-anchor="middle" font-weight="600">HK/MO/SG</text>
+      <text x="600" y="208" fill="#ec4899" font-size="10" font-family="JetBrains Mono" text-anchor="middle">~209K</text>
+
+      <!-- Unit label -->
+      <text x="130" y="290" fill="#4a5a6a" font-size="9" font-family="JetBrains Mono">Unit: Hotel Rooms (estimated)</text>
+    </svg>
+  </div>
+  <div class="chart-source">Sources: [1] GARD Global Accommodation Database · [3] Macao DSEC 2024 · [4] CBRE Hong Kong · [5] Saudi Tourism Authority · [6] Knight Frank UAE 2024 · [9] Singapore Data.gov.sg</div>
+</div>
+
+
+<!-- ═══════ SECTION 2: PAIN POINTS ═══════ -->
+<section class="section">
+  <div class="section-num">Section II</div>
+  <h2 class="s-title">全球酒店市场的核心痛点</h2>
+  <h3 class="s-sub">Critical Pain Points Across the Global Hotel Industry</h3>
+
+  <p class="s-body">酒店行业正面临多重结构性压力的叠加。这些痛点并非周期性波动，而是需要<strong>通过技术手段进行系统性重构</strong>的长期挑战。以下是全球范围内最为突出的四大运营痛点：</p>
+  <p class="s-body" style="font-style:italic;color:var(--ink-light);">The hotel industry faces compounding structural pressures. These are not cyclical fluctuations but long-term challenges requiring systemic technological intervention.</p>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-card-icon">👥</div>
+      <div class="pain-card-title">人力短缺与成本攀升<br><span style="font-size:13px;color:var(--ink-muted);font-weight:400;">Labor Shortage & Rising Costs</span></div>
+      <div class="pain-card-desc">疫情后全球酒店业普遍面临长期用工紧张，工资上涨、员工高流失率和不断攀升的培训成本共同压缩利润空间。<br><em>Post-pandemic workforce shortages persist globally, with rising wages, high turnover, and training costs compressing margins.</em></div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-card-icon">📊</div>
+      <div class="pain-card-title">收益管理滞后<br><span style="font-size:13px;color:var(--ink-muted);font-weight:400;">Outdated Revenue Management</span></div>
+      <div class="pain-card-desc">超过 70% 的中高端酒店仍依赖人工经验定价，无法实时整合航班、会展、竞品价格及 OTA 转化数据。<span class="source-tag">STR/CBRE [7][8]</span><br><em>Over 70% of upscale hotels still rely on manual pricing, unable to integrate real-time demand signals.</em></div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-card-icon">🔗</div>
+      <div class="pain-card-title">客户体验碎片化<br><span style="font-size:13px;color:var(--ink-muted);font-weight:400;">Fragmented Guest Experience</span></div>
+      <div class="pain-card-desc">旅客跨越官网、OTA、社交媒体、微信、邮件、前台和会员系统等多触点，酒店数据分散，无法构建完整客户画像。<br><em>Guest interactions span multiple platforms; siloed data prevents unified customer profiles.</em></div>
+    </div>
+    <div class="pain-card">
+      <div class="pain-card-icon">⚡</div>
+      <div class="pain-card-title">能源与运营成本压力<br><span style="font-size:13px;color:var(--ink-muted);font-weight:400;">Energy & Operational Cost Burden</span></div>
+      <div class="pain-card-desc">酒店属于高能耗资产类别，空调、照明、热水、洗衣、厨房及公共区域能耗占运营成本比重显著。<br><em>Hotels are high-energy assets; HVAC, lighting, laundry, and kitchen systems drive significant operational costs.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CHART 2: AI SOLUTION MAPPING ═══════ -->
+<div class="chart-block">
+  <div class="chart-head">
+    <div>
+      <div class="chart-badge">Chart 2 · AI Impact Matrix</div>
+      <div class="chart-title">AI Solutions vs Hotel Pain Points — Efficiency Impact</div>
+    </div>
+    <div class="chart-logo">Insight<span>Bridge</span></div>
+  </div>
+  <div class="chart-svg">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Horizontal bar chart -->
+      <!-- Y labels -->
+      <text x="155" y="52" fill="#c0c8d0" font-size="12" font-family="Source Sans 3" text-anchor="end">Dynamic Pricing</text>
+      <text x="155" y="100" fill="#c0c8d0" font-size="12" font-family="Source Sans 3" text-anchor="end">AI Concierge</text>
+      <text x="155" y="148" fill="#c0c8d0" font-size="12" font-family="Source Sans 3" text-anchor="end">Energy Mgmt</text>
+      <text x="155" y="196" fill="#c0c8d0" font-size="12" font-family="Source Sans 3" text-anchor="end">Staff Scheduling</text>
+      <text x="155" y="244" fill="#c0c8d0" font-size="12" font-family="Source Sans 3" text-anchor="end">CRM/Guest Intel</text>
+      <text x="155" y="292" fill="#c0c8d0" font-size="12" font-family="Source Sans 3" text-anchor="end">Review Analytics</text>
+
+      <!-- Grid -->
+      <line x1="170" y1="30" x2="170" y2="310" stroke="#1e2a3a" stroke-width="0.5"/>
+
+      <!-- Bars - Revenue Impact (blue) -->
+      <rect x="170" y="38" width="420" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+      <text x="596" y="49" fill="#3b82f6" font-size="10" font-family="JetBrains Mono">+8–15% RevPAR</text>
+
+      <rect x="170" y="86" width="280" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+      <text x="456" y="97" fill="#3b82f6" font-size="10" font-family="JetBrains Mono">+12% Upsell</text>
+
+      <rect x="170" y="134" width="200" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+      <text x="376" y="145" fill="#3b82f6" font-size="10" font-family="JetBrains Mono">ESG Compliance</text>
+
+      <rect x="170" y="182" width="160" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+      <text x="336" y="193" fill="#3b82f6" font-size="10" font-family="JetBrains Mono">Flexibility</text>
+
+      <rect x="170" y="230" width="350" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+      <text x="526" y="241" fill="#3b82f6" font-size="10" font-family="JetBrains Mono">+20% Retention</text>
+
+      <rect x="170" y="278" width="220" height="12" rx="2" fill="#3b82f6" opacity="0.8"/>
+      <text x="396" y="289" fill="#3b82f6" font-size="10" font-family="JetBrains Mono">Risk Detect</text>
+
+      <!-- Bars - Cost Reduction (green) -->
+      <rect x="170" y="52" width="300" height="12" rx="2" fill="#4ade80" opacity="0.7"/>
+      <text x="476" y="63" fill="#4ade80" font-size="10" font-family="JetBrains Mono">Precision Pricing</text>
+
+      <rect x="170" y="100" width="380" height="12" rx="2" fill="#4ade80" opacity="0.7"/>
+      <text x="556" y="111" fill="#4ade80" font-size="10" font-family="JetBrains Mono">-30% Front Desk</text>
+
+      <rect x="170" y="148" width="340" height="12" rx="2" fill="#4ade80" opacity="0.7"/>
+      <text x="516" y="159" fill="#4ade80" font-size="10" font-family="JetBrains Mono">-15–25% Energy</text>
+
+      <rect x="170" y="196" width="300" height="12" rx="2" fill="#4ade80" opacity="0.7"/>
+      <text x="476" y="207" fill="#4ade80" font-size="10" font-family="JetBrains Mono">-20% Labor Cost</text>
+
+      <rect x="170" y="244" width="250" height="12" rx="2" fill="#4ade80" opacity="0.7"/>
+      <text x="426" y="255" fill="#4ade80" font-size="10" font-family="JetBrains Mono">Data Unification</text>
+
+      <rect x="170" y="292" width="260" height="12" rx="2" fill="#4ade80" opacity="0.7"/>
+      <text x="436" y="303" fill="#4ade80" font-size="10" font-family="JetBrains Mono">-40% Response</text>
+    </svg>
+  </div>
+  <div class="chart-legend">
+    <div class="legend-i"><div class="legend-dot" style="background:#3b82f6"></div>Revenue / Strategic Impact</div>
+    <div class="legend-i"><div class="legend-dot" style="background:#4ade80"></div>Cost Reduction / Efficiency</div>
+  </div>
+  <div class="chart-source">Sources: [2] PwC AI in Tourism 2025 · [7] CBRE Global Hotel Outlook 2025 · InsightBridge Analysis</div>
+</div>
+
+
+<!-- ═══════ SECTION 3: AI TRENDS ═══════ -->
+<section class="section">
+  <div class="section-num">Section III</div>
+  <h2 class="s-title">AI 在酒店业的四大发展趋势</h2>
+  <h3 class="s-sub">Four Defining Trends in Hotel AI Adoption</h3>
+
+  <div class="trend-item">
+    <div class="trend-num">1</div>
+    <div class="trend-body">
+      <div class="trend-title">从"聊天机器人"走向"运营大脑" / From Chatbot to Operational Brain</div>
+      <div class="trend-desc">AI 正在从前台客服层面深入到收益管理、客户画像、能耗管理、采购优化、智能排班、精准营销及声誉管理等核心运营领域。<br><em>AI is penetrating from front-desk service into core operations: revenue management, guest profiling, energy optimization, procurement, scheduling, marketing, and reputation management.</em></div>
+    </div>
+  </div>
+  <div class="trend-item">
+    <div class="trend-num">2</div>
+    <div class="trend-body">
+      <div class="trend-title">AI 优先落地于高价值、高人工成本市场 / AI Lands First in High-Value, High-Cost Markets</div>
+      <div class="trend-desc">美国、英国、德国、新加坡、香港、澳门、阿联酋和沙特等市场由于人工成本高企和数字化基础成熟，更容易产生 AI 投资回报。<span class="source-tag">PwC [2]</span><br><em>Markets with high labor costs and mature digital infrastructure—US, UK, Germany, Singapore, Hong Kong, Macau, UAE, Saudi Arabia—generate faster ROI on AI investment.</em></div>
+    </div>
+  </div>
+  <div class="trend-item">
+    <div class="trend-num">3</div>
+    <div class="trend-body">
+      <div class="trend-title">AI 与核心系统深度整合 / Deep Integration with Core Hotel Systems</div>
+      <div class="trend-desc">AI 必须与 PMS、CRM、POS、OTA 接口、门锁系统及支付系统实现深度整合，否则将停留在表层客服功能。<br><em>AI must integrate deeply with PMS, CRM, POS, OTA APIs, door lock systems, and payment platforms—otherwise it remains superficial.</em></div>
+    </div>
+  </div>
+  <div class="trend-item">
+    <div class="trend-num">4</div>
+    <div class="trend-body">
+      <div class="trend-title">效率提升已明确，收入增长仍处早期 / Efficiency Gains Confirmed; Revenue Uplift Still Emerging</div>
+      <div class="trend-desc">降本增效的价值已得到广泛验证。收入端的提升——包括精准定价和会员转化——仍需与酒店数据系统和渠道策略深度结合，处于加速验证阶段。<br><em>Cost-reduction value is well-established. Revenue-side uplift—precision pricing, membership conversion—requires deep integration with hotel data and channel strategy, and remains in accelerated validation.</em></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ CHART 3: AI MATURITY BY REGION ═══════ -->
+<div class="chart-block">
+  <div class="chart-head">
+    <div>
+      <div class="chart-badge">Chart 3 · Regional Intelligence</div>
+      <div class="chart-title">Hotel AI Maturity & Opportunity by Region</div>
+    </div>
+    <div class="chart-logo">Insight<span>Bridge</span></div>
+  </div>
+  <div class="chart-svg">
+    <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg">
+      <!-- Quadrant axes -->
+      <line x1="80" y1="280" x2="690" y2="280" stroke="#2a3a4a" stroke-width="1"/>
+      <line x1="80" y1="20" x2="80" y2="280" stroke="#2a3a4a" stroke-width="1"/>
+      <!-- Axis labels -->
+      <text x="390" y="310" fill="#6a7a8a" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="600">AI Readiness →</text>
+      <text x="30" y="150" fill="#6a7a8a" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="600" transform="rotate(-90,30,150)">Growth Potential →</text>
+      <!-- Grid lines -->
+      <line x1="80" y1="150" x2="690" y2="150" stroke="#1e2a3a" stroke-width="0.3" stroke-dasharray="4,4"/>
+      <line x1="385" y1="20" x2="385" y2="280" stroke="#1e2a3a" stroke-width="0.3" stroke-dasharray="4,4"/>
+      <!-- Quadrant labels -->
+      <text x="230" y="268" fill="#2a3a4a" font-size="9" font-family="JetBrains Mono" text-anchor="middle" opacity="0.5">LOW READINESS · LOW GROWTH</text>
+      <text x="540" y="268" fill="#2a3a4a" font-size="9" font-family="JetBrains Mono" text-anchor="middle" opacity="0.5">HIGH READINESS · ESTABLISHED</text>
+      <text x="230" y="35" fill="#2a3a4a" font-size="9" font-family="JetBrains Mono" text-anchor="middle" opacity="0.5">EMERGING · HIGH GROWTH</text>
+      <text x="540" y="35" fill="#2a3a4a" font-size="9" font-family="JetBrains Mono" text-anchor="middle" opacity="0.5">LEADER QUADRANT</text>
+
+      <!-- Bubbles -->
+      <!-- UAE: very high readiness, high growth -->
+      <circle cx="600" cy="70" r="30" fill="#f59e0b" opacity="0.25" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="600" y="74" fill="#f59e0b" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="700">UAE</text>
+
+      <!-- Saudi: mid-high readiness, very high growth -->
+      <circle cx="430" cy="45" r="35" fill="#ef4444" opacity="0.2" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="430" y="49" fill="#ef4444" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="700">Saudi</text>
+
+      <!-- USA: very high readiness, moderate growth -->
+      <circle cx="640" cy="140" r="38" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="640" y="144" fill="#3b82f6" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="700">USA</text>
+
+      <!-- Singapore: high readiness, moderate growth -->
+      <circle cx="560" cy="160" r="20" fill="#14b8a6" opacity="0.25" stroke="#14b8a6" stroke-width="1.5"/>
+      <text x="560" y="164" fill="#14b8a6" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="700">SG</text>
+
+      <!-- HK/MO: high readiness, moderate-high growth -->
+      <circle cx="530" cy="110" r="22" fill="#ec4899" opacity="0.2" stroke="#ec4899" stroke-width="1.5"/>
+      <text x="530" y="114" fill="#ec4899" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="700">HK/MO</text>
+
+      <!-- China: mid-high readiness, high growth -->
+      <circle cx="380" cy="90" r="40" fill="#8b5cf6" opacity="0.18" stroke="#8b5cf6" stroke-width="1.5"/>
+      <text x="380" y="94" fill="#8b5cf6" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="700">China</text>
+
+      <!-- Europe: high readiness, low-moderate growth -->
+      <circle cx="500" cy="190" r="34" fill="#6366f1" opacity="0.18" stroke="#6366f1" stroke-width="1.5"/>
+      <text x="500" y="194" fill="#6366f1" font-size="11" font-family="Source Sans 3" text-anchor="middle" font-weight="700">Europe</text>
+
+      <!-- SE Asia: mid readiness, high growth -->
+      <circle cx="280" cy="100" r="28" fill="#22d3ee" opacity="0.2" stroke="#22d3ee" stroke-width="1.5"/>
+      <text x="280" y="104" fill="#22d3ee" font-size="10" font-family="Source Sans 3" text-anchor="middle" font-weight="700">SE Asia</text>
+
+      <!-- Island Resorts: low-mid readiness, moderate growth -->
+      <circle cx="200" cy="180" r="18" fill="#a3e635" opacity="0.25" stroke="#a3e635" stroke-width="1.5"/>
+      <text x="200" y="184" fill="#a3e635" font-size="9" font-family="Source Sans 3" text-anchor="middle" font-weight="700">Islands</text>
+    </svg>
+  </div>
+  <div class="chart-source">Sources: [2] PwC ME · [5] Saudi Tourism Authority · [6] Knight Frank UAE · [7] CBRE 2025 · InsightBridge Analysis</div>
+</div>
+
+
+<!-- ═══════ SECTION 4: COUNTRY TABLE ═══════ -->
+<section class="section">
+  <div class="section-num">Section IV</div>
+  <h2 class="s-title">重点国家和地区深度分析</h2>
+  <h3 class="s-sub">In-Depth Country & Regional Analysis</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Country / Region</th>
+          <th>Market Profile</th>
+          <th>Primary Pain Points</th>
+          <th>AI Opportunity</th>
+          <th>AI Maturity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-country">🇦🇪 UAE</td>
+          <td>~218,000+ rooms; Dubai high-density luxury supply <span class="source-tag">[6]</span></td>
+          <td>Intense competition, diverse international clientele, high operating costs</td>
+          <td>Luxury guest profiling, dynamic pricing, energy automation</td>
+          <td><span class="maturity-badge m-very-high">Very High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇸🇦 Saudi Arabia</td>
+          <td>~475,970 licensed rooms; rapid expansion under Vision 2030 <span class="source-tag">[5]</span></td>
+          <td>Talent gap, Hajj/mega-event peaks, massive new supply</td>
+          <td>City-level demand prediction, operational automation, smart tourism platforms</td>
+          <td><span class="maturity-badge m-high-growth">High Growth</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇺🇸 USA</td>
+          <td>Largest global hotel market; ~5.7M rooms</td>
+          <td>Labor costs, brand standardization, distribution costs</td>
+          <td>Revenue management, automated check-in, marketing automation</td>
+          <td><span class="maturity-badge m-very-high">Very High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇨🇳 China</td>
+          <td>6,000+ rated hotels; massive OTA-driven market</td>
+          <td>Chain consolidation, thin margins, OTA dependency</td>
+          <td>Dynamic pricing, private-domain CRM, smart concierge, review analytics</td>
+          <td><span class="maturity-badge m-mid-high">Mid-High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇲🇴 Macau</td>
+          <td>146 hotels, 43,044 rooms; casino-resort driven <span class="source-tag">[3]</span></td>
+          <td>Gaming tourism volatility, complex integrated resort ops</td>
+          <td>High-value guest identification, cross-venue recommendation, energy management</td>
+          <td><span class="maturity-badge m-high">High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇭🇰 Hong Kong</td>
+          <td>~320 hotels, 92,907 rooms <span class="source-tag">[4]</span></td>
+          <td>Expensive labor, limited space, international recovery</td>
+          <td>Multilingual AI concierge, revenue management, business traveler profiling</td>
+          <td><span class="maturity-badge m-high">High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇸🇬 Singapore</td>
+          <td>~73,000+ rooms; MICE hub <span class="source-tag">[9]</span></td>
+          <td>High labor costs, strong MICE demand</td>
+          <td>Premium service automation, MICE forecasting, guest intelligence</td>
+          <td><span class="maturity-badge m-high">High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇬🇧 UK</td>
+          <td>Major European market; London luxury supply rising</td>
+          <td>Labor, energy costs, new supply pressure</td>
+          <td>AI efficiency, upselling, customer segmentation</td>
+          <td><span class="maturity-badge m-high">High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇩🇪 Germany</td>
+          <td>~12,000 accommodation establishments <span class="source-tag">[8]</span></td>
+          <td>Labor shortages, uneven business travel recovery, cost pressure</td>
+          <td>MICE demand forecasting, operational automation, energy optimization</td>
+          <td><span class="maturity-badge m-mid-high">Mid-High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇹🇭 Thailand</td>
+          <td>~700,000 rooms; tourism-dependent economy</td>
+          <td>Extreme seasonality, service labor pressure</td>
+          <td>Multilingual AI, seasonal demand prediction, review analytics</td>
+          <td><span class="maturity-badge m-mid-high">Mid-High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇲🇾 Malaysia</td>
+          <td>KL: ~38,631 rooms in 3–5★ segment</td>
+          <td>New supply competition, price pressure</td>
+          <td>Dynamic pricing, OTA ad optimization, MICE forecasting</td>
+          <td><span class="maturity-badge m-mid">Mid</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇦🇹 Austria</td>
+          <td>Record overnight stays; tourism-dependent</td>
+          <td>Seasonality, ski-resort costs, energy</td>
+          <td>Seasonal pricing AI, energy management, repeat-guest optimization</td>
+          <td><span class="maturity-badge m-mid-high">Mid-High</span></td>
+        </tr>
+        <tr>
+          <td class="td-country">🇨🇾 Cyprus</td>
+          <td>Growing tourism revenue; resort-oriented market <span class="source-tag">[10]</span></td>
+          <td>Strong seasonality, overseas source dependency</td>
+          <td>Seasonal forecasting, international marketing AI, guest service</td>
+          <td><span class="maturity-badge m-mid">Mid</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ═══════ CHART 4: REGIONAL OPPORTUNITY BREAKDOWN ═══════ -->
+<div class="chart-block">
+  <div class="chart-head">
+    <div>
+      <div class="chart-badge">Chart 4 · Strategic Outlook</div>
+      <div class="chart-title">Regional AI Opportunity — Stage & Priority</div>
+    </div>
+    <div class="chart-logo">Insight<span>Bridge</span></div>
+  </div>
+  <div class="chart-svg">
+    <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Timeline / stage chart -->
+      <!-- Stage headers -->
+      <rect x="40" y="20" width="200" height="28" rx="4" fill="#1e2a3a"/>
+      <text x="140" y="39" fill="#f59e0b" font-size="11" font-family="JetBrains Mono" text-anchor="middle" font-weight="500">RAPID BUILD-OUT</text>
+
+      <rect x="260" y="20" width="200" height="28" rx="4" fill="#1e2a3a"/>
+      <text x="360" y="39" fill="#3b82f6" font-size="11" font-family="JetBrains Mono" text-anchor="middle" font-weight="500">COMPLEX · DIVERSE</text>
+
+      <rect x="480" y="20" width="200" height="28" rx="4" fill="#1e2a3a"/>
+      <text x="580" y="39" fill="#4ade80" font-size="11" font-family="JetBrains Mono" text-anchor="middle" font-weight="500">COST-DRIVEN MATURE</text>
+
+      <!-- Middle East -->
+      <rect x="40" y="62" width="200" height="50" rx="6" fill="#f59e0b" opacity="0.12" stroke="#f59e0b" stroke-width="1"/>
+      <text x="52" y="82" fill="#f59e0b" font-size="13" font-family="Source Sans 3" font-weight="700">Middle East</text>
+      <text x="52" y="100" fill="#8a9aaa" font-size="10" font-family="Source Sans 3">Smart tourism, guest AI, city-level</text>
+
+      <!-- Asia -->
+      <rect x="260" y="62" width="200" height="50" rx="6" fill="#8b5cf6" opacity="0.12" stroke="#8b5cf6" stroke-width="1"/>
+      <text x="272" y="82" fill="#8b5cf6" font-size="13" font-family="Source Sans 3" font-weight="700">Asia Pacific</text>
+      <text x="272" y="100" fill="#8a9aaa" font-size="10" font-family="Source Sans 3">Smart concierge, RevMgmt, CRM</text>
+
+      <!-- US -->
+      <rect x="480" y="62" width="200" height="50" rx="6" fill="#3b82f6" opacity="0.12" stroke="#3b82f6" stroke-width="1"/>
+      <text x="492" y="82" fill="#3b82f6" font-size="13" font-family="Source Sans 3" font-weight="700">United States</text>
+      <text x="492" y="100" fill="#8a9aaa" font-size="10" font-family="Source Sans 3">Automation, RevMgmt, Marketing AI</text>
+
+      <!-- Europe -->
+      <rect x="480" y="126" width="200" height="50" rx="6" fill="#6366f1" opacity="0.12" stroke="#6366f1" stroke-width="1"/>
+      <text x="492" y="146" fill="#6366f1" font-size="13" font-family="Source Sans 3" font-weight="700">Europe</text>
+      <text x="492" y="164" fill="#8a9aaa" font-size="10" font-family="Source Sans 3">Energy AI, scheduling, compliance</text>
+
+      <!-- Island/Resort -->
+      <rect x="40" y="126" width="200" height="50" rx="6" fill="#22d3ee" opacity="0.12" stroke="#22d3ee" stroke-width="1"/>
+      <text x="52" y="146" fill="#22d3ee" font-size="13" font-family="Source Sans 3" font-weight="700">Island / Resort</text>
+      <text x="52" y="164" fill="#8a9aaa" font-size="10" font-family="Source Sans 3">Seasonal pricing, energy, forecast</text>
+
+      <!-- Arrows connecting stages -->
+      <path d="M240 87 L260 87" stroke="#3a4a5a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <path d="M460 87 L480 87" stroke="#3a4a5a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+      <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3a4a5a"/></marker></defs>
+
+      <!-- Bottom insight bar -->
+      <rect x="40" y="200" width="640" height="40" rx="6" fill="#0d1820" stroke="#1e2a3a" stroke-width="1"/>
+      <text x="360" y="218" fill="rgba(255,255,255,0.6)" font-size="12" font-family="Cormorant Garamond" text-anchor="middle" font-style="italic" font-weight="600">
+        "The competition is no longer about who has more rooms — it's about who operates them with better intelligence."
+      </text>
+    </svg>
+  </div>
+  <div class="chart-source">InsightBridge Global Intelligence Analysis · April 2026</div>
+</div>
+
+
+<!-- ═══════ SECTION 5: INSIGHTBRIDGE VIEW ═══════ -->
+<section class="section">
+  <div class="section-num">Section V</div>
+  <h2 class="s-title">InsightBridge Global Intelligence 观点</h2>
+  <h3 class="s-sub">Our Perspective: The Next Three Years</h3>
+
+  <p class="s-body">全球酒店业未来三年的竞争，核心不再是<strong>"谁拥有更多客房"</strong>，而是<strong>"谁能用数据和 AI 更高效地运营客房"</strong>。三星级以上酒店是 AI 酒店解决方案的核心目标市场——它们既具备一定的服务复杂度和数据密度，又面临足够的预算压力和效率需求。</p>
+
+  <p class="s-body" style="font-style:italic;color:var(--ink-light);">Over the next three years, the defining competitive axis in global hospitality will shift from <strong>"who has more rooms"</strong> to <strong>"who operates them with superior intelligence."</strong> Hotels rated 3-star and above represent the core addressable market for AI solutions—they possess sufficient operational complexity and data density, while facing the budget pressures and efficiency demands that make AI adoption compelling.</p>
+
+  <div class="callout">
+    <div class="callout-zh">AI 不会让酒店失去"人情味"。相反，AI 的真正作用是把员工从重复劳动中释放出来，让人回到更高价值的服务场景。未来最成功的酒店，不是完全无人化酒店，而是"AI 负责效率，人负责体验"的新型智能酒店。</div>
+    <div class="callout-en">AI will not strip hotels of their human touch. On the contrary, AI's true role is to liberate staff from repetitive tasks and return them to high-value service moments. The most successful hotels of the future will not be fully unmanned—they will be a new model where "AI handles efficiency; people deliver experience."</div>
+  </div>
+</section>
+
+
+<!-- ═══════ CTA ═══════ -->
+<div class="cta-block">
+  <div class="cta-label">Request Access</div>
+  <div class="cta-h">获取 InsightBridge AI 酒店解决方案咨询</div>
+  <div class="cta-p">Explore how AI-driven revenue management, guest intelligence, and operational automation can transform your hotel's performance.</div>
+  <a href="https://insightbridge.global/cdn-cgi/l/email-protection#85f1eaebe2fcecebc5ecebf6ece2edf1e7f7ece1e2e0abe2e9eae7e4e9baf6f0e7efe0e6f1b8c6eaebf6f0e9f1e4f1eceaeba0b7b5d7e0f4f0e0f6f1a0b7b5a8a0b7b5cdeaf1e0e9a0b7b5c4cca0b7b5d6eae9f0f1eceaebf6" class="cta-btn">Request Consultation →</a>
+</div>
+
+
+<!-- ═══════ REFERENCES ═══════ -->
+<div class="ref-section">
+  <div class="ref-label">References / 参考资料</div>
+  <ol class="ref-list">
+    <li><strong>GARD Global Accommodation Research Database</strong> — Historical estimates of global rated hotel supply and structure. Accessed via public datasets.</li>
+    <li><strong>PwC Middle East</strong> — <em>AI in Tourism and Hospitality 2025</em>. PricewaterhouseCoopers, 2025.</li>
+    <li><strong>澳门统计暨普查局 (Macao DSEC)</strong> — <em>Tourism and Hotel Statistics 2024</em>. Government of Macao SAR.</li>
+    <li><strong>CBRE Hong Kong</strong> — Hong Kong hotel market supply data; hotel room inventory analysis, 2024.</li>
+    <li><strong>Saudi Tourism Authority / SPA</strong> — Licensed tourism accommodation room data, 2024. Government of Saudi Arabia.</li>
+    <li><strong>Knight Frank</strong> — <em>UAE Hospitality Market Review 2024</em>. Knight Frank Research.</li>
+    <li><strong>CBRE</strong> — <em>2025 Global Hotel Outlook</em>. CBRE Hotels Research.</li>
+    <li><strong>CEIC / Destatis</strong> — German accommodation establishment statistics. Federal Statistical Office of Germany.</li>
+    <li><strong>Singapore Data.gov.sg</strong> — Gazetted Hotels statistical data. Government of Singapore.</li>
+    <li><strong>Cyprus Government</strong> — <em>Tourism Statistics 2024</em>. Statistical Service of Cyprus.</li>
+  </ol>
+</div>
+
+
+<!-- ═══════ CLOSING ═══════ -->
+<div class="closing">
+  <div class="closing-q">未来最成功的酒店，不是完全无人化酒店，<br>而是 AI 负责效率、人负责体验的新型智能酒店。</div>
+  <div class="closing-q-en">The most successful hotels of tomorrow will not be fully automated—<br>they will be where AI drives efficiency and people deliver experience.</div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="site-footer">
+  <div class="footer-t">&copy; 2026 InsightBridge Global — <a href="index.html">insightbridge.global</a></div>
+  <div class="footer-t" style="font-size:12px;margin-top:4px;">Dr. Tong Yin · <a href="https://insightbridge.global/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dca8b3b2bba5b5b29cb5b2afb5bbb4a8beaeb5b8bbb9f2bbb0b3bebdb0">[email&#160;protected]</a> · +1 334 246 1290</div>
+</footer>
+
+<!-- Zoho SalesIQ -->
+<script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script>
+<script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq76f4656c64d4e5065c3194d7d468d59d7e82783c33020b302bf072dc0b1090d4" defer></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a07a6f69f91610dd',t:'MTc4MDc4MDU1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
