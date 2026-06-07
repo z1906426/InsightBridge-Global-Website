@@ -57,3 +57,44 @@ An automated code-quality scan flagged several issues. After review with the own
 | 4 console statements | mixed | Not fixed | 3 are inside Cloudflare's third-party `email-decode.min.js` (cannot touch). 1 is the startup banner in `static-server.js` (operational logging, kept intentionally). |
 
 **Authoritative source of truth for this project: `HANDOFF_corporate_site.md`'s "What NOT to do" list.** Future automated reports that conflict with HANDOFF should be reviewed against this decision before action.
+
+## 2026-01-07 (Jun 7) — Production migration COMPLETE ✅
+
+### Final verification (body-level, not just HTTP status)
+- `https://insightbridge.global/` → Title: "Dr. Tong Yin | InsightBridge Global..."
+- All 6 HTML pages return correct titles & content
+- All 8 verified assets (CSS/JS/JPGs) return 200 with correct byte counts
+- `https://www.insightbridge.global/` → HTTP 308 redirect to apex (SEO best practice)
+- `https://intelligence.insightbridge.global/` → unchanged, sister site healthy
+- SSL: Let's Encrypt wildcard *.insightbridge.global, auto-renewed (89 days remaining)
+- Cloudflare DNS verified clean: no Hostinger IPs remaining; only Cloudflare-for-SaaS 172.66.2.113 / 162.159.142.117
+
+### Root cause of the "Building something incredible" issue
+- `package.json` had `"build": "craco build"` (default CRA)
+- Emergent production deployment runs `yarn build` and serves the resulting `build/` dir
+- This produced the empty React template instead of the static site
+- **Fix**: changed to `"build": "rm -rf build && cp -R site build"` 
+- Original CRA preserved as `build:cra` fallback
+- Verified locally: `yarn build` now produces correct 12-file output
+
+### Architecture (final)
+```
+Namecheap (registrar)
+   └─ NS → Cloudflare (daniella + duke .ns.cloudflare.com)
+            ├─ A insightbridge.global   → 172.66.2.113 + 162.159.142.117 (Emergent SaaS edge)
+            ├─ CNAME www                → insightbridge.global
+            ├─ A intelligence            → 172.66.2.113 + 162.159.142.117 (sister project)
+            ├─ MX × 5                    → Google Workspace
+            ├─ MX send.                  → AWS SES
+            └─ TXT DMARC/DKIM/SPF/Yandex/Baidu/Google verifications
+                ↓
+         Cloudflare edge (TLS termination, CDN, DDoS)
+                ↓
+         Emergent K8s ingress (Host-header routing)
+                ↓
+         Container running `node static-server.js` → /app/frontend/build/ → 12 static files
+```
+
+### Hostinger
+- Still active as 7-14 day rollback insurance
+- User to back up `public_html` then cancel subscription after observation period
