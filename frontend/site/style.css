@@ -2200,3 +2200,172 @@ body {
 [data-lang="en"] .editorial-spotlight .lang-cn { display: none; }
 [data-lang="cn"] .editorial-brief .lang-en,
 [data-lang="cn"] .editorial-spotlight .lang-en { display: none; }
+
+
+/* ============================================================
+   Contact section — editorial polish 2026-01-07
+   Replaces emoji icons + casual trust banner with subtle, professional treatment
+   ============================================================ */
+.contact__trust-note {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 0;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+.contact__trust-note svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.contact__request-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin: 0 0 0.85rem;
+}
+.contact__required {
+  color: var(--color-accent);
+  margin-left: 2px;
+}
+
+.contact__request-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+@media (max-width: 560px) {
+  .contact__request-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The request-card itself — editorial style: thin border, sharp corners */
+.ib-request-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.1rem 1.15rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: 0;       /* sharp, editorial corners */
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+.ib-request-card:hover {
+  border-color: var(--color-text);
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.08);
+}
+.ib-request-card:has(input:checked),
+.ib-request-card.is-selected {
+  border-color: var(--color-accent);
+  border-left-width: 3px;
+  background: var(--color-bg);
+}
+.ib-request-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 0.45rem;
+  color: var(--color-accent);
+  border: 1px solid var(--color-divider);
+  border-radius: 0;
+}
+.ib-request-card:has(input:checked) .ib-request-card__icon,
+.ib-request-card.is-selected .ib-request-card__icon {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+.ib-request-card__title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: var(--color-text);
+}
+.ib-request-card__sub {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* Submit button — match hero CTA editorial styling */
+.contact__form .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-text);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.contact__form .btn-primary:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+.contact__form .btn-primary svg { transition: transform 0.18s ease; }
+.contact__form .btn-primary:hover svg { transform: translateX(3px); }
+
+/* Form inputs — flatter, editorial */
+.contact__form input[type="text"],
+.contact__form input[type="email"],
+.contact__form input[type="tel"],
+.contact__form textarea,
+.contact__form select {
+  border-radius: 0 !important;
+  border: 1px solid var(--color-divider) !important;
+  background: var(--color-surface) !important;
+  transition: border-color 0.15s ease;
+}
+.contact__form input:focus,
+.contact__form textarea:focus,
+.contact__form select:focus {
+  outline: none;
+  border-color: var(--color-accent) !important;
+  box-shadow: none !important;
+}
+.contact__form label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+/* Language toggle for contact section additions */
+[data-lang="en"] .contact__trust-note .lang-cn,
+[data-lang="en"] .contact__request-label .lang-cn,
+[data-lang="en"] .ib-request-card .lang-cn { display: none; }
+[data-lang="cn"] .contact__trust-note .lang-en,
+[data-lang="cn"] .contact__request-label .lang-en,
+[data-lang="cn"] .ib-request-card .lang-en { display: none; }
