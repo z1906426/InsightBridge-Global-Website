@@ -39,8 +39,26 @@
   --content-wide: 1200px;
 
   /* Fonts — upgraded to match InsightBridge Intelligence (editorial) */
-  --font-display: 'Playfair Display', 'Instrument Serif', Georgia, serif;
-  --font-body: 'IBM Plex Sans', 'Inter', 'Helvetica Neue', sans-serif;
+  --font-display: 'Fraunces', 'Instrument Serif', Georgia, serif;
+  --font-body: 'Hanken Grotesk', 'Inter', 'Helvetica Neue', sans-serif;
+}
+
+/* ===== Modern variable-font typographic refinements ===== */
+html {
+  font-optical-sizing: auto;          /* Fraunces auto-switches optical size at different sizes */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  font-feature-settings: "ss01" on, "cv11" on;   /* Hanken Grotesk: alternate stylistic set */
+}
+.hero__title,
+h1, h2, h3 {
+  /* Fraunces axes:  wght (300-700)  ·  opsz (9-144)  ·  SOFT (0-100)  ·  WONK (0-1)
+     Soft=30 gives the modern warm rounded edge; opsz follows font-size; wght inherited. */
+  font-variation-settings: "opsz" 96, "SOFT" 30, "WONK" 0;
+  font-feature-settings: "ss01" on, "ss03" on;
 }
 
 /* ===== CUSTOM PALETTE — Editorial / aligned with Intelligence ===== */

@@ -303,8 +303,10 @@ projected_RevPAR = recommended_rate × occupancy
   </div>
 </div>
 
-<!-- LIVE MARKET RATES (real, licensed data via Makcorps; cached server-side) -->
-<div class="container">
+<!-- LIVE MARKET RATES — section hidden 2026-01-07 (Makcorps API subscription discontinued).
+     Markup preserved (display:none) so it can be re-enabled when a replacement data source is wired in.
+-->
+<div class="container" style="display:none" aria-hidden="true">
   <div class="card" id="liveCard" style="margin-top:22px">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <h2 style="margin:0"><span class="lang-en">Live Market Rates</span><span class="lang-cn">实时市场房价</span></h2>
