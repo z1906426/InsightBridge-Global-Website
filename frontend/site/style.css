@@ -157,7 +157,41 @@ a:hover { color: var(--color-primary-hover); }
   gap: var(--space-3);
   text-decoration: none;
   color: var(--color-text);
+  flex-shrink: 0;       /* keep brand block from being squeezed by nav */
+  min-width: 0;
 }
+
+/* ===== Text wordmark beside the logo image — editorial brand stack ===== */
+.header__wordmark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  line-height: 1.1;
+}
+.header__wordmark-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.98rem, 0.88rem + 0.4vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+.header__wordmark-tagline {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+/* Hide wordmark on cramped viewports — logo image already carries the brand */
+@media (max-width: 1180px) {
+  .header__wordmark { display: none; }
+}
+/* Language toggle for the wordmark */
+[data-lang="en"] .header__wordmark .lang-cn { display: none; }
+[data-lang="cn"] .header__wordmark .lang-en { display: none; }
 
 .header__logo-mark {
   width: 36px;
