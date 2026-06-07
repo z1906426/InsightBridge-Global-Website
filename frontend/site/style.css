@@ -2369,3 +2369,23 @@ body {
 [data-lang="cn"] .contact__trust-note .lang-en,
 [data-lang="cn"] .contact__request-label .lang-en,
 [data-lang="cn"] .ib-request-card .lang-en { display: none; }
+
+/* ============================================================
+   Image protection — prevent right-click, drag, mobile long-press
+   on credentials (diplomas, business license) and personal photos.
+   Note: this is "speed-bump" protection only. Screenshots cannot
+   be prevented; this stops casual right-click/long-press downloads.
+   ============================================================ */
+.credential-wrap,
+.credential-wrap img,
+.about__image-wrap,
+.about__image-wrap img,
+img[data-protected],
+[data-protected] img {
+  -webkit-touch-callout: none;   /* iOS Safari: disable long-press menu */
+  -webkit-user-drag: none;       /* WebKit: disable native drag */
+  -webkit-user-select: none;     /* prevent text/image selection */
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
