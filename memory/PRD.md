@@ -98,3 +98,56 @@ Namecheap (registrar)
 ### Hostinger
 - Still active as 7-14 day rollback insurance
 - User to back up `public_html` then cancel subscription after observation period
+
+## 2026-01-07 (afternoon) — Major feature wave deployed to production
+### Site-wide redesign (sister-site visual alignment)
+- New typographic system: Fraunces (variable serif, opsz auto, SOFT=30) + Hanken Grotesk
+- Hero recomposed into editorial 8/4 grid: brand mark (2-line stack) + headline + dek + CTA + inline publication link  |  news brief sidebar
+- Header gains text wordmark "InsightBridge Global / STRATEGY & AI RESEARCH" beside the compass logo (hidden under 1180px)
+- Hero brief de-boxed: no panel, no top accent rule, no blur — naturalised into background
+- Contact section rebuilt: emojis (🔑📅) → SVG icons, trust banner detuned, editorial CTA, all-uppercase form labels, sharp-corner inputs
+- All 6 pages: Fraunces + Hanken Grotesk fonts loaded
+
+### Brand naming sweep
+- "MARE v2.0" → "MARE" everywhere (meta, OG, JSON-LD, body, footer)
+- Standalone "InsightBridge" → "InsightBridge Global" (18 places in tools.html, index.html, intelligence-vol01.html)
+- 🧮 emoji in calculator badges → SVG calculator icon
+
+### Removed
+- Duplicate MARE + OTA Cost calculators inside #page-intelligence (display:none, kept for rollback)
+- "Live Market Rates" section in tools.html (display:none — Makcorps API decommissioned)
+
+### Image protection extended
+- Main `dr-tong-yin.jpg` portrait + 4 LinkedIn thumbnails now have full credential-wrap protection
+- CSS adds -webkit-touch-callout: none for iOS long-press defence
+- JS contextmenu + dragstart preventDefault listeners
+
+### SEO automation
+- Built sitemap.xml (6 URLs + image:image entries for hero/portrait/framework + hreflang)
+- robots.txt fully open: 28 named bot user-agents incl. all AI/LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.)
+- IndexNow key file: b24a1ab5c04f483cace808846247e849.txt at site root
+- All 6 pages: absolute canonical URLs + robots meta (max-snippet:-1, max-image-preview:large) + googlebot/bingbot/Baiduspider/YandexBot meta
+- intelligence-market-report.html: full SEO head pack added (was previously bare)
+- intelligence-vol01.html: Article JSON-LD schema + hreflang
+- static-server.js: X-Robots-Tag: all + Referrer-Policy response headers
+
+### SEO auto-push (every 72h, backend cron)
+- backend/seo_push.py — pushes to Baidu Zhanzhang + IndexNow (Bing/Yandex/Naver/Seznam/Yep)
+- backend/seo_scheduler.py — APScheduler interval job + MongoDB-persisted catch-up logic
+- POST /api/seo/push — manual trigger
+- GET /api/seo/status — last push + total count
+- ENV: SITE_DOMAIN, INDEXNOW_KEY, BAIDU_PUSH_TOKEN
+- IndexNow covers Naver (solves Korea registration problem)
+
+### Calculator IP protection (server-side migration)
+- backend/calculators.py — MAREInput/MAREResult, OTAInput/OTAResult Pydantic models
+- POST /api/calc/mare — 5 driver weights [0.18, 0.16, 0.14, 0.12, 0.12] now SERVER-ONLY
+- POST /api/calc/ota — 4-layer cost math now SERVER-ONLY
+- tools.html: removed weight table column, removed `data-w` attributes from sliders, removed inline formula box, replaced compute()/rateForIndex with fetch() to /api/calc/mare, draw() now uses server-supplied trajectory
+- index.html OTA calculator: replaced local calc() with debounced fetch() to /api/calc/ota
+- HTML source contains 0 leaks: zero "0.18", zero "data-w", zero "demand_index = Σ", zero "rateForIndex"
+
+### Strategic decisions (recorded for posterity)
+- Code-review report (XSS/Hooks/complexity warnings): all REJECTED — flagged items were false positives, dead code, or violated HANDOFF
+- "Allow all crawlers" → robots.txt fully open, all AI/LLM bots welcome
+- Calculator IP protection requested AFTER initial transparent-marketing decision because user's actual customer base (small-mid hotel owners) doesn't read code; engineers who do aren't customers
