@@ -42,3 +42,18 @@ Playfair Display / IBM Plex Sans, cream `#F5EFE6`, surface `#FBF7F0`, primary `#
    - `www.insightbridge.global` → CNAME to the Emergent production hostname
    - Leave `intelligence.insightbridge.global` CNAME untouched
 4. Set both new records to "Proxied" (orange cloud) in Cloudflare for TLS + caching
+
+## 2026-01-06 — Code review decision: REJECTED (kept as-is)
+
+An automated code-quality scan flagged several issues. After review with the owner,
+**all flagged items were intentionally not fixed**, decision **A** (keep as-is). Rationale recorded below for future reference:
+
+| Flagged item | File | Decision | Reason |
+|---|---|---|---|
+| "XSS via innerHTML" | `site/app.js:27` | Not fixed | False positive: assignment is a hardcoded SVG icon literal for the theme toggle; no user input involved. |
+| useEffect missing deps | `src/hooks/use-toast.js:138`, `src/App.js:20` | Not fixed | Dead code. CRA scaffold under `src/` is never loaded — `yarn start` runs `node static-server.js`, which serves `/app/frontend/site/`. |
+| High cyclomatic complexity | `site/app.js`, `site/wecom-track.js` | Not fixed | HANDOFF_corporate_site.md explicitly states: "Preserve all existing JavaScript (app.js, wecom-track.js)". These files are user-curated and already running in production; refactor risk > benefit. |
+| Complexity 11 in static server | `static-server.js:76` | Not fixed | ~100-line zero-dependency static server; splitting would add abstraction without functional benefit. |
+| 4 console statements | mixed | Not fixed | 3 are inside Cloudflare's third-party `email-decode.min.js` (cannot touch). 1 is the startup banner in `static-server.js` (operational logging, kept intentionally). |
+
+**Authoritative source of truth for this project: `HANDOFF_corporate_site.md`'s "What NOT to do" list.** Future automated reports that conflict with HANDOFF should be reviewed against this decision before action.
