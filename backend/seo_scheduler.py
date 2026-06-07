@@ -72,6 +72,31 @@ def start_scheduler(db) -> None:
         replace_existing=True,
         next_run_time=datetime.now(timezone.utc) + timedelta(hours=PUSH_INTERVAL_HOURS),
     )
+
+    # Also register sister-headline refresh every 6h
+    try:
+        from sister_articles import refresh_sister_headlines, REFRESH_INTERVAL_HOURS
+
+        async def headlines_job():
+            try:
+                await refresh_sister_headlines(db)
+            except Exception:
+                logger.exception("Headlines refresh job failed")
+
+        scheduler.add_job(
+            headlines_job,
+            IntervalTrigger(hours=REFRESH_INTERVAL_HOURS),
+            id="sister_headlines_job",
+            replace_existing=True,
+            next_run_time=datetime.now(timezone.utc) + timedelta(minutes=1),  # warm up shortly after boot
+        )
+        logger.info(
+            "Sister-headlines refresh registered — every %s hours",
+            REFRESH_INTERVAL_HOURS,
+        )
+    except Exception:
+        logger.exception("Could not register sister headlines job")
+
     scheduler.start()
     logger.info(
         "SEO scheduler started — recurring every %s hours", PUSH_INTERVAL_HOURS

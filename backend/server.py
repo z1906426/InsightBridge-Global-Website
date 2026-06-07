@@ -76,6 +76,9 @@ from calculators import (  # noqa: E402
     MAREInput, MAREResult, compute_mare,
     OTAInput, OTAResult, compute_ota,
 )
+from sister_articles import (  # noqa: E402
+    refresh_sister_headlines, get_brief_for_main_site,
+)
 
 @api_router.post("/seo/push")
 async def trigger_seo_push():
@@ -109,6 +112,25 @@ async def calc_mare(payload: MAREInput):
 async def calc_ota(payload: OTAInput):
     """OTA True Cost calculator — 4-layer fee stack server-side."""
     return compute_ota(payload)
+
+
+# ====================================================================
+# Sister-site headlines — for the main-site hero brief sidebar.
+# Refreshed every 6 hours by APScheduler.
+# ====================================================================
+
+@api_router.get("/headlines")
+async def headlines(limit: int = 7):
+    """Return the newest sister-site articles for the hero brief."""
+    items = await get_brief_for_main_site(db, limit=min(max(limit, 1), 20))
+    return {"count": len(items), "items": items}
+
+
+@api_router.post("/headlines/refresh")
+async def headlines_refresh():
+    """Manually re-fetch sister-site articles now (out-of-band)."""
+    snap = await refresh_sister_headlines(db)
+    return {"ok": True, "count": snap.get("count", 0)}
 
 # Include the router in the main app
 app.include_router(api_router)

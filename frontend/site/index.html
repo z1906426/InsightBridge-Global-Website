@@ -559,7 +559,7 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
           </h2>
         </header>
 
-        <ol class="hero__brief-list">
+        <ol class="hero__brief-list" id="hero-brief-list" data-from="sister-site">
           <li class="hero__brief-item">
             <span class="hero__brief-date">Jun 3, 2026</span>
             <a class="hero__brief-link" href="https://www.hotelnewsresource.com/article141488.html" target="_blank" rel="noopener">
@@ -4089,6 +4089,72 @@ document.querySelectorAll('.credential-wrap, [data-protected], .about__image-wra
   el.addEventListener('contextmenu',function(e){e.preventDefault()});
   el.addEventListener('dragstart',function(e){e.preventDefault()});
 });
+
+/* ============================================================
+   Hero brief — live headlines from intelligence.insightbridge.global
+   Backend endpoint /api/headlines returns the 7 newest articles,
+   refreshed server-side every 6 hours.
+   Static <li> fallback in HTML stays visible if the fetch fails.
+   ============================================================ */
+(function(){
+  var list = document.getElementById('hero-brief-list');
+  if (!list) return;
+
+  function formatDate(iso){
+    if (!iso) return '';
+    try {
+      var d = new Date(iso);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    } catch (e){ return ''; }
+  }
+
+  function decodeEntities(s){
+    var ta = document.createElement('textarea');
+    ta.innerHTML = s || '';
+    return ta.value;
+  }
+
+  function render(items){
+    if (!items || !items.length) return;
+    list.innerHTML = '';
+    items.forEach(function(item){
+      var title = decodeEntities(item.title || '');
+      var li = document.createElement('li');
+      li.className = 'hero__brief-item';
+
+      var dateSpan = document.createElement('span');
+      dateSpan.className = 'hero__brief-date';
+      dateSpan.textContent = formatDate(item.published || item.lastmod);
+
+      var a = document.createElement('a');
+      a.className = 'hero__brief-link';
+      a.href = item.loc || '#';
+      a.target = '_blank';
+      a.rel = 'noopener';
+
+      var spanEn = document.createElement('span');
+      spanEn.className = 'lang-en';
+      spanEn.textContent = title;
+      var spanCn = document.createElement('span');
+      spanCn.className = 'lang-cn';
+      spanCn.textContent = title;
+      a.appendChild(spanEn);
+      a.appendChild(spanCn);
+
+      li.appendChild(dateSpan);
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  }
+
+  fetch('/api/headlines?limit=7', {cache: 'no-store'})
+    .then(function(r){ if (!r.ok) throw new Error('headlines fetch ' + r.status); return r.json(); })
+    .then(function(data){ render(data && data.items); })
+    .catch(function(err){
+      if (window.console) console.info('Live headlines unavailable, using static fallback:', err.message);
+    });
+})();
 </script>
 
 <!-- Zoho SalesIQ: lazy-loaded by app.js on first interaction / 6 s idle -->
