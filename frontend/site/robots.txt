@@ -1,15 +1,19 @@
 # robots.txt for InsightBridge Global LLC — https://insightbridge.global
 # Last updated: 2026-01-07
+# Policy: FULLY OPEN. All bots are welcome to crawl and index every page.
 
 User-agent: *
 Allow: /
-Disallow: /cdn-cgi/
-Disallow: /assets/business_license.png
-Disallow: /assets/phd-diploma.png
-Disallow: /assets/mba-diploma.png
 
-# Explicitly allow major crawlers
+# Explicit welcomes for major crawlers (some search engines respect named blocks
+# more readily than wildcards)
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
 Allow: /
 
 User-agent: Bingbot
@@ -21,13 +25,75 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+User-agent: YandexImages
+Allow: /
+
 User-agent: NaverBot
 Allow: /
 
 User-agent: Yeti
 Allow: /
 
-# Be polite to discovery
-Crawl-delay: 5
+User-agent: DuckDuckBot
+Allow: /
 
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: SeznamBot
+Allow: /
+
+# AI / large language model crawlers — also welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Canonical sitemap location
 Sitemap: https://insightbridge.global/sitemap.xml

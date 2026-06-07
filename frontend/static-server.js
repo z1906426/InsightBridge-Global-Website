@@ -66,6 +66,9 @@ function serveFile(filePath, res, reqMethod) {
       'Content-Length': stat.size,
       'Cache-Control': ext === '.html' ? 'public, max-age=60' : 'public, max-age=3600',
       'X-Content-Type-Options': 'nosniff',
+      // SEO: explicitly tell crawlers everything is fair game
+      'X-Robots-Tag': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
     };
     if (reqMethod === 'HEAD') return send(res, 200, headers);
     res.writeHead(200, headers);
