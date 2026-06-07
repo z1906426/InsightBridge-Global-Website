@@ -63,7 +63,8 @@
   "scripts": {
     "start": "node static-server.js",
     "start:cra": "craco start",
-    "build": "craco build",
+    "build": "rm -rf build && cp -R site build",
+    "build:cra": "craco build",
     "test": "craco test"
   },
   "browserslist": {
