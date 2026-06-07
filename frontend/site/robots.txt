@@ -1,0 +1,33 @@
+# robots.txt for InsightBridge Global LLC — https://insightbridge.global
+# Last updated: 2026-01-07
+
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /assets/business_license.png
+Disallow: /assets/phd-diploma.png
+Disallow: /assets/mba-diploma.png
+
+# Explicitly allow major crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+# Be polite to discovery
+Crawl-delay: 5
+
+Sitemap: https://insightbridge.global/sitemap.xml

@@ -66,6 +66,29 @@ async def get_status_checks():
     
     return status_checks
 
+
+# ====================================================================
+# SEO push endpoints — manual trigger + status (scheduled job runs
+# automatically every 72 h via seo_scheduler.start_scheduler at startup)
+# ====================================================================
+from seo_push import run_push_and_save  # noqa: E402
+
+@api_router.post("/seo/push")
+async def trigger_seo_push():
+    """Manually trigger a push to all search engines now."""
+    return await run_push_and_save(db)
+
+@api_router.get("/seo/status")
+async def seo_status():
+    """Return the last SEO push record + scheduler health."""
+    last = await db.seo_pushes.find_one(sort=[("timestamp", -1)], projection={"_id": 0})
+    count = await db.seo_pushes.count_documents({})
+    return {
+        "total_pushes": count,
+        "last_push": last,
+        "interval_hours": 72,
+    }
+
 # Include the router in the main app
 app.include_router(api_router)
 
@@ -83,6 +106,18 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+
+# Start the SEO push scheduler on app startup
+@app.on_event("startup")
+async def start_seo_scheduler():
+    try:
+        from seo_scheduler import start_scheduler
+        start_scheduler(db)
+        logger.info("SEO push scheduler initialised (every 72h)")
+    except Exception:
+        logger.exception("Failed to start SEO scheduler")
+
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
