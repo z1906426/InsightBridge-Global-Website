@@ -72,6 +72,10 @@ async def get_status_checks():
 # automatically every 72 h via seo_scheduler.start_scheduler at startup)
 # ====================================================================
 from seo_push import run_push_and_save  # noqa: E402
+from calculators import (  # noqa: E402
+    MAREInput, MAREResult, compute_mare,
+    OTAInput, OTAResult, compute_ota,
+)
 
 @api_router.post("/seo/push")
 async def trigger_seo_push():
@@ -88,6 +92,23 @@ async def seo_status():
         "last_push": last,
         "interval_hours": 72,
     }
+
+
+# ====================================================================
+# Server-side calculators — protect proprietary formulas from
+# client-side inspection. Frontend posts inputs, receives results.
+# ====================================================================
+
+@api_router.post("/calc/mare", response_model=MAREResult)
+async def calc_mare(payload: MAREInput):
+    """MARE hotel pricing calculator — 5 demand-driver weights server-side."""
+    return compute_mare(payload)
+
+
+@api_router.post("/calc/ota", response_model=OTAResult)
+async def calc_ota(payload: OTAInput):
+    """OTA True Cost calculator — 4-layer fee stack server-side."""
+    return compute_ota(payload)
 
 # Include the router in the main app
 app.include_router(api_router)

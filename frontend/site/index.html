@@ -810,24 +810,77 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
     function g(id){ return document.getElementById(P+id); }
     function fmt(n,cur){ return cur+Math.round(n).toLocaleString("en-US"); }
     function isEN(){ return (document.documentElement.getAttribute("data-lang")||"en")==="en"; }
-    function calc(){
-      var cur=g("cur").value, adr=Math.max(0,+g("adr").value||0), bk=Math.max(0,+g("bk").value||0);
-      var c=+g("c").value/100, p=+g("p").value/100, gd=+g("g").value/100, py=+g("py").value/100;
-      var dADR=adr*(1-gd), commAmt=dADR*c, prefAmt=dADR*p, payAmt=dADR*py;
-      var totalPer=commAmt+prefAmt+payAmt+(adr-dADR), totalRate=adr>0?(totalPer/adr*100):0;
-      var monthly=totalPer*bk, annual=monthly*12;
-      g("r1").textContent=totalRate.toFixed(1)+"%";
-      g("r2").textContent=fmt(totalPer,cur);
-      g("r3").textContent=fmt(monthly,cur);
-      g("r4").textContent=fmt(annual,cur);
-      var en=isEN(), msg="";
-      if(totalRate>=28){msg=en?"⚠️ Your true OTA cost exceeds 28% of gross booking value — a direct-booking strategy could recover "+fmt(annual*0.6,cur)+" annually.":"⚠️ 您的OTA真实成本超过28%，直销策略每年可挽回约 "+fmt(annual*0.6,cur)+"。";}
-      else if(totalRate>=22){msg=en?"Your true OTA cost is "+totalRate.toFixed(1)+"% — above the 20% threshold. Moving 20% to direct could save "+fmt(monthly*0.2,cur)+"/mo.":"您的OTA真实成本为 "+totalRate.toFixed(1)+"%，超过20%警戒线。每月可节省约 "+fmt(monthly*0.2,cur)+"。";}
-      else{msg=en?"True OTA cost: "+totalRate.toFixed(1)+"% — still "+fmt(annual,cur)+" leaving the property per year.":"OTA真实成本："+totalRate.toFixed(1)+"%，每年仍有 "+fmt(annual,cur)+" 流向OTA。";}
-      g("msg").textContent=msg;
-      g("cv").textContent=(c*100).toFixed(1)+"%"; g("pv").textContent=(p*100).toFixed(1)+"%";
-      g("gv").textContent=(gd*100).toFixed(0)+"%"; g("pyv").textContent=(py*100).toFixed(2)+"%";
+
+    var _pending=false, _debounce=null;
+
+    async function _apiCalc(){
+      var inputs={
+        adr: Math.max(0,+g("adr").value||0),
+        bookings: Math.max(0,+g("bk").value||0),
+        commission: +g("c").value||0,
+        preferred: +g("p").value||0,
+        genius: +g("g").value||0,
+        payment: +g("py").value||0
+      };
+      var r=await fetch("/api/calc/ota",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(inputs)
+      });
+      if(!r.ok) throw new Error("ota calc failed: "+r.status);
+      return {data: await r.json(), inputs: inputs};
     }
+
+    async function _doRender(){
+      if(_pending) return;
+      _pending=true;
+      try{
+        var cur=g("cur").value;
+        var resp=await _apiCalc();
+        var d=resp.data;
+        g("r1").textContent=d.total_rate_pct.toFixed(1)+"%";
+        g("r2").textContent=fmt(d.total_per_booking,cur);
+        g("r3").textContent=fmt(d.monthly_loss,cur);
+        g("r4").textContent=fmt(d.annual_loss,cur);
+
+        var en=isEN(), msg="";
+        if(d.severity==="high"){
+          msg=en
+            ? "⚠️ Your true OTA cost exceeds 28% of gross booking value — a direct-booking strategy could recover "+fmt(d.annual_recoverable_60pct,cur)+" annually."
+            : "⚠️ 您的OTA真实成本超过28%，直销策略每年可挽回约 "+fmt(d.annual_recoverable_60pct,cur)+"。";
+        } else if(d.severity==="medium"){
+          msg=en
+            ? "Your true OTA cost is "+d.total_rate_pct.toFixed(1)+"% — above the 20% threshold. Moving 20% to direct could save "+fmt(d.monthly_savings_20pct,cur)+"/mo."
+            : "您的OTA真实成本为 "+d.total_rate_pct.toFixed(1)+"%，超过20%警戒线。每月可节省约 "+fmt(d.monthly_savings_20pct,cur)+"。";
+        } else {
+          msg=en
+            ? "True OTA cost: "+d.total_rate_pct.toFixed(1)+"% — still "+fmt(d.annual_loss,cur)+" leaving the property per year."
+            : "OTA真实成本："+d.total_rate_pct.toFixed(1)+"%，每年仍有 "+fmt(d.annual_loss,cur)+" 流向OTA。";
+        }
+        g("msg").textContent=msg;
+
+        // slider value labels (echo what user picked)
+        g("cv").textContent=resp.inputs.commission.toFixed(1)+"%";
+        g("pv").textContent=resp.inputs.preferred.toFixed(1)+"%";
+        g("gv").textContent=resp.inputs.genius.toFixed(0)+"%";
+        g("pyv").textContent=resp.inputs.payment.toFixed(2)+"%";
+      } catch(e){
+        if(window.console) console.warn("OTA calc proxy failed:",e);
+      } finally {
+        _pending=false;
+      }
+    }
+
+    function calc(){
+      // immediate slider echo for snappy feel — full result via debounced API call
+      g("cv").textContent=(+g("c").value||0).toFixed(1)+"%";
+      g("pv").textContent=(+g("p").value||0).toFixed(1)+"%";
+      g("gv").textContent=(+g("g").value||0).toFixed(0)+"%";
+      g("pyv").textContent=(+g("py").value||0).toFixed(2)+"%";
+      if(_debounce) clearTimeout(_debounce);
+      _debounce=setTimeout(_doRender, 80);
+    }
+
     ["cur","adr","bk","c","p","g","py"].forEach(function(id){var el=g(id);if(el){el.addEventListener("input",calc);el.addEventListener("change",calc);}});
     calc();
   })();

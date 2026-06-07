@@ -37,7 +37,7 @@
   "operatingSystem": "Web",
   "browserRequirements": "Requires JavaScript",
   "isAccessibleForFree": true,
-  "description": "A transparent, illustrative implementation of the MARE demand-weighting logic for hotel dynamic pricing. Computes a recommended nightly rate from five weighted demand drivers (cross-border flow 0.18, holiday compression 0.16, weekend effect 0.14, OTA booking pace 0.12, competitive saturation 0.12), bounded by floor/ceiling guardrails, and reports projected RevPAR. The production MARE engine uses an XGBoost + LSTM hybrid with additional signals and a full guardrail system.",
+  "description": "A free, interactive hotel dynamic-pricing calculator that demonstrates the MARE demand-weighting logic. Adjust five demand drivers — cross-border flow, holiday compression, weekend effect, OTA booking pace, competitive saturation — and see the recommended nightly rate and projected RevPAR, bounded by floor/ceiling guardrails. The production MARE engine uses an XGBoost + LSTM hybrid with additional signals and a full guardrail system.",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
   "creator": {"@type": "Organization", "name": "InsightBridge Global LLC", "url": "https://insightbridge.global"},
   "publisher": {"@type": "Organization", "name": "InsightBridge Global LLC"}
@@ -193,32 +193,29 @@
           <span class="lang-cn"><b>执行摘要:</b> 基于规则的收益管理使用固定的「如果—就」定价规则(例如「周末涨价」),无法响应实时需求。AI 动态定价则学习每个需求驱动因子的相对权重并持续重新定价,捕捉静态规则错失的收入——尤其在节假日和活动导致的需求压缩窗口。在 InsightBridge Global 的真实部署中,该方法实现了 6–12% 的 ADR 提升,并将有效 OTA 佣金占比降低了 3–5 个百分点。</span>
         </p>
 
-        <h3><span class="lang-en">MARE demand drivers (relative weights)</span><span class="lang-cn">MARE 需求驱动因子(相对权重)</span></h3>
+        <h3><span class="lang-en">MARE demand drivers</span><span class="lang-cn">MARE 需求驱动因子</span></h3>
         <table>
           <thead><tr>
             <th><span class="lang-en">Demand driver</span><span class="lang-cn">需求驱动因子</span></th>
-            <th class="num"><span class="lang-en">Weight</span><span class="lang-cn">权重</span></th>
           </tr></thead>
           <tbody>
-            <tr><td><span class="lang-en">Cross-border visitor flow (e.g. Zhuhai–Macau)</span><span class="lang-cn">跨境客流(如珠海—澳门)</span></td><td class="num">0.18</td></tr>
-            <tr><td><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动需求压缩</span></td><td class="num">0.16</td></tr>
-            <tr><td><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span></td><td class="num">0.14</td></tr>
-            <tr><td><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span></td><td class="num">0.12</td></tr>
-            <tr><td><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span></td><td class="num">0.12</td></tr>
+            <tr><td><span class="lang-en">Cross-border visitor flow (e.g. Zhuhai–Macau)</span><span class="lang-cn">跨境客流(如珠海—澳门)</span></td></tr>
+            <tr><td><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动需求压缩</span></td></tr>
+            <tr><td><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span></td></tr>
+            <tr><td><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span></td></tr>
+            <tr><td><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span></td></tr>
           </tbody>
         </table>
 
-        <h3><span class="lang-en">The formula (fully readable, no hidden math)</span><span class="lang-cn">计算公式(完全可读,无隐藏数学)</span></h3>
-        <div class="formula">
-demand_index = Σ ( weightᵢ × intensityᵢ ) / Σ weightᵢ<br>
-recommended_rate = base_rate × ( 1 + max_uplift × demand_index )<br>
-recommended_rate = clamp( recommended_rate , floor , ceiling )<br>
-projected_RevPAR = recommended_rate × occupancy
+        <h3><span class="lang-en">How it works</span><span class="lang-cn">运作原理</span></h3>
+        <div class="formula" style="font-family:var(--font-body); font-size:0.92rem; line-height:1.55;">
+          <span class="lang-en">Each demand driver contributes to an aggregated demand index. That index lifts the room rate above the base, up to (but never beyond) the ceiling guardrail. RevPAR is then projected at the chosen occupancy.</span>
+          <span class="lang-cn">每个需求驱动因子贡献于一个聚合需求指数。该指数将房价从基础水平向上推高，但永远不会超过上限护栏。RevPAR 则基于您选择的入住率投影计算。</span>
         </div>
 
         <div class="note">
-          <span class="lang-en"><b>Honest scope.</b> This calculator is a simplified, transparent illustration of the MARE demand-weighting logic — not the engine itself. The production MARE uses an XGBoost + LSTM hybrid trained on additional signals, plus a guardrail system (GM approval, competitor-deviation limits, price floors/ceilings). Figures here are illustrative and not a forecast for any specific property.</span>
-          <span class="lang-cn"><b>诚实声明。</b> 本计算器是 MARE 需求加权逻辑的简化、透明示意,并非引擎本身。生产版 MARE 采用基于更多信号训练的 XGBoost + LSTM 混合模型,并配有护栏系统(总经理审批、竞品偏离限制、价格下限/上限)。此处数值仅为示意,不构成对任何具体物业的预测。</span>
+          <span class="lang-en"><b>Honest scope.</b> The driver weights and the demand-aggregation math execute server-side and are not disclosed. This calculator demonstrates the <i>shape</i> of MARE's logic — the production engine uses an XGBoost + LSTM hybrid trained on additional signals, plus a full guardrail system (GM approval, competitor-deviation limits, price floors/ceilings). Figures here are illustrative, not a forecast for any specific property.</span>
+          <span class="lang-cn"><b>诚实声明。</b>需求因子权重与聚合数学逻辑在服务器端执行，不对外公开。本计算器展示 MARE 逻辑的<i>形态</i>——生产版引擎采用基于更多信号训练的 XGBoost + LSTM 混合模型，并配有完整护栏系统(总经理审批、竞品偏离限制、价格下限/上限)。此处数值仅为示意,不构成对任何具体物业的预测。</span>
         </div>
       </div>
     </div>
@@ -264,24 +261,24 @@ projected_RevPAR = recommended_rate × occupancy
         <div class="drivers">
           <h3 style="margin-top:10px"><span class="lang-en">Demand drivers (intensity today)</span><span class="lang-cn">需求驱动因子(当日强度)</span></h3>
           <div class="field">
-            <label><span class="lang-en">Cross-border flow</span><span class="lang-cn">跨境客流</span> <span><span class="wt">w 0.18</span> &nbsp; <span class="val"><span id="d0v">60</span>%</span></span></label>
-            <input type="range" class="driver" data-w="0.18" id="d0" min="0" max="100" value="60">
+            <label><span class="lang-en">Cross-border flow</span><span class="lang-cn">跨境客流</span> <span class="val"><span id="d0v">60</span>%</span></label>
+            <input type="range" class="driver" id="d0" min="0" max="100" value="60">
           </div>
           <div class="field">
-            <label><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动压缩</span> <span><span class="wt">w 0.16</span> &nbsp; <span class="val"><span id="d1v">40</span>%</span></span></label>
-            <input type="range" class="driver" data-w="0.16" id="d1" min="0" max="100" value="40">
+            <label><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动压缩</span> <span class="val"><span id="d1v">40</span>%</span></label>
+            <input type="range" class="driver" id="d1" min="0" max="100" value="40">
           </div>
           <div class="field">
-            <label><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span> <span><span class="wt">w 0.14</span> &nbsp; <span class="val"><span id="d2v">50</span>%</span></span></label>
-            <input type="range" class="driver" data-w="0.14" id="d2" min="0" max="100" value="50">
+            <label><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span> <span class="val"><span id="d2v">50</span>%</span></label>
+            <input type="range" class="driver" id="d2" min="0" max="100" value="50">
           </div>
           <div class="field">
-            <label><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span> <span><span class="wt">w 0.12</span> &nbsp; <span class="val"><span id="d3v">55</span>%</span></span></label>
-            <input type="range" class="driver" data-w="0.12" id="d3" min="0" max="100" value="55">
+            <label><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span> <span class="val"><span id="d3v">55</span>%</span></label>
+            <input type="range" class="driver" id="d3" min="0" max="100" value="55">
           </div>
           <div class="field">
-            <label><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span> <span><span class="wt">w 0.12</span> &nbsp; <span class="val"><span id="d4v">45</span>%</span></span></label>
-            <input type="range" class="driver" data-w="0.12" id="d4" min="0" max="100" value="45">
+            <label><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span> <span class="val"><span id="d4v">45</span>%</span></label>
+            <input type="range" class="driver" id="d4" min="0" max="100" value="45">
           </div>
         </div>
 
@@ -354,43 +351,88 @@ projected_RevPAR = recommended_rate × occupancy
     return cur + Math.round(n).toLocaleString("en-US");
   }
 
-  function compute(){
-    var base = Math.max(0, +$("baseRate").value || 0);
-    var ceil = Math.max(base, +$("ceiling").value || 0);
-    var occ  = (+$("occ").value || 0) / 100;
-    var maxUp = (+$("uplift").value || 0) / 100;
+  /* ============================================================
+     compute()  — proxies to the backend /api/calc/mare endpoint.
+     The 5 demand-driver weights and the demand-aggregation math
+     are server-side; we never see them in the browser.
+     ============================================================ */
+  var _backendBase = ""; // same-origin /api routes through Emergent ingress
+  var _lastResult = null;
+  var _pending = false;
+  var _debounceTimer = null;
 
-    var wSum = 0, contrib = 0;
-    drivers.forEach(function(id){
-      var el = $(id);
-      var w = +el.getAttribute("data-w");
-      var intensity = (+el.value || 0) / 100;
-      wSum += w;
-      contrib += w * intensity;
-    });
-    var demandIndex = wSum > 0 ? (contrib / wSum) : 0; // 0..1
-    var raw = base * (1 + maxUp * demandIndex);
-    var clamped = Math.min(Math.max(raw, base), ceil);
-    var hitCeiling = raw > ceil + 0.5;
-    return {base:base, ceil:ceil, occ:occ, maxUp:maxUp, demandIndex:demandIndex,
-            raw:raw, rate:clamped, revpar:clamped*occ, hitCeiling:hitCeiling};
+  function _collectInputs(){
+    return {
+      base: Math.max(0, +$("baseRate").value || 0),
+      ceiling: Math.max(0, +$("ceiling").value || 0),
+      occupancy: +$("occ").value || 0,
+      max_uplift: +$("uplift").value || 0,
+      intensities: drivers.map(function(id){ return +$(id).value || 0; })
+    };
   }
 
-  function rateForIndex(base, maxUp, ceil, idx){
-    return Math.min(base * (1 + maxUp * idx), ceil);
+  async function _fetchCompute(inputs){
+    var r = await fetch(_backendBase + "/api/calc/mare", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(inputs)
+    });
+    if (!r.ok) throw new Error("calc failed: " + r.status);
+    var data = await r.json();
+    // Reconstruct shape compatible with the previous local compute() return
+    return {
+      base: inputs.base,
+      ceil: Math.max(inputs.base, inputs.ceiling),
+      occ: inputs.occupancy / 100,
+      maxUp: inputs.max_uplift / 100,
+      // Recover a normalised demand position from rate + base + maxUp
+      demandIndex: (inputs.base > 0 && inputs.max_uplift > 0)
+        ? Math.max(0, Math.min(1, (data.rate / inputs.base - 1) / (inputs.max_uplift / 100)))
+        : 0,
+      raw: data.rate,
+      rate: data.rate,
+      revpar: data.revpar,
+      hitCeiling: data.hit_ceiling,
+      trajectory: data.trajectory   // 11 points from idx 0.0 to 1.0
+    };
   }
 
   function render(){
+    // immediate slider-value labels (cheap, sync)
     var cur = $("cur").value;
-    var r = compute();
-
-    // sync slider value labels
-    $("baseVal").textContent = fmt(r.base, cur);
-    $("ceilVal").textContent = fmt(r.ceil, cur);
-    $("occVal").textContent = Math.round(r.occ*100);
-    $("upVal").textContent = Math.round(r.maxUp*100);
+    var bv = +$("baseRate").value || 0;
+    var ce = +$("ceiling").value || 0;
+    var occv = +$("occ").value || 0;
+    var upv = +$("uplift").value || 0;
+    $("baseVal").textContent = fmt(bv, cur);
+    $("ceilVal").textContent = fmt(Math.max(bv, ce), cur);
+    $("occVal").textContent = Math.round(occv);
+    $("upVal").textContent = Math.round(upv);
     drivers.forEach(function(id,i){ $("d"+i+"v").textContent = $(id).value; });
 
+    // Debounce server call so dragging a slider doesn't flood the API
+    if (_debounceTimer) clearTimeout(_debounceTimer);
+    _debounceTimer = setTimeout(_doServerRender, 80);
+  }
+
+  async function _doServerRender(){
+    if (_pending) return;
+    _pending = true;
+    try {
+      var inputs = _collectInputs();
+      var r = await _fetchCompute(inputs);
+      _lastResult = r;
+      _paintResult(r);
+    } catch (e) {
+      // graceful: keep last successful render visible, log
+      if (window.console) console.warn("calc proxy failed:", e);
+    } finally {
+      _pending = false;
+    }
+  }
+
+  function _paintResult(r){
+    var cur = $("cur").value;
     $("outRate").textContent = fmt(r.rate, cur);
     $("outRevpar").textContent = fmt(r.revpar, cur);
     $("outIdx").textContent = r.demandIndex.toFixed(2);
@@ -429,7 +471,8 @@ projected_RevPAR = recommended_rate × occupancy
   }
 
   function draw(r){
-    r = r || compute();
+    r = r || _lastResult;
+    if (!r) return;
     var c = $("chart");
     var dpr = window.devicePixelRatio || 1;
     var cssW = c.clientWidth || 600, cssH = 300;
@@ -476,12 +519,12 @@ projected_RevPAR = recommended_rate × occupancy
     }
     ctx.setLineDash([]);
 
-    // curve
+    // curve — drawn from the server-supplied 11-point trajectory.
+    var traj = r.trajectory || [r.base, r.rate];
     ctx.strokeStyle = col.line; ctx.lineWidth = 3; ctx.beginPath();
-    for (var k=0;k<=60;k++){
-      var ix = k/60;
-      var val = rateForIndex(r.base, r.maxUp, r.ceil, ix);
-      var px = X(ix), py = Y(val);
+    for (var k=0;k<traj.length;k++){
+      var ix = k/(traj.length-1);
+      var px = X(ix), py = Y(traj[k]);
       if (k===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
     }
     ctx.stroke();
