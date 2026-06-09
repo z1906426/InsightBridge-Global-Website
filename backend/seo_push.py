@@ -108,32 +108,36 @@ def push_to_indexnow(urls: List[str]) -> Dict[str, Any]:
 
 async def run_push_and_save(db) -> Dict[str, Any]:
     """Run pushes to all engines, log to MongoDB, return summary."""
-    urls = get_urls()
+    main_urls = get_urls()
 
-    # Augment with the 4 newest sister-site article URLs
+    # Augment with the 4 newest sister-site article URLs (IndexNow only;
+    # Baidu rejects them as "not_same_site" since the sister site has its
+    # own Baidu Zhanzhang registration).
     try:
         from sister_articles import get_urls_for_seo_push
         sister_urls = await get_urls_for_seo_push(db)
-        urls = urls + sister_urls
     except Exception:
         logger.exception("Could not load sister-site URLs for SEO push")
         sister_urls = []
 
+    indexnow_urls = main_urls + sister_urls   # IndexNow accepts both hosts
+    baidu_urls = main_urls                    # Baidu only accepts apex domain
+
     logger.info(
-        "SEO push: submitting %d URLs (%d main + %d sister) to Baidu + IndexNow",
-        len(urls), len(urls) - len(sister_urls), len(sister_urls),
+        "SEO push: Baidu=%d (apex only); IndexNow=%d (apex+sister)",
+        len(baidu_urls), len(indexnow_urls),
     )
 
     results = [
-        push_to_baidu(urls),
-        push_to_indexnow(urls),
+        push_to_baidu(baidu_urls),
+        push_to_indexnow(indexnow_urls),
     ]
 
     record: Dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "urls_count": len(urls),
-        "urls": urls,
-        "main_urls_count": len(urls) - len(sister_urls),
+        "urls_count": len(indexnow_urls),
+        "urls": indexnow_urls,
+        "main_urls_count": len(main_urls),
         "sister_urls_count": len(sister_urls),
         "results": results,
         "ok_all": all(r.get("ok") for r in results),
