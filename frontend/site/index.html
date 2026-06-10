@@ -909,6 +909,38 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
 
       <div class="news-grid">
 
+        <!-- News Item: Hospitality Net — The Biggest Mistake Hotels Are Making About AI (Jun 2026) -->
+        <article class="news-card reveal">
+          <div class="news-card__date">
+            <span class="lang-en">June 9, 2026</span>
+            <span class="lang-cn">2026年6月9日</span>
+          </div>
+          <h3 class="news-card__title">
+            <span class="lang-en">Dr. Tong Yin on Hospitality Net: "The Biggest Mistake Hotels Are Making About AI"</span>
+            <span class="lang-cn">殷彤博士发表于 Hospitality Net：《酒店业对AI犯下的最大错误》</span>
+          </h3>
+          <div class="news-card__body">
+            <div class="lang-en">
+              <p>Dr. Tong Yin argues that the hotel industry's most consequential AI mistake is not under-investment in technology — it is treating AI as an automation tool to replace labour, when the real opportunity is to use AI as a <em>decision-quality</em> layer that makes managers, not machines, the source of competitive advantage. The piece reframes the AI conversation away from "robots vs people" toward identity-fusion management — the one organisational capability AI cannot replicate.</p>
+              <div class="news-card__product">
+                <a href="https://www.hospitalitynet.org/opinion/4132319/the-biggest-mistake-hotels-are-making-about-ai" target="_blank" rel="noopener noreferrer" class="news-card__demo-link">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Read on Hospitality Net
+                </a>
+              </div>
+            </div>
+            <div class="lang-cn">
+              <p>殷彤博士指出，酒店业对 AI 最重大的错误判断，并非投入不足——而是把 AI 当作替代人力的自动化工具，而忽视了 AI 真正的价值定位：成为<em>提升决策质量</em>的一层底层能力，让管理者（而不是机器）成为竞争优势的源头。本文将 AI 议题从"机器人对人"的二元对立重新构架为"身份融合管理"——这是 AI 唯一无法复制的组织能力。</p>
+              <div class="news-card__product">
+                <a href="https://www.hospitalitynet.org/opinion/4132319/the-biggest-mistake-hotels-are-making-about-ai" target="_blank" rel="noopener noreferrer" class="news-card__demo-link">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  在 Hospitality Net 阅读
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <!-- News Item: Hotel News Resource — Saudi Hospitality Operating Model (Jun 2026) -->
         <article class="news-card reveal">
           <div class="news-card__date">
@@ -4150,7 +4182,18 @@ document.querySelectorAll('.credential-wrap, [data-protected], .about__image-wra
 
   fetch('/api/headlines?limit=7', {cache: 'no-store'})
     .then(function(r){ if (!r.ok) throw new Error('headlines fetch ' + r.status); return r.json(); })
-    .then(function(data){ render(data && data.items); })
+    .then(function(data){
+      // Prepend featured external articles (manually curated, always shown first)
+      var featured = [
+        {
+          loc: 'https://www.hospitalitynet.org/opinion/4132319/the-biggest-mistake-hotels-are-making-about-ai',
+          title: 'The Biggest Mistake Hotels Are Making About AI — Hospitality Net',
+          published: '2026-06-09T00:00:00+00:00'
+        }
+      ];
+      var items = featured.concat((data && data.items) || []).slice(0, 7);
+      render(items);
+    })
     .catch(function(err){
       if (window.console) console.info('Live headlines unavailable, using static fallback:', err.message);
     });
