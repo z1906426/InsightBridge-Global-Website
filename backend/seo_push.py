@@ -6,8 +6,9 @@ Engines covered:
   - IndexNow API (api.indexnow.org)          — Bing, Yandex, Seznam, Naver, Yep
 
 Triggered by:
-  - APScheduler interval job (every 72 h) configured in seo_scheduler.py
+  - APScheduler interval job (every 24 h) configured in seo_scheduler.py
   - Manual API endpoint:  POST /api/seo/push
+  - Publications push:    POST /api/seo/push-publications
 """
 from __future__ import annotations
 
@@ -104,6 +105,56 @@ def push_to_indexnow(urls: List[str]) -> Dict[str, Any]:
     except Exception as e:
         logger.exception("IndexNow push failed")
         return {"engine": "indexnow", "ok": False, "error": str(e)}
+
+
+async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[str, Any]:
+    """Push an explicit list of URLs (e.g. publications) to all engines and log.
+
+    Baidu has a strict 10 URLs/day quota → cap baidu_urls at the first 10.
+    IndexNow accepts up to 10,000/payload so we pass them all.
+    """
+    if not urls:
+        return {"ok_all": False, "error": "no urls provided"}
+
+    # De-dup while preserving order
+    seen: set[str] = set()
+    deduped: List[str] = []
+    for u in urls:
+        if u in seen:
+            continue
+        seen.add(u)
+        deduped.append(u)
+
+    same_host_urls = [u for u in deduped if SITE_DOMAIN in u]
+    baidu_urls = same_host_urls[:10]            # Baidu daily-quota safety
+    indexnow_urls = deduped                     # IndexNow has generous quota
+
+    logger.info(
+        "SEO push [%s]: Baidu=%d (capped@10), IndexNow=%d",
+        label, len(baidu_urls), len(indexnow_urls),
+    )
+
+    results = [
+        push_to_baidu(baidu_urls) if baidu_urls else {"engine": "baidu", "ok": False, "skipped": "no same-host urls"},
+        push_to_indexnow(indexnow_urls),
+    ]
+
+    record: Dict[str, Any] = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "label": label,
+        "urls_count": len(indexnow_urls),
+        "urls": indexnow_urls,
+        "baidu_urls_count": len(baidu_urls),
+        "results": results,
+        "ok_all": all(r.get("ok") for r in results),
+    }
+    try:
+        if db is not None:
+            await db.seo_pushes.insert_one(dict(record))
+    except Exception:
+        logger.exception("Failed to persist seo push record (%s)", label)
+
+    return record
 
 
 async def run_push_and_save(db) -> Dict[str, Any]:

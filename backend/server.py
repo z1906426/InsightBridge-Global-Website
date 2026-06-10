@@ -71,7 +71,8 @@ async def get_status_checks():
 # SEO push endpoints — manual trigger + status (scheduled job runs
 # automatically every 72 h via seo_scheduler.start_scheduler at startup)
 # ====================================================================
-from seo_push import run_push_and_save  # noqa: E402
+from seo_push import run_push_and_save, run_push_urls  # noqa: E402
+from publications import extract_publication_urls  # noqa: E402
 from calculators import (  # noqa: E402
     MAREInput, MAREResult, compute_mare,
     OTAInput, OTAResult, compute_ota,
@@ -85,6 +86,19 @@ async def trigger_seo_push():
     """Manually trigger a push to all search engines now."""
     return await run_push_and_save(db)
 
+@api_router.get("/seo/publications")
+async def list_publication_urls():
+    """List the publication URLs auto-extracted from the homepage."""
+    urls = extract_publication_urls()
+    return {"count": len(urls), "urls": urls}
+
+@api_router.post("/seo/push-publications")
+async def push_publication_urls():
+    """Push the Research & Publications URLs (extracted from index.html)
+    to IndexNow + Baidu. Baidu is capped at 10 URLs to respect daily quota."""
+    urls = extract_publication_urls()
+    return await run_push_urls(db, urls, label="publications")
+
 @api_router.get("/seo/status")
 async def seo_status():
     """Return the last SEO push record + scheduler health."""
@@ -93,7 +107,7 @@ async def seo_status():
     return {
         "total_pushes": count,
         "last_push": last,
-        "interval_hours": 72,
+        "interval_hours": 24,
     }
 
 
@@ -157,7 +171,7 @@ async def start_seo_scheduler():
     try:
         from seo_scheduler import start_scheduler
         start_scheduler(db)
-        logger.info("SEO push scheduler initialised (every 72h)")
+        logger.info("SEO push scheduler initialised (every 24h)")
     except Exception:
         logger.exception("Failed to start SEO scheduler")
 

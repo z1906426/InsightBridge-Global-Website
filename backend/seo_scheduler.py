@@ -1,10 +1,10 @@
 """
-APScheduler setup — runs SEO push every 72 hours.
+APScheduler setup — runs SEO push every 24 hours.
 
 Behaviour:
   - On startup, look up the latest push in MongoDB.
-    - If none, OR if it was >72 h ago, run a push immediately ("catch-up").
-  - Then schedule subsequent pushes every 72 hours.
+    - If none, OR if it was >24 h ago, run a push immediately ("catch-up").
+  - Then schedule subsequent pushes every 24 hours.
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from seo_push import run_push_and_save
 logger = logging.getLogger(__name__)
 
 scheduler = AsyncIOScheduler()
-PUSH_INTERVAL_HOURS = 72
+PUSH_INTERVAL_HOURS = 24
 
 
 async def _do_push(db) -> None:

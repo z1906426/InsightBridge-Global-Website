@@ -131,13 +131,21 @@ Namecheap (registrar)
 - intelligence-vol01.html: Article JSON-LD schema + hreflang
 - static-server.js: X-Robots-Tag: all + Referrer-Policy response headers
 
-### SEO auto-push (every 72h, backend cron)
+### SEO auto-push (every 24h, backend cron)
 - backend/seo_push.py — pushes to Baidu Zhanzhang + IndexNow (Bing/Yandex/Naver/Seznam/Yep)
 - backend/seo_scheduler.py — APScheduler interval job + MongoDB-persisted catch-up logic
-- POST /api/seo/push — manual trigger
-- GET /api/seo/status — last push + total count
+- POST /api/seo/push — manual trigger (main + sister URLs)
+- POST /api/seo/push-publications — push the 24 Research & Publications URLs (auto-extracted from index.html)
+- GET  /api/seo/publications — list extracted publication URLs (debug)
+- GET  /api/seo/status — last push + total count
 - ENV: SITE_DOMAIN, INDEXNOW_KEY, BAIDU_PUSH_TOKEN
 - IndexNow covers Naver (solves Korea registration problem)
+
+### 2026-06-10 — Research & Publications push to search engines
+- New helper backend/publications.py auto-extracts publication URLs from index.html's #page-publications section
+- New endpoint POST /api/seo/push-publications submits all 24 publication PDFs/DOCX to IndexNow (Baidu capped at 10 to respect daily quota)
+- First run: 24/24 URLs accepted by IndexNow (HTTP 200) → Bing/Yandex/Naver/Seznam/Yep. Baidu over-quota (expected, will retry on next 24h cron tick)
+- Scheduler interval reduced from 72h → 24h to keep up with the sister site's publishing cadence
 
 ### Calculator IP protection (server-side migration)
 - backend/calculators.py — MAREInput/MAREResult, OTAInput/OTAResult Pydantic models

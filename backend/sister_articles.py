@@ -136,7 +136,7 @@ async def refresh_sister_headlines(db) -> Dict[str, Any]:
     def _do_fetch() -> List[Dict[str, Any]]:
         try:
             entries = _fetch_sister_sitemap_articles()
-        except Exception as e:
+        except Exception:
             logger.exception("Sister sitemap fetch failed")
             return []
         # Take the newest N for the brief
