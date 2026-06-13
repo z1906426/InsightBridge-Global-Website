@@ -135,10 +135,10 @@
     });
   });
 
-  /* — MARE Calculator (iframe postMessage) ────────────────────────────── */
+  /* — POLARIS Calculator (iframe postMessage) ────────────────────────────── */
   window.addEventListener('message', function (evt) {
-    if (evt.data && evt.data.type === 'MARE_CALC_INTERACTION') {
-      sendEvent('calculator_used', 'MARE v2.0 Pricing Calculator');
+    if (evt.data && evt.data.type === 'POLARIS_CALC_INTERACTION') {
+      sendEvent('calculator_used', 'POLARIS v2.0 Pricing Calculator');
     }
   });
 

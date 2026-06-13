@@ -74,7 +74,7 @@ async def get_status_checks():
 from seo_push import run_push_and_save, run_push_urls  # noqa: E402
 from publications import extract_publication_urls  # noqa: E402
 from calculators import (  # noqa: E402
-    MAREInput, MAREResult, compute_mare,
+    POLARISInput, POLARISResult, compute_polaris,
     OTAInput, OTAResult, compute_ota,
 )
 from sister_articles import (  # noqa: E402
@@ -116,10 +116,17 @@ async def seo_status():
 # client-side inspection. Frontend posts inputs, receives results.
 # ====================================================================
 
-@api_router.post("/calc/mare", response_model=MAREResult)
-async def calc_mare(payload: MAREInput):
-    """MARE hotel pricing calculator — 5 demand-driver weights server-side."""
-    return compute_mare(payload)
+@api_router.post("/calc/polaris", response_model=POLARISResult)
+async def calc_polaris(payload: POLARISInput):
+    """POLARIS hotel pricing calculator — 5 demand-driver weights server-side."""
+    return compute_polaris(payload)
+
+
+# Backwards-compat alias for the legacy /calc/mare path (kept until all
+# frontend deploys have flipped to /calc/polaris). Safe to remove later.
+@api_router.post("/calc/mare", response_model=POLARISResult, include_in_schema=False)
+async def calc_mare_legacy(payload: POLARISInput):
+    return compute_polaris(payload)
 
 
 @api_router.post("/calc/ota", response_model=OTAResult)

@@ -1,6 +1,6 @@
 """
 Server-side calculator endpoints — protects proprietary algorithm
-constants (MARE driver weights, clamp logic) from being exposed in
+constants (POLARIS driver weights, clamp logic) from being exposed in
 client-side HTML/JS.
 
 Inputs are user slider values. Outputs are formatted numbers ready
@@ -13,17 +13,17 @@ from pydantic import BaseModel, Field, conlist
 
 
 # ============================================================
-# MARE — Hotel Pricing Calculator
+# POLARIS — Strategic Pricing Engine (hotel pricing calculator)
 #   PROPRIETARY: the 5 driver weights are server-side constants.
 #   They are never returned to the client.
 # ============================================================
 
 # Order: cross_border, holiday_compression, weekend_effect,
 #        ota_booking_pace, competitive_saturation
-_MARE_WEIGHTS: List[float] = [0.18, 0.16, 0.14, 0.12, 0.12]
+_POLARIS_WEIGHTS: List[float] = [0.18, 0.16, 0.14, 0.12, 0.12]
 
 
-class MAREInput(BaseModel):
+class POLARISInput(BaseModel):
     base: float = Field(..., ge=0, le=20000, description="Floor / base rate")
     ceiling: float = Field(..., ge=0, le=50000)
     occupancy: float = Field(..., ge=0, le=100, description="0-100 (percent)")
@@ -33,7 +33,7 @@ class MAREInput(BaseModel):
     )
 
 
-class MAREResult(BaseModel):
+class POLARISResult(BaseModel):
     rate: float                  # recommended rate (already clamped)
     revpar: float                # rate × occupancy
     hit_ceiling: bool
@@ -42,17 +42,17 @@ class MAREResult(BaseModel):
     trajectory: List[float]
 
 
-def compute_mare(payload: MAREInput) -> MAREResult:
+def compute_polaris(payload: POLARISInput) -> POLARISResult:
     base = max(0.0, payload.base)
     ceil_ = max(base, payload.ceiling)
     occ = payload.occupancy / 100.0
     max_up = payload.max_uplift / 100.0
 
     # Weighted demand index (intensities are %; weights are server-side constants)
-    w_sum = sum(_MARE_WEIGHTS)
+    w_sum = sum(_POLARIS_WEIGHTS)
     contrib = sum(
         w * (intensity / 100.0)
-        for w, intensity in zip(_MARE_WEIGHTS, payload.intensities)
+        for w, intensity in zip(_POLARIS_WEIGHTS, payload.intensities)
     )
     demand_index = (contrib / w_sum) if w_sum > 0 else 0.0
 
@@ -67,7 +67,7 @@ def compute_mare(payload: MAREInput) -> MAREResult:
         min(base * (1.0 + max_up * (i / 10.0)), ceil_) for i in range(11)
     ]
 
-    return MAREResult(
+    return POLARISResult(
         rate=round(rate, 2),
         revpar=round(rate * occ, 2),
         hit_ceiling=hit_ceiling,
@@ -78,7 +78,7 @@ def compute_mare(payload: MAREInput) -> MAREResult:
 # ============================================================
 # OTA True Cost Calculator
 #   Pure cost layering, industry-standard math — but moving server-side
-#   for visual consistency with MARE (same "no client formulas" stance).
+#   for visual consistency with POLARIS (same "no client formulas" stance).
 # ============================================================
 
 class OTAInput(BaseModel):
