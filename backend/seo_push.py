@@ -128,15 +128,19 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
     same_host_urls = [u for u in deduped if SITE_DOMAIN in u]
     baidu_urls = same_host_urls[:10]            # Baidu daily-quota safety
     indexnow_urls = deduped                     # IndexNow has generous quota
+    google_urls = same_host_urls[:50]           # Google daily quota ~200; cap per push
 
     logger.info(
-        "SEO push [%s]: Baidu=%d (capped@10), IndexNow=%d",
-        label, len(baidu_urls), len(indexnow_urls),
+        "SEO push [%s]: Baidu=%d (capped@10), IndexNow=%d, Google=%d",
+        label, len(baidu_urls), len(indexnow_urls), len(google_urls),
     )
+
+    from google_indexing import push_to_google  # lazy import
 
     results = [
         push_to_baidu(baidu_urls) if baidu_urls else {"engine": "baidu", "ok": False, "skipped": "no same-host urls"},
         push_to_indexnow(indexnow_urls),
+        push_to_google(google_urls),
     ]
 
     record: Dict[str, Any] = {
@@ -173,15 +177,19 @@ async def run_push_and_save(db) -> Dict[str, Any]:
 
     indexnow_urls = main_urls + sister_urls   # IndexNow accepts both hosts
     baidu_urls = main_urls                    # Baidu only accepts apex domain
+    google_urls = main_urls                   # Google: same-domain only
 
     logger.info(
-        "SEO push: Baidu=%d (apex only); IndexNow=%d (apex+sister)",
-        len(baidu_urls), len(indexnow_urls),
+        "SEO push: Baidu=%d (apex only); IndexNow=%d (apex+sister); Google=%d",
+        len(baidu_urls), len(indexnow_urls), len(google_urls),
     )
+
+    from google_indexing import push_to_google  # lazy import
 
     results = [
         push_to_baidu(baidu_urls),
         push_to_indexnow(indexnow_urls),
+        push_to_google(google_urls),
     ]
 
     record: Dict[str, Any] = {
@@ -200,8 +208,9 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         logger.exception("Failed to persist seo push record")
 
     logger.info(
-        "SEO push: done. baidu_ok=%s, indexnow_ok=%s",
+        "SEO push: done. baidu_ok=%s, indexnow_ok=%s, google_ok=%s",
         results[0].get("ok"),
         results[1].get("ok"),
+        results[2].get("ok"),
     )
     return record
