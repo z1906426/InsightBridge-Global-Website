@@ -229,17 +229,17 @@
         <div class="row2">
           <div class="field">
             <label><span class="lang-en">Base / floor rate</span><span class="lang-cn">基准 / 下限房价</span> <span class="val" id="baseVal"></span></label>
-            <input type="number" id="baseRate" min="20" max="9000" step="10" value="650">
+            <input type="number" id="baseRate" aria-label="Base / floor rate" min="20" max="9000" step="10" value="650">
           </div>
           <div class="field">
             <label><span class="lang-en">Ceiling (guardrail)</span><span class="lang-cn">上限(护栏)</span> <span class="val" id="ceilVal"></span></label>
-            <input type="number" id="ceiling" min="20" max="20000" step="10" value="1100">
+            <input type="number" id="ceiling" aria-label="Ceiling / cap rate" min="20" max="20000" step="10" value="1100">
           </div>
         </div>
         <div class="row2">
           <div class="field">
             <label><span class="lang-en">Currency</span><span class="lang-cn">货币</span></label>
-            <select id="cur">
+            <select id="cur" aria-label="Currency">
               <option value="$">$ USD</option>
               <option value="MOP$" selected>MOP$ 澳门元</option>
               <option value="HK$">HK$ 港元</option>
@@ -250,35 +250,35 @@
           </div>
           <div class="field">
             <label><span class="lang-en">Expected occupancy</span><span class="lang-cn">预期入住率</span> <span class="val"><span id="occVal">72</span>%</span></label>
-            <input type="range" id="occ" min="0" max="100" value="72">
+            <input type="range" id="occ" aria-label="Forecasted occupancy percentage" min="0" max="100" value="72">
           </div>
         </div>
         <div class="field">
           <label><span class="lang-en">Max premium at full demand</span><span class="lang-cn">满需求时最大溢价</span> <span class="val">+<span id="upVal">35</span>%</span></label>
-          <input type="range" id="uplift" min="0" max="80" value="35">
+          <input type="range" id="uplift" aria-label="Maximum uplift percentage" min="0" max="80" value="35">
         </div>
 
         <div class="drivers">
           <h3 style="margin-top:10px"><span class="lang-en">Demand drivers (intensity today)</span><span class="lang-cn">需求驱动因子(当日强度)</span></h3>
           <div class="field">
             <label><span class="lang-en">Cross-border flow</span><span class="lang-cn">跨境客流</span> <span class="val"><span id="d0v">60</span>%</span></label>
-            <input type="range" class="driver" id="d0" min="0" max="100" value="60">
+            <input type="range" class="driver" id="d0" aria-label="Cross-border demand intensity" min="0" max="100" value="60">
           </div>
           <div class="field">
             <label><span class="lang-en">Holiday / event compression</span><span class="lang-cn">节假日 / 活动压缩</span> <span class="val"><span id="d1v">40</span>%</span></label>
-            <input type="range" class="driver" id="d1" min="0" max="100" value="40">
+            <input type="range" class="driver" id="d1" aria-label="Holiday compression intensity" min="0" max="100" value="40">
           </div>
           <div class="field">
             <label><span class="lang-en">Weekend effect</span><span class="lang-cn">周末效应</span> <span class="val"><span id="d2v">50</span>%</span></label>
-            <input type="range" class="driver" id="d2" min="0" max="100" value="50">
+            <input type="range" class="driver" id="d2" aria-label="Weekend effect intensity" min="0" max="100" value="50">
           </div>
           <div class="field">
             <label><span class="lang-en">OTA booking pace</span><span class="lang-cn">OTA 预订速度</span> <span class="val"><span id="d3v">55</span>%</span></label>
-            <input type="range" class="driver" id="d3" min="0" max="100" value="55">
+            <input type="range" class="driver" id="d3" aria-label="OTA booking pace intensity" min="0" max="100" value="55">
           </div>
           <div class="field">
             <label><span class="lang-en">Competitive saturation</span><span class="lang-cn">竞争饱和度</span> <span class="val"><span id="d4v">45</span>%</span></label>
-            <input type="range" class="driver" id="d4" min="0" max="100" value="45">
+            <input type="range" class="driver" id="d4" aria-label="Competitive saturation intensity" min="0" max="100" value="45">
           </div>
         </div>
 

@@ -30,9 +30,9 @@
 <meta name="bingbot" content="index, follow">
 <meta name="Baiduspider" content="index, follow">
 <meta name="YandexBot" content="index, follow">
-<link rel="alternate" hreflang="en" href="index.html">
-<link rel="alternate" hreflang="zh-Hans" href="zh.html">
-<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="alternate" hreflang="en" href="https://insightbridge.global/index.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh.html">
+<link rel="alternate" hreflang="x-default" href="https://insightbridge.global/index.html">
 
 <!-- SEO: rel=me — social profile verification (strengthens E-E-A-T) -->
 <link rel="me" href="https://www.linkedin.com/in/tong-yin-315249396">
@@ -545,8 +545,8 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
 <header class="header">
   <div class="container header__inner">
     <a href="index.html#home" class="header__logo">
-      <img src="assets/logo-en.jpg" alt="InsightBridge Global — Hotel · Strategy · AI" class="header__logo-img lang-en" style="height: 40px; width: auto; display: block; border-radius: 4px;">
-      <img src="assets/logo-cn.jpg" alt="InsightBridge Global — 酒店 · 战略 · 人工智能" class="header__logo-img lang-cn" style="height: 40px; width: auto; display: block; border-radius: 4px;">
+      <img src="assets/logo-en.jpg" alt="InsightBridge Global — Hotel · Strategy · AI" class="header__logo-img lang-en" width="344" height="160" style="height: 40px; width: auto; display: block; border-radius: 4px;">
+      <img src="assets/logo-cn.jpg" alt="InsightBridge Global — 酒店 · 战略 · 人工智能" class="header__logo-img lang-cn" width="823" height="367" style="height: 40px; width: auto; display: block; border-radius: 4px;">
       <span class="header__wordmark" aria-hidden="true">
         <span class="header__wordmark-name">
           <span class="lang-en">InsightBridge Global</span>
@@ -785,7 +785,7 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
       <div style="text-align: center; padding: var(--space-12) 0; margin: var(--space-8) auto; max-width: 600px;">
         <div class="credential-wrap">
         <picture>
-          <img src="assets/business_license.png" alt="InsightBridge Global LLC Certificate" style="width: 100%; max-width: 500px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: 1px solid var(--color-border);" loading="lazy" draggable="false">
+          <img src="assets/business_license.png" alt="InsightBridge Global LLC Certificate" width="2550" height="3300" style="width: 100%; max-width: 500px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: 1px solid var(--color-border);" loading="lazy" draggable="false">
         </picture>
         </div>
         <p style="margin-top: var(--space-4); font-size: var(--text-base); color: var(--color-text-muted);">
@@ -868,14 +868,14 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
                 <span class="lang-en">Currency &amp; ADR</span><span class="lang-cn">货币与ADR</span>
               </label>
               <div style="display:flex; gap:8px;">
-                <select id="otach-cur" style="padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.88rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
+                <select id="otach-cur" aria-label="Currency" style="padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.88rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
                   <option value="$">$ USD</option>
                   <option value="MOP$" selected>MOP$</option>
                   <option value="HK$">HK$</option>
                   <option value="¥">¥ CNY</option>
                   <option value="€">€ EUR</option>
                 </select>
-                <input type="number" id="otach-adr" value="650" min="10" max="50000" step="10"
+                <input type="number" id="otach-adr" aria-label="Average daily rate (ADR)" value="650" min="10" max="50000" step="10"
                   style="flex:1; padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.92rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
               </div>
             </div>
@@ -883,32 +883,32 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Monthly OTA bookings (room-nights)</span><span class="lang-cn">月OTA预订量（间夜）</span>
               </label>
-              <input type="number" id="otach-bk" value="120" min="1" max="10000" step="1"
+              <input type="number" id="otach-bk" aria-label="Monthly OTA bookings (room-nights)" value="120" min="1" max="10000" step="1"
                 style="width:100%; padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.92rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
             </div>
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Base commission</span><span class="lang-cn">基础佣金</span>: <span id="otach-cv" style="color:var(--color-accent); font-weight:800;">18%</span>
               </label>
-              <input type="range" id="otach-c" min="10" max="30" value="18" step="0.5" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otach-c" aria-label="Base commission percentage" min="10" max="30" value="18" step="0.5" style="width:100%; accent-color:var(--color-primary);">
             </div>
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Preferred Partner / Visibility fee</span><span class="lang-cn">优选合作伙伴费</span>: <span id="otach-pv" style="color:var(--color-accent); font-weight:800;">3%</span>
               </label>
-              <input type="range" id="otach-p" min="0" max="8" value="3" step="0.5" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otach-p" aria-label="Preferred Partner visibility fee percentage" min="0" max="8" value="3" step="0.5" style="width:100%; accent-color:var(--color-primary);">
             </div>
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Genius / discount programme</span><span class="lang-cn">Genius/折扣计划</span>: <span id="otach-gv" style="color:var(--color-accent); font-weight:800;">10%</span>
               </label>
-              <input type="range" id="otach-g" min="0" max="20" value="10" step="1" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otach-g" aria-label="Genius discount programme percentage" min="0" max="20" value="10" step="1" style="width:100%; accent-color:var(--color-primary);">
             </div>
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Payment processing fee</span><span class="lang-cn">支付处理费</span>: <span id="otach-pyv" style="color:var(--color-accent); font-weight:800;">2%</span>
               </label>
-              <input type="range" id="otach-py" min="0" max="5" value="2" step="0.25" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otach-py" aria-label="Payment processing fee percentage" min="0" max="5" value="2" step="0.25" style="width:100%; accent-color:var(--color-primary);">
             </div>
           </div>
           <div style="background:linear-gradient(135deg,var(--color-primary) 0%,#0f2844 100%); border-radius:12px; padding:24px 20px; color:#fff;">
@@ -2332,14 +2332,14 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
                 <span class="lang-en">Currency &amp; ADR</span><span class="lang-cn">货币与ADR</span>
               </label>
               <div style="display:flex; gap:8px;">
-                <select id="otac-cur" style="padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.88rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
+                <select id="otac-cur" aria-label="Currency" style="padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.88rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
                   <option value="$">$ USD</option>
                   <option value="MOP$" selected>MOP$</option>
                   <option value="HK$">HK$</option>
                   <option value="¥">¥ CNY</option>
                   <option value="€">€ EUR</option>
                 </select>
-                <input type="number" id="otac-adr" value="650" min="10" max="50000" step="10"
+                <input type="number" id="otac-adr" aria-label="Average daily rate (ADR)" value="650" min="10" max="50000" step="10"
                   style="flex:1; padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.92rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
               </div>
             </div>
@@ -2348,7 +2348,7 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Monthly OTA bookings (room-nights)</span><span class="lang-cn">月OTA预订量（间夜）</span>
               </label>
-              <input type="number" id="otac-bk" value="120" min="1" max="10000" step="1"
+              <input type="number" id="otac-bk" aria-label="Monthly OTA bookings (room-nights)" value="120" min="1" max="10000" step="1"
                 style="width:100%; padding:8px 10px; border:1px solid var(--color-border); border-radius:8px; font-size:0.92rem; background:var(--color-background,#f7f6f3); color:var(--color-text);">
             </div>
 
@@ -2356,28 +2356,28 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Base commission</span><span class="lang-cn">基础佣金</span>: <span id="otac-cv" style="color:var(--color-accent); font-weight:800;">18%</span>
               </label>
-              <input type="range" id="otac-c" min="10" max="30" value="18" step="0.5" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otac-c" aria-label="Base commission percentage" min="10" max="30" value="18" step="0.5" style="width:100%; accent-color:var(--color-primary);">
             </div>
 
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Preferred Partner / Visibility fee</span><span class="lang-cn">优选合作伙伴费</span>: <span id="otac-pv" style="color:var(--color-accent); font-weight:800;">3%</span>
               </label>
-              <input type="range" id="otac-p" min="0" max="8" value="3" step="0.5" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otac-p" aria-label="Preferred Partner visibility fee percentage" min="0" max="8" value="3" step="0.5" style="width:100%; accent-color:var(--color-primary);">
             </div>
 
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Genius / discount programme</span><span class="lang-cn">Genius/折扣计划</span>: <span id="otac-gv" style="color:var(--color-accent); font-weight:800;">10%</span>
               </label>
-              <input type="range" id="otac-g" min="0" max="20" value="10" step="1" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otac-g" aria-label="Genius discount programme percentage" min="0" max="20" value="10" step="1" style="width:100%; accent-color:var(--color-primary);">
             </div>
 
             <div>
               <label style="display:block; font-size:0.83rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;">
                 <span class="lang-en">Payment processing fee</span><span class="lang-cn">支付处理费</span>: <span id="otac-pyv" style="color:var(--color-accent); font-weight:800;">2%</span>
               </label>
-              <input type="range" id="otac-py" min="0" max="5" value="2" step="0.25" style="width:100%; accent-color:var(--color-primary);">
+              <input type="range" id="otac-py" aria-label="Payment processing fee percentage" min="0" max="5" value="2" step="0.25" style="width:100%; accent-color:var(--color-primary);">
             </div>
 
           </div>
@@ -4239,7 +4239,7 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
       <div style="text-align: center; padding: var(--space-8) 0;">
         <div class="credential-wrap">
         <picture>
-          <img src="assets/business_license.png" alt="InsightBridge Global LLC - Certificate of Organization" style="max-width: 280px; width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);" loading="lazy" draggable="false">
+          <img src="assets/business_license.png" alt="InsightBridge Global LLC - Certificate of Organization" width="2550" height="3300" style="max-width: 280px; width: 100%; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);" loading="lazy" draggable="false">
         </picture>
         </div>
         <p style="margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted); font-style: italic;">
