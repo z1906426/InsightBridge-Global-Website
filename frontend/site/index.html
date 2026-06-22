@@ -747,81 +747,110 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
 
   <!-- ============================================================
        MAJOR ANNOUNCEMENT — InsightBridge Global Lab established
+       Compact teaser (below hero) + click-to-open modal with full details
        Filed with Wyoming Secretary of State on June 13, 2026
        ============================================================ -->
-  <section class="section-padding" style="background: linear-gradient(180deg, #f9f7f2 0%, #ffffff 100%); border-top: 4px solid var(--color-accent); border-bottom: 1px solid var(--color-text-faint);" id="announcement-lab" aria-labelledby="announcement-title">
+  <section style="background: linear-gradient(180deg, #f9f7f2 0%, #ffffff 100%); border-top: 4px solid var(--color-accent); border-bottom: 1px solid var(--color-text-faint); padding: 28px 0;" id="announcement-lab" aria-labelledby="announcement-title">
     <div class="container">
-      <div style="display:inline-flex; align-items:center; gap:10px; padding:8px 14px; background:var(--color-accent); color:#fff; border-radius:999px; font-size:0.7rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:28px;" data-testid="announcement-eyebrow">
-        <span style="display:inline-block; width:8px; height:8px; background:#fff; border-radius:50%; animation: pulse-dot 1.6s ease-in-out infinite;"></span>
-        <span class="lang-en">Major Announcement · June 13, 2026</span>
-        <span class="lang-cn">重大消息 · 2026 年 6 月 13 日</span>
-      </div>
-
-      <div style="display:grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 72px; align-items: start;" class="lab-announce-grid">
-
-        <!-- LEFT — Headline + body -->
-        <div>
-          <h2 id="announcement-title" style="font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 800; font-size: clamp(1.85rem, 3.4vw, 2.85rem); line-height: 1.18; letter-spacing: -0.012em; margin: 0 0 26px;">
-            <span class="lang-en">InsightBridge Global Lab Officially Established — Research Collaboration with Auburn University &amp; Atlanta-Region Universities</span>
-            <span class="lang-cn">InsightBridge Global Lab（环球洞见实验室）正式成立 — 与奥本大学及亚特兰大区域高校展开研究合作</span>
-          </h2>
-
-          <p style="font-size:1.04rem; line-height:1.85; color: var(--color-text); margin: 0 0 22px;">
-            <span class="lang-en">That commitment now extends into longer-horizon research. We have established <strong>InsightBridge Global Lab LLC</strong>, which will collaborate with <strong>Auburn University</strong> and other strong universities in the <strong>Atlanta region</strong> to study the artificial intelligence and AI-driven robotics that will shape the future of the hotel and tourism industry.</span>
-            <span class="lang-cn">本所对长期研究的承诺现已正式延伸。我们设立了 <strong>InsightBridge Global Lab LLC</strong>（环球洞见实验室），将与 <strong>奥本大学（Auburn University）</strong> 及 <strong>亚特兰大区域</strong> 多所一流高校开展合作，研究将塑造酒店与旅游业未来的人工智能与 AI 驱动机器人技术。</span>
-          </p>
-
-          <p style="font-size:1.02rem; line-height:1.85; color: var(--color-text-muted); margin: 0 0 22px;">
-            <span class="lang-en">As technology, shifting markets, and geopolitics reshape the landscape, the Lab's aim is to provide the rigorous research and leading-edge technical support the industry will need to meet those challenges — and to navigate the transition steadily, and on its own terms.</span>
-            <span class="lang-cn">在技术、市场结构与地缘政治持续重塑行业格局的当下，实验室的目标是为行业提供应对这些挑战所需的严谨研究与前沿技术支持 —— 帮助行业以自身节奏、稳健地完成这一转型。</span>
-          </p>
-
-          <p style="font-size:1.02rem; line-height:1.85; color: var(--color-text-muted); margin: 0 0 32px;">
-            <span class="lang-en">In parallel, <strong>InsightBridge Global LLC</strong> is prepared to offer pro bono strategic planning, research, and advisory services to major tourism-destination countries and cities — placing high-quality research at the service of the public interest where it can do the most good for the wider industry and the communities that depend on it.</span>
-            <span class="lang-cn">与此同时，<strong>InsightBridge Global LLC</strong> 已准备好为主要旅游目的地国家和城市提供 <strong>无偿（pro bono）</strong> 的战略规划、研究与咨询服务 —— 将高质量研究置于公共利益之中，使之惠及更广泛的行业及其所依存的社区。</span>
-          </p>
-
-          <!-- Provenance line -->
-          <div style="display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center; padding:18px 22px; background: var(--color-bg); border: 1px solid var(--color-text-faint); border-radius: 6px; margin-bottom: 28px;">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <strong style="font-size:0.92rem; color: var(--color-text);">
-                <span class="lang-en">Wyoming Secretary of State — Filed</span>
-                <span class="lang-cn">怀俄明州务卿 — 已正式备案</span>
-              </strong>
+      <button type="button" id="lab-announce-open" data-testid="lab-announce-open" aria-haspopup="dialog" aria-controls="lab-announce-modal"
+        style="all:unset; display:block; width:100%; cursor:pointer; padding: 22px 28px; background:#fff; border:1px solid var(--color-text-faint); border-radius:8px; box-shadow: 0 2px 14px rgba(0,0,0,0.04); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;"
+        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,0.10)';this.style.borderColor='var(--color-accent)'"
+        onmouseout="this.style.transform='';this.style.boxShadow='0 2px 14px rgba(0,0,0,0.04)';this.style.borderColor='var(--color-text-faint)'"
+        onfocus="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,0.10)';this.style.borderColor='var(--color-accent)'"
+        onblur="this.style.transform='';this.style.boxShadow='0 2px 14px rgba(0,0,0,0.04)';this.style.borderColor='var(--color-text-faint)'">
+        <div style="display:grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 28px; align-items:center;" class="lab-teaser-grid">
+          <!-- Logo -->
+          <picture>
+            <source type="image/webp" srcset="assets/lab-logo.webp">
+            <img src="assets/lab-logo.png" alt="InsightBridge Global Lab — Hospitality · AI · Robotics" width="1800" height="700" style="height: 56px; width:auto; display:block;" loading="lazy" decoding="async">
+          </picture>
+          <!-- Headline -->
+          <div style="text-align:left; min-width:0;">
+            <div id="announcement-title" style="display:flex; align-items:center; gap:10px; margin-bottom: 4px;">
+              <span style="display:inline-block; width:7px; height:7px; background:var(--color-accent); border-radius:50%; animation: pulse-dot 1.6s ease-in-out infinite; flex-shrink:0;"></span>
+              <span style="font-size: 0.68rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent);">
+                <span class="lang-en">Major Announcement · June 13, 2026</span>
+                <span class="lang-cn">重大消息 · 2026 年 6 月 13 日</span>
+              </span>
             </div>
-            <span style="font-size:0.88rem; color: var(--color-text-muted);">Original ID: 2026-002005301</span>
-            <span style="font-size:0.88rem; color: var(--color-text-muted);">
-              <span class="lang-en">Filed: Jun 13, 2026 · 1:13 PM</span>
-              <span class="lang-cn">备案：2026 年 6 月 13 日</span>
-            </span>
+            <div style="font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 700; font-size: clamp(1.05rem, 1.7vw, 1.3rem); line-height: 1.35; color: var(--color-text); letter-spacing: -0.005em;">
+              <span class="lang-en">InsightBridge Global Lab Officially Established — Research Collaboration with Auburn University &amp; Atlanta-Region Universities</span>
+              <span class="lang-cn">InsightBridge Global Lab（环球洞见实验室）正式成立 — 与奥本大学及亚特兰大区域高校展开研究合作</span>
+            </div>
           </div>
+          <!-- CTA -->
+          <span style="display:inline-flex; align-items:center; gap:8px; padding: 10px 18px; background: var(--color-primary); color:#fff; border-radius:4px; font-size:0.86rem; font-weight:600; letter-spacing:0.04em; white-space:nowrap; flex-shrink:0;">
+            <span class="lang-en">Read Full</span>
+            <span class="lang-cn">查看详情</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </button>
+    </div>
 
-          <a href="assets/lab-articles-of-organization.pdf" target="_blank" rel="noopener" class="btn-primary" data-testid="lab-articles-download" style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; background: var(--color-primary); color:#fff; border-radius:4px; text-decoration:none; font-size:0.92rem; font-weight:600; letter-spacing:0.04em;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            <span class="lang-en">Download Full Articles of Organization (PDF)</span>
-            <span class="lang-cn">下载完整成立文件 (PDF)</span>
-          </a>
+    <!-- Modal — full announcement + certificate -->
+    <div id="lab-announce-modal" role="dialog" aria-modal="true" aria-labelledby="lab-modal-title" hidden
+      style="position:fixed; inset:0; z-index:9999; background: rgba(15,15,20,0.78); backdrop-filter: blur(4px); display:flex; align-items:flex-start; justify-content:center; padding: 40px 16px; overflow-y:auto;"
+      onclick="if(event.target===this) document.getElementById('lab-announce-close').click();">
+      <div style="background:#fff; max-width: 1040px; width:100%; border-radius:10px; box-shadow: 0 24px 80px rgba(0,0,0,0.4); padding: 44px clamp(20px, 4vw, 56px) 52px; position:relative; margin: auto 0;">
+        <button type="button" id="lab-announce-close" data-testid="lab-announce-close" aria-label="Close announcement"
+          style="position:absolute; top:18px; right:18px; width:38px; height:38px; border:none; background:var(--color-bg); border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; color: var(--color-text); transition: background .2s ease;"
+          onmouseover="this.style.background='var(--color-text-faint)'" onmouseout="this.style.background='var(--color-bg)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <div style="display:inline-flex; align-items:center; gap:10px; padding:8px 14px; background:var(--color-accent); color:#fff; border-radius:999px; font-size:0.7rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:24px;">
+          <span style="display:inline-block; width:8px; height:8px; background:#fff; border-radius:50%; animation: pulse-dot 1.6s ease-in-out infinite;"></span>
+          <span class="lang-en">Major Announcement · June 13, 2026</span>
+          <span class="lang-cn">重大消息 · 2026 年 6 月 13 日</span>
         </div>
 
-        <!-- RIGHT — Lab logo + certificate -->
-        <div style="display:flex; flex-direction:column; align-items:center; gap:28px;">
+        <div style="display:grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 56px; align-items: start;" class="lab-modal-grid">
+          <div>
+            <h2 id="lab-modal-title" style="font-family: var(--font-display, 'Fraunces', Georgia, serif); font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 22px;">
+              <span class="lang-en">InsightBridge Global Lab Officially Established — Research Collaboration with Auburn University &amp; Atlanta-Region Universities</span>
+              <span class="lang-cn">InsightBridge Global Lab（环球洞见实验室）正式成立 — 与奥本大学及亚特兰大区域高校展开研究合作</span>
+            </h2>
 
-          <!-- New InsightBridge Global Lab logo -->
-          <div style="background:#fff; padding:32px 28px; border-radius:8px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); border: 1px solid var(--color-text-faint); width: 100%; max-width: 360px; text-align:center;">
-            <picture>
-              <source type="image/webp" srcset="assets/lab-logo.webp">
-              <img src="assets/lab-logo.png" alt="InsightBridge Global Lab — Hospitality · AI · Robotics" width="1800" height="700" style="max-width:100%; height:auto; display:block; margin:0 auto;" loading="lazy" decoding="async">
-            </picture>
-            <div style="margin-top:14px; font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; color: var(--color-text-muted); font-weight:600;">
-              <span class="lang-en">New Subsidiary · 2026</span>
-              <span class="lang-cn">新设子公司 · 2026</span>
+            <p style="font-size:1.0rem; line-height:1.82; color: var(--color-text); margin: 0 0 18px;">
+              <span class="lang-en">That commitment now extends into longer-horizon research. We have established <strong>InsightBridge Global Lab LLC</strong>, which will collaborate with <strong>Auburn University</strong> and other strong universities in the <strong>Atlanta region</strong> to study the artificial intelligence and AI-driven robotics that will shape the future of the hotel and tourism industry.</span>
+              <span class="lang-cn">本所对长期研究的承诺现已正式延伸。我们设立了 <strong>InsightBridge Global Lab LLC</strong>（环球洞见实验室），将与 <strong>奥本大学（Auburn University）</strong> 及 <strong>亚特兰大区域</strong> 多所一流高校开展合作，研究将塑造酒店与旅游业未来的人工智能与 AI 驱动机器人技术。</span>
+            </p>
+
+            <p style="font-size:0.98rem; line-height:1.82; color: var(--color-text-muted); margin: 0 0 18px;">
+              <span class="lang-en">As technology, shifting markets, and geopolitics reshape the landscape, the Lab's aim is to provide the rigorous research and leading-edge technical support the industry will need to meet those challenges — and to navigate the transition steadily, and on its own terms.</span>
+              <span class="lang-cn">在技术、市场结构与地缘政治持续重塑行业格局的当下，实验室的目标是为行业提供应对这些挑战所需的严谨研究与前沿技术支持 —— 帮助行业以自身节奏、稳健地完成这一转型。</span>
+            </p>
+
+            <p style="font-size:0.98rem; line-height:1.82; color: var(--color-text-muted); margin: 0 0 26px;">
+              <span class="lang-en">In parallel, <strong>InsightBridge Global LLC</strong> is prepared to offer pro bono strategic planning, research, and advisory services to major tourism-destination countries and cities — placing high-quality research at the service of the public interest where it can do the most good for the wider industry and the communities that depend on it.</span>
+              <span class="lang-cn">与此同时，<strong>InsightBridge Global LLC</strong> 已准备好为主要旅游目的地国家和城市提供 <strong>无偿（pro bono）</strong> 的战略规划、研究与咨询服务 —— 将高质量研究置于公共利益之中，使之惠及更广泛的行业及其所依存的社区。</span>
+            </p>
+
+            <div style="display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; padding:14px 18px; background: var(--color-bg); border: 1px solid var(--color-text-faint); border-radius: 6px; margin-bottom: 22px; font-size: 0.86rem;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <strong>
+                  <span class="lang-en">Wyoming Secretary of State — Filed</span>
+                  <span class="lang-cn">怀俄明州务卿 — 已正式备案</span>
+                </strong>
+              </div>
+              <span style="color: var(--color-text-muted);">Original ID: 2026-002005301</span>
+              <span style="color: var(--color-text-muted);">
+                <span class="lang-en">Filed: Jun 13, 2026 · 1:13 PM</span>
+                <span class="lang-cn">备案：2026 年 6 月 13 日</span>
+              </span>
             </div>
+
+            <a href="assets/lab-articles-of-organization.pdf" target="_blank" rel="noopener" data-testid="lab-articles-download" style="display:inline-flex; align-items:center; gap:10px; padding:12px 22px; background: var(--color-primary); color:#fff; border-radius:4px; text-decoration:none; font-size:0.9rem; font-weight:600; letter-spacing:0.04em;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span class="lang-en">Download Full PDF (4 pages)</span>
+              <span class="lang-cn">下载完整文件 PDF（4 页）</span>
+            </a>
           </div>
 
-          <!-- Wyoming Certificate of Organization (page 1 / formation page) -->
-          <figure style="margin:0; width: 100%; max-width: 360px;">
-            <a href="assets/lab-certificate.jpg" target="_blank" rel="noopener" data-testid="lab-cert-link" style="display:block; border-radius:6px; overflow:hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.12); border: 1px solid var(--color-text-faint); background:#fff; transition: transform .25s ease, box-shadow .25s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 36px rgba(0,0,0,0.18)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 28px rgba(0,0,0,0.12)'">
+          <figure style="margin:0;">
+            <a href="assets/lab-certificate.jpg" target="_blank" rel="noopener" data-testid="lab-cert-link" style="display:block; border-radius:6px; overflow:hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.14); border: 1px solid var(--color-text-faint); background:#fff;">
               <img src="assets/lab-certificate-thumb.jpg" alt="Certificate of Organization — InsightBridge Global Lab LLC, signed by Wyoming Secretary of State Chuck Gray" width="720" height="932" style="width:100%; height:auto; display:block;" loading="lazy" decoding="async" draggable="false">
             </a>
             <figcaption style="margin-top: 12px; font-size: 0.82rem; color: var(--color-text-muted); text-align:center; line-height:1.5;">
@@ -835,11 +864,31 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
 
     <style>
       @keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.45; transform:scale(.75); } }
-      @media (max-width: 880px) {
-        #announcement-lab .lab-announce-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+      #lab-announce-modal[hidden] { display: none !important; }
+      @media (max-width: 900px) {
+        #announcement-lab .lab-teaser-grid { grid-template-columns: 1fr !important; gap: 16px !important; text-align:center; }
+        #announcement-lab .lab-teaser-grid > div { text-align:center !important; }
+        #lab-announce-modal .lab-modal-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
       }
     </style>
+
+    <script>
+      (function(){
+        var openBtn = document.getElementById('lab-announce-open');
+        var modal = document.getElementById('lab-announce-modal');
+        var closeBtn = document.getElementById('lab-announce-close');
+        if(!openBtn || !modal || !closeBtn) return;
+        function open(){ modal.hidden=false; document.documentElement.style.overflow='hidden'; closeBtn.focus(); }
+        function close(){ modal.hidden=true; document.documentElement.style.overflow=''; openBtn.focus(); }
+        openBtn.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !modal.hidden) close(); });
+        // Open via #announcement-lab hash deep-link
+        if (location.hash === '#announcement-lab-full') open();
+      })();
+    </script>
   </section>
+
 
 
   <!-- Stats -->
