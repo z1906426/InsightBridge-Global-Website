@@ -110,6 +110,23 @@ async def seo_status():
         "interval_hours": 24,
     }
 
+@api_router.get("/seo/history")
+async def seo_history(limit: int = 20):
+    """Return the most recent SEO push records (newest first)."""
+    cursor = db.seo_pushes.find(
+        {},
+        projection={
+            "_id": 0, "timestamp": 1, "label": 1, "urls_count": 1,
+            "baidu_urls_count": 1, "results": 1, "ok_all": 1,
+        },
+    ).sort("timestamp", -1).limit(min(max(limit, 1), 100))
+    items = await cursor.to_list(length=None)
+    # Slim down per-url payload to keep response small
+    for it in items:
+        for r in it.get("results") or []:
+            r.pop("per_url", None)
+    return {"count": len(items), "items": items}
+
 
 # ====================================================================
 # Server-side calculators — protect proprietary formulas from
