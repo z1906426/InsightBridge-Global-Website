@@ -159,3 +159,10 @@ Namecheap (registrar)
 - Code-review report (XSS/Hooks/complexity warnings): all REJECTED — flagged items were false positives, dead code, or violated HANDOFF
 - "Allow all crawlers" → robots.txt fully open, all AI/LLM bots welcome
 - Calculator IP protection requested AFTER initial transparent-marketing decision because user's actual customer base (small-mid hotel owners) doesn't read code; engineers who do aren't customers
+
+
+### 2026-02-08 — Headline ordering fix (RSS-first)
+- **Root cause:** `sister_articles.py` sorted candidates by sitemap `<lastmod>`, but a bulk republish on the sister site assigned 48+ articles near-identical lastmod timestamps in a tight window, burying the genuinely-new "Why AI Pricing Still Fails Hotels" article (published 2026-06-24) at rank 48 by lastmod.
+- **Fix:** Rewrote `sister_articles.py` to use the sister site's RSS feed (`/api/rss.xml?lang=en`) as primary source — already ordered by true `pubDate`. Sitemap + per-article HTML meta parsing retained as fallback only.
+- **Verification:** target now appears at rank #5; external e2e through Kubernetes ingress confirmed.
+- **Regression test:** `/app/backend/tests/test_sister_articles.py` asserts headlines are sorted newest-first by publish date.
