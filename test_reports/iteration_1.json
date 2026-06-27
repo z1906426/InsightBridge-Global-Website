@@ -1,0 +1,63 @@
+{
+  "summary": "Verified PREVIEW environment (https://insightbridge-web.preview.emergentagent.com) correctly serves the NEW index.html with the two iframe replacements. All 6 review assertions PASS against the preview. The legacy POLARIS tools.html iframe, OTA True Cost Calculator widget on home, and the three 'Live AI Model' cards (ORION/POLARIS/NOVA Launch buttons) in #page-ai-model are confirmed REMOVED. The new dashboard iframe (src=https://intelligence.insightbridge.global/dashboard) is correctly present in both #page-home and #page-ai-model. This confirms the issue is on the user's PRODUCTION deploy pipeline (Emergent deploy snapshot stale), not in the code.",
+  "verification_results": {
+    "home_page": {
+      "three_model_dashboard_title_present": true,
+      "dashboard_iframes_in_page_home": 1,
+      "ota_true_cost_calculator_text_in_page_home": 0,
+      "otach_msg_in_page_home": 0,
+      "otach_cur_in_page_home": 0,
+      "otach_adr_in_page_home": 0
+    },
+    "ai_model_page": {
+      "dashboard_iframes_in_page_ai_model": 1,
+      "iframe_src": "https://intelligence.insightbridge.global/dashboard",
+      "launch_orion_buttons": 0,
+      "launch_polaris_buttons": 0,
+      "launch_nova_buttons": 0,
+      "app_insightbridge_subdomain_refs": 0,
+      "mare_insightbridge_subdomain_refs": 0,
+      "director_insightbridge_subdomain_refs": 0,
+      "linkedin_tong_yin_card_present": true,
+      "nav_to_ai_model_works": true,
+      "section_activates_with_class_page_active": true
+    },
+    "document_structure": {
+      "main_opening_tags": 1,
+      "main_closing_tags": 1
+    },
+    "global_counts_on_preview_html": {
+      "intelligence_insightbridge_dashboard_refs": 4,
+      "otach_refs_total": 0,
+      "tong_yin_315249396_refs": 7,
+      "legacy_launch_buttons_in_news_page_intentional": 1,
+      "ota_true_cost_calculator_in_tools_and_intelligence_pages_intentional": 5
+    }
+  },
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "expected_console_warnings": [
+    "CSP frame-ancestors violation when loading https://intelligence.insightbridge.global/dashboard inside the preview domain — EXPECTED per review request (sister site whitelists only insightbridge.global / www.insightbridge.global). Iframe element IS present in DOM with correct src; only the rendered content is blocked. Not a bug."
+  ],
+  "test_report_links": [],
+  "action_items": [
+    "No code changes required — preview HTML is correct.",
+    "User-facing issue is on Emergent production deploy pipeline: production at https://insightbridge.global is serving an OLDER snapshot (0 dashboard iframe refs, 18 otach- IDs still present per user report). Main agent should advise user to re-trigger production deploy / verify deploy snapshot matches latest commit."
+  ],
+  "critical_code_review_comments": [
+    "index.html is 4296 lines — single-file monolith. Long-term: consider splitting page sections into separate HTML files or templating, but out of scope for this task.",
+    "Both replacement iframes correctly use loading=lazy and referrerpolicy=no-referrer-when-downgrade, and the section provides an 'Open full screen ↗' anchor as a graceful fallback when CSP blocks the embed (good UX given the known CSP constraint)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per request)", "frontend": "100%"},
+  "test_credentials": "N/A (no auth flows tested)",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static HTML site at /app/frontend/site/index.html served by Node static server. Hash-based SPA navigation (#page-home, #page-ai-model, etc.). Preview URL: https://insightbridge-web.preview.emergentagent.com. The dashboard iframe will be visually blank in preview due to sister-site CSP frame-ancestors restricting to insightbridge.global only — do NOT flag the blank iframe as a bug; only verify the iframe element exists in the DOM with correct src. The /app/frontend/src folder is dead CRA boilerplate, not used by the live site.",
+  "rca of the issue": "User report: production still shows old version after deploy. RCA via curl + Playwright on preview: PREVIEW correctly has 4 dashboard iframe refs and 0 legacy 'otach-' IDs, matching latest /app/frontend/site/index.html. Therefore the code is correct and the preview pipeline is working. The discrepancy is on the production deploy pipeline — the deploy snapshot is older than the last commit. Mitigation: user must re-trigger the production deploy from Emergent UI and confirm the new snapshot is published; possibly also bust any CDN/edge cache."
+}
