@@ -161,6 +161,13 @@ Namecheap (registrar)
 - Calculator IP protection requested AFTER initial transparent-marketing decision because user's actual customer base (small-mid hotel owners) doesn't read code; engineers who do aren't customers
 
 
+### 2026-02-08 — Replaced legacy calculators with Three-Model Live Dashboard iframe
+- **Home page (`#page-home`):** Removed the legacy POLARIS `tools.html` iframe + OTA True Cost Calculator section (+ its JS handler block). Replaced with a single embedded iframe of `https://intelligence.insightbridge.global/dashboard` titled "POLARIS · ORION · NOVA — Three-Model Dashboard".
+- **AI Model page (`#page-ai-model`):** Removed the three "Live AI Model" cards (ORION → app.*, POLARIS → mare.*, NOVA → director.* subdomains) and replaced with the same dashboard iframe. LinkedIn profile card preserved.
+- **Tools / Intelligence sections kept untouched** per user request (they still use the dedicated `tools.html` iframe + OTA True Cost Calculator).
+- **Sister-site CSP check:** `frame-ancestors 'self' https://insightbridge.global https://www.insightbridge.global` confirmed on `https://intelligence.insightbridge.global/dashboard` (HTTP 200) — iframe will render in production. Preview environment shows blank iframe (expected: preview domain not in whitelist).
+- **HTML hygiene after edit:** 1× `<main>` / 1× `</main>`, 0× legacy `otach-` IDs, 4× references to `intelligence.insightbridge.global/dashboard` (2 iframes + 2 "Open full screen" links).
+
 ### 2026-02-08 — Headline ordering fix (RSS-first)
 - **Root cause:** `sister_articles.py` sorted candidates by sitemap `<lastmod>`, but a bulk republish on the sister site assigned 48+ articles near-identical lastmod timestamps in a tight window, burying the genuinely-new "Why AI Pricing Still Fails Hotels" article (published 2026-06-24) at rank 48 by lastmod.
 - **Fix:** Rewrote `sister_articles.py` to use the sister site's RSS feed (`/api/rss.xml?lang=en`) as primary source — already ordered by true `pubDate`. Sitemap + per-article HTML meta parsing retained as fallback only.
