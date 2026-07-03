@@ -79,4 +79,18 @@
     <priority>0.85</priority>
   </url>
 
+  <!--
+    Cross-domain reference: 2027 Whitepaper hosted on sister site.
+    NOTE: Google will only accept this entry if BOTH `insightbridge.global`
+    and `intelligence.insightbridge.global` are verified under the same
+    Search Console user, OR if this same sitemap is also served from the
+    sister-site domain. Otherwise Google silently drops this URL.
+  -->
+  <url>
+    <loc>https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>
