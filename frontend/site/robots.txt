@@ -97,3 +97,8 @@ Allow: /
 
 # Canonical sitemap location
 Sitemap: https://insightbridge.global/sitemap.xml
+
+# Main-site RSS feed — machine-readable section index for crawlers
+# (Google, Bing, Baidu, Yandex, etc.) to subscribe and re-poll.
+# Sister-site articles are published in the sister site's own RSS feed.
+# https://insightbridge.global/rss.xml

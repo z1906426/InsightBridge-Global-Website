@@ -189,6 +189,40 @@ async def press_stats_refresh():
     """Manually re-scrape the sister site's /press page now."""
     return await refresh_press_stats(db)
 
+
+# ====================================================================
+# Main-site RSS feed — writes /app/frontend/site/rss.xml. Search-engine
+# crawlers (Google, Bing, Baidu, Yandex, etc.) can subscribe and re-crawl
+# on their own cadence. Regenerated daily by APScheduler; /rss.xml is
+# also submitted via IndexNow + Baidu + Google on the SEO push cycle.
+# ====================================================================
+from rss_feed import write_rss, ensure_rss_exists  # noqa: E402
+
+
+@api_router.post("/rss/refresh")
+async def rss_refresh():
+    """Manually regenerate the main-site RSS feed at /rss.xml."""
+    return write_rss()
+
+
+@api_router.get("/rss/status")
+async def rss_status():
+    """Return metadata about the generated feed (path, size, last mtime)."""
+    from pathlib import Path
+    from rss_feed import RSS_OUTPUT_PATH, SITE_URL
+
+    p: Path = RSS_OUTPUT_PATH
+    if not p.exists():
+        return {"exists": False, "url": f"{SITE_URL}/rss.xml"}
+    stat = p.stat()
+    return {
+        "exists": True,
+        "url": f"{SITE_URL}/rss.xml",
+        "bytes": stat.st_size,
+        "modified_at": datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc).isoformat(),
+    }
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
@@ -212,6 +246,12 @@ logger = logging.getLogger(__name__)
 @app.on_event("startup")
 async def start_seo_scheduler():
     try:
+        # Ensure /rss.xml exists on disk before scheduler / first push.
+        try:
+            ensure_rss_exists()
+        except Exception:
+            logger.exception("Failed to ensure rss.xml exists on startup")
+
         from seo_scheduler import start_scheduler
         start_scheduler(db)
         logger.info("SEO push scheduler initialised (every 24h)")

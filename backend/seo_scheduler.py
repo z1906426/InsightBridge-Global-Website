@@ -118,6 +118,30 @@ def start_scheduler(db) -> None:
     except Exception:
         logger.exception("Could not register press stats job")
 
+    # Daily RSS feed regeneration — keeps /rss.xml <lastBuildDate> fresh so
+    # crawlers know the feed is alive and worth re-polling.
+    try:
+        from rss_feed import write_rss
+
+        async def rss_job():
+            try:
+                # write_rss is sync (small I/O); run in threadpool to avoid
+                # blocking the event loop if the disk is slow.
+                await asyncio.to_thread(write_rss)
+            except Exception:
+                logger.exception("RSS regeneration job failed")
+
+        scheduler.add_job(
+            rss_job,
+            IntervalTrigger(hours=24),
+            id="rss_feed_job",
+            replace_existing=True,
+            next_run_time=datetime.now(timezone.utc) + timedelta(minutes=3),
+        )
+        logger.info("RSS feed regeneration registered — every 24 hours")
+    except Exception:
+        logger.exception("Could not register RSS feed job")
+
     scheduler.start()
     logger.info(
         "SEO scheduler started — recurring every %s hours", PUSH_INTERVAL_HOURS

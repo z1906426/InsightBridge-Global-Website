@@ -36,6 +36,7 @@ def get_urls() -> List[str]:
         "/intelligence-market-report.html",
         "/intelligence-vol01.html",
         "/privacy.html",
+        "/rss.xml",  # advertise the RSS feed to crawlers on every push
     ]
     return [f"{SITE_URL}{p}" for p in pages]
 
