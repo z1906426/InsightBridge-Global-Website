@@ -217,3 +217,24 @@ Namecheap (registrar)
 - **Verification:** manual `POST /api/seo/push` → all 4 engines return `ok=True`: Baidu 200, IndexNow 200, Google 200, **Seznam 7/7 accepted**.
 - **Coverage note:** Seznam is already an IndexNow member so IndexNow was already reaching it; the direct API adds (a) per-URL confirmation and (b) redundancy if IndexNow ever de-registers our key.
 
+
+### 2026-07-12 — Fix: broken URL snowballing (Clarity investigation)
+- **Symptom (from Clarity analytics):** real visitors were landing on pathological URLs like `/media/media/assets/publications/assets/media/publications/Kinship_...pdf` and `/publications/publications/media/assets/zh.html`. These URLs returned 200 (with full index.html content) instead of 404 → users saw wrong page → immediate bounce; Google sees dozens of "duplicate content" URLs → dilutes homepage ranking.
+- **Root cause identified:**
+  1. Production Cloudflare edge returns `index.html` (SPA fallback) for any 404 path, instead of a real 404 (preview node server does the right thing).
+  2. `index.html` contained 42 **relative** hrefs (`href="publications/xxx.pdf"`, `href="media/yyy.pdf"`, `href="assets/lab-articles-of-organization.pdf"`).
+  3. When a user hits a bad URL (e.g. via a bad backlink), CDN serves index.html at wrong path → browser resolves the 42 relative links against wrong path → clicking produces `/publications/publications/xxx.pdf` → also 404 → CDN serves index.html again → snowball into deeper duplications.
+- **Fix layer 1 — absolutise 42+ relative links:**
+  - `href="publications/…"` → `href="/publications/…"` × 26
+  - `href="media/…"` → `href="/media/…"` × 14
+  - `href="assets/{lab-articles,lab-cert,2027-whitepaper}.…"` → `href="/assets/…"` × 2
+  - Same fix in `tools.html` for `<img src="assets/logo-en.jpg">`.
+- **Fix layer 2 — SPA-fallback client-side guard** (added to `index.html` and `zh.html` `<head>` before all other scripts):
+  - If `location.pathname` is not the file's canonical path (`/` or `/index.html` for index; `/zh.html` for ZH), `history.replaceState(null, '', '/')` (or `/zh.html`) — corrects the address bar so relative links (should any remain) resolve correctly AND search engines that follow such URLs see a clean canonical location.
+- **Verification:**
+  - Preview: `/` HTTP 200; hero links now absolute (`/publications/HBS_Case_Study_PUBLICATION_GRADE.pdf`, `/assets/lab-articles-of-organization.pdf`).
+  - Preview: `/foo/bar` HTTP 404 (node server correct).
+  - Production diagnostic: `curl https://insightbridge.global/foo/bar.pdf` returns HTTP 200 + full 364 KB index.html — confirmed CDN SPA fallback.
+  - Playwright simulation: injected `/publications/publications/media/assets/zh.html` → guard rewrote to `/` — PASS.
+- **Follow-up item:** contact Emergent Support to request disabling SPA fallback at the Cloudflare edge for this deployment (proper 404 pages are the ideal root-cause fix; layers 1 and 2 above are belt-and-braces defence).
+
