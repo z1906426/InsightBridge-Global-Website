@@ -137,11 +137,13 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
     )
 
     from google_indexing import push_to_google  # lazy import
+    from seznam_push import push_to_seznam       # lazy import
 
     results = [
         push_to_baidu(baidu_urls) if baidu_urls else {"engine": "baidu", "ok": False, "skipped": "no same-host urls"},
         push_to_indexnow(indexnow_urls),
         push_to_google(google_urls),
+        push_to_seznam(same_host_urls),           # Seznam Webmaster reindex API (Czech search)
     ]
 
     record: Dict[str, Any] = {
@@ -186,11 +188,13 @@ async def run_push_and_save(db) -> Dict[str, Any]:
     )
 
     from google_indexing import push_to_google  # lazy import
+    from seznam_push import push_to_seznam       # lazy import
 
     results = [
         push_to_baidu(baidu_urls),
         push_to_indexnow(indexnow_urls),
         push_to_google(google_urls),
+        push_to_seznam(main_urls),                # Seznam Webmaster reindex API (Czech search)
     ]
 
     record: Dict[str, Any] = {
@@ -209,9 +213,10 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         logger.exception("Failed to persist seo push record")
 
     logger.info(
-        "SEO push: done. baidu_ok=%s, indexnow_ok=%s, google_ok=%s",
+        "SEO push: done. baidu_ok=%s, indexnow_ok=%s, google_ok=%s, seznam_ok=%s",
         results[0].get("ok"),
         results[1].get("ok"),
         results[2].get("ok"),
+        results[3].get("ok"),
     )
     return record

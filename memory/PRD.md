@@ -207,3 +207,13 @@ Namecheap (registrar)
   3. `seo_push.get_urls()` — `/rss.xml` now included in every IndexNow + Baidu + Google push, so search engines are actively notified whenever the feed URL changes.
 - **Public verification:** `curl https://insightbridge.global/rss.xml` → 200 `application/xml; charset=utf-8`; 43 items with real editorial titles; XML validates with ElementTree.
 - **Tests:** `/app/backend/tests/test_rss_feed.py` — 5 tests (well-formedness, section coverage, channel metadata, disk write, production-file guard) — all pass.
+
+### 2026-07-12 — Seznam.cz integration (Czech search engine)
+- **Context:** User verified `insightbridge.global` in Seznam Webmaster (meta tag `seznam-wmt` added to `index.html` line 27) and generated a Seznam Webmaster API key.
+- **Env:** `SEZNAM_API_KEY=<40-char hex>` in `/app/backend/.env`.
+- **New module:** `/app/backend/seznam_push.py` — POSTs to `https://reporter.seznam.cz/wm-api/web/document/reindex?key=<KEY>&url=<URL>` per-URL. Returns per-URL statuses so we see exactly which URLs Seznam accepted (unlike IndexNow's aggregate 200).
+- **API contract discovery:** GitHub docs said `GET` with `Authorization: key <KEY>` header — actually returns 405/400. Correct call is **POST with `?key=` and `?url=` query params, no auth header**. Verified via probe returning `{"status": 200}`.
+- **Integrated into** both `run_push_and_save()` (scheduled 24h push) and `run_push_urls()` (publications push). Cap per push: 10 URLs (mirrors Baidu safety cap).
+- **Verification:** manual `POST /api/seo/push` → all 4 engines return `ok=True`: Baidu 200, IndexNow 200, Google 200, **Seznam 7/7 accepted**.
+- **Coverage note:** Seznam is already an IndexNow member so IndexNow was already reaching it; the direct API adds (a) per-URL confirmation and (b) redundancy if IndexNow ever de-registers our key.
+
