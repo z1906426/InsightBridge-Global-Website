@@ -108,41 +108,133 @@ def _rfc822(dt: datetime) -> str:
 
 
 def _extract_publications() -> List[Dict[str, str]]:
-    """Reuse the existing publications extractor to include pub URLs
-    in the feed. Best-effort — failures are non-fatal."""
-    try:
-        from publications import extract_publication_urls
+    """Extract article/paper URLs from ALL research-bearing sections of
+    index.html — Publications, Intelligence (press coverage), Cases, and
+    the featured 2027 whitepaper referenced in the trust strip.
 
-        urls = extract_publication_urls()
-    except Exception:
-        logger.exception("rss_feed: could not extract publication URLs")
+    For each URL, tries to recover the human-readable title from the
+    nearest preceding <h1>-<h6> heading (or falls back to a slug-derived
+    title if none is found).
+
+    Best-effort — failures are non-fatal.
+    """
+    import html as html_lib
+    import re
+    from urllib.parse import urljoin
+
+    index_path = (
+        Path(__file__).resolve().parent.parent / "frontend" / "site" / "index.html"
+    )
+    if not index_path.exists():
         return []
 
+    try:
+        html = index_path.read_text(encoding="utf-8")
+    except Exception:
+        logger.exception("rss_feed: could not read index.html")
+        return []
+
+    # Sections we care about — everything under Research & Publications
+    # plus the Intelligence Coverage strip that lists press articles.
+    section_ids = {
+        "page-publications": "Publication",
+        "page-intelligence": "Intelligence Coverage",
+        "cited-worldwide-strip": "Featured Whitepaper",
+    }
+
+    # Locate all section start positions, so we can carve blocks
+    matches = list(re.finditer(r'<section[^>]*id="([^"]+)"', html))
+    boundaries = [(m.group(1), m.start()) for m in matches] + [("__END__", len(html))]
+
+    site_base = f"{SITE_URL}/"
+    seen: set[str] = set()
     items: List[Dict[str, str]] = []
-    for url in urls:
-        # Derive a human-readable title from the filename
-        slug = url.rstrip("/").split("/")[-1]
-        title = (
-            slug.replace(".html", "")
+
+    # Already-covered top-level pages — don't duplicate them as "publications".
+    section_paths = {s["path"].lstrip("/") for s in SECTIONS}
+    section_paths.add("index.html")
+
+    href_re = re.compile(r'href="([^"]+\.(?:pdf|docx|html))"', re.IGNORECASE)
+    heading_re = re.compile(r'<h[1-6][^>]*>(.+?)</h[1-6]>', re.DOTALL | re.IGNORECASE)
+    tag_re = re.compile(r'<[^>]+>')
+
+    def _title_for(pos_in_html: int, fallback_slug: str) -> str:
+        """Return the nearest preceding <h1>-<h6> text; fall back to slug."""
+        window = html[max(0, pos_in_html - 2500):pos_in_html]
+        heads = heading_re.findall(window)
+        for raw in reversed(heads):
+            clean = tag_re.sub("", raw)
+            # Unescape any HTML entities so downstream XML escape produces
+            # a single, correct escape pass.
+            clean = html_lib.unescape(clean)
+            # Some cards contain "EN Title\n         中文标题" — take first non-empty line
+            first_line = next((ln.strip() for ln in clean.split("\n") if ln.strip()), "")
+            if len(first_line) >= 4:
+                return first_line[:180]
+        # Slug fallback
+        return (
+            fallback_slug.replace(".html", "")
             .replace(".pdf", " (PDF)")
             .replace(".docx", " (DOCX)")
             .replace("-", " ")
             .replace("_", " ")
             .strip()
-            .title()
+            .title()[:180]
         )
-        items.append(
-            {
-                "path": url.replace(SITE_URL, "") if url.startswith(SITE_URL) else url,
-                "url": url if url.startswith("http") else f"{SITE_URL}{url}",
-                "title": f"Publication — {title}",
-                "description": (
-                    "Research publication from InsightBridge Global's "
-                    "Research & Publications catalogue."
-                ),
-                "category": "Publication",
-            }
-        )
+
+    for i, (sid, start) in enumerate(boundaries[:-1]):
+        if sid not in section_ids:
+            continue
+        end = boundaries[i + 1][1]
+        block = html[start:end]
+
+        for m in href_re.finditer(block):
+            href = m.group(1).strip()
+            low = href.lower()
+            if (
+                href.startswith("#")
+                or href.startswith("mailto:")
+                or "linkedin.com" in low
+                or "javascript:" in low
+                or "hotelnewsresource.com" in low       # external press site
+                or "intelligence.insightbridge" in low   # sister-site handles its own RSS
+            ):
+                continue
+
+            # Normalise to absolute same-host URL only
+            if href.startswith("http://") or href.startswith("https://"):
+                if SITE_DOMAIN not in href:
+                    continue
+                url = href
+            else:
+                url = urljoin(site_base, href.lstrip("/"))
+
+            # Skip already-covered section pages
+            rel = url.replace(SITE_URL + "/", "").lstrip("/")
+            if rel in section_paths or f"/{rel}" in section_paths:
+                continue
+
+            if url in seen:
+                continue
+            seen.add(url)
+
+            slug = url.rstrip("/").split("/")[-1]
+            abs_pos = start + m.start()
+            title = _title_for(abs_pos, slug)
+
+            items.append(
+                {
+                    "path": url.replace(SITE_URL, ""),
+                    "url": url,
+                    "title": f"{section_ids[sid]} — {title}",
+                    "description": (
+                        "Research publication and press coverage from "
+                        "InsightBridge Global — strategy, AI hospitality, "
+                        "and covenant-based governance."
+                    ),
+                    "category": section_ids[sid],
+                }
+            )
     return items
 
 

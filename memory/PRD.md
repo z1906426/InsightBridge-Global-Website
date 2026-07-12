@@ -191,7 +191,13 @@ Namecheap (registrar)
 
 ### 2026-07-12 — Main-site RSS feed for crawler self-discovery
 - **User ask (zh):** "创建一个 RSS,把这个链接推给各主要搜索引擎。各搜索引擎自己可以抓取了。" (sister-site articles already covered by sister-site RSS — main-site feed should only include our own sections).
-- **New backend module:** `/app/backend/rss_feed.py` — generates RSS 2.0 XML for the 6 canonical sections (`/`, `/zh.html`, `/tools.html`, `/intelligence-market-report.html`, `/intelligence-vol01.html`, `/privacy.html`) + auto-extracted publications (via existing `publications.extract_publication_urls`). Writes to `/app/frontend/site/rss.xml`.
+- **Follow-up ask:** "把发表物和研究栏目里面所有文章的链接都加进去,不让大家看都可惜了。" → expanded scope to include Intelligence Coverage press articles + the 2027 whitepaper.
+- **New backend module:** `/app/backend/rss_feed.py` — generates RSS 2.0 XML with 43 items total:
+  - 6 canonical sections (`/`, `/zh.html`, `/tools.html`, `/intelligence-market-report.html`, `/intelligence-vol01.html`, `/privacy.html`)
+  - 25 publications from `#page-publications`
+  - 11 press-coverage PDFs from `#page-intelligence` (media/IB_*.pdf)
+  - 1 featured 2027 whitepaper from `#cited-worldwide-strip`
+  - Real human titles are auto-lifted from the nearest preceding `<h1>-<h6>` heading (with HTML-entity unescape before XML escape); slug-derived fallback if no heading is found.
 - **Endpoints:** `GET /api/rss/status` (metadata), `POST /api/rss/refresh` (manual regen).
 - **APScheduler:** new `rss_feed_job` runs `write_rss()` every 24 h (starts ~3 min after boot).
 - **Startup guard:** `ensure_rss_exists()` writes the file on backend boot if missing.
@@ -199,5 +205,5 @@ Namecheap (registrar)
   1. `<link rel="alternate" type="application/rss+xml" href=".../rss.xml">` in `<head>` of both `index.html` and `zh.html` — browser & crawler auto-discovery.
   2. `robots.txt` — RSS URL noted alongside the sitemap.
   3. `seo_push.get_urls()` — `/rss.xml` now included in every IndexNow + Baidu + Google push, so search engines are actively notified whenever the feed URL changes.
-- **Public verification:** `curl https://insightbridge.global/rss.xml` → 200 `application/xml; charset=utf-8`; 31 items (6 sections + 25 publications); XML validates with ElementTree.
+- **Public verification:** `curl https://insightbridge.global/rss.xml` → 200 `application/xml; charset=utf-8`; 43 items with real editorial titles; XML validates with ElementTree.
 - **Tests:** `/app/backend/tests/test_rss_feed.py` — 5 tests (well-formedness, section coverage, channel metadata, disk write, production-file guard) — all pass.
