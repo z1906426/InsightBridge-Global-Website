@@ -180,3 +180,10 @@ Namecheap (registrar)
 - **zh.html:** inserted after 发表媒体与平台 section, restyled to zh.html navy/gold theme (#1a3a5c/#c8913a). data-testid: cited-worldwide-strip-zh / cited-worldwide-cta-zh.
 - All CTAs link to https://intelligence.insightbridge.global/press#press-citations-section (target=_blank).
 - Verified via screenshots on preview (EN + ZH both render correctly).
+
+### 2026-07-12 — Weekly auto-sync of citation counters
+- New `/app/backend/press_stats.py`: scrapes sister-site `/press` SSR HTML (`press-citations-stats` element), extracts citations/countries/languages, caches in Mongo `press_stats_snapshot`.
+- Endpoints: `GET /api/press/stats` (cached, static fallback 9/5/3), `POST /api/press/stats/refresh` (manual).
+- APScheduler job `press_stats_job` every 168h (weekly) + warm-up 2 min after boot.
+- Frontend: strip numbers wrapped in `[data-ib-stat]` spans (index.html EN+CN, zh.html); tiny fetch script updates them on load, silent fallback to static values. Headline wording corrected to "verified citations / 已验证引用" (matches sister-site source of truth).
+- Tests: `/app/backend/tests/test_press_stats.py` (parser regression + live-page parseability), all 3 backend tests pass.

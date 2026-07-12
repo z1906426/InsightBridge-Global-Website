@@ -97,6 +97,27 @@ def start_scheduler(db) -> None:
     except Exception:
         logger.exception("Could not register sister headlines job")
 
+    # Weekly press-citation stats sync (trust strip counters)
+    try:
+        from press_stats import refresh_press_stats, REFRESH_INTERVAL_HOURS as PRESS_HOURS
+
+        async def press_stats_job():
+            try:
+                await refresh_press_stats(db)
+            except Exception:
+                logger.exception("Press stats refresh job failed")
+
+        scheduler.add_job(
+            press_stats_job,
+            IntervalTrigger(hours=PRESS_HOURS),
+            id="press_stats_job",
+            replace_existing=True,
+            next_run_time=datetime.now(timezone.utc) + timedelta(minutes=2),
+        )
+        logger.info("Press-stats refresh registered — every %s hours", PRESS_HOURS)
+    except Exception:
+        logger.exception("Could not register press stats job")
+
     scheduler.start()
     logger.info(
         "SEO scheduler started — recurring every %s hours", PUSH_INTERVAL_HOURS

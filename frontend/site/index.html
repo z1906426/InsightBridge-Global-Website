@@ -992,8 +992,8 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
         <span class="lang-cn">&#10022; 全球引用与二次传播</span>
       </div>
       <h3 class="ib-cited-headline">
-        <span class="lang-en">Dr. Tong Yin's research is cited across <strong>9 platforms &middot; 5 countries/regions &middot; 3 languages</strong></span>
-        <span class="lang-cn">殷彤博士的研究被全球 <strong>9 家平台 &middot; 5 个国家/地区 &middot; 3 种语言</strong>引用</span>
+        <span class="lang-en">Dr. Tong Yin's research: <strong><span data-ib-stat="citations">9</span> verified citations &middot; <span data-ib-stat="countries">5</span> countries/regions &middot; <span data-ib-stat="languages">3</span> languages</strong></span>
+        <span class="lang-cn">殷彤博士的研究:全球 <strong><span data-ib-stat="citations">9</span> 条已验证引用 &middot; <span data-ib-stat="countries">5</span> 个国家/地区 &middot; <span data-ib-stat="languages">3</span> 种语言</strong></span>
       </h3>
       <ul class="ib-cited-logos">
         <li>🇺🇸 <strong>Muck Rack</strong> <span>Verified Journalist Profile</span></li>
@@ -1029,6 +1029,19 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
   .ib-cited-cta { display: inline-block; margin-top: 8px; padding: 12px 24px; background: #0A192F; color: #FFF; text-decoration: none; font-family: 'Helvetica', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s; }
   .ib-cited-cta:hover { background: #7A1F2B; }
   </style>
+  <script>
+  /* Weekly-synced counters from sister-site /press (backend caches; static values are the fallback) */
+  fetch('/api/press/stats', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(s){
+      if (!s) return;
+      document.querySelectorAll('[data-ib-stat]').forEach(function(el){
+        var v = s[el.getAttribute('data-ib-stat')];
+        if (typeof v === 'number' && v > 0) el.textContent = v;
+      });
+    })
+    .catch(function(){});
+  </script>
 
   <!-- ============================== -->
   <!-- HOME: 2027 Whitepaper Featured -->

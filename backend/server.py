@@ -170,6 +170,25 @@ async def headlines_refresh():
     snap = await refresh_sister_headlines(db)
     return {"ok": True, "count": snap.get("count", 0)}
 
+
+# ====================================================================
+# Press citation stats — syncs the "Cited & Syndicated Worldwide"
+# trust strip counters from the sister site's /press page. Weekly.
+# ====================================================================
+from press_stats import refresh_press_stats, get_press_stats
+
+
+@api_router.get("/press/stats")
+async def press_stats():
+    """Cached citation counters (citations / countries / languages)."""
+    return await get_press_stats(db)
+
+
+@api_router.post("/press/stats/refresh")
+async def press_stats_refresh():
+    """Manually re-scrape the sister site's /press page now."""
+    return await refresh_press_stats(db)
+
 # Include the router in the main app
 app.include_router(api_router)
 
