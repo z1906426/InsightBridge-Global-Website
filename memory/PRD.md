@@ -173,3 +173,10 @@ Namecheap (registrar)
 - **Fix:** Rewrote `sister_articles.py` to use the sister site's RSS feed (`/api/rss.xml?lang=en`) as primary source — already ordered by true `pubDate`. Sitemap + per-article HTML meta parsing retained as fallback only.
 - **Verification:** target now appears at rank #5; external e2e through Kubernetes ingress confirmed.
 - **Regression test:** `/app/backend/tests/test_sister_articles.py` asserts headlines are sorted newest-first by publish date.
+
+### 2026-07-12 — "Cited & Syndicated Worldwide" trust signal strip
+- Added per sister-site update request: trust strip showing 9 verified citations / 5 countries / 3 languages (Muck Rack, TTG China, HotelX Tech, Canadian Reviews, AI Hospitality Alliance, AI for Tourism & Hospitality, Let's Data Science).
+- **index.html:** inserted after Stats/Company-Registration section, before 2027 Whitepaper card. Uses site palette (#F5EFE6/#7A1F2B/#0A192F) + lang-en/lang-cn toggle spans. data-testid: cited-worldwide-strip / cited-worldwide-cta.
+- **zh.html:** inserted after 发表媒体与平台 section, restyled to zh.html navy/gold theme (#1a3a5c/#c8913a). data-testid: cited-worldwide-strip-zh / cited-worldwide-cta-zh.
+- All CTAs link to https://intelligence.insightbridge.global/press#press-citations-section (target=_blank).
+- Verified via screenshots on preview (EN + ZH both render correctly).
