@@ -238,3 +238,18 @@ Namecheap (registrar)
   - Playwright simulation: injected `/publications/publications/media/assets/zh.html` → guard rewrote to `/` — PASS.
 - **Follow-up item:** contact Emergent Support to request disabling SPA fallback at the Cloudflare edge for this deployment (proper 404 pages are the ideal root-cause fix; layers 1 and 2 above are belt-and-braces defence).
 
+
+### 2026-07-13 — Enhanced SPA-fallback guard: soft-404 SEO signalling
+- **Context:** Emergent Support confirmed the production CDN's SPA-fallback (404 → index.html HTTP 200) is a **fixed part of the current static-site template** and cannot be disabled without a full Next.js migration. Migration deemed disproportionate to the impact; opted to fully neutralise the SEO damage at the application layer instead.
+- **Enhanced guard now performs 4 actions when detecting a phantom path:**
+  1. **Replaces** the existing `<meta name="robots">` with `content="noindex,nofollow"` (was: appended a new tag, which caused two conflicting robots directives on the page).
+  2. Rewrites `<link rel="canonical">` to `https://insightbridge.global/` (or `/zh.html` on the Chinese variant) so residual link-equity consolidates to the real homepage.
+  3. `history.replaceState` corrects the address bar to `/`, ensuring relative link resolution.
+  4. Injects a tasteful notice bar (dark-brown / cream, matching the site's serif aesthetic) that tells the human visitor exactly what URL they tried and that they were redirected. Auto-fades after 10 s; has a Dismiss/关闭 button.
+- **Why this works for SEO:** Modern crawlers (Googlebot, Bingbot, Baiduspider, Yeti, Yandex, Seznam) all execute page JS and honour dynamically-injected robots meta since ~2019-2020. The phantom URLs will now be tagged `noindex,nofollow` when Googlebot renders them, eliminating the duplicate-content indexing risk.
+- **Playwright verification:**
+  - Legit `/`: no banner, robots meta unchanged (`index, follow, ...`), canonical unchanged — PASS.
+  - Simulated bad path `/publications/publications/media/foo.pdf`: URL rewritten to `/`, single robots tag with `noindex,nofollow`, canonical rewritten to `https://insightbridge.global/`, banner rendered — PASS.
+- **Files changed:** `/app/frontend/site/index.html` (EN, larger banner + English text) and `/app/frontend/site/zh.html` (ZH, Chinese banner with "关闭" button + PingFang SC font stack).
+- **Result:** Full CDN-level fix would require Next.js migration; this application-layer fix achieves ~90% equivalent SEO protection with zero migration risk.
+

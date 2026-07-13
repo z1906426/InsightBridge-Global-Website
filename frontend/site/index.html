@@ -20,22 +20,94 @@
 <!-- SEO: Title & Description -->
 <title>Dr. Tong Yin | InsightBridge Global — AI Hotel Revenue Management, Core Code Theory & Strategic Tourism</title>
 <script>
-  /* SPA-fallback guard.
-   * The production CDN (Cloudflare) returns THIS index.html for any 404 URL
-   * instead of a real 404. When that happens, the browser resolves every
-   * relative link on the page against the wrong path — producing URLs like
-   * /publications/publications/xxx.pdf that snowball into deeper 404s.
+  /* SPA-fallback guard + soft-404 SEO signalling.
    *
-   * Since index.html is only ever legitimately served at "/" or "/index.html",
-   * any other pathname that ends up rendering this document is a CDN fallback
-   * and we rewrite the address bar to "/" so (a) relative link resolution is
-   * correct, (b) search engines that follow such URLs see a clean canonical.
+   * Emergent's production CDN unconditionally rewrites 404s to this
+   * index.html (HTTP 200) — a fixed part of the template that Support
+   * confirmed cannot be disabled without migrating to Next.js. Since
+   * migration is disproportionate to the impact, we neutralise the SEO
+   * damage entirely at the application layer:
+   *
+   *   1. Inject <meta name="robots" content="noindex,nofollow"> — modern
+   *      crawlers (Googlebot, Bingbot, Baiduspider, Yeti, Yandex, Seznam)
+   *      all execute page JS and honour dynamically-injected robots meta.
+   *   2. Rewrite the <link rel="canonical"> to the real root so any residual
+   *      link-equity consolidates to the homepage.
+   *   3. history.replaceState the address bar back to "/" so relative link
+   *      resolution is correct (belt-and-braces after our earlier
+   *      absolute-path fix).
+   *   4. Show a tasteful notice bar telling the human visitor what happened.
    */
   (function () {
     try {
       var p = location.pathname;
-      if (p !== '/' && p !== '/index.html') {
-        history.replaceState(null, '', '/');
+      if (p === '/' || p === '/index.html') return;   // legitimate load — do nothing
+
+      var originalPath = location.pathname + location.search;
+
+      // (1) Search-engine signal: noindex,nofollow for this phantom URL.
+      // Replace the existing meta[name="robots"] if present, so search engines
+      // don't see contradictory "index" and "noindex" tags on the same page.
+      var existingRobots = document.querySelector('meta[name="robots"]');
+      if (existingRobots) {
+        existingRobots.setAttribute('content', 'noindex,nofollow');
+      } else {
+        var robots = document.createElement('meta');
+        robots.setAttribute('name', 'robots');
+        robots.setAttribute('content', 'noindex,nofollow');
+        document.head.appendChild(robots);
+      }
+
+      // (2) Point canonical unambiguously at the real homepage.
+      var canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.setAttribute('href', 'https://insightbridge.global/');
+
+      // (3) Correct the address bar so relative links resolve to root.
+      history.replaceState(null, '', '/');
+
+      // (4) Tasteful notice bar for human visitors.
+      var renderBanner = function () {
+        if (!document.body) { setTimeout(renderBanner, 30); return; }
+
+        var bar = document.createElement('div');
+        bar.setAttribute('role', 'alert');
+        bar.style.cssText =
+          'position:fixed;top:0;left:0;right:0;z-index:99999;' +
+          'background:#3d2b1f;color:#f5e6d3;' +
+          'padding:12px 20px;font:14px/1.55 Georgia,"Times New Roman",serif;' +
+          'text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.25);' +
+          'border-bottom:2px solid #c9a961;' +
+          'display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;';
+
+        var msg = document.createElement('span');
+        msg.appendChild(document.createTextNode('The URL you visited ('));
+        var code = document.createElement('code');
+        code.style.cssText = 'background:rgba(0,0,0,.35);color:#f5e6d3;padding:2px 8px;border-radius:3px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;';
+        code.textContent = originalPath;
+        msg.appendChild(code);
+        msg.appendChild(document.createTextNode(') does not exist — you have been redirected to the homepage.'));
+        bar.appendChild(msg);
+
+        var btn = document.createElement('button');
+        btn.textContent = 'Dismiss';
+        btn.style.cssText = 'background:transparent;border:1px solid rgba(245,230,211,.6);color:#f5e6d3;padding:4px 14px;border-radius:4px;cursor:pointer;font:13px Georgia,serif;';
+        btn.onclick = function () { bar.remove(); };
+        bar.appendChild(btn);
+
+        document.body.insertBefore(bar, document.body.firstChild);
+
+        // Auto-fade after 10 s so it doesn't linger.
+        setTimeout(function () {
+          bar.style.transition = 'opacity .7s ease';
+          bar.style.opacity = '0';
+          setTimeout(function () { bar.remove(); }, 800);
+        }, 10000);
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderBanner);
+      } else {
+        renderBanner();
       }
     } catch (e) { /* no-op */ }
   })();
