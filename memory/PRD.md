@@ -273,3 +273,29 @@ Namecheap (registrar)
 - **Preserved:** the "Forthcoming Books & Articles" section (all 6 books with EN/ZH titles and publishers) — user explicitly requested no changes to this block.
 - **Playwright screenshot verified:** English view + Chinese toggle both render correctly with the new layout matching the PDF's exec-bio format; Forthcoming Books section intact below.
 
+
+### 2026-07-13 — Standalone `/about.html` + new push priority order
+- **Operator directive (zh):** Daily SEO push must **always** include (in this order):
+  1. `/` (homepage)
+  2. `/rss.xml` (RSS feed)
+  3. `/about.html` (executive bio)
+  Any additional slots should push only **our own site's articles** — never republished versions of external-platform content (i.e. `/media/IB_*.pdf` files, which are Skift / PhocusWire / Hospitality Net / Hotel News Resource republishes; those outlets syndicate the originals themselves).
+
+- **New page `/app/frontend/site/about.html`:** dedicated, crawlable, self-canonical executive-biography page mirroring the About section content from the July-2026 PDF. Fully bilingual (EN default, ZH toggle with localStorage persistence). Includes:
+  - Standalone `<title>`, `<meta name="description">`, OG/Twitter tags
+  - `<link rel="canonical" href="https://insightbridge.global/about.html">`
+  - Rich `schema.org/Person` JSON-LD (name, alternateName, jobTitle, worksFor, alumniOf, knowsAbout, sameAs) — enables Google Knowledge Panel candidates
+  - SPA-fallback guard scoped for `/about.html` canonical
+  - Download-PDF CTA (`intelligence.insightbridge.global/dr-tong-yin-bio.pdf`)
+  - Minimal nav (Home link + language toggle) + footer with links to Report / Tools / RSS / Privacy
+
+- **`seo_push.get_urls()` rewritten in priority order:** `/`, `/rss.xml`, `/about.html`, then `/zh.html`, `/tools.html`, `/intelligence-market-report.html`, `/intelligence-vol01.html`, `/privacy.html`. Explicitly documented in code that `/media/IB_*.pdf` are excluded because those are external-platform republishes.
+
+- **`sitemap.xml`:** added a new `<url>` entry for `/about.html` (priority 0.95, changefreq monthly, hreflang alternates, `dr-tong-yin.jpg` image reference).
+
+- **`rss_feed.py` SECTIONS list:** added the `/about.html` entry with rich category "About" — the daily-regenerated RSS now contains 44 items (was 43).
+
+- **Verification (curl + Playwright):**
+  - `/about.html` HTTP 200 in preview, canonical + title + robots + OG all correct; language toggle works; download button present.
+  - `POST /api/seo/push`: URL list is now in the exact priority order specified (`/`, `/rss.xml`, `/about.html`, ...). IndexNow / Google / Seznam all return 200; Baidu was over-quota again today (pre-existing daily 10-URL cap, not a regression).
+

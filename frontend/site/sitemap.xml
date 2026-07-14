@@ -28,6 +28,22 @@
     </image:image>
   </url>
 
+  <!-- Executive Biography (standalone page) -->
+  <url>
+    <loc>https://insightbridge.global/about.html</loc>
+    <lastmod>2026-07-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://insightbridge.global/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/about.html"/>
+    <image:image>
+      <image:loc>https://insightbridge.global/assets/dr-tong-yin.jpg</image:loc>
+      <image:title>Dr. Tong Yin — Executive Biography</image:title>
+      <image:caption>Executive biography of Dr. Tong Yin, Founder &amp; CEO of InsightBridge Global LLC.</image:caption>
+    </image:image>
+  </url>
+
   <!-- Homepage (Chinese) -->
   <url>
     <loc>https://insightbridge.global/zh.html</loc>

@@ -28,15 +28,31 @@ BAIDU_PUSH_TOKEN = os.environ.get("BAIDU_PUSH_TOKEN", "")
 
 
 def get_urls() -> List[str]:
-    """Return the canonical list of URLs to submit (sitemap-aligned)."""
+    """Return the canonical list of URLs to submit, in **priority order**.
+
+    Per operator directive (2026-07-13):
+      1st  — homepage `/`                                       (must-push every day)
+      2nd  — RSS feed `/rss.xml`                                (must-push every day)
+      3rd  — Executive-bio standalone page `/about.html`        (must-push every day)
+      then — other own-site canonical pages in decreasing importance.
+
+    URLs republished from external platforms (Skift, PhocusWire, Hospitality Net,
+    Hotel News Resource — i.e. the `/media/IB_*.pdf` files) are intentionally
+    EXCLUDED from this list. Those outlets syndicate the originals themselves;
+    duplicating our republished copies would be redundant and could dilute the
+    canonical signal.
+    """
     pages = [
-        "/",
+        # === Priority 1-3: must-push every day ===
+        "/",                                     # homepage
+        "/rss.xml",                              # RSS feed — crawlers subscribe
+        "/about.html",                           # executive-bio standalone page
+        # === Other own-site canonical pages ===
         "/zh.html",
         "/tools.html",
         "/intelligence-market-report.html",
         "/intelligence-vol01.html",
         "/privacy.html",
-        "/rss.xml",  # advertise the RSS feed to crawlers on every push
     ]
     return [f"{SITE_URL}{p}" for p in pages]
 

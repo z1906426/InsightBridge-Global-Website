@@ -62,6 +62,17 @@ SECTIONS: List[Dict[str, str]] = [
         "category": "Homepage / 中文",
     },
     {
+        "path": "/about.html",
+        "title": "Dr. Tong Yin — Executive Biography | InsightBridge Global",
+        "description": (
+            "Executive biography of Dr. Tong Yin — Founder & CEO of "
+            "InsightBridge Global LLC. Ph.D., Hospitality Management "
+            "(Auburn); originator of The Home Model, Management Debt, "
+            "DDRT and Core Code Theory."
+        ),
+        "category": "About",
+    },
+    {
         "path": "/tools.html",
         "title": "POLARIS Pricing & NOVA Distribution Calculators",
         "description": (
