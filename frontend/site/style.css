@@ -1161,8 +1161,9 @@ a:hover { color: var(--color-primary-hover); }
 }
 
 .about__sidebar .about__image-wrap {
-  aspect-ratio: 4/5;
+  aspect-ratio: 326/474;
   margin-bottom: var(--space-2);
+  max-width: 380px;
 }
 
 .about__sidebar .about__image-wrap picture {
@@ -1175,7 +1176,7 @@ a:hover { color: var(--color-primary-hover); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center top;
   display: block;
 }
 
