@@ -1153,6 +1153,155 @@ a:hover { color: var(--color-primary-hover); }
   color: var(--color-text-inverse);
 }
 
+/* ===== ABOUT — SIDEBAR (Executive-bio PDF layout) ===== */
+.about__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.about__sidebar .about__image-wrap {
+  aspect-ratio: 4/5;
+  margin-bottom: var(--space-2);
+}
+
+.about__sidebar .about__image-wrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.about__sidebar .about__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.about__meta-block {
+  border-top: 1px solid var(--color-divider);
+  padding-top: var(--space-4);
+}
+
+.about__meta-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.about__meta-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-2) 0;
+  font-weight: 700;
+}
+
+.about__meta-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about__meta-list li {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  padding-block: 2px;
+}
+
+.about__meta-list a {
+  color: var(--color-navy);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-divider);
+}
+
+.about__meta-list a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.about__meta-links {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.about__scholar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--color-navy);
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.about__scholar-link:hover {
+  background: rgba(26, 58, 92, 0.06);
+  border-color: var(--color-navy);
+}
+
+/* ===== ABOUT — BIO (main column) ===== */
+.about__bio {
+  display: flex;
+  flex-direction: column;
+}
+
+.about__bio-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-3) 0;
+  font-weight: 700;
+}
+
+.about__bio-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--color-text);
+  margin: 0 0 var(--space-8) 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.about__bio-subhead {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-navy);
+  margin: var(--space-6) 0 var(--space-3) 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+  font-weight: 600;
+}
+
+.about__bio-para {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+}
+
+/* Mobile: sidebar stacks above bio, meta blocks split into 2 columns to save vertical space */
+@media (max-width: 768px) {
+  .about__sidebar .about__image-wrap {
+    aspect-ratio: 4/3;
+    max-width: 320px;
+    margin-inline: auto;
+  }
+  .about__bio-headline {
+    font-size: 1.6rem;
+  }
+}
+
 /* ===== ABOUT — DIPLOMAS ===== */
 .about__diplomas {
   margin-top: var(--space-10);

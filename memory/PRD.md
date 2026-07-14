@@ -253,3 +253,23 @@ Namecheap (registrar)
 - **Files changed:** `/app/frontend/site/index.html` (EN, larger banner + English text) and `/app/frontend/site/zh.html` (ZH, Chinese banner with "关闭" button + PingFang SC font stack).
 - **Result:** Full CDN-level fix would require Next.js migration; this application-layer fix achieves ~90% equivalent SEO protection with zero migration risk.
 
+
+### 2026-07-13 — About section rebuilt to match Executive-Bio PDF
+- **User source of truth:** `https://intelligence.insightbridge.global/dr-tong-yin-bio.pdf` (Executive Biography PDF, July 2026).
+- **User directive:** Replace the personal-bio content and photo in the About section with the PDF's content and format. Keep the "Forthcoming Books & Articles" section untouched. Ensure Chinese and English versions are consistent.
+- **What was removed:**
+  - Old email link at top of right column
+  - Old academic-links button bar (moved to sidebar)
+  - Old 3-icon credentials list (Ph.D., MBA, Research Focus)
+  - Old diploma-images grid (2 diplomas)
+  - Old bio text (paragraphs) — rewritten to match PDF verbatim
+- **What was added (PDF's 2-column executive-bio layout):**
+  - Left sidebar: photo + 6 meta blocks matching the PDF sidebar exactly — `FOUNDER & CEO` / `EDUCATION` / `BASED IN` / `LANGUAGES` / `DOMAINS` / `CONTACT` (email + phone `+1 334 559 5781` + website URLs) — plus a compact button row for Google Scholar / ResearchGate / SSRN
+  - Right column: `EXECUTIVE BIOGRAPHY` eyebrow label + large headline "Bridging two decades of global operations and frontier AI research." + 4 body sections matching the PDF's structure: opening statement, "Career prior to InsightBridge", "Present ventures", "Research and theoretical frameworks"
+- **Bilingual parity:** all new content has both `<span class="lang-en">` and `<span class="lang-cn">` variants — Chinese translations reviewed for accuracy and consistency with the PDF's semantic content.
+- **`zh.html` standalone page:** hero section paragraph rewritten to use the same opening statement, and a new "高管简历" section added below the hero with the three PDF body sections in Chinese — keeps the standalone Chinese landing page in sync.
+- **New CSS classes** in `style.css`: `.about__sidebar`, `.about__meta-block`, `.about__meta-label`, `.about__meta-list`, `.about__meta-links`, `.about__scholar-link`, `.about__bio`, `.about__bio-eyebrow`, `.about__bio-headline`, `.about__bio-subhead`, `.about__bio-para`, plus mobile responsiveness (`@media (max-width: 768px)`).
+- **Photo:** Continuing to use `/assets/dr-tong-yin.jpg` (the existing professional headshot, matches the PDF's embedded photo).
+- **Preserved:** the "Forthcoming Books & Articles" section (all 6 books with EN/ZH titles and publishers) — user explicitly requested no changes to this block.
+- **Playwright screenshot verified:** English view + Chinese toggle both render correctly with the new layout matching the PDF's exec-bio format; Forthcoming Books section intact below.
+
