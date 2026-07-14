@@ -1,0 +1,19 @@
+{
+  "summary": "Verified Dr. Tong Yin photo replacement bug fix on preview env. New versioned image (dr-tong-yin-v2.jpg, 326x474, 100535 bytes) is served on /index.html About tab and /about.html, and referenced in og:image, twitter:image, and JSON-LD. Old URL /assets/dr-tong-yin.jpg also serves the same 100535-byte new content (backwards compat).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Photo replacement verified: /assets/dr-tong-yin-v2.jpg loads with naturalWidth=326, naturalHeight=474 on both /index.html (after clicking About tab) and /about.html. Meta tags og:image and twitter:image reference v2 URL. Old /assets/dr-tong-yin.jpg URL also returns 100535 bytes (same new content). All 4 acceptance criteria pass.",
+  "rca of the issue": "Original bug: file replaced in-place caused browser/CDN to cache old photo. Fix: renamed to versioned dr-tong-yin-v2.jpg and updated 12 references (index.html, about.html, sitemap.xml, meta tags, JSON-LD). Cache-miss forced by new URL. Verified via Playwright inspecting img.naturalWidth/naturalHeight and curl content-length checks."
+}
