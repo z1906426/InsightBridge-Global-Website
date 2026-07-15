@@ -44,6 +44,14 @@
     </image:image>
   </url>
 
+  <!-- Vision 2030 Predictions vs Reality — Bilingual Archive (Featured, Jul 2026) -->
+  <url>
+    <loc>https://insightbridge.global/media/yin-vision-2030-predictions-vs-reality-bilingual-archive.pdf</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Strategic-Management Theories (index + 4 theory pages) -->
   <url>
     <loc>https://insightbridge.global/theories/</loc>

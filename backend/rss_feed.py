@@ -121,6 +121,17 @@ SECTIONS: List[Dict[str, str]] = [
         "category": "Theory / DDRT",
     },
     {
+        "path": "/media/yin-vision-2030-predictions-vs-reality-bilingual-archive.pdf",
+        "title": "Saudi Vision 2030 — Predictions vs. Market Reality (Bilingual Archive)",
+        "description": (
+            "Longitudinal archive placing six years of Dr. Yin's published "
+            "forecasts on Saudi ultra-luxury tourism and sovereign-fund "
+            "strategy alongside verifiable 2026 market data. Bilingual "
+            "EN/中文 timestamped PDF."
+        ),
+        "category": "Featured Archive",
+    },
+    {
         "path": "/tools.html",
         "title": "POLARIS Pricing & NOVA Distribution Calculators",
         "description": (
