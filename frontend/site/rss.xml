@@ -8,8 +8,8 @@
     <description>Canonical section feed for InsightBridge Global — strategy consulting, POLARIS/NOVA calculators, applied AI research and publications. Published for crawler discovery.</description>
     <language>en-US</language>
     <copyright>© InsightBridge Global LLC</copyright>
-    <lastBuildDate>Tue, 14 Jul 2026 00:41:08 +0000</lastBuildDate>
-    <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+    <lastBuildDate>Wed, 15 Jul 2026 01:27:17 +0000</lastBuildDate>
+    <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     <ttl>1440</ttl>
     <item>
       <title>InsightBridge Global — Strategy &amp; AI Research</title>
@@ -17,7 +17,7 @@
       <guid isPermaLink="true">https://insightbridge.global/</guid>
       <description>Homepage of InsightBridge Global LLC — founded by Dr. Tong Yin. Covenant-based strategic management, POLARIS pricing, NOVA distribution economics, and applied AI research for global hospitality and tourism.</description>
       <category>Homepage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>InsightBridge Global — 战略咨询与 AI 研究(中文)</title>
@@ -25,7 +25,7 @@
       <guid isPermaLink="true">https://insightbridge.global/zh.html</guid>
       <description>InsightBridge Global LLC 中文主页 —— 汤颖博士创立。契约式战略管理、POLARIS 定价模型、NOVA 分销经济学,以及面向全球旅游酒店业的应用 AI 研究。</description>
       <category>Homepage / 中文</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Dr. Tong Yin — Executive Biography | InsightBridge Global</title>
@@ -33,7 +33,47 @@
       <guid isPermaLink="true">https://insightbridge.global/about.html</guid>
       <description>Executive biography of Dr. Tong Yin — Founder &amp; CEO of InsightBridge Global LLC. Ph.D., Hospitality Management (Auburn); originator of The Home Model, Management Debt, DDRT and Core Code Theory.</description>
       <category>About</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Strategic Management Theories — Dr. Tong Yin</title>
+      <link>https://insightbridge.global/theories/</link>
+      <guid isPermaLink="true">https://insightbridge.global/theories/</guid>
+      <description>Original strategic-management frameworks by Dr. Tong Yin: Core Code Theory, The Home Model, Management Debt, and Dynamic Driver Replacement Theory.</description>
+      <category>Theories</category>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Core Code Theory (CCT) — Strategic Management Framework</title>
+      <link>https://insightbridge.global/theories/core-code-theory.html</link>
+      <guid isPermaLink="true">https://insightbridge.global/theories/core-code-theory.html</guid>
+      <description>Core Code Theory (CCT) — a framework by Dr. Tong Yin for identifying the foundational structural code of any organisation.</description>
+      <category>Theory / CCT</category>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Home Model — Covenant-Based Governance Framework</title>
+      <link>https://insightbridge.global/theories/home-model.html</link>
+      <guid isPermaLink="true">https://insightbridge.global/theories/home-model.html</guid>
+      <description>The Home Model — a covenant-based governance framework grounded in human-centric traits AI cannot replicate.</description>
+      <category>Theory / Home Model</category>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Management Debt — Diagnosing Structural Organisational Decline</title>
+      <link>https://insightbridge.global/theories/management-debt.html</link>
+      <guid isPermaLink="true">https://insightbridge.global/theories/management-debt.html</guid>
+      <description>Management Debt — a balance-sheet-style framework for diagnosing structural organisational decline before it becomes irreversible.</description>
+      <category>Theory / Management Debt</category>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
+    </item>
+    <item>
+      <title>Dynamic Driver Replacement Theory (DDRT)</title>
+      <link>https://insightbridge.global/theories/ddrt.html</link>
+      <guid isPermaLink="true">https://insightbridge.global/theories/ddrt.html</guid>
+      <description>Dynamic Driver Replacement Theory (DDRT) — modelling how organisations replace declining growth drivers with new ones without losing structural stability.</description>
+      <category>Theory / DDRT</category>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>POLARIS Pricing &amp; NOVA Distribution Calculators</title>
@@ -41,7 +81,7 @@
       <guid isPermaLink="true">https://insightbridge.global/tools.html</guid>
       <description>Interactive server-side calculators: POLARIS (5-driver strategic rate positioning) and NOVA (true landed cost across the OTA fee stack). Formulas are IP-protected and executed on the backend.</description>
       <category>Interactive Tools</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Market Report — Long-form Analysis</title>
@@ -49,7 +89,7 @@
       <guid isPermaLink="true">https://insightbridge.global/intelligence-market-report.html</guid>
       <description>Long-form intelligence report — market dynamics, distribution cost structures, and covenant-based governance case studies for hospitality and tourism operators.</description>
       <category>Research</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Vol. 01 — Founder Brief</title>
@@ -57,7 +97,7 @@
       <guid isPermaLink="true">https://insightbridge.global/intelligence-vol01.html</guid>
       <description>Volume 01 of the InsightBridge Intelligence series — founder's brief on structural intelligence, crisis-mode governance, and the Home Model framework.</description>
       <category>Research</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Privacy Policy — InsightBridge Global LLC</title>
@@ -65,7 +105,7 @@
       <guid isPermaLink="true">https://insightbridge.global/privacy.html</guid>
       <description>Privacy policy and data-handling disclosures.</description>
       <category>Policy</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Featured Whitepaper — 2027 AI × Global Hospitality &amp; Tourism Whitepaper</title>
@@ -73,7 +113,7 @@
       <guid isPermaLink="true">https://insightbridge.global/assets/insightbridge-ai-hospitality-2027-whitepaper.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Featured Whitepaper</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Why the Hotel Industry's AI Reckoning Is Coming</title>
@@ -81,7 +121,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/HTR_Whitepaper_InsightBridge_AI_Reckoning.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Reading Republican-Era China Through the Xi'an Incident — Zhang Xueliang, Chiang Kai-shek &amp; Structural State-Capacity Constraints</title>
@@ -89,7 +129,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/xian-incident-republican-china-politics.html</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Tesla &amp; Huawei Under Crisis: A Comparative Case Study</title>
@@ -97,7 +137,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/HBS_Case_Study_PUBLICATION_GRADE.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Tesla &amp; Huawei Under Crisis: A Comparative Case Study</title>
@@ -105,7 +145,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/HBS_Case_Study_CHINESE.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — NVIDIA and the SAGE Framework: From GPU Maker to AI Ecosystem Orchestrator</title>
@@ -113,7 +153,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/NVIDIA_SAGE_Case_Teaching_Note_v3.docx</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — When the Crisis Hits, Will Your People Stay or Go?</title>
@@ -121,7 +161,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/IMD_Article_Final-1.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Homes vs. Hotels: What Meta's $300 Million Raid on OpenAI Really Reveals</title>
@@ -129,7 +169,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/IMD_Series_Home_Model_v3.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Homes vs. Hotels: What Meta's $300 Million Raid on OpenAI Really Reveals</title>
@@ -137,7 +177,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/San-Yi-Mei-Yuan-De-Guan-Li-Fu-Zhai-_Jia-Yuan-Wen-Hua-Jing-Shi-_Yin-Tong-Bo-Shi.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Money Can't Buy Loyalty: The Survival Premium of the Home Model</title>
@@ -145,7 +185,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/MIT_SMR_Jin-Qian-Mai-Bu-Dao-Zhong-Cheng-_Wan-Zheng-Zhong-Wen-Ban.docx</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Reclaiming Leadership Intuition: A Penetrative Character Audit for CEO Succession</title>
@@ -153,7 +193,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Reclaiming_Leadership_Intuition_REVISED.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Reclaiming Leadership Intuition: A Penetrative Character Audit for CEO Succession</title>
@@ -161,7 +201,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Zhao-Hui-Ling-Xiu-Zhi-Jue-_Zhong-Wen-Ban.docx</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — From Extraction Civilization to Home Civilization</title>
@@ -169,7 +209,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/From_Extraction_to_Home_Civilization_Think_Tank_Report.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — From Extraction Civilization to Home Civilization</title>
@@ -177,7 +217,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Cong-Zha-Qu-Wen-Ming-Dao-Jia-Yuan-Wen-Ming-_Zhi-Ku-Zhuan-Gao-_Xiu-Ding-Ban.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Kinship, Capability, and Cost: A Realist Framework for Cross-Strait Stability</title>
@@ -185,7 +225,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Kinship_Capability_and_Cost_Cross-Strait_Stability_2026-2030_v3.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Kinship, Capability, and Cost: A Realist Framework for Cross-Strait Stability</title>
@@ -193,7 +233,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Qin-Yuan-Neng-Li-Yu-Cheng-Ben-_Liang-An-Wen-Ding-Fen-Xi-Kuang-Jia-_2026-2030_Zhong-Wen-Ban.docx</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Kinship, Capability, and Cost: A Realist Framework for Cross-Strait Stability</title>
@@ -201,7 +241,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Lian-He-Zao-Bao-Tou-Gao-_Qin-Yuan-Shi-Li-Yu-Dai-Jia-_Tai-Hai-Wen-Ding-De-Xian-Shi-Zhu-Yi-Xin-Kuang-Jia.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — The Tyranny of Mediocrity: Why Our Systems Are Designed to Exile the Heroes We Need</title>
@@ -209,7 +249,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/The-Tyranny-of-Mediocrity-Why-Our-Systems-Are-Designed-to-Exile-the-Heroes-We-Need-1.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — The Dual Personality of the American Economy</title>
@@ -217,7 +257,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Mei-Guo-Jing-Ji-1.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — The MBA Crisis: Why Business Schools Produce "Performance UI" Instead of Core Leadership</title>
@@ -225,7 +265,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/MBA_Crisis_Performance_UI_vs_Core_Code.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Decoding the Neural–Financial Link: A Dynamic Resource Allocation Model Across the Product Life Cycle</title>
@@ -233,7 +273,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/DPR_PLC_Neural_Financial_Model.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Core Code Theory: Identity Fusion and the Non-Linear Returns of Organizational Trust in the Age of AI</title>
@@ -241,7 +281,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Core_Code_Theory_AMR.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Beyond Chaos: A Dynamic Driver Replacement Theory of Growth and Covenant Governance</title>
@@ -249,7 +289,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/DDRT_Strategic_Organization_v3.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Kinship, Power, and Cost: A Realist Framework for Cross-Strait Stability</title>
@@ -257,7 +297,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Lianhe_Zaobao_Cross_Strait_Realist_Framework.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Is Monetary Compensation the Best Way to Agglomerate Employees in a Transnational Hotel Company?</title>
@@ -265,7 +305,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Tourism_Case_Hospitality_2025.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Publication — Antecedents to Consumer Reference Price Orientation: An Exploratory Investigation</title>
@@ -273,7 +313,7 @@
       <guid isPermaLink="true">https://insightbridge.global/publications/Antecedents_Consumer_Reference_Price_2007.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Publication</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — Why Vision 2030 Hotels Need More Than Traditional Revenue Management</title>
@@ -281,7 +321,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_Vision2030_Revenue_Management.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — The Real Cost of Booking.com: How Southeast Asian Hotels Can Reclaim 20% of Their Revenue</title>
@@ -289,7 +329,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_OTA_Direct_Booking_SEAsia.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — The AI Transformation Asia-Pacific Hotels Cannot Afford to Get Wrong</title>
@@ -297,7 +337,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_AI_Transformation_APAC_Hotels.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — When the Crisis Comes, Will Your Hotel's People Stay or Go?</title>
@@ -305,7 +345,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_Hotel_Crisis_People_Stay_Go.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — The Biggest Mistake Hotels Are Making About AI</title>
@@ -313,7 +353,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_AI_Architecture_Mistake_Skift.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — Why AI Pricing Still Fails Hotels — and What Needs to Change</title>
@@ -321,7 +361,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_AI_Pricing_Fails_PhocusWire.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — The 20% Revenue Hotels Are Quietly Giving Away to OTAs</title>
@@ -329,7 +369,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_OTA_20pct_Revenue_Hotelogix.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — Why "AI Theatre" Is the Most Expensive Mistake Travel Tech Is Making in 2026</title>
@@ -337,7 +377,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_AI_Theatre_TravelTech_PW.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — Why Vision 2030 Hotels Need More Than Traditional Revenue Management</title>
@@ -345,7 +385,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_Vision2030_POLARIS_HN.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — The Real Cost of Booking.com: Five Practical Steps for Southeast Asian Hotels</title>
@@ -353,7 +393,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_OTA_Booking_Cost_SEAsia_HN.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
     <item>
       <title>Intelligence Coverage — Why Mid-Sized Nations Must Treat Tourism Like Semiconductors: Strategic Verticalism for the AI Era</title>
@@ -361,7 +401,7 @@
       <guid isPermaLink="true">https://insightbridge.global/media/IB_Strategic_Verticalism_HN.pdf</guid>
       <description>Research publication and press coverage from InsightBridge Global — strategy, AI hospitality, and covenant-based governance.</description>
       <category>Intelligence Coverage</category>
-      <pubDate>Tue, 14 Jul 2026 00:41:08 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2026 01:27:17 +0000</pubDate>
     </item>
   </channel>
 </rss>

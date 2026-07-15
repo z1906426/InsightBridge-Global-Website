@@ -73,6 +73,54 @@ SECTIONS: List[Dict[str, str]] = [
         "category": "About",
     },
     {
+        "path": "/theories/",
+        "title": "Strategic Management Theories — Dr. Tong Yin",
+        "description": (
+            "Original strategic-management frameworks by Dr. Tong Yin: "
+            "Core Code Theory, The Home Model, Management Debt, and "
+            "Dynamic Driver Replacement Theory."
+        ),
+        "category": "Theories",
+    },
+    {
+        "path": "/theories/core-code-theory.html",
+        "title": "Core Code Theory (CCT) — Strategic Management Framework",
+        "description": (
+            "Core Code Theory (CCT) — a framework by Dr. Tong Yin for "
+            "identifying the foundational structural code of any organisation."
+        ),
+        "category": "Theory / CCT",
+    },
+    {
+        "path": "/theories/home-model.html",
+        "title": "The Home Model — Covenant-Based Governance Framework",
+        "description": (
+            "The Home Model — a covenant-based governance framework "
+            "grounded in human-centric traits AI cannot replicate."
+        ),
+        "category": "Theory / Home Model",
+    },
+    {
+        "path": "/theories/management-debt.html",
+        "title": "Management Debt — Diagnosing Structural Organisational Decline",
+        "description": (
+            "Management Debt — a balance-sheet-style framework for "
+            "diagnosing structural organisational decline before it "
+            "becomes irreversible."
+        ),
+        "category": "Theory / Management Debt",
+    },
+    {
+        "path": "/theories/ddrt.html",
+        "title": "Dynamic Driver Replacement Theory (DDRT)",
+        "description": (
+            "Dynamic Driver Replacement Theory (DDRT) — modelling how "
+            "organisations replace declining growth drivers with new "
+            "ones without losing structural stability."
+        ),
+        "category": "Theory / DDRT",
+    },
+    {
         "path": "/tools.html",
         "title": "POLARIS Pricing & NOVA Distribution Calculators",
         "description": (

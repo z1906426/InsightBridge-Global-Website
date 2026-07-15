@@ -44,6 +44,38 @@
     </image:image>
   </url>
 
+  <!-- Strategic-Management Theories (index + 4 theory pages) -->
+  <url>
+    <loc>https://insightbridge.global/theories/</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/theories/core-code-theory.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/theories/home-model.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/theories/management-debt.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/theories/ddrt.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Homepage (Chinese) -->
   <url>
     <loc>https://insightbridge.global/zh.html</loc>

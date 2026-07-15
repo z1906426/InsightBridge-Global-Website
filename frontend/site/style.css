@@ -2584,3 +2584,36 @@ img[data-protected],
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* ===== THEORY LANDING PAGES ===== */
+.theory-wrap { max-width: 900px; margin: 0 auto; padding: 0 var(--space-6, 24px); }
+.theory-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--color-divider, #e6e2dc); margin-bottom: var(--space-8, 48px); font-family: var(--font-display, Georgia, serif); }
+.theory-nav a { color: var(--color-primary, #0A192F); text-decoration: none; font-weight: 600; }
+.theory-nav a:hover { color: var(--color-accent, #7A1F2B); }
+.theory-eyebrow { font-family: var(--font-display, Georgia, serif); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent, #7A1F2B); font-weight: 700; margin: 0 0 var(--space-2, 8px) 0; }
+.theory-title { font-family: var(--font-display, Georgia, serif); font-size: clamp(2rem, 4.5vw, 3.2rem); color: var(--color-text, #1a1a1a); margin: 0 0 var(--space-2, 8px) 0; letter-spacing: -0.02em; line-height: 1.1; }
+.theory-subtitle { font-family: var(--font-display, Georgia, serif); font-size: 1.2rem; color: var(--color-text-muted, #5a5a5a); font-style: italic; margin: 0 0 var(--space-8, 48px) 0; }
+.theory-definition { font-size: 1.1rem; line-height: 1.7; color: var(--color-text, #1a1a1a); padding: var(--space-5, 20px) var(--space-6, 24px); background: rgba(10, 25, 47, 0.04); border-left: 3px solid var(--color-accent, #7A1F2B); border-radius: 0 6px 6px 0; margin: 0 0 var(--space-8, 48px) 0; }
+.theory-section { margin-bottom: var(--space-8, 48px); }
+.theory-section h2 { font-family: var(--font-display, Georgia, serif); font-size: 1.6rem; color: var(--color-primary, #0A192F); margin: 0 0 var(--space-4, 16px) 0; padding-bottom: var(--space-2, 8px); border-bottom: 1px solid var(--color-divider, #e6e2dc); }
+.theory-section p { font-size: 1rem; line-height: 1.75; color: var(--color-text-muted, #4a4a4a); margin-bottom: var(--space-3, 12px); }
+.theory-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4, 16px); margin: var(--space-5, 20px) 0; }
+.theory-pillar { padding: var(--space-4, 16px); background: rgba(122, 31, 43, 0.03); border-radius: 8px; }
+.theory-pillar h3 { font-family: var(--font-display, Georgia, serif); font-size: 1.05rem; color: var(--color-primary, #0A192F); margin: 0 0 8px 0; }
+.theory-pillar p { font-size: 0.92rem; margin: 0; color: var(--color-text-muted, #4a4a4a); }
+.theory-faq details { border-bottom: 1px solid var(--color-divider, #e6e2dc); padding: var(--space-3, 12px) 0; }
+.theory-faq details summary { font-family: var(--font-display, Georgia, serif); font-size: 1.05rem; color: var(--color-primary, #0A192F); cursor: pointer; padding: 6px 0; font-weight: 600; }
+.theory-faq details[open] summary { color: var(--color-accent, #7A1F2B); }
+.theory-faq details p { margin: var(--space-2, 8px) 0 var(--space-3, 12px) 0; color: var(--color-text-muted, #4a4a4a); line-height: 1.7; }
+.theory-footer { margin-top: var(--space-12, 64px); padding: var(--space-6, 24px) 0; border-top: 1px solid var(--color-divider, #e6e2dc); font-size: 0.88rem; color: var(--color-text-muted, #5a5a5a); font-family: var(--font-display, Georgia, serif); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.theory-footer a { color: var(--color-primary, #0A192F); text-decoration: none; margin-inline: 6px; }
+.theory-footer a:hover { color: var(--color-accent, #7A1F2B); }
+.theory-related { display: grid; gap: var(--space-3, 12px); }
+.theory-related a { display: block; padding: 12px 16px; background: rgba(10, 25, 47, 0.03); border-radius: 6px; text-decoration: none; color: var(--color-primary, #0A192F); transition: background 0.2s; font-family: var(--font-display, Georgia, serif); }
+.theory-related a:hover { background: rgba(122, 31, 43, 0.08); color: var(--color-accent, #7A1F2B); }
+.theory-index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-5, 20px); margin: var(--space-8, 48px) 0; }
+.theory-card { padding: var(--space-5, 20px) var(--space-6, 24px); background: rgba(10, 25, 47, 0.03); border-left: 3px solid var(--color-accent, #7A1F2B); border-radius: 0 6px 6px 0; text-decoration: none; color: inherit; transition: background 0.2s, transform 0.15s; display: block; }
+.theory-card:hover { background: rgba(122, 31, 43, 0.06); transform: translateY(-2px); }
+.theory-card h3 { font-family: var(--font-display, Georgia, serif); font-size: 1.3rem; color: var(--color-primary, #0A192F); margin: 0 0 6px 0; }
+.theory-card .theory-card-sub { font-size: 0.85rem; color: var(--color-accent, #7A1F2B); font-family: var(--font-display, Georgia, serif); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+.theory-card p { font-size: 0.95rem; color: var(--color-text-muted, #4a4a4a); line-height: 1.55; margin: 0; }
