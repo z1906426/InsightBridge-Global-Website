@@ -299,3 +299,12 @@ Namecheap (registrar)
   - `/about.html` HTTP 200 in preview, canonical + title + robots + OG all correct; language toggle works; download button present.
   - `POST /api/seo/push`: URL list is now in the exact priority order specified (`/`, `/rss.xml`, `/about.html`, ...). IndexNow / Google / Seznam all return 200; Baidu was over-quota again today (pre-existing daily 10-URL cap, not a regression).
 
+
+
+### 2026-07-15 — Hero teaser swap: Vision 2030 becomes the featured item; Lab announcement relocated
+- **Change on `index.html`:** The in-hero teaser button (was: "MAJOR ANNOUNCEMENT · Lab launch") is replaced by a new **Vision 2030 — Predictions vs. Market Reality** teaser anchor that directly downloads `/media/yin-vision-2030-predictions-vs-reality-bilingual-archive.pdf` (`data-testid="vision2030-hero-teaser"`). Same visual weight as the previous teaser, avatar of Dr. Yin instead of the Lab logo, wine-red accent instead of gold.
+- **Lab announcement moved:** the same "MAJOR ANNOUNCEMENT · Jun 13, 2026 — InsightBridge Global Lab" pill (with logo + Read button) is now placed as a compact full-width strip **above the news grid** (immediately after the "Latest News" section description). It still uses `data-testid="lab-announce-open"` and opens the existing `#lab-announce-modal` (unchanged). Deep-link `#announcement-lab-full` still works.
+- **JS bug fix:** the modal-open IIFE at the bottom of the hero area used to run inline before the news section was parsed, so after the move `getElementById('lab-announce-open')` returned null and the click handler never attached. Wrapped `init()` inside `DOMContentLoaded` so the button (wherever placed in DOM) is found and bound correctly.
+- **Playwright verified:** hero teaser navigates to the PDF, Lab strip is visible + clickable + opens modal (`modal.hidden === false`) in preview.
+- **Pinned Lab news card in the news grid remains** (Jun 27, 2026 · Pinned) — the moved strip is an additional entry point, not a replacement.
+
