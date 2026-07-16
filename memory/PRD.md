@@ -325,3 +325,23 @@ Namecheap (registrar)
 - **Playwright end-to-end verified**: main site renders 9 tiles from the live API; each anchor's `href` points to the correct external source (eventplannernews.com, hotel.report, muckrack.com, ttgchina.com, noticiasenvivo.cl, aitourismandhospitality.com, hotelx.tech, letsdatascience.com, aihospitalityalliance.com). Counters read `11 · 6 · 3` from the backend cache.
 - **Operational impact**: from now on, when sister-site `/press` gets a new citation, the APScheduler weekly job (or manual `POST /api/press/stats/refresh`) auto-syncs both the counter and the platform list into the trust strip — no more hand-editing `<li>` items in two HTML files and redeploying.
 
+
+### 2026-07-16 (later) — New "Services" section (Capability Proposal) added to top-nav
+- **User request**: The company had no dedicated "what we offer" page. User uploaded `InsightBridge-General-Capability-Proposal.docx` and asked to place a new nav item at position 3 (right after Home · News · About).
+- **New nav item** `Services / 服务能力` inserted at the 3rd position (after About, before Framework) in both the desktop `header__nav` and the mobile drawer. `data-testid="nav-services"` / `mobile-nav-services`.
+- **New SPA page** `<section id="page-services" class="page">` inserted right after `#page-about`. `app.js` `pageMap` gets `services → page-services` so hash `#services` correctly activates it.
+- **Page layout** (all bilingual with existing `lang-en/lang-cn` spans):
+  - Section label + title "What We Do — and How to Engage Us"
+  - Purpose paragraph reproducing the doc's "pre-answer" framing verbatim
+  - **Download DOCX** ribbon (gold-accented) — links to `/media/insightbridge-general-capability-proposal.docx` (36 KB, downloaded from the customer-assets CDN into the site's media folder)
+  - **Three Service Lines** as numbered articles (01/02/03) with gold Fraunces numerals:
+    - 01 · Hotel AI Platform (POLARIS · ORION · NOVA) — deployment pattern, best-fit criteria, 4 curated links to the sister-site validation report / methodology article / quantum whitepaper
+    - 02 · National & Regional Tourism Strategy Planning — engagement types, differentiators, 4 curated links to National-Strategy series / Beyond Resource Windfalls / State-as-Architect / Long-Reads Q3 2026
+    - 03 · AI-Paired Hotel Management Consulting & Executive Training — Management-Debt Diagnostic + Executive Training bulleted list
+  - "Beyond Hospitality & Tourism" grey-boxed callout referencing Core Code Theory / Management Debt / DDRT
+  - **5-step "How to Engage" cards** — Editor@ / Cooperation@ emails, 2-day response SLA, no exploratory-call fee, 6-week diagnostic sprint minimum, no published rate card
+  - **Dark-blue CTA panel** with two email contacts + "Write to Us" mailto (pre-filled subject) + "Download Full Proposal" outline button
+  - Address / D-U-N-S footer line
+- **Playwright verified**: nav order = `Home · News · About · Services · Framework · AI Model · Publications · Case Studies · Tourism · Intelligence · Tools · Contact`; `#services` deep-link activates the page on load; 3 service-line cards + 5 engagement steps render; DOCX HEAD returns 200 with the correct 36 716-byte content-length.
+- **Assets**: `/app/frontend/site/media/insightbridge-general-capability-proposal.docx` (36 KB) — served by static-server.
+

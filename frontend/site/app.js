@@ -179,6 +179,7 @@
     home:         'page-home',
     news:         'page-news',
     about:        'page-about',
+    services:     'page-services',
     framework:    'page-framework',
     'ai-model':   'page-ai-model',
     publications: 'page-publications',
