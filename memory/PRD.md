@@ -308,3 +308,11 @@ Namecheap (registrar)
 - **Playwright verified:** hero teaser navigates to the PDF, Lab strip is visible + clickable + opens modal (`modal.hidden === false`) in preview.
 - **Pinned Lab news card in the news grid remains** (Jun 27, 2026 · Pinned) — the moved strip is an additional entry point, not a replacement.
 
+
+
+### 2026-07-16 — Citation strip re-sync with sister-site (11 citations · 6 countries)
+- Sister-site `/press` added two new entries: **🇺🇸 Event Planner News** (Robotics White Paper feature, Jul 12) and **🇷🇺 Hotel.Report** (Russia/CIS full republication, Jul 10).
+- **`index.html` `ib-cited-strip`**: header numbers changed `9 → 11` citations, `5 → 6` countries; two new `<li>` entries inserted at the top of the logos list (Event Planner News + Hotel.Report).
+- **`zh.html` `ib-cited-strip`**: same header/list update with localized Chinese descriptions ("Robotics 白皮书专题", "俄语 / 独联体全文转载").
+- **Backend `/api/press/stats`**: manually triggered `POST /api/press/stats/refresh` → returns `{citations:11, countries:6, languages:3, platforms:11}`. The scraper (press_stats.py) auto-detected the new entries from sister-site DOM without code change. Static HTML fallback numbers are now aligned with the live values so nothing appears stale even if backend is unreachable.
+- Playwright verified: page reveals `11 verified citations · 6 countries/regions · 3 languages` and all nine `<li>` items in the correct order.
