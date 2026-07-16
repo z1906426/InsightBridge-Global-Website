@@ -1108,7 +1108,7 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
         <span class="lang-en">Dr. Tong Yin's research: <strong><span data-ib-stat="citations">11</span> verified citations &middot; <span data-ib-stat="countries">6</span> countries/regions &middot; <span data-ib-stat="languages">3</span> languages</strong></span>
         <span class="lang-cn">殷彤博士的研究:全球 <strong><span data-ib-stat="citations">11</span> 条已验证引用 &middot; <span data-ib-stat="countries">6</span> 个国家/地区 &middot; <span data-ib-stat="languages">3</span> 种语言</strong></span>
       </h3>
-      <ul class="ib-cited-logos">
+      <ul class="ib-cited-logos" data-ib-list-target>
         <li>🇺🇸 <strong>Event Planner News</strong> <span>Robotics White Paper Feature</span></li>
         <li>🇷🇺 <strong>Hotel.Report</strong> <span>Russia / CIS Full Republication</span></li>
         <li>🇺🇸 <strong>Muck Rack</strong> <span>Verified Journalist Profile</span></li>
@@ -1141,21 +1141,44 @@ window.uetq.push('consent','default',{'ad_storage':'denied'});
   .ib-cited-logos li { font-size: 14px; color: #0A192F; padding: 6px 0; border-bottom: 1px solid rgba(10,25,47,0.1); }
   .ib-cited-logos li strong { color: #0A192F; margin-right: 6px; }
   .ib-cited-logos li span { color: rgba(10,25,47,0.55); font-style: italic; font-size: 13px; }
+  .ib-cited-logos li a { color: inherit; text-decoration: none; display: block; transition: color 0.15s; }
+  .ib-cited-logos li a:hover { color: #7A1F2B; }
+  .ib-cited-logos li a:hover strong { color: #7A1F2B; }
   .ib-cited-cta { display: inline-block; margin-top: 8px; padding: 12px 24px; background: #0A192F; color: #FFF; text-decoration: none; font-family: 'Helvetica', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s; }
   .ib-cited-cta:hover { background: #7A1F2B; }
   </style>
   <script>
-  /* Weekly-synced counters from sister-site /press (backend caches; static values are the fallback) */
-  fetch('/api/press/stats', {cache: 'no-store'})
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(s){
-      if (!s) return;
-      document.querySelectorAll('[data-ib-stat]').forEach(function(el){
-        var v = s[el.getAttribute('data-ib-stat')];
-        if (typeof v === 'number' && v > 0) el.textContent = v;
-      });
-    })
-    .catch(function(){});
+  /* Weekly-synced counters + full citation list from sister-site /press
+     (backend scrapes weekly; hardcoded HTML above is the SEO-friendly fallback
+     that renders for search-engine crawlers and no-JS clients). */
+  (function(){
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+    fetch('/api/press/citations', {cache: 'no-store'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(s){
+        if (!s) return;
+        // 1) refresh counters
+        document.querySelectorAll('[data-ib-stat]').forEach(function(el){
+          var v = s[el.getAttribute('data-ib-stat')];
+          if (typeof v === 'number' && v > 0) el.textContent = v;
+        });
+        // 2) re-render the platform list, wrapping each row in a link to the source
+        if (!Array.isArray(s.list) || s.list.length === 0) return;
+        document.querySelectorAll('[data-ib-list-target]').forEach(function(ul){
+          ul.innerHTML = s.list.map(function(it){
+            var flag = escapeHtml(it.flag || '🌐');
+            var name = escapeHtml(it.platform || '');
+            var note = escapeHtml(it.note || '');
+            var url = it.url && /^https?:\/\//i.test(it.url) ? it.url : '';
+            var row = flag + ' <strong>' + name + '</strong> <span>' + note + '</span>';
+            return url
+              ? '<li><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + row + '</a></li>'
+              : '<li>' + row + '</li>';
+          }).join('');
+        });
+      })
+      .catch(function(){});
+  })();
   </script>
 
   <!-- ============================== -->

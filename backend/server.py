@@ -175,13 +175,19 @@ async def headlines_refresh():
 # Press citation stats — syncs the "Cited & Syndicated Worldwide"
 # trust strip counters from the sister site's /press page. Weekly.
 # ====================================================================
-from press_stats import refresh_press_stats, get_press_stats
+from press_stats import refresh_press_stats, get_press_stats, get_press_citations
 
 
 @api_router.get("/press/stats")
 async def press_stats():
     """Cached citation counters (citations / countries / languages)."""
     return await get_press_stats(db)
+
+
+@api_router.get("/press/citations")
+async def press_citations():
+    """Cached counters + full ordered citation list for the main-site trust strip."""
+    return await get_press_citations(db)
 
 
 @api_router.post("/press/stats/refresh")

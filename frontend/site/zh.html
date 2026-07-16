@@ -361,7 +361,7 @@
   <div class="zh-section ib-cited-strip" aria-label="全球引用与二次传播" data-testid="cited-worldwide-strip-zh">
     <div class="ib-cited-eyebrow">&#10022; Cited &amp; Syndicated Worldwide · 全球引用与二次传播</div>
     <h3 class="ib-cited-headline">殷彤博士的研究:全球 <strong><span data-ib-stat="citations">11</span> 条已验证引用 · <span data-ib-stat="countries">6</span> 个国家/地区 · <span data-ib-stat="languages">3</span> 种语言</strong></h3>
-    <ul class="ib-cited-logos">
+    <ul class="ib-cited-logos" data-ib-list-target>
       <li>🇺🇸 <strong>Event Planner News</strong> <span>Robotics 白皮书专题</span></li>
       <li>🇷🇺 <strong>Hotel.Report</strong> <span>俄语 / 独联体全文转载</span></li>
       <li>🇺🇸 <strong>Muck Rack</strong> <span>Verified Journalist Profile</span></li>
@@ -385,20 +385,40 @@
   .ib-cited-logos li { font-size: 14px; color: #3a3530; padding: 6px 0; border-bottom: 1px solid rgba(26,58,92,0.12); }
   .ib-cited-logos li strong { color: #1a3a5c; margin-right: 6px; }
   .ib-cited-logos li span { color: rgba(58,53,48,0.6); font-style: italic; font-size: 13px; }
+  .ib-cited-logos li a { color: inherit; text-decoration: none; display: block; transition: color 0.15s; }
+  .ib-cited-logos li a:hover { color: #c8913a; }
+  .ib-cited-logos li a:hover strong { color: #c8913a; }
   .ib-cited-cta { display: inline-block; margin-top: 8px; padding: 12px 24px; background: #1a3a5c; color: #fff; text-decoration: none; font-size: 13px; letter-spacing: 2px; border-radius: 999px; font-weight: 700; transition: background 0.2s; }
   .ib-cited-cta:hover { background: #c8913a; }
   </style>
   <script>
-  fetch('/api/press/stats', {cache: 'no-store'})
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(s){
-      if (!s) return;
-      document.querySelectorAll('[data-ib-stat]').forEach(function(el){
-        var v = s[el.getAttribute('data-ib-stat')];
-        if (typeof v === 'number' && v > 0) el.textContent = v;
-      });
-    })
-    .catch(function(){});
+  /* 从姐妹站 /press 自动同步:计数 + 完整平台列表(周更) */
+  (function(){
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+    fetch('/api/press/citations', {cache: 'no-store'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(s){
+        if (!s) return;
+        document.querySelectorAll('[data-ib-stat]').forEach(function(el){
+          var v = s[el.getAttribute('data-ib-stat')];
+          if (typeof v === 'number' && v > 0) el.textContent = v;
+        });
+        if (!Array.isArray(s.list) || s.list.length === 0) return;
+        document.querySelectorAll('[data-ib-list-target]').forEach(function(ul){
+          ul.innerHTML = s.list.map(function(it){
+            var flag = escapeHtml(it.flag || '🌐');
+            var name = escapeHtml(it.platform || '');
+            var note = escapeHtml(it.note || '');
+            var url = it.url && /^https?:\/\//i.test(it.url) ? it.url : '';
+            var row = flag + ' <strong>' + name + '</strong> <span>' + note + '</span>';
+            return url
+              ? '<li><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + row + '</a></li>'
+              : '<li>' + row + '</li>';
+          }).join('');
+        });
+      })
+      .catch(function(){});
+  })();
   </script>
 
   <!-- 联系区 -->
