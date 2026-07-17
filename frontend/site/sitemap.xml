@@ -330,4 +330,60 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
+
+  <!-- 2026-07-17 bonus publications (9 files) -->
+  <url>
+    <loc>https://insightbridge.global/publications/InsightBridge-Hotel-AI-Market-Report-2026.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/HN_A_Vision2030_RMS.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/HN_B_OTA_Direct_Booking.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/IB_Hotel_Crisis_Trust_HospitalityNet.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/HN2_Strategic_Verticalism_POLISHED.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/HBS_Case_Study_FINAL.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/HBS_Case_Study_CHINESE.docx</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/NVIDIA_SAGE_Case_and_Teaching_Note.docx</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/publications/screencapture-hospitalitynet-org-opinion-4132242-when-the-crisis-comes-will-your-hotels-people-stay-or-go-2026-05-09-11_25_58.pdf</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

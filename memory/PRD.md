@@ -411,3 +411,23 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - **Extra uploaded files not currently linked from HTML** (available to feature later if user wishes): `HN2_Strategic_Verticalism_POLISHED.pdf`, `HN_A_Vision2030_RMS.pdf`, `HN_B_OTA_Direct_Booking.pdf`, `InsightBridge-Hotel-AI-Market-Report-2026.pdf`, `HBS_Case_Study_FINAL.pdf` (variant), `HBS_Case_Study_CHINESE.docx` (variant of the .pdf), `NVIDIA_SAGE_Case_and_Teaching_Note.docx` (older version), `IB_Hotel_Crisis_Trust_HospitalityNet.pdf`, `screencapture-hospitalitynet-org-opinion-4132242-when-the-crisis-comes-will-your-hotels-people-stay-or-go-…pdf`. **Not copied into site — user can decide whether to feature them later.**
 - **Combined result of 2026-07-17 dead-link cleanup**: 0 dead `/media/` links (12 replaced with external URLs) + 0 dead `/publications/` links (22 files now served). Total 35 broken buttons fixed in one day.
 
+
+### 2026-07-17 (night) — P1/P2 batch: CTA + coverage endpoint + Plan-B bonus files
+- **P1 · Deep-reader CTA on `intelligence-market-report.html`**: added a dark-navy panel at the very bottom (after References + Closing quote, before footer). Headline "Book a 30-min strategy consultation with Dr. Yin · 预约 30 分钟战略咨询". Bilingual body positions the offer: 2-day response SLA · no fee for exploratory calls · fixed proposal within 5 days. Gold primary button "Book the Call · 预约通话" (mailto pre-fills subject **and** a structured body template — Name / Org / Portfolio size / Preferred call times) + outline secondary "Or explore all services first →" to `#services`. `data-testid="deep-reader-cta"` / `cta-book-call` / `cta-services-context`.
+- **P2 · `/api/seo/coverage?days=N` endpoint** (`server.py`): reads `db.seo_pushes`, returns `{window_days, summary, per_engine, timeline}`. Per-engine payload: `{attempts, ok, fail, success_rate, last_ok_at, last_error}` for Baidu / IndexNow / Google / Seznam. Timeline is a day-by-day array (zero-filled for missing days) — chart-ready. `days` clamped to 1..180 (default 30). **Immediately surfaced two real ops issues**: Baidu 30-day success rate 45% (`HTTP 400` — probably a bad `token` or URL format issue in `seo_push.push_to_baidu`) and Google Indexing API 0/30 attempts because `GOOGLE_INDEXING_SA_JSON_PATH=/app/backend/secrets/gsc-indexing-sa.json` doesn't exist — Service Account JSON never uploaded. IndexNow 22/22 = 100 %, Seznam 6/6 = 100 %.
+- **Plan-B bonus files (user picked B)** — 9 files from user's two uploaded archives placed under `/app/frontend/site/publications/`:
+  - 🔴 **4 new news cards** on `index.html` (inserted right after the Lab pinned card, before the finance-bots card). All 4 cards carry `data-testid="news-card-*"` and download buttons with `data-testid="dl-*"`:
+    - `InsightBridge-Hotel-AI-Market-Report-2026.pdf` — "InsightBridge Hotel AI Market Report 2026 — Full PDF Edition" (dual CTA: Download PDF + Read interactive version → `intelligence-market-report.html`)
+    - `HN_A_Vision2030_RMS.pdf` — "Why Vision 2030 Hotels Need More Than Traditional Revenue Management" (Download PDF + Read on HospitalityNet)
+    - `HN_B_OTA_Direct_Booking.pdf` — "The Real Cost of Booking.com — Five Practical Steps for Southeast Asian Hotels"
+    - `IB_Hotel_Crisis_Trust_HospitalityNet.pdf` — "When the Crisis Comes, Will Your Hotel's People Stay or Go?"
+  - 🟡 **3 in-place replacements**:
+    - `IB_Strategic_Verticalism_HN.pdf` → previously mapped to `hotelnewsresource.com/article141925.html` (external); now points to local `/publications/HN2_Strategic_Verticalism_POLISHED.pdf` (in-house polished version). 3 refs replaced across index.html + theories/ddrt.html.
+    - `HBS_Case_Study_PUBLICATION_GRADE.pdf` → `HBS_Case_Study_FINAL.pdf` (newer final version).
+    - `HBS_Case_Study_CHINESE.docx` — added as a **side-by-side link** next to the existing Chinese PDF (new "中文·DOCX" button with download-arrow icon on the HBS pub card).
+  - 🟢 **2 archived (indexed but no cards)**:
+    - `NVIDIA_SAGE_Case_and_Teaching_Note.docx` (older version — newer `_v3.docx` still linked from card)
+    - `screencapture-hospitalitynet-org-opinion-4132242-*.pdf` (14 MB screenshot backup of the HospitalityNet article — kept as an offline archive)
+- **sitemap.xml**: 9 new `<url>` blocks (idempotent — script strips previous `<!-- 2026-07-17 bonus publications -->` block before inserting) with `changefreq=monthly` + `priority=0.5`. Total `<url>` count now 34.
+- **Curl verification**: all 9 bonus URLs return HTTP 200, correct MIME (`application/pdf` or `application/vnd.openxmlformats-officedocument.wordprocessingml.document`). Playwright screenshot shows the 4 new cards rendering perfectly with proper `data-testid` attributes.
+
