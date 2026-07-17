@@ -128,6 +128,90 @@ async def seo_history(limit: int = 20):
     return {"count": len(items), "items": items}
 
 
+@api_router.get("/seo/coverage")
+async def seo_coverage(days: int = 30):
+    """Aggregated push-coverage stats: per-engine success rate + daily timeline."""
+    from datetime import datetime, timedelta, timezone as tz
+    days = max(1, min(days, 180))
+    since = datetime.now(tz.utc) - timedelta(days=days)
+    since_iso = since.isoformat()
+
+    cursor = db.seo_pushes.find(
+        {"timestamp": {"$gte": since_iso}},
+        projection={"_id": 0, "timestamp": 1, "results": 1, "ok_all": 1,
+                    "urls_count": 1, "baidu_urls_count": 1},
+    ).sort("timestamp", 1)
+    records = await cursor.to_list(length=None)
+
+    ENGINES = ("baidu", "indexnow", "google", "seznam")
+    per_engine = {e: {"attempts": 0, "ok": 0, "fail": 0,
+                      "last_ok_at": None, "last_error": None} for e in ENGINES}
+
+    day_bucket = {}
+    for rec in records:
+        ts = rec.get("timestamp", "")
+        date = ts[:10] if ts else "unknown"
+        b = day_bucket.setdefault(date, {"pushes": 0, "ok_all": 0})
+        b["pushes"] += 1
+        if rec.get("ok_all"):
+            b["ok_all"] += 1
+        for r in (rec.get("results") or []):
+            engine = r.get("engine", "").lower()
+            if engine not in per_engine:
+                continue
+            per_engine[engine]["attempts"] += 1
+            if r.get("ok"):
+                per_engine[engine]["ok"] += 1
+                per_engine[engine]["last_ok_at"] = ts
+            else:
+                per_engine[engine]["fail"] += 1
+                err = r.get("error") or r.get("skipped") or f"HTTP {r.get('status_code')}"
+                per_engine[engine]["last_error"] = str(err)[:200]
+
+    for e in ENGINES:
+        stats = per_engine[e]
+        stats["success_rate"] = (
+            round(stats["ok"] / stats["attempts"], 4) if stats["attempts"] else None
+        )
+
+    total = len(records)
+    ok_all_count = sum(1 for r in records if r.get("ok_all"))
+    distinct_urls = sum(r.get("urls_count") or 0 for r in records)
+
+    last_push_at = records[-1]["timestamp"] if records else None
+    next_push_at = None
+    if last_push_at:
+        try:
+            next_push_at = (
+                datetime.fromisoformat(last_push_at.replace("Z", "+00:00"))
+                + timedelta(hours=24)
+            ).isoformat()
+        except Exception:
+            pass
+
+    timeline = []
+    day_cursor = since.date()
+    end_day = datetime.now(tz.utc).date()
+    while day_cursor <= end_day:
+        key = day_cursor.isoformat()
+        cell = day_bucket.get(key, {"pushes": 0, "ok_all": 0})
+        timeline.append({"date": key, **cell})
+        day_cursor += timedelta(days=1)
+
+    return {
+        "window_days": days,
+        "summary": {
+            "total_pushes": total,
+            "ok_all_rate": round(ok_all_count / total, 4) if total else None,
+            "urls_pushed_cumulative": distinct_urls,
+            "last_push_at": last_push_at,
+            "next_push_at": next_push_at,
+        },
+        "per_engine": per_engine,
+        "timeline": timeline,
+    }
+
+
 # ====================================================================
 # Server-side calculators — protect proprietary formulas from
 # client-side inspection. Frontend posts inputs, receives results.
