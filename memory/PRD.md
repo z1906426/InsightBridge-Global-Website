@@ -377,3 +377,11 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 
 **Playwright screenshot verified**: Arabic press-kit page renders correctly RTL, share buttons in region-optimized order, JSON-LD present, 11 hreflang tags emitted.
 
+
+### 2026-07-17 (later) — RSS feed now carries UTM parameters (P2 done)
+- `rss_feed.py`: added `_with_utm(url, content_slug)` helper that appends `utm_source=rss · utm_medium=feed · utm_campaign=rss-main-site · utm_content=<slug>` to every same-host URL, preserving any existing query string and URL fragment. Off-site URLs left untouched.
+- **`<link>` values are tagged; `<guid>` values are NOT** — guids stay as the stable, un-tagged canonical URL and now use `isPermaLink="false"` (since technically a tagged URL isn't the canonical permalink). This keeps RSS-reader de-duplication behaviour intact across regenerations.
+- Every one of the 50 feed items gets a unique `utm_content` derived from the item path (e.g. `utm_content=intelligence-market-report`, `utm_content=core-code-theory-amr-pdf`) so Clarity / Yandex Metrika / GA reports show exactly which RSS item a reader clicked, not just "some RSS click".
+- Tests updated: `test_rss_contains_all_declared_sections` now compares against `<guid>` (stable) rather than the tagged `<link>`, and a new `test_rss_links_carry_utm_but_guids_do_not` asserts the invariant. `pytest tests/test_rss_feed.py` — 6/6 pass.
+- Regenerated `/app/frontend/site/rss.xml` on the spot; production edge served `HTTP/2 200` with all 50 items tagged. APScheduler continues to regenerate daily.
+

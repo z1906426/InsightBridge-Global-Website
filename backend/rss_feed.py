@@ -22,10 +22,12 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 from datetime import datetime, timezone
 from email.utils import format_datetime
 from pathlib import Path
 from typing import List, Dict
+from urllib.parse import urlparse, urlunparse, urlencode
 from xml.sax.saxutils import escape
 
 logger = logging.getLogger(__name__)
@@ -36,6 +38,42 @@ SITE_URL = f"https://{SITE_DOMAIN}"
 RSS_OUTPUT_PATH = (
     Path(__file__).resolve().parent.parent / "frontend" / "site" / "rss.xml"
 )
+
+# ─── UTM tagging for feed traffic ────────────────────────────────────────
+# Every <link> URL in the RSS feed is tagged so GA / Clarity / Yandex Metrika
+# attribute the click to the RSS channel (Inoreader / Feedly / raw etc.). The
+# `<guid isPermaLink="true">` value is deliberately NOT tagged so RSS readers
+# see stable item identity across regenerations and don't re-notify readers.
+UTM_PARAMS = {
+    "utm_source":   "rss",
+    "utm_medium":   "feed",
+    "utm_campaign": "rss-main-site",
+}
+_SLUG_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _slug(text: str) -> str:
+    return _SLUG_RE.sub("-", (text or "").lower()).strip("-")[:60]
+
+
+def _with_utm(url: str, content_slug: str = "") -> str:
+    """Append UTM query params to a URL, preserving any existing query and
+    fragment. Returns the URL unchanged if it is off-site (safety belt)."""
+    try:
+        p = urlparse(url)
+    except Exception:
+        return url
+    # Only tag same-host links; leave external hrefs alone.
+    if p.netloc and p.netloc != SITE_DOMAIN:
+        return url
+    params = dict(UTM_PARAMS)
+    if content_slug:
+        params["utm_content"] = content_slug
+    # Preserve any pre-existing query params (do not overwrite UTM if already set)
+    existing = p.query
+    utm_str = urlencode(params)
+    new_query = f"{existing}&{utm_str}" if existing else utm_str
+    return urlunparse((p.scheme, p.netloc, p.path, p.params, new_query, p.fragment))
 
 # Canonical section list — matches sitemap.xml priorities.
 # Order = display order in the feed.
@@ -317,11 +355,13 @@ def build_rss_xml() -> str:
 
     for s in SECTIONS:
         loc = f"{SITE_URL}{s['path']}"
+        path_hint = s["path"].strip("/").replace("/", "-").replace(".html", "").replace(".pdf", "-pdf")
+        link_tracked = _with_utm(loc, content_slug=_slug(path_hint) or "home")
         items_xml_parts.append(
             "    <item>\n"
             f"      <title>{escape(s['title'])}</title>\n"
-            f"      <link>{escape(loc)}</link>\n"
-            f"      <guid isPermaLink=\"true\">{escape(loc)}</guid>\n"
+            f"      <link>{escape(link_tracked)}</link>\n"
+            f"      <guid isPermaLink=\"false\">{escape(loc)}</guid>\n"
             f"      <description>{escape(s['description'])}</description>\n"
             f"      <category>{escape(s['category'])}</category>\n"
             f"      <pubDate>{build_date}</pubDate>\n"
@@ -330,11 +370,13 @@ def build_rss_xml() -> str:
 
     for p in _extract_publications():
         loc = p["url"]
+        slug_hint = _slug(p["path"].rstrip("/").split("/")[-1]) or _slug(p["category"])
+        link_tracked = _with_utm(loc, content_slug=slug_hint)
         items_xml_parts.append(
             "    <item>\n"
             f"      <title>{escape(p['title'])}</title>\n"
-            f"      <link>{escape(loc)}</link>\n"
-            f"      <guid isPermaLink=\"true\">{escape(loc)}</guid>\n"
+            f"      <link>{escape(link_tracked)}</link>\n"
+            f"      <guid isPermaLink=\"false\">{escape(loc)}</guid>\n"
             f"      <description>{escape(p['description'])}</description>\n"
             f"      <category>{escape(p['category'])}</category>\n"
             f"      <pubDate>{build_date}</pubDate>\n"
