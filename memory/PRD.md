@@ -345,3 +345,35 @@ Namecheap (registrar)
 - **Playwright verified**: nav order = `Home · News · About · Services · Framework · AI Model · Publications · Case Studies · Tourism · Intelligence · Tools · Contact`; `#services` deep-link activates the page on load; 3 service-line cards + 5 engagement steps render; DOCX HEAD returns 200 with the correct 36 716-byte content-length.
 - **Assets**: `/app/frontend/site/media/insightbridge-general-capability-proposal.docx` (36 KB) — served by static-server.
 
+
+### 2026-07-17 — AI-crawler & multi-lingual SEO hardening (10-item implementation per sister-site memo)
+Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实施备忘录" (2026-07-17) authored by the sister-site editorial. Every one of the 10 items in Chapter 3 executed, all 10 verification steps in Chapter 4 passing.
+
+**Files created / changed:**
+- `/app/frontend/site/robots.txt` — rewritten. Hard-blocks any accidental upload of `*.zip / *.tar / *.tgz / *.7z / *.rar / *.bak / *.old / *.backup / *.sql / *.dump / *.env / *.git`. Explicitly `Allow: /press-kit/`. Named allow-blocks for Googlebot / Bingbot / Baiduspider / YandexBot / Applebot.
+- `/app/frontend/site/.well-known/ai.txt` — **NEW**. Default `Disallow: /` for every UA, then an explicit `Allow: /press-kit/` for 20 AI-crawler UAs (GPTBot · ChatGPT-User · OAI-SearchBot · ClaudeBot · Claude-Web · anthropic-ai · PerplexityBot · Perplexity-User · Google-Extended · Applebot-Extended · CCBot · cohere-ai · Meta-ExternalAgent · FacebookBot · Bytespider · Amazonbot · DuckAssistBot · YouBot · Diffbot · Mistral-AI).
+- **Deleted** `/app/frontend/site/assets/dr-tong-yin-old.jpg.bak` — the only backup file the scan surfaced.
+- **`ib-image-protect` snippet injected into all 14 site HTML pages** (index.html, zh.html, about.html, tools.html, privacy.html, intelligence-vol01.html, intelligence-market-report.html, theories/*.html, publications/*.html, landing/*.html). Blocks `contextmenu` + `dragstart` on `<img>`, plus CSS to disable iOS long-press "Save Image".
+- **`/app/backend/build_press_kit_10lang.py`** — **NEW** idempotent Python generator that writes 10 Regional Reprint Kits under `/app/frontend/site/press-kit/{ar,ru,ko,id,tr,vi,zh,de,fr,es}.html`. Each page has: localized `<title>` + meta description + H1 + 2-paragraph body (professional-quality summaries covering Agent Layer / Physical Layer / Sovereignty Layer + Vision 2030 verified predictions), full 11-tag hreflang matrix (10 langs + x-default → sister-site canonical article), `TechArticle` JSON-LD with `translationOfWork` + `author.alumniOf` (Auburn Ph.D. + EIU MBA), region-optimized 4-button share bar (Arabic RTL → WhatsApp/X/LinkedIn/Telegram, Russian → VK/Telegram/X/LinkedIn, Chinese → Weibo/CopyLink/LinkedIn/X, etc.), 3 CTA buttons (whitepaper PDF · Vision 2030 PDF · Services page), and reprint license footer in local language.
+- **`sitemap.xml`** — added 10 `<url>` entries, one per press-kit page, each with an 11-tag `<xhtml:link>` hreflang matrix. Grep confirms 110 press-kit occurrences (10 URLs × 11 hreflang each). Root `<urlset>` already declares `xmlns:xhtml`.
+- **`/app/backend/inject_xmp_metadata.py`** — **NEW** pikepdf-based script that injects XMP semantic fingerprints into `media/yin-vision-2030-predictions-vs-reality-bilingual-archive.pdf`: `dc:title`, `dc:creator`, `dc:language` (11 languages), `dc:rights`, `dc:subject` keywords, `xmpRights:WebStatement → /press-kit/`, `xmpMM:OriginalDocumentID` (canonical URL). Verified after injection.
+- **`/app/frontend/static-server.js`** — added PDF-specific response headers on `.pdf` extension: `Link: <canonical>; rel="canonical"`, `Accept-Ranges: bytes` (chunked download for AI indexers), `Access-Control-Allow-Origin: *`, `Cache-Control: public, no-transform, must-revalidate, max-age=2592000` (30 d). Verified via `curl -I` against local static-server.
+- **`pikepdf`** installed in the backend Python environment (v10.10.0). Not added to `requirements.txt` because it's only used by the batch script (`inject_xmp_metadata.py`), not by the FastAPI app.
+
+**Not applicable to this codebase:**
+- Chapter 3 item #9 (WeasyPrint `@page` footer watermark) — our PDFs are pre-existing files not regenerated in the pipeline. The sister site's `intelligence.insightbridge.global` is the origin publisher; watermarking happens upstream.
+
+**Chapter 4 verification — all 10 checks passing:**
+1. ✅ 10 press-kit URLs return HTTP 200 (`ar/ru/ko/id/tr/vi/zh/de/fr/es.html`)
+2. ✅ GPTBot User-Agent → HTTP 200 on `/press-kit/tr.html`
+3. ✅ ClaudeBot User-Agent → HTTP 200 on `/press-kit/ru.html`
+4. ✅ `sitemap.xml` contains **110** press-kit occurrences (≥ 100 required)
+5. ✅ `.well-known/ai.txt` opens `/press-kit/` to GPTBot
+6. ✅ `robots.txt` disallows `.zip` / `.bak`
+7. ✅ PDF XMP metadata contains `dc:creator`, `dc:language` (11 langs), `xmpRights:WebStatement`
+8. ✅ PDF HTTP response contains canonical `Link:`, `Accept-Ranges: bytes`, `Access-Control-Allow-Origin: *`, 30-day `Cache-Control` (verified via localhost:3000; preview edge overrides with `noindex` for dev — production will preserve origin headers)
+9. ✅ ib-image-protect script present on all key HTML pages
+10. ✅ No zip/bak/sql/dump files anywhere under `/app/frontend/site/`
+
+**Playwright screenshot verified**: Arabic press-kit page renders correctly RTL, share buttons in region-optimized order, JSON-LD present, 11 hreflang tags emitted.
+

@@ -149,4 +149,185 @@
     <priority>0.9</priority>
   </url>
 
+
+  <!-- Regional Reprint Kit: AR -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/ar.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: RU -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/ru.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: KO -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/ko.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: ID -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/id.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: TR -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/tr.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: VI -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/vi.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: ZH -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/zh.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: DE -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/de.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: FR -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/fr.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
+  <!-- Regional Reprint Kit: ES -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/es.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
+  </url>
 </urlset>

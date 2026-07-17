@@ -1,0 +1,75 @@
+# AI Usage Policy for InsightBridge Global — https://insightbridge.global
+# ─────────────────────────────────────────────────────────────────────────
+# Editorial content on this site is copyrighted and NOT authorized for
+# commercial AI-training scraping. Where you see AI-crawler exceptions
+# below, they are limited to the Regional Reprint Kits at /press-kit/ —
+# publicly released, cite-and-share ready summaries of our whitepapers in
+# 10 languages.
+# Contact: Editor@intelligence.insightbridge.global
+
+User-Agent: *
+Disallow: /
+
+# ─── EXCEPTION — Regional Reprint Kits at /press-kit/ ────────────────────
+# Free to summarise, quote, and re-index. Bylines and canonical links must
+# be preserved per the license printed inside each press-kit page.
+
+User-Agent: GPTBot
+Allow: /press-kit/
+
+User-Agent: ChatGPT-User
+Allow: /press-kit/
+
+User-Agent: OAI-SearchBot
+Allow: /press-kit/
+
+User-Agent: ClaudeBot
+Allow: /press-kit/
+
+User-Agent: Claude-Web
+Allow: /press-kit/
+
+User-Agent: anthropic-ai
+Allow: /press-kit/
+
+User-Agent: PerplexityBot
+Allow: /press-kit/
+
+User-Agent: Perplexity-User
+Allow: /press-kit/
+
+User-Agent: Google-Extended
+Allow: /press-kit/
+
+User-Agent: Applebot-Extended
+Allow: /press-kit/
+
+User-Agent: CCBot
+Allow: /press-kit/
+
+User-Agent: cohere-ai
+Allow: /press-kit/
+
+User-Agent: Meta-ExternalAgent
+Allow: /press-kit/
+
+User-Agent: FacebookBot
+Allow: /press-kit/
+
+User-Agent: Bytespider
+Allow: /press-kit/
+
+User-Agent: Amazonbot
+Allow: /press-kit/
+
+User-Agent: DuckAssistBot
+Allow: /press-kit/
+
+User-Agent: YouBot
+Allow: /press-kit/
+
+User-Agent: Diffbot
+Allow: /press-kit/
+
+User-Agent: Mistral-AI
+Allow: /press-kit/

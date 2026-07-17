@@ -54,6 +54,18 @@
   .footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border)}
   @media(min-width:680px){.wrap{padding:64px 32px 100px}.stat__num{font-size:1.85rem}}
 </style>
+<!-- ib-image-protect · casual right-click / drag-save / iOS long-press guard -->
+<script id="ib-image-protect">
+(function(){
+    function isImg(t){return t && t.tagName === 'IMG';}
+    function block(e){if(isImg(e.target)){e.preventDefault(); return false;}}
+    document.addEventListener('contextmenu', block, true);
+    document.addEventListener('dragstart',  block, true);
+})();
+</script>
+<style id="ib-image-protect-css">
+img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-user-drag:none!important;-o-user-drag:none!important;user-drag:none!important;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+</style>
 </head>
 <body>
 
