@@ -157,6 +157,9 @@ async def seo_coverage(days: int = 30):
             b["ok_all"] += 1
         for r in (rec.get("results") or []):
             engine = r.get("engine", "").lower()
+            # Normalize: `google_indexing` → `google` (keeps the summary keys clean)
+            if engine == "google_indexing":
+                engine = "google"
             if engine not in per_engine:
                 continue
             per_engine[engine]["attempts"] += 1
