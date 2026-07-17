@@ -385,3 +385,19 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - Tests updated: `test_rss_contains_all_declared_sections` now compares against `<guid>` (stable) rather than the tagged `<link>`, and a new `test_rss_links_carry_utm_but_guids_do_not` asserts the invariant. `pytest tests/test_rss_feed.py` — 6/6 pass.
 - Regenerated `/app/frontend/site/rss.xml` on the spot; production edge served `HTTP/2 200` with all 50 items tagged. APScheduler continues to regenerate daily.
 
+
+### 2026-07-17 (later) — Broken /media/*.pdf dead links repaired (12 of 35 total)
+- **Verified user's dead-link claim**: 100% accurate. `/app/frontend/site/media/` only contains 2 files (Vision 2030 PDF + Capability Proposal DOCX) but HTML referenced 36 `/media|publications/*.pdf|docx` paths, of which 35 are dead. In preview, static-server returns proper `HTTP 404`, but Emergent production edge SPA-fallback masks 404s as `200 index.html` — user gets bounced to homepage when clicking "Download PDF".
+- **User chose C then A**: split the 35 dead links into two batches. Batch 1 (this change) = 12 `/media/*.pdf` external media reprints → replaced with **live external URLs** (user pick option A on my proposed mapping table).
+- **URL mapping applied** (all verified with `crawl_tool` since HospitalityNet/PhocusWire block server-side curl with 403 UA-guard):
+  - `IB_AI_Pricing_Fails_PhocusWire.pdf` → `https://www.phocuswire.com/opinion/technology/why-ai-pricing-fails-hotels-what-needs-to-change` (🟢 direct — verified byline "Tong Yin, founder and CEO of InsightBridge Global")
+  - `IB_Strategic_Verticalism_HN.pdf` → `https://www.hotelnewsresource.com/article141925.html` (🟢 direct — "Why Mid-Sized Nations Must Treat Tourism Like Semiconductors")
+  - `IB_Vision2030_POLARIS_HN.pdf` + `IB_Vision2030_Revenue_Management.pdf` → `https://www.hotelnewsresource.com/article141488.html` (🟢 direct — "From Visitor Targets to Hotel Profitability: The Operating Model Saudi Hospitality Needs Next")
+  - `HTR_Whitepaper_InsightBridge_AI_Reckoning.pdf` → `https://www.hospitalitynet.org/whitepaper/4133312/2027-global-hotel-industry-white-paperthe-robotics-revolution-and-asset-binary-divergence` (🟡 topic-adjacent whitepaper)
+  - `IB_AI_Theatre_TravelTech_PW.pdf` → HotelX Tech Japanese "AI シアター" article (🟡 same topic, coined the term)
+  - `IB_Hotel_Crisis_People_Stay_Go.pdf` → `https://www.hospitalitynet.org/opinion/4132921/wings-of-technology-roots-of-humanity-ai-can-rescue-a-p-l-but-it-cannot-rescue-a-heart-that-wants-to-leave` (🟡 same Core-Code-Theory / workforce theme)
+  - 5× `/media/` links that had no direct external match (`IB_AI_Architecture_Mistake_Skift`, `IB_AI_Transformation_APAC_Hotels`, `IB_OTA_20pct_Revenue_Hotelogix`, `IB_OTA_Booking_Cost_SEAsia_HN`, `IB_OTA_Direct_Booking_SEAsia`) → all fall back to `https://intelligence.insightbridge.global/press` (🔴 sister-site press index — safe, always live, shows all 11 verified citations).
+- **18 substitutions applied across 3 HTML files**: `index.html` (14) + `theories/management-debt.html` (2) + `theories/ddrt.html` (2). Verified: only 2 `/media/*` references remain in HTML source, both pointing to files that actually exist.
+- **Muck Rack cross-check**: pulled the full author profile (`https://muckrack.com/tong-yin/articles`) via crawl_tool to sanity-check that HospitalityNet + PhocusWire + Hotel News Resource + Frontiers + Wiley are all confirmed publications Dr. Tong Yin has authored for.
+- **Still pending (batch 2)**: 23 dead links under `/publications/*.pdf|docx` — academic papers, HBS/MIT/IMD case studies, NVIDIA SAGE teaching notes, Lianhe Zaobao op-eds. User chose **option A** on the /media/ batch, and previously agreed to **option C mixed strategy**: for /publications/ we're waiting for user to upload the actual PDF/DOCX originals (they authored these themselves) so we can serve them at the existing paths.
+
