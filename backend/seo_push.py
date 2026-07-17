@@ -26,6 +26,89 @@ SITE_URL = f"https://{SITE_DOMAIN}"
 INDEXNOW_KEY = os.environ.get("INDEXNOW_KEY", "")
 BAIDU_PUSH_TOKEN = os.environ.get("BAIDU_PUSH_TOKEN", "")
 
+# ─── Baidu daily-quota smart selection ────────────────────────────────────
+# The Baidu Zhanzhang push API allows ~10 URLs/day for standard sites. Rather
+# than pushing the same 8 fixed URLs every day (and eating quota with no fresh
+# information for the crawler), we:
+#   1. ALWAYS push a small must-push set (per user directive 2026-07-17)
+#   2. Rotate through the remainder on a 3-day cooldown per URL
+#   3. Cap total at 9 (leaves 1 quota slot as buffer)
+BAIDU_MUST_PUSH: List[str] = [
+    f"{SITE_URL}/index.html#news",
+    f"{SITE_URL}/index.html#about",
+    f"{SITE_URL}/index.html#services",
+]
+BAIDU_URL_COOLDOWN_DAYS = 3
+BAIDU_PUSH_CAP = 9  # leave 1 slot buffer under the 10/day quota
+
+
+async def _select_baidu_urls(db, candidate_urls: List[str]) -> List[str]:
+    """Pick which URLs to submit to Baidu on this push.
+
+    Rule:
+      - Every push includes the 3 must-push URLs (news / about / services SPA
+        hashes on the homepage) — user directive.
+      - Fill remaining slots (up to BAIDU_PUSH_CAP total) with `candidate_urls`,
+        skipping any URL that Baidu already accepted in the last N days.
+      - Order in the payload preserves priority (must-push first, then whatever
+        `get_urls()` ordered by importance).
+    """
+    from datetime import datetime, timedelta, timezone as tz
+
+    selected: List[str] = list(BAIDU_MUST_PUSH)
+    seen = set(selected)
+
+    if db is None:
+        # No cooldown tracking possible → just fill by priority up to cap
+        for u in candidate_urls:
+            if len(selected) >= BAIDU_PUSH_CAP:
+                break
+            if u not in seen:
+                selected.append(u)
+                seen.add(u)
+        return selected
+
+    # Look up which URLs were pushed to Baidu within the cooldown window
+    cutoff = (datetime.now(tz.utc) - timedelta(days=BAIDU_URL_COOLDOWN_DAYS)).isoformat()
+    recent_docs = db.baidu_url_lastpush.find(
+        {"pushed_at": {"$gte": cutoff}},
+        projection={"_id": 0, "url": 1},
+    )
+    recently_pushed = {doc["url"] async for doc in recent_docs}
+
+    # Fill remaining slots
+    for u in candidate_urls:
+        if len(selected) >= BAIDU_PUSH_CAP:
+            break
+        if u in seen:
+            continue
+        if u in recently_pushed:
+            logger.debug("Baidu: skipping %s (pushed within %sd cooldown)", u, BAIDU_URL_COOLDOWN_DAYS)
+            continue
+        selected.append(u)
+        seen.add(u)
+
+    # If everything in `candidate_urls` is in cooldown, respect it — just push
+    # the must-push list this round. Saves quota; those URLs will come out of
+    # cooldown after 3 days and get pushed again then.
+    return selected
+
+
+async def _record_baidu_push(db, urls: List[str], success: bool) -> None:
+    """Save timestamps of URLs successfully accepted by Baidu so cooldown works."""
+    if db is None or not success or not urls:
+        return
+    now = datetime.now(timezone.utc).isoformat()
+    try:
+        for u in urls:
+            await db.baidu_url_lastpush.update_one(
+                {"url": u},
+                {"$set": {"url": u, "pushed_at": now}},
+                upsert=True,
+            )
+    except Exception:
+        logger.exception("Failed to record Baidu URL lastpush timestamps")
+
 
 def get_urls() -> List[str]:
     """Return the canonical list of URLs to submit, in **priority order**.
@@ -127,7 +210,7 @@ def push_to_indexnow(urls: List[str]) -> Dict[str, Any]:
 async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[str, Any]:
     """Push an explicit list of URLs (e.g. publications) to all engines and log.
 
-    Baidu has a strict 10 URLs/day quota → cap baidu_urls at the first 10.
+    Baidu has a strict 10 URLs/day quota → smart selection (see _select_baidu_urls).
     IndexNow accepts up to 10,000/payload so we pass them all.
     """
     if not urls:
@@ -143,7 +226,7 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
         deduped.append(u)
 
     same_host_urls = [u for u in deduped if SITE_DOMAIN in u]
-    baidu_urls = same_host_urls[:10]            # Baidu daily-quota safety
+    baidu_urls = await _select_baidu_urls(db, same_host_urls)
     indexnow_urls = deduped                     # IndexNow has generous quota
     google_urls = same_host_urls[:50]           # Google daily quota ~200; cap per push
 
@@ -161,6 +244,8 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
         push_to_google(google_urls),
         push_to_seznam(same_host_urls),           # Seznam Webmaster reindex API (Czech search)
     ]
+    # Track per-URL Baidu push timestamps so the 3-day cooldown works next round
+    await _record_baidu_push(db, baidu_urls, results[0].get("ok", False))
 
     record: Dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -195,11 +280,11 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         sister_urls = []
 
     indexnow_urls = main_urls + sister_urls   # IndexNow accepts both hosts
-    baidu_urls = main_urls                    # Baidu only accepts apex domain
+    baidu_urls = await _select_baidu_urls(db, main_urls)  # Baidu only accepts apex domain
     google_urls = main_urls                   # Google: same-domain only
 
     logger.info(
-        "SEO push: Baidu=%d (apex only); IndexNow=%d (apex+sister); Google=%d",
+        "SEO push: Baidu=%d (smart-selected under 10/day quota); IndexNow=%d (apex+sister); Google=%d",
         len(baidu_urls), len(indexnow_urls), len(google_urls),
     )
 
@@ -212,6 +297,8 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         push_to_google(google_urls),
         push_to_seznam(main_urls),                # Seznam Webmaster reindex API (Czech search)
     ]
+    # Track per-URL Baidu push timestamps so the 3-day cooldown works next round
+    await _record_baidu_push(db, baidu_urls, results[0].get("ok", False))
 
     record: Dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),

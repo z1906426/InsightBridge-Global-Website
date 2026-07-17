@@ -431,3 +431,21 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - **sitemap.xml**: 9 new `<url>` blocks (idempotent — script strips previous `<!-- 2026-07-17 bonus publications -->` block before inserting) with `changefreq=monthly` + `priority=0.5`. Total `<url>` count now 34.
 - **Curl verification**: all 9 bonus URLs return HTTP 200, correct MIME (`application/pdf` or `application/vnd.openxmlformats-officedocument.wordprocessingml.document`). Playwright screenshot shows the 4 new cards rendering perfectly with proper `data-testid` attributes.
 
+
+### 2026-07-17 (late night) — Google Indexing not actually broken + Baidu smart quota selector
+- **Google Indexing false alarm**: earlier "0 attempts in 30 days" was **a reporting bug in `/api/seo/coverage`**, not a real config issue. The db records engine as `google_indexing` but the coverage endpoint was matching against the shortname `google`. DB inspection showed every daily push since 2026-07-16 returned `HTTP 200, succeeded 8/8` — Google Indexing was silently working all along. **Fixed by normalizing** `google_indexing → google` inside the coverage loop. User uploaded a Service Account JSON (`project-a86653b4-9084-4798-bf0-e4c2c836104d.json`), placed at `/app/backend/secrets/gsc-indexing-sa.json` (mode 600, `/app/backend/secrets/` added to .gitignore); manual push verified `succeeded: 8/8, HTTP 200`.
+- **Baidu real problem = daily quota exhaustion**, not token/URL format. DB inspection of failed pushes shows every 400 has body `{"error":400,"message":"over quota"}`. Baidu Zhanzhang standard-site push quota is 10 URLs/day; we push 8 identical URLs daily → after 1 successful push, subsequent same-day pushes hit quota wall.
+- **User chose Plan B (smart URL selector + must-push list)** with a specific refinement: 3 fixed URLs must be pushed **every** round; other URLs pushed by importance with change-based rotation.
+- **Implemented `_select_baidu_urls()` in `seo_push.py`** with three-tier logic:
+  1. **Always push** the 3 must-push URLs (per user directive 2026-07-17):
+     - `https://insightbridge.global/index.html#news`
+     - `https://insightbridge.global/index.html#about`
+     - `https://insightbridge.global/index.html#services`
+  2. **Fill remaining slots** (up to `BAIDU_PUSH_CAP = 9` — leaves 1-slot buffer under the 10/day quota) with `get_urls()` candidates in priority order.
+  3. **Skip candidates in 3-day cooldown** — a URL that was accepted by Baidu within the last `BAIDU_URL_COOLDOWN_DAYS = 3` days is dropped this round (returned next round after cooldown expires). Cooldown state stored in a new Mongo collection `db.baidu_url_lastpush` — updated only on `push_to_baidu` success (`_record_baidu_push()`) so failed pushes don't accidentally block future retries.
+  4. If everything's in cooldown, we push only the must-push list (3 URLs) — saves quota rather than "topping up" with recently-pushed URLs. Cap is a ceiling, not a floor.
+- **Wired into both entry points**: `run_push_urls` (custom-URL push) and `run_push_and_save` (daily scheduler). Both now record per-URL timestamps after a successful Baidu response.
+- **Tests** — `tests/test_baidu_selector.py` (3 cases · all pass): must-push always first & always included · cooldown filter drops recently-pushed candidates · no-db fallback exercises priority + cap only.
+- **Expected steady-state behavior**: every daily push consumes 3 quota slots (must-push) + up to 6 rotating slots. Over any 3-day window, each of the 8 canonical pages gets re-crawled once, plus the 3 must-push hashes get freshened daily. Total = ~9 URLs/day pushed × 30 days = 270 URL submissions/month against Baidu's daily 10-slot ceiling. We're now safely under quota with room for future content growth.
+- **User will separately request quota increase** from Baidu Ziyuan.baidu.com/dianshi to eventually raise the ceiling from 10/day to 100k/day; smart selector remains valuable even at higher quotas by reducing wasted redundant pushes.
+
