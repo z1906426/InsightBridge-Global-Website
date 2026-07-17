@@ -69,3 +69,29 @@ def test_no_db_falls_back_to_priority_only():
     selected = _run(seo_push._select_baidu_urls(None, candidates))
     assert selected[:3] == seo_push.BAIDU_MUST_PUSH
     assert len(selected) == seo_push.BAIDU_PUSH_CAP
+
+
+def test_prepend_must_push_puts_them_first_and_dedupes():
+    """The MUST_PUSH_URLs are the first 3 entries of every engine payload
+    (IndexNow / Google / Seznam), and duplicates in the caller list are removed."""
+    caller_urls = [
+        "https://insightbridge.global/",
+        "https://insightbridge.global/about.html",
+        seo_push.MUST_PUSH_URLS[0],           # duplicate — should not double
+        "https://insightbridge.global/tools.html",
+    ]
+    out = seo_push._prepend_must_push(caller_urls)
+    # Must-push occupies the first 3 slots, in exact order
+    assert out[:3] == list(seo_push.MUST_PUSH_URLS)
+    # No duplicate of the must-push URL that was also passed in
+    assert out.count(seo_push.MUST_PUSH_URLS[0]) == 1
+    # Caller's other URLs still present, order preserved
+    assert "https://insightbridge.global/" in out
+    assert "https://insightbridge.global/about.html" in out
+    assert "https://insightbridge.global/tools.html" in out
+
+
+def test_prepend_must_push_empty_caller_list():
+    """Empty caller list still yields the 3 must-push URLs."""
+    out = seo_push._prepend_must_push([])
+    assert out == list(seo_push.MUST_PUSH_URLS)

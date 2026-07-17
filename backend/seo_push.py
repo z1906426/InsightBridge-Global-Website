@@ -33,13 +33,35 @@ BAIDU_PUSH_TOKEN = os.environ.get("BAIDU_PUSH_TOKEN", "")
 #   1. ALWAYS push a small must-push set (per user directive 2026-07-17)
 #   2. Rotate through the remainder on a 3-day cooldown per URL
 #   3. Cap total at 9 (leaves 1 quota slot as buffer)
-BAIDU_MUST_PUSH: List[str] = [
+#
+# The MUST_PUSH_URLS list is applied to EVERY engine (Baidu, IndexNow, Google,
+# Seznam) — per user directive 2026-07-17 (later that night): these three
+# SPA sections must be re-crawled on every daily push. Baidu accepts the
+# `#fragment` URLs literally; Google typically treats them as the base
+# `/index.html` and increments its "please re-crawl" signal accordingly.
+MUST_PUSH_URLS: List[str] = [
     f"{SITE_URL}/index.html#news",
     f"{SITE_URL}/index.html#about",
     f"{SITE_URL}/index.html#services",
 ]
+# Alias kept for backwards-compat / tests
+BAIDU_MUST_PUSH = MUST_PUSH_URLS
 BAIDU_URL_COOLDOWN_DAYS = 3
 BAIDU_PUSH_CAP = 9  # leave 1 slot buffer under the 10/day quota
+
+
+def _prepend_must_push(urls: List[str]) -> List[str]:
+    """Return [must-push URLs first, then the caller's list], de-duplicated.
+    Used to guarantee every engine's payload includes MUST_PUSH_URLS while
+    respecting the caller's own priority ordering for everything after."""
+    seen: set[str] = set()
+    out: List[str] = []
+    for u in list(MUST_PUSH_URLS) + list(urls):
+        if u in seen:
+            continue
+        seen.add(u)
+        out.append(u)
+    return out
 
 
 async def _select_baidu_urls(db, candidate_urls: List[str]) -> List[str]:
@@ -227,8 +249,10 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
 
     same_host_urls = [u for u in deduped if SITE_DOMAIN in u]
     baidu_urls = await _select_baidu_urls(db, same_host_urls)
-    indexnow_urls = deduped                     # IndexNow has generous quota
-    google_urls = same_host_urls[:50]           # Google daily quota ~200; cap per push
+    # Every engine gets the must-push URLs prepended (per user directive 2026-07-17)
+    indexnow_urls = _prepend_must_push(deduped)                # IndexNow: generous quota, includes cross-host URLs
+    google_urls = _prepend_must_push(same_host_urls[:47])      # Google: cap 50; leave room for 3 must-push
+    seznam_urls = _prepend_must_push(same_host_urls)           # Seznam: prepend then let its own capper handle
 
     logger.info(
         "SEO push [%s]: Baidu=%d (capped@10), IndexNow=%d, Google=%d",
@@ -242,7 +266,7 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
         push_to_baidu(baidu_urls) if baidu_urls else {"engine": "baidu", "ok": False, "skipped": "no same-host urls"},
         push_to_indexnow(indexnow_urls),
         push_to_google(google_urls),
-        push_to_seznam(same_host_urls),           # Seznam Webmaster reindex API (Czech search)
+        push_to_seznam(seznam_urls),              # Seznam Webmaster reindex API (Czech search)
     ]
     # Track per-URL Baidu push timestamps so the 3-day cooldown works next round
     await _record_baidu_push(db, baidu_urls, results[0].get("ok", False))
@@ -279,9 +303,9 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         logger.exception("Could not load sister-site URLs for SEO push")
         sister_urls = []
 
-    indexnow_urls = main_urls + sister_urls   # IndexNow accepts both hosts
-    baidu_urls = await _select_baidu_urls(db, main_urls)  # Baidu only accepts apex domain
-    google_urls = main_urls                   # Google: same-domain only
+    indexnow_urls = _prepend_must_push(main_urls + sister_urls)   # IndexNow accepts both hosts
+    baidu_urls = await _select_baidu_urls(db, main_urls)          # Baidu: smart-selected, own must-push handling
+    google_urls = _prepend_must_push(main_urls)                   # Google: same-domain only
 
     logger.info(
         "SEO push: Baidu=%d (smart-selected under 10/day quota); IndexNow=%d (apex+sister); Google=%d",
@@ -295,7 +319,7 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         push_to_baidu(baidu_urls),
         push_to_indexnow(indexnow_urls),
         push_to_google(google_urls),
-        push_to_seznam(main_urls),                # Seznam Webmaster reindex API (Czech search)
+        push_to_seznam(_prepend_must_push(main_urls)),   # Seznam Webmaster reindex API (Czech search)
     ]
     # Track per-URL Baidu push timestamps so the 3-day cooldown works next round
     await _record_baidu_push(db, baidu_urls, results[0].get("ok", False))

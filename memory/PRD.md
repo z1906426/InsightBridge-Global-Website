@@ -449,3 +449,19 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - **Expected steady-state behavior**: every daily push consumes 3 quota slots (must-push) + up to 6 rotating slots. Over any 3-day window, each of the 8 canonical pages gets re-crawled once, plus the 3 must-push hashes get freshened daily. Total = ~9 URLs/day pushed × 30 days = 270 URL submissions/month against Baidu's daily 10-slot ceiling. We're now safely under quota with room for future content growth.
 - **User will separately request quota increase** from Baidu Ziyuan.baidu.com/dianshi to eventually raise the ceiling from 10/day to 100k/day; smart selector remains valuable even at higher quotas by reducing wasted redundant pushes.
 
+
+### 2026-07-17 (very late) — Must-push URLs extended to all engines (per user directive)
+- User asked to apply the 3 Baidu must-push URLs to **every** search-engine API (IndexNow / Google Indexing / Seznam), not just Baidu.
+- **Renamed constant** `BAIDU_MUST_PUSH` → `MUST_PUSH_URLS` (kept `BAIDU_MUST_PUSH = MUST_PUSH_URLS` as an alias for backwards-compat).
+- **New helper** `_prepend_must_push(urls)` returns `[must-push URLs first, then caller's list]` de-duplicated so we never send the same URL twice.
+- **Applied to both push flows**:
+  - `run_push_urls` (custom-URL push endpoint): IndexNow / Google / Seznam payloads all wrapped with `_prepend_must_push`. Baidu still uses its own quota-aware `_select_baidu_urls` (which already includes must-push).
+  - `run_push_and_save` (daily scheduler): same treatment.
+- **Google URL cap adjusted** from 50 → 47 same-host URLs, then must-push prepended → total 50 (still under Google's per-push cap). All others accept the full list since they have generous quotas.
+- **Verified via real push**: Baidu 9 URLs · IndexNow 15 URLs · Google Indexing 11 URLs (11 accepted, HTTP 200) · Seznam 10 URLs (10 accepted). For every engine, positions 1-2-3 of the payload are `/index.html#news`, `/index.html#about`, `/index.html#services`.
+- **Note on `#fragment` behavior across engines**:
+  - Baidu: accepts fragments literally (each hash URL counts as 1 quota slot; Baidu's crawler treats them as belonging to the same underlying `/index.html` page and re-crawls it).
+  - Google Indexing: typically ignores fragments (`/index.html#news` treated the same as `/index.html`). Effect for us: Google gets a "please re-crawl `/index.html`" signal 3× per push instead of 1× — reinforces the freshness signal without wasting quota.
+  - IndexNow / Seznam: same as Google — fragments usually stripped or treated as same URL. Same reinforcement effect.
+- **Tests added** — `tests/test_baidu_selector.py` (now 5 cases · all pass): 3 for `_select_baidu_urls` + 2 for `_prepend_must_push` (dedup with duplicate in caller list · empty-caller edge case).
+
