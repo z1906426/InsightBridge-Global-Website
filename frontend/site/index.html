@@ -1184,7 +1184,16 @@ img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-u
             var name = escapeHtml(it.platform || '');
             var note = escapeHtml(it.note || '');
             var url = it.url && /^https?:\/\//i.test(it.url) ? it.url : '';
-            var row = flag + ' <strong>' + name + '</strong> <span>' + note + '</span>';
+            var wb = it.wayback_url && /^https?:\/\//i.test(it.wayback_url) ? it.wayback_url : '';
+            var ts = it.wayback_ts || '';
+            var wbYear = ts.length >= 4 ? ts.slice(0,4) : '';
+            var wbBadge = wb
+              ? ' <a href="' + escapeHtml(wb) + '" target="_blank" rel="noopener nofollow"'
+                + ' title="Archived on Internet Archive Wayback Machine' + (wbYear ? ' (' + wbYear + ')' : '') + '"'
+                + ' style="margin-left:6px;padding:1px 6px;font-size:0.62rem;letter-spacing:0.06em;font-weight:700;background:rgba(10,25,47,0.08);color:#0A192F;border-radius:2px;text-decoration:none;vertical-align:baseline;" '
+                + ' data-testid="wayback-badge">📎 archived</a>'
+              : '';
+            var row = flag + ' <strong>' + name + '</strong> <span>' + note + wbBadge + '</span>';
             return url
               ? '<li><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + row + '</a></li>'
               : '<li>' + row + '</li>';

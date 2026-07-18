@@ -283,6 +283,36 @@ async def press_stats_refresh():
     return await refresh_press_stats(db)
 
 
+@api_router.post("/wayback/archive-now")
+async def wayback_archive_now():
+    """Manually trigger Save Page Now for all main URLs (async)."""
+    import asyncio
+    from wayback import save_pages_now
+    from seo_push import get_urls
+    urls = get_urls()
+    results = await asyncio.to_thread(save_pages_now, urls)
+    record = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "urls_count": len(urls),
+        "ok_count": sum(1 for r in results if r.get("ok")),
+        "results": results,
+        "manual": True,
+    }
+    try:
+        await db.wayback_runs.insert_one(dict(record))
+    except Exception:
+        logger.exception("Failed to persist wayback run record")
+    return record
+
+
+@api_router.get("/wayback/status")
+async def wayback_status():
+    """Show the last N Wayback archive runs."""
+    cursor = db.wayback_runs.find({}, projection={"_id": 0, "results": 0}).sort("timestamp", -1).limit(10)
+    runs = await cursor.to_list(length=10)
+    return {"count": len(runs), "runs": runs}
+
+
 # ====================================================================
 # Main-site RSS feed — writes /app/frontend/site/rss.xml. Search-engine
 # crawlers (Google, Bing, Baidu, Yandex, etc.) can subscribe and re-crawl

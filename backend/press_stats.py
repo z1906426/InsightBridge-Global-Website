@@ -148,6 +148,17 @@ def _fetch_and_parse() -> Optional[Dict[str, Any]]:
             if key in platform_lower:
                 it["note"] = pretty
                 break
+        # Attach Wayback Machine archived snapshot (for the "📎 已存档" badge on
+        # the trust strip). Silently no-op if Wayback is unreachable or the URL
+        # was never archived — the badge simply doesn't render.
+        try:
+            from wayback import check_availability
+            wayback = check_availability(it["url"])
+            if wayback:
+                it["wayback_url"] = wayback["archived_url"]
+                it["wayback_ts"]  = wayback["timestamp"]
+        except Exception:
+            logger.exception("Wayback enrichment skipped for %s", it["url"])
 
     stats["platforms"] = len(ordered)
     return {**stats, "list": ordered}

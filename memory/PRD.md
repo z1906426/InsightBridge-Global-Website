@@ -465,3 +465,22 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
   - IndexNow / Seznam: same as Google — fragments usually stripped or treated as same URL. Same reinforcement effect.
 - **Tests added** — `tests/test_baidu_selector.py` (now 5 cases · all pass): 3 for `_select_baidu_urls` + 2 for `_prepend_must_push` (dedup with duplicate in caller list · empty-caller edge case).
 
+
+### 2026-07-18 — Wayback Machine integration (features A + B)
+- **New module `wayback.py`**:
+  - `check_availability(url)` — Availability API lookup (`archive.org/wayback/available?url=…`); returns `{archived_url, timestamp}` or None.
+  - `save_page_now(url)` — Save Page Now request (`web.archive.org/save/{url}`); returns `{ok, archived_url, status_code}`.
+  - `save_pages_now(urls)` — batches with a 6.5 s pause between requests so anonymous callers stay under Wayback's ~10 req/min rate limit.
+- **Feature A · citation-strip "📎 archived" badges** (`press_stats.py` + `index.html`):
+  - Every time `refresh_press_stats` runs, each citation URL is checked for an existing Wayback snapshot; the `archived_url` and `timestamp` (year) get baked into the stored `press_stats_snapshot.list[i]`.
+  - Frontend citation renderer adds a tiny grey pill "📎 archived" (with `data-testid="wayback-badge"`) after the platform note when `wayback_url` is present. The pill's `title` tooltip shows the archive year, e.g. "Archived on Internet Archive Wayback Machine (2026)". Clicks open the Wayback snapshot in a new tab (with `rel="noopener nofollow"`).
+  - Playwright verified: after seeding a Wayback URL into item #0, the badge appears on "Event Planner News" with the correct href + tooltip.
+- **Feature B · weekly self-archive** (`seo_scheduler.py`):
+  - New APScheduler job `wayback_archive_job` runs every 168 h (weekly) starting 5 min after backend boot.
+  - The URL list = main-site URLs from `get_urls()` **plus** every citation URL in the current `press_stats_snapshot.list`. So over ~2 minutes of paced HTTP calls, both our own pages and the 9-11 external citation URLs get pushed to Wayback. Consequence: over time, the 📎 archived badges will populate automatically for every citation the sister site adds.
+  - Results are persisted to a new Mongo collection `wayback_runs` (`{timestamp, urls_count, ok_count, results, manual?}`) so `/api/wayback/status` can show the last 10 runs.
+- **New endpoints on `server.py`**:
+  - `POST /api/wayback/archive-now` — synchronous manual trigger of the same batch (returns the full result inline).
+  - `GET  /api/wayback/status` — last 10 run summaries.
+- **Sandbox note**: Emergent preview blocks outbound to `web.archive.org` (Save Page Now); `archive.org` (Availability API) is reachable. So Feature A works in preview immediately, Feature B is code-verified but its real network call succeeds only in production (`insightbridge.global`). No code changes needed for production — outbound to `web.archive.org` will just start working after redeploy.
+

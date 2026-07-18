@@ -142,6 +142,59 @@ def start_scheduler(db) -> None:
     except Exception:
         logger.exception("Could not register RSS feed job")
 
+    # Weekly Wayback Machine "Save Page Now" — creates a permanent, third-party
+    # verified archive of our main URLs so we always have a citable snapshot.
+    # Also archives every citation URL from the sister-site press page so the
+    # 📎 archived badges on our trust strip actually populate.
+    try:
+        from wayback import save_pages_now
+        from seo_push import get_urls as _get_main_urls
+
+        async def wayback_job():
+            try:
+                urls: list[str] = list(_get_main_urls())
+                # Add all citation URLs from the latest press_stats snapshot
+                try:
+                    snap = await db.press_stats_snapshot.find_one({"_id": "latest"})
+                    if snap and snap.get("list"):
+                        for it in snap["list"]:
+                            u = it.get("url")
+                            if u and u not in urls:
+                                urls.append(u)
+                except Exception:
+                    logger.exception("Could not append citation URLs to wayback batch")
+
+                # Run the (blocking) HTTP calls in a threadpool so we don't
+                # stall the event loop. The helper already spaces requests
+                # by 6.5s to stay under Wayback's ~10/min anonymous rate.
+                results = await asyncio.to_thread(save_pages_now, urls)
+                ok = sum(1 for r in results if r.get("ok"))
+                logger.info("Wayback archive job: %d/%d URLs snapshotted", ok, len(urls))
+                # Persist a tiny record so /api/wayback/status can show
+                # when the last archive run happened.
+                try:
+                    await db.wayback_runs.insert_one({
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "urls_count": len(urls),
+                        "ok_count": ok,
+                        "results": results,
+                    })
+                except Exception:
+                    logger.exception("Failed to persist wayback run record")
+            except Exception:
+                logger.exception("Wayback archive job failed")
+
+        scheduler.add_job(
+            wayback_job,
+            IntervalTrigger(hours=168),  # weekly
+            id="wayback_archive_job",
+            replace_existing=True,
+            next_run_time=datetime.now(timezone.utc) + timedelta(minutes=5),  # first run 5min after boot
+        )
+        logger.info("Wayback archive job registered — every 168 hours (weekly)")
+    except Exception:
+        logger.exception("Could not register Wayback archive job")
+
     scheduler.start()
     logger.info(
         "SEO scheduler started — recurring every %s hours", PUSH_INTERVAL_HOURS
