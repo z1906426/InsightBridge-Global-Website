@@ -44,6 +44,44 @@ const MIME = {
   '.ppt':  'application/vnd.ms-powerpoint',
 };
 
+// ─── HTTP 410 Gone patterns ─────────────────────────────────────────────────
+// Phantom / malformed URLs from old crawls that Google Search Console keeps
+// reporting as 5xx. Returning an explicit 410 (permanent removal) tells all
+// search engines to drop them from their index and stops the SPA-fallback CDN
+// layer from surfacing them as soft 200s.
+//   Patterns intentionally narrow to avoid blocking any legitimate URL:
+//   - short random alpha-numeric ghost slugs (e.g. /q2vg/, /a1b2/)
+//   - nested duplicates of /media/publications/ (real path is /publications/)
+//   - common WP probes never used on this site
+const GONE_PATTERNS = [
+  /^\/q2vg(\/|$)/i,
+  /^\/media\/publications(\/|$)/i,
+  /^\/wp-admin(\/|$)/i,
+  /^\/wp-login\.php$/i,
+  /^\/xmlrpc\.php$/i,
+];
+
+function isGone(pathname) {
+  for (const rx of GONE_PATTERNS) {
+    if (rx.test(pathname)) return true;
+  }
+  return false;
+}
+
+function sendGone(res) {
+  const body = '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
+    '<title>410 Gone</title><meta name="robots" content="noindex, nofollow">' +
+    '</head><body><h1>410 Gone</h1><p>This resource has been permanently removed.</p>' +
+    '<p><a href="/">Return to home</a></p></body></html>';
+  res.writeHead(410, {
+    'Content-Type': 'text/html; charset=utf-8',
+    'Content-Length': Buffer.byteLength(body),
+    'Cache-Control': 'public, max-age=86400',
+    'X-Robots-Tag': 'noindex, nofollow',
+  });
+  res.end(body);
+}
+
 function safeJoin(root, reqPath) {
   // prevent path traversal
   const decoded = decodeURIComponent(reqPath.split('?')[0]);
@@ -103,6 +141,11 @@ const server = http.createServer((req, res) => {
   // Health check for ingress
   if (pathname === '/healthz') {
     return send(res, 200, { 'Content-Type': 'text/plain' }, 'ok');
+  }
+
+  // 410 Gone — permanently retired phantom URLs (GSC cleanup)
+  if (isGone(pathname)) {
+    return sendGone(res);
   }
 
   // Root → index.html

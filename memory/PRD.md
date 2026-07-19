@@ -484,3 +484,25 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
   - `GET  /api/wayback/status` — last 10 run summaries.
 - **Sandbox note**: Emergent preview blocks outbound to `web.archive.org` (Save Page Now); `archive.org` (Availability API) is reachable. So Feature A works in preview immediately, Feature B is code-verified but its real network call succeeds only in production (`insightbridge.global`). No code changes needed for production — outbound to `web.archive.org` will just start working after redeploy.
 
+
+
+### 2026-02-XX — HTTP 410 Gone for phantom URLs (GSC cleanup)
+- **Problem**: Google Search Console kept surfacing 5xx errors on ghost URLs
+  from old crawls (e.g. `/q2vg/`, nested `/media/publications/…`, WP probes)
+  because the edge CDN was forcing SPA-fallback 200s that then failed downstream.
+- **Fix in `static-server.js`**:
+  - Added `GONE_PATTERNS` (narrow regex list): `/q2vg`, `/media/publications/*`,
+    `/wp-admin/*`, `/wp-login.php`, `/xmlrpc.php`.
+  - `isGone(pathname)` check runs immediately after health check, **before**
+    any file resolution, so an explicit `410 Gone` response is emitted with
+    `X-Robots-Tag: noindex, nofollow` and a minimal HTML body containing a
+    home link. `Cache-Control: public, max-age=86400` — safe to cache; the
+    resource is permanently gone.
+- **Verified via curl** against the production preview URL:
+  - `/q2vg/` → 410 · `/q2vg` → 410 · `/media/publications/anything.pdf` → 410
+  - `/wp-admin/` → 410 · `/wp-login.php` → 410
+  - `/` → 200 · `/about.html` → 200 · `/publications/` → 404 (unchanged legit
+    directory-without-index behavior, not blocked)
+  - Response headers on 410: `x-robots-tag: noindex, nofollow` ✅
+- **User action** (post-deploy): resubmit the affected URLs in GSC → "Validate
+  Fix"; Google will drop them from the index within 1–3 crawls.
