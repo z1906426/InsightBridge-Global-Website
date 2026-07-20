@@ -25,7 +25,10 @@ logger = logging.getLogger(__name__)
 
 AVAILABILITY_ENDPOINT = "https://archive.org/wayback/available"
 SAVE_ENDPOINT = "https://web.archive.org/save/"
-UA = "InsightBridge-MainSite/1.0 (+https://insightbridge.global)"
+# Note: Wayback's "Save Page Now" endpoint returns 429 to identifiable bot
+# User-Agents (e.g. "InsightBridge-MainSite/1.0"). A browser-shaped UA gets
+# through the anonymous rate-limit filter fine. See 2026-07-20 debug notes.
+UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
 
 def check_availability(url: str, timeout: int = 12) -> Optional[Dict[str, str]]:

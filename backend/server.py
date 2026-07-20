@@ -285,15 +285,31 @@ async def press_stats_refresh():
 
 @api_router.post("/wayback/archive-now")
 async def wayback_archive_now():
-    """Manually trigger Save Page Now for all main URLs (async)."""
+    """Manually trigger Save Page Now for all main URLs + every citation URL
+    from the latest press_stats snapshot. Mirrors the weekly scheduled job so
+    a fresh press-stats refresh can be pushed to Internet Archive on demand."""
     import asyncio
     from wayback import save_pages_now
     from seo_push import get_urls
-    urls = get_urls()
+    urls: list[str] = list(get_urls())
+    main_count = len(urls)
+    # Append citation URLs from the latest press_stats_snapshot (deduped)
+    try:
+        snap = await db.press_stats_snapshot.find_one({"_id": "latest"})
+        if snap and snap.get("list"):
+            for it in snap["list"]:
+                u = it.get("url")
+                if u and u not in urls:
+                    urls.append(u)
+    except Exception:
+        logger.exception("Could not append citation URLs to wayback batch")
+    citations_count = len(urls) - main_count
     results = await asyncio.to_thread(save_pages_now, urls)
     record = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "urls_count": len(urls),
+        "main_urls_count": main_count,
+        "citation_urls_count": citations_count,
         "ok_count": sum(1 for r in results if r.get("ok")),
         "results": results,
         "manual": True,
