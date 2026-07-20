@@ -150,6 +150,26 @@
   </url>
 
 
+  <!-- Regional Reprint Kits — 10-language hub (index page) -->
+  <url>
+    <loc>https://insightbridge.global/press-kit/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/press-kit/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/"/>
+  </url>
+
   <!-- Regional Reprint Kit: AR -->
   <url>
     <loc>https://insightbridge.global/press-kit/ar.html</loc>

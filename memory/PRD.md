@@ -539,3 +539,53 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
   4. Event Planner News citation returns 500 (external site issue) — 📎 archived Wayback fallback works; user to decide if we remove the live link.
 
   Fix"; Google will drop them from the index within 1–3 crawls.
+
+
+### 2026-07-20 — Multilingual Reprint Kits + AI-crawler robots.txt
+- **Trigger**: User audit found the 10 press-kit language pages were "island
+  pages" (in sitemap but no on-site link path) and current robots.txt had an
+  orphan `Allow: /press-kit/` line + no explicit AI-bot rules.
+- **`robots.txt` rewrite** (`/app/frontend/site/robots.txt`):
+  - Removed orphan `Allow: /press-kit/` (was attached to Applebot group, so
+    per RFC it was silently ignored).
+  - Added 14 dedicated AI-bot User-agent groups: GPTBot, OAI-SearchBot,
+    ChatGPT-User, ClaudeBot, Claude-User, Claude-SearchBot, PerplexityBot,
+    Perplexity-User, meta-externalagent, Meta-ExternalFetcher, Amazonbot,
+    Applebot-Extended, Google-Extended, CCBot. All `Allow: /`.
+  - `Google-Extended` / `Applebot-Extended` currently permit AI training use;
+    can be flipped to `Disallow: /` if training opt-in is later reversed.
+- **10-language entry strip** — added to end-of-body on:
+  - `index.html` (English footer strip, above `<footer>`)
+  - `zh.html` (Chinese footer strip, above `<div class="zh-footer">`)
+  - Component: `<aside data-testid="lang-strip-footer">` with 10 hreflang
+    links + "All 10 →" hub link, brand-color style block (#7A1F2B / #DAA54E
+    / #0A192F #FFFDF7), zero JS, self-contained.
+- **New hub page** `/app/frontend/site/press-kit/index.html`:
+  - Proper HTML5 with canonical, robots meta, full hreflang cluster (10 langs
+    + x-default → home), OG/Twitter, JSON-LD `CollectionPage` linking to all
+    10 sub-pages as `hasPart`.
+  - Body: eyebrow crumb → H1 → lede → 10-card grid → reprint terms block
+    (byline, source link, notification) → contact email → back-link.
+  - `data-testid="press-kit-language-grid"` for testing.
+- **Sitemap update** (`/app/frontend/site/sitemap.xml`): inserted new
+  `<url>` for `https://insightbridge.global/press-kit/` before the 10
+  language URLs, priority 0.7, with full hreflang cluster.
+- **Verified via curl + Playwright**:
+  - `/press-kit/` (and `/press-kit` without slash) → 200
+  - Hub renders all 10 language cards + reprint terms
+  - Homepage lang-strip `data-testid="lang-strip-footer"` present with 11
+    links; label "🌐 2027 White Paper · Regional Reprint Kits"
+  - All 10 language pages still 200
+  - `robots.txt` on-disk has 22 User-agent lines (7 traditional + 14 AI +
+    the wildcard).
+- **Note on preview vs production**: the Emergent preview subdomain is
+  behind Cloudflare's AI Audit / AI Crawl Control which **prepends** an
+  additional AI-bot block to the served robots.txt (Bytespider,
+  CloudflareBrowserRenderingCrawler, etc.). Our file is served intact.
+  On production `insightbridge.global` the CF zone does not (yet) inject
+  extras, so the redeployed file will be exactly as authored.
+- **Not implemented (out of scope for this session)**:
+  - Version C snippet for the sister site `intelligence.insightbridge.global`
+    — that repo is a separate Emergent project.
+  - The "jobTitle: Founder & CEO" JSON-LD reminder for future O-1 title
+    alignment across the 10 language pages.

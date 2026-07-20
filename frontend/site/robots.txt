@@ -1,5 +1,5 @@
 # robots.txt for InsightBridge Global LLC — https://insightbridge.global
-# Last updated: 2026-07-17
+# Last updated: 2026-07-20
 # Policy: Open crawling of editorial content. Binary archives, backups and
 # database dumps are hard-blocked (any accidental upload will not be indexed).
 
@@ -43,7 +43,55 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# Regional Reprint Kits — explicitly welcomed for AI + traditional bots
-Allow: /press-kit/
+# --- AI crawlers: explicit welcome (each bot needs its own User-agent group) ---
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Amazon Alexa
+User-agent: Amazonbot
+Allow: /
+
+# Apple AI training (separate from Applebot search crawler)
+User-agent: Applebot-Extended
+Allow: /
+
+# Google AI training opt-in token (controls Gemini/AI Overviews training use)
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
 
 Sitemap: https://insightbridge.global/sitemap.xml
