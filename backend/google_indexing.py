@@ -29,10 +29,11 @@ INDEXING_SCOPE = "https://www.googleapis.com/auth/indexing"
 INDEXING_ENDPOINT = "https://indexing.googleapis.com/v3/urlNotifications:publish"
 
 SA_JSON_PATH = os.environ.get("GOOGLE_INDEXING_SA_JSON_PATH", "").strip()
+SA_JSON_CONTENT = os.environ.get("GOOGLE_INDEXING_SA_JSON", "").strip()
 
 
 def _is_configured() -> bool:
-    return bool(SA_JSON_PATH) and os.path.exists(SA_JSON_PATH)
+    return bool(SA_JSON_CONTENT) or (bool(SA_JSON_PATH) and os.path.exists(SA_JSON_PATH))
 
 
 def _get_access_token() -> str:
@@ -40,9 +41,16 @@ def _get_access_token() -> str:
     from google.oauth2 import service_account  # lazy import
     from google.auth.transport.requests import Request
 
-    creds = service_account.Credentials.from_service_account_file(
-        SA_JSON_PATH, scopes=[INDEXING_SCOPE]
-    )
+    if SA_JSON_CONTENT:
+        # Preferred: full service-account JSON via env var (no secret file in git)
+        import json as _json
+        creds = service_account.Credentials.from_service_account_info(
+            _json.loads(SA_JSON_CONTENT), scopes=[INDEXING_SCOPE]
+        )
+    else:
+        creds = service_account.Credentials.from_service_account_file(
+            SA_JSON_PATH, scopes=[INDEXING_SCOPE]
+        )
     creds.refresh(Request())
     if not creds.token:
         raise RuntimeError("Failed to obtain Google Indexing access token")
