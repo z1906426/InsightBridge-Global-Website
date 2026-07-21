@@ -150,6 +150,17 @@
   </url>
 
 
+  <!-- Vision 2030 mirror portal (canonical → sister site) -->
+  <url>
+    <loc>https://insightbridge.global/vision-2030-predictions-vs-reality/</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/vision-2030-predictions-vs-reality/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://insightbridge.global/vision-2030-predictions-vs-reality/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/vision-2030-predictions-vs-reality"/>
+  </url>
+
   <!-- Regional Reprint Kits — 10-language hub (index page) -->
   <url>
     <loc>https://insightbridge.global/press-kit/</loc>

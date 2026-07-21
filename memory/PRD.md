@@ -589,3 +589,46 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
     — that repo is a separate Emergent project.
   - The "jobTitle: Founder & CEO" JSON-LD reminder for future O-1 title
     alignment across the 10 language pages.
+
+
+### 2026-07-21 — Sister-site SEO sync execution (4 of 5 tasks)
+- **Trigger**: User forwarded a memo prepared by the sister-site agent listing
+  5 sync actions. Task §5 turned out to already be done; §1 turned out to
+  require no action.
+- **§1 · Cloudflare robots.txt override diagnostic** —
+  `curl https://insightbridge.global/robots.txt` returned 0 lines matching
+  `Bytespider` / `CloudflareBrowserRenderingCrawler`. **CF override is NOT
+  active on production**, so nothing to disable. (Emergent's preview
+  subdomain does inject them; production is clean.)
+- **§2 · Vision 2030 mirror portal** —
+  `/app/frontend/site/vision-2030-predictions-vs-reality/index.html` created
+  from the user-supplied HTML. Three groups of relative links rewritten to
+  absolute sister-site URLs (author page, Vision 2030 PDF, 2027 whitepaper
+  PDF). A `data-testid="mirror-portal-notice"` bar was inserted at the top
+  of `<body>` with a prominent link to the canonical URL on the sister site.
+  Canonical / `og:url` intact → search engines will consolidate to sister
+  site while main site gets an extra crawlable ranking surface.
+- **§3 · Regional Reprint Kits card on `about.html`** — Version B card
+  (larger, brand-tinted, `data-testid="reprint-kits-card"`) inserted right
+  before `<footer class="about-page-footer">`. Grid of 10 languages, contact
+  email, "See all 10 languages →" link to the `/press-kit/` hub built on
+  2026-07-20.
+- **§4 · Person + Organization JSON-LD cross-links** — On `index.html`:
+  - `Person.sameAs[0]` now = `https://intelligence.insightbridge.global/authors/dr-tong-yin`
+  - `Organization.sameAs[0]` now = `https://intelligence.insightbridge.global`
+  - Existing `subOrganization` link to intelligence was already there;
+    this makes the bidirectional cross-link explicit so Google's Knowledge
+    Graph pipeline consolidates the two domains into one entity.
+- **§5 · Title-tag brand suffix** — Audit showed all 7 core HTML pages
+  already carry "InsightBridge Global" or "InsightBridge Global LLC" in
+  the `<title>`. No changes needed. (Only exception: the Naver webmaster
+  verification stub file has no title — correct, must stay blank.)
+- **Sitemap update** — Added `/vision-2030-predictions-vs-reality/`
+  (priority 0.8, `x-default` → sister-site canonical) before the press-kit
+  cluster.
+- **Verified via curl + Playwright**:
+  - `/vision-2030-predictions-vs-reality/` → 200 · notice bar present
+  - Zero broken relative links after rewrite
+  - `about.html` renders Reprint Kits card with 10 language cells
+  - `index.html` Person and Organization JSON-LD each carry the sister-site
+    URL in `sameAs[0]`.
