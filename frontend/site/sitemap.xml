@@ -150,6 +150,14 @@
   </url>
 
 
+  <!-- Tourism & Hotel Morning Briefing · Issue #67 (2026-07-20) -->
+  <url>
+    <loc>https://insightbridge.global/publications/tourism-hotel-morning-briefing-2026-07-20.html</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Vision 2030 mirror portal (canonical → sister site) -->
   <url>
     <loc>https://insightbridge.global/vision-2030-predictions-vs-reality/</loc>

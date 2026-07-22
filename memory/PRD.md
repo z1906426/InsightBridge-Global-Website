@@ -662,3 +662,21 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - **Method**: `find + perl -i -pe s/…/…/g` sweeps.
 - **Verified**: all modified pages return HTTP 200, every JSON-LD block parses,
   and audit confirms zero remaining occurrences of the old strings.
+
+
+### 2026-07-22 — Deployment Guide v2 addendum (main-site 5 items) + Briefing #67
+- §10 IndexNow key `/0b86b54984314544b1c91d6b32d71028.txt` (32 B, text/plain) ✅
+- §11 Naver verify HTML — already in place ✅
+- §12 3 DBA PDFs at `/legal/` (Filing IDs 2026-002014508 / -021493 / -021590) ✅
+- §13 Org JSON-LD — `alternateName[4]` + `identifier[3]` (PropertyValue for
+  each DBA) + `sameAs` extended by 3 wyobiz.wyo.gov Filing URLs ✅
+- §14 llms.txt — appended "Legal Registrations" section (4 filing IDs) ✅
+- Bonus: Person `recognizingOrganization` → `recognizedBy` (Schema.org-valid),
+  added Auburn / EIU official URLs.
+- **Briefing Issue #67** — curated public HTML at
+  `/publications/tourism-hotel-morning-briefing-2026-07-20.html` with
+  NewsArticle JSON-LD, bilingual, sources cited. Full internal 602-line
+  brief archived to `/app/memory/briefing-67-internal-full-20260720.md`
+  (not published, per user's Option 3A). Homepage News grid card
+  `data-testid="news-card-briefing-67"` inserted. sitemap.xml updated.
+- All 8 curl verifications pass; Playwright screenshots confirm rendering.

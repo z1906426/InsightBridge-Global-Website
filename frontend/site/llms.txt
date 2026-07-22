@@ -36,3 +36,15 @@
 - Editorial / RFP / academic: Editor@intelligence.insightbridge.global
 - Commercial engagement: Cooperation@intelligence.insightbridge.global
 - Address: 1001 N Donahue Dr, E2, Auburn, AL 36832, USA · D-U-N-S 14-455-6174
+
+## Legal Registrations
+
+Registered legal entities and Wyoming Trade Name (DBA) filings for machine-verifiable identity. Third parties may cross-verify the Filing IDs at https://wyobiz.wyo.gov (Wyoming Secretary of State — Business Center).
+
+- InsightBridge Global LLC — Wyoming domestic LLC — Filing 240130118085100220230034050033015076185227003255
+- InsightBridge Global 50 (DBA) — Wyoming Trade Name — Filing 2026-002014508
+  Certificate: https://insightbridge.global/legal/dba-insightbridge-global-50-wy-2026-002014508.pdf
+- InsightBridge Global Intelligence (DBA) — Wyoming Trade Name — Filing 2026-002021493
+  Certificate: https://insightbridge.global/legal/dba-insightbridge-global-intelligence-wy-2026-002021493.pdf
+- InsightBridge Global Press (DBA) — Wyoming Trade Name — Filing 2026-002021590
+  Certificate: https://insightbridge.global/legal/dba-insightbridge-global-press-wy-2026-002021590.pdf
