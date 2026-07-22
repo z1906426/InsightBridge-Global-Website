@@ -632,3 +632,20 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
   - `about.html` renders Reprint Kits card with 10 language cells
   - `index.html` Person and Organization JSON-LD each carry the sister-site
     URL in `sameAs[0]`.
+
+
+### 2026-07-21 — GEO deployment package · main-site 3 tasks
+- **§1 · `/llms.txt` (P0)** — Copied `files/llms_main.txt` → `/app/frontend/site/llms.txt`
+  (38 lines / 3,996 B). Preview curl: HTTP 200 `text/plain; charset=utf-8`.
+- **§2 · JSON-LD `@id` anchors (P0 · key GEO stitching)** — Added to `index.html`:
+  - Line 165: `Person.@id = "https://insightbridge.global/#dr-tong-yin"`
+  - Line 230: `Organization.@id = "https://insightbridge.global/#org"`
+  Sister-site's 97 articles now cite `author.@id` / `publisher.@id` at these
+  anchors → search engines will consolidate the two domains as one entity.
+- **§3 · Chinese FAQPage JSON-LD in `zh.html` (P2)** — 4-question block
+  (殷彤博士是谁 / InsightBridge Global 是做什么的 / POLARIS 定价引擎 / 家园模型)
+  inserted in `<head>` for Baidu / Kimi / 豆包 citation.
+- **Verifier** (`geo_verify.py`) currently 8/15 — the 3 main-site FAILs are all
+  because the script hits production `insightbridge.global` which hasn't been
+  redeployed yet. Preview URL has all 3 anchors verified. Post-deploy the
+  score should jump to 11/15 (remaining 4 fails belong to the sister site).

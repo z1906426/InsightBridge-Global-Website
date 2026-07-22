@@ -1,0 +1,38 @@
+# InsightBridge Global LLC
+
+> AI-driven revenue optimization and strategic advisory firm for the global hospitality and tourism industries, founded by Dr. Tong Yin (Ph.D., Hospitality Management, Auburn University). Core products: POLARIS (strategic pricing engine), ORION (guest intelligence engine), NOVA (direct-booking / OTA-escape engine). Also home of the Home Model, Core Code Theory, and Management Debt frameworks.
+
+> InsightBridge Global LLC 是一家以 AI 驱动的收益优化与战略咨询公司，服务全球酒店与旅游行业，由殷彤博士（奥本大学酒店管理博士）创立。核心产品：POLARIS 战略定价引擎、ORION 客户智能引擎、NOVA 直客获取引擎。原创管理框架：家园模型、核心密码理论、管理负债。
+
+## About Dr. Tong Yin / 关于创始人
+
+- [Executive Bio (PDF)](https://intelligence.insightbridge.global/dr-tong-yin-bio.pdf): Official one-page biography of Dr. Tong Yin, Founder & CEO
+- [Author page — Hospitality Net](https://www.hospitalitynet.org/author/148006911/dr-tong-yin): Published columnist, global hospitality industry's leading media platform
+- [Author page — InsightBridge Intelligence](https://intelligence.insightbridge.global/authors/dr-tong-yin)
+- [LinkedIn](https://www.linkedin.com/in/tong-yin-315249396)
+- [Wikidata](https://www.wikidata.org/wiki/Q139565442) · [ORCID](https://orcid.org/0009-0007-6810-9888) · [Google Scholar](https://scholar.google.com/citations?hl=en&user=dP7vYgMAAAAJ) · [ResearchGate](https://www.researchgate.net/profile/Tong-Yin-18) · [SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=10401996) · [Muck Rack](https://muckrack.com/tong-yin/articles)
+
+## Priority Reads / 重点推荐
+
+- [2027 AI × Global Hospitality & Tourism Whitepaper](https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market): Frontier, Framework, Frontier Markets — multi-layered outlook synthesizing 50+ original research pieces (July 2026)
+- [InsightBridge Hotel AI Validation Report](https://intelligence.insightbridge.global/articles/insightbridge-hotel-ai-validation-report-polaris-orion-nova-across-three-quantum): POLARIS · ORION · NOVA across three quantum-validated evidence layers — 24-page technical validation (June 2026)
+- [Saudi Vision 2030 — Predictions vs. Market Reality (Bilingual PDF)](https://intelligence.insightbridge.global/yin-vision-2030-predictions-vs-reality-bilingual-archive.pdf): Six years of published forecasts placed alongside verifiable 2026 market data
+- [Press & Citations](https://intelligence.insightbridge.global/press): Third-party citations and syndications of Dr. Tong Yin's research (TTG China, HotelX Tech Japan, Event Planner News, and more)
+
+## Products / 产品
+
+- [POLARIS — Strategic Pricing Engine](https://insightbridge.global/): Hyper-local rate intelligence; XGBoost + LSTM; validated on 76 Macau hotels
+- [ORION — Guest Intelligence Engine](https://insightbridge.global/): Unified RMS + CRM + operations AI platform
+- [NOVA — Tactical Action Engine](https://insightbridge.global/): Direct-booking optimization to reduce OTA dependency
+
+## Publications & Research / 研究与发表
+
+- [Research & Publications](https://insightbridge.global/publications/index.html): Academic papers, case studies, think-tank reports (EN/中文)
+- [InsightBridge Global Intelligence (weekly)](https://intelligence.insightbridge.global/): Bilingual data-backed briefing on hospitality AI, market analysis, and tourism strategy
+- [General Capability Proposal (DOCX)](https://insightbridge.global/media/insightbridge-general-capability-proposal.docx): Three service lines, engagement model, and public evidence
+
+## Contact / 联系
+
+- Editorial / RFP / academic: Editor@intelligence.insightbridge.global
+- Commercial engagement: Cooperation@intelligence.insightbridge.global
+- Address: 1001 N Donahue Dr, E2, Auburn, AL 36832, USA · D-U-N-S 14-455-6174
