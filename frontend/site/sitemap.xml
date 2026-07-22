@@ -150,6 +150,32 @@
   </url>
 
 
+  <!-- Legal Registrations & Trade Names -->
+  <url>
+    <loc>https://insightbridge.global/legal/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/legal/dba-insightbridge-global-50-wy-2026-002014508.pdf</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/legal/dba-insightbridge-global-intelligence-wy-2026-002021493.pdf</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/legal/dba-insightbridge-global-press-wy-2026-002021590.pdf</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
   <!-- Tourism & Hotel Morning Briefing · Issue #67 (2026-07-20) -->
   <url>
     <loc>https://insightbridge.global/publications/tourism-hotel-morning-briefing-2026-07-20.html</loc>
