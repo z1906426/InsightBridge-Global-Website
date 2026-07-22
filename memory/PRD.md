@@ -649,3 +649,16 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
   because the script hits production `insightbridge.global` which hasn't been
   redeployed yet. Preview URL has all 3 anchors verified. Post-deploy the
   score should jump to 11/15 (remaining 4 fails belong to the sister site).
+
+
+### 2026-07-21 — Full-site jobTitle alignment for O-1 material
+- **Goal**: every occurrence of Dr. Tong Yin's title on the main site is now
+  exactly one canonical string per language, per O-1 material standard.
+- **Before**: 6 distinct strings (JSON-LD 16 places + visible 30+ places).
+- **After**:
+  - English: `Founder, & Chief Scientist` — 45 places
+    (16 JSON-LD + 17 HTML-escaped visible + 12 meta / license raw `&`)
+  - Chinese: `创始人兼首席科学家` — 12 places (visible copy)
+- **Method**: `find + perl -i -pe s/…/…/g` sweeps.
+- **Verified**: all modified pages return HTTP 200, every JSON-LD block parses,
+  and audit confirms zero remaining occurrences of the old strings.
