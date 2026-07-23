@@ -96,15 +96,29 @@ function send(res, code, headers, body) {
   if (body) res.end(body); else res.end();
 }
 
-function serveFile(filePath, res, reqMethod) {
+function isPreviewHost(hostHeader) {
+  // Emergent preview subdomains — should NOT be indexed by search engines
+  // to avoid competing with the production `insightbridge.global` domain.
+  if (!hostHeader) return false;
+  const h = String(hostHeader).toLowerCase();
+  return h.endsWith('.preview.emergentagent.com')
+      || h.endsWith('.preview.static.emergentagent.com')
+      || h.includes('.preview.emergentagent.');
+}
+
+function serveFile(filePath, res, reqMethod, hostHeader) {
   fs.stat(filePath, (err, stat) => {
     if (err || !stat) return send(res, 404, { 'Content-Type': 'text/plain' }, 'Not Found');
     if (stat.isDirectory()) {
       // try index.html
-      return serveFile(path.join(filePath, 'index.html'), res, reqMethod);
+      return serveFile(path.join(filePath, 'index.html'), res, reqMethod, hostHeader);
     }
     const ext = path.extname(filePath).toLowerCase();
     const type = MIME[ext] || 'application/octet-stream';
+    // Preview subdomains are NOT for public consumption — block indexing
+    const robotsTag = isPreviewHost(hostHeader)
+      ? 'noindex, nofollow'
+      : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
     const headers = {
       'Content-Type': type,
       'Content-Length': stat.size,
@@ -113,8 +127,8 @@ function serveFile(filePath, res, reqMethod) {
       'X-Frame-Options': 'SAMEORIGIN',
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Permissions-Policy': 'geolocation=(), microphone=(), camera=(), payment=(), usb=()',
-      // SEO: explicitly tell crawlers everything is fair game
-      'X-Robots-Tag': 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+      // SEO: explicit robots directive (production = index; preview = noindex)
+      'X-Robots-Tag': robotsTag,
       'Referrer-Policy': 'strict-origin-when-cross-origin',
     };
     // ─── PDF-specific headers (per AI-crawler optimization memo 2026-07-17) ───
@@ -150,7 +164,7 @@ const server = http.createServer((req, res) => {
 
   // Root → index.html
   if (pathname === '/' || pathname === '') {
-    return serveFile(path.join(ROOT, 'index.html'), res, req.method);
+    return serveFile(path.join(ROOT, 'index.html'), res, req.method, req.headers.host);
   }
 
   const filePath = safeJoin(ROOT, pathname);
@@ -158,13 +172,13 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stat) => {
     if (!err && stat) {
-      return serveFile(filePath, res, req.method);
+      return serveFile(filePath, res, req.method, req.headers.host);
     }
     // Try with .html appended (clean URLs)
     const withHtml = filePath + '.html';
     fs.stat(withHtml, (err2, stat2) => {
       if (!err2 && stat2 && stat2.isFile()) {
-        return serveFile(withHtml, res, req.method);
+        return serveFile(withHtml, res, req.method, req.headers.host);
       }
       return send(res, 404, { 'Content-Type': 'text/plain' }, 'Not Found');
     });
