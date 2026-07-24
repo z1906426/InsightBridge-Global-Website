@@ -1,0 +1,34 @@
+{
+  "verdict": "fixed",
+  "user_reported_bug": "线上实测：中文名没上线（旧译名「全球洞察」还在）",
+  "summary": "No relevant testing skill found. Focused verification inspected the index.html diff/source, reran the static preview verification script, and browser-tested the preview homepage Chinese language flow to the Intelligence section. The old standalone translation is absent, the duplicate 洞见桥洞见桥 is absent, and the visible section title now reads exactly 'InsightBridge Global Intelligence 洞见桥全球洞察'.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/tests/verify_static_translation_fix.py",
+    "/app/test_reports/bug_verification_4.json",
+    "/app/test_reports/iteration_4.json"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [
+    "/app/test_reports/bug_verification_4.json",
+    "/app/test_reports/iteration_4.json"
+  ],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "100%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Preview URL from /app/frontend/.env: https://insightbridge-web.preview.emergentagent.com. Static script results: index_new_cn_exact_count=6, index_standalone_old_count=0, index_lone_english_nav_count=0, index_full_english_span_count=3, index_lab_new_count=2, index_lab_old_count=0, index_duplicate_bad_cn_count=0, about_standalone_old_count=0, zh_standalone_old_count=0. Browser DOM and visible Chinese language-switch check matched the expected Intelligence title.",
+  "rca_of_the_issue": "Prior iteration had a targeted duplicated-prefix regression at #page-intelligence .section-title .lang-cn. The current diff changes only that line from 'InsightBridge Global Intelligence 洞见桥洞见桥全球洞察' to 'InsightBridge Global Intelligence 洞见桥全球洞察', which the preview UI now renders correctly. No APIs were mocked or involved."
+}
