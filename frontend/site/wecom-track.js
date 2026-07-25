@@ -98,7 +98,7 @@
     '#publications': 'Publications — 出版研究',
     '#cases':        'Case Studies',
     '#tourism':      'Tourism Strategy',
-    '#intelligence': 'Intelligence — 全球洞察',
+    '#intelligence': 'Intelligence — 洞见桥全球洞察',
     '#tools':        'Tools — AI Calculators',
     '#contact':      'Contact',
   };
