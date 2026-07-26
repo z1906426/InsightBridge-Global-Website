@@ -3,13 +3,18 @@
 > ## 🚨 AGENT OPERATING RULES (READ FIRST — 用户强制要求)
 >
 > **Rule #1 · Pull-before-Save 铁律**
-> 在任何"Save to GitHub"、部署、Re-publish、或告知用户去发布之前，**第一件事必须先从 GitHub 拉最新代码**：
+> 在任何"Save to GitHub"、部署、Re-publish、或告知用户去发布之前，**第一件事必须先从 GitHub 拉最新代码**。
 >
+> 有两个工具已经安装到位（用户请求，2026-02）：
+>
+> - **手动检查**：`/app/scripts/pre-save-check.sh` — 一键 fetch，自动 fast-forward pod，diverged 时报错并给出复位命令。Agent 在提示用户 Save/Re-publish 之前应先跑这个。
+> - **自动兜底**：`/app/.git/hooks/pre-push` — 在 push 时自动 fetch，如果远端有新 commit 就 fast-forward，diverged 就中止 push。从源头掐掉 `conflict_*` 分支的产生。
+>
+> 手动等价命令：
 > ```bash
 > cd /app && git fetch origin main && git reset --hard origin/main
 > ```
 >
-> 拉完、`git status` 干净、必要文件 grep 通过之后，才能提示用户去 Save/Deploy/Re-publish。
 > 原因：Emergent 平台会用 stale pod snapshot 覆盖 GitHub，且如果 pod ↔ main 不同步，"Save to GitHub" 会产生 `conflict_*` 分支需要用户手工合并（已发生过多次）。
 >
 > **Rule #2 · robots.txt 不要碰**
