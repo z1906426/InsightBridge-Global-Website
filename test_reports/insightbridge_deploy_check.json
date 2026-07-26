@@ -1,0 +1,119 @@
+{
+  "base": "https://insightbridge-web.preview.emergentagent.com",
+  "pages": {
+    "/": {
+      "status": 200,
+      "bytes": 407403,
+      "error": null,
+      "cache_control": "no-store, no-cache, must-revalidate",
+      "server": "cloudflare"
+    },
+    "/index.html": {
+      "status": 200,
+      "bytes": 407403,
+      "error": null,
+      "cache_control": "no-store, no-cache, must-revalidate",
+      "server": "cloudflare"
+    },
+    "/zh.html": {
+      "status": 200,
+      "bytes": 32527,
+      "error": null,
+      "cache_control": "no-store, no-cache, must-revalidate",
+      "server": "cloudflare"
+    },
+    "/about.html": {
+      "status": 200,
+      "bytes": 27325,
+      "error": null,
+      "cache_control": "no-store, no-cache, must-revalidate",
+      "server": "cloudflare"
+    }
+  },
+  "same_index_root_prefix": true,
+  "root_hash": -8906243252833064033,
+  "index_hash": 8328002945309820164,
+  "checks": [
+    {
+      "name": "homepage_status_200",
+      "passed": true,
+      "evidence": {
+        "root_status": 200,
+        "index_status": 200,
+        "root_content_type": "text/html; charset=utf-8",
+        "index_content_type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "name": "index_defined_term_set",
+      "passed": true,
+      "evidence": {
+        "defined_term_set_count": 6,
+        "has_vocabulary_id": true
+      }
+    },
+    {
+      "name": "zh_defined_term_set",
+      "passed": true,
+      "evidence": {
+        "defined_term_set_count": 6,
+        "has_vocabulary_id": true
+      }
+    },
+    {
+      "name": "index_required_contact_term_faq_anchor_ids",
+      "passed": false,
+      "evidence": {
+        "required_home_anchors": [
+          "contact",
+          "term",
+          "faq"
+        ],
+        "missing_home_anchors": [
+          "term",
+          "faq"
+        ],
+        "present_required_home_anchors": [
+          "contact"
+        ]
+      }
+    },
+    {
+      "name": "about_person_anchor_and_identity_card",
+      "passed": true,
+      "evidence": {
+        "person_in_ids": true,
+        "has_ai_synthesis_card_text": true,
+        "has_identity_label": true
+      }
+    },
+    {
+      "name": "about_reprint_kits_id_block",
+      "passed": false,
+      "evidence": {
+        "reprint_id_in_ids": false,
+        "has_data_testid_reprint_kits_card": true,
+        "note": "Requirement asked for id=\"reprint-kits-card\"; data-testid alone is not the same HTML fragment anchor."
+      }
+    },
+    {
+      "name": "index_person_org_jsonld_anchor_fragments_resolve",
+      "passed": true,
+      "evidence": {
+        "jsonld_fragment_ids_seen": [
+          "dr-tong-yin",
+          "org",
+          "vocabulary"
+        ],
+        "index_anchor_ids_intersection": [
+          "dr-tong-yin",
+          "org",
+          "vocabulary"
+        ],
+        "missing_known_person_org_fragments": [],
+        "all_missing_jsonld_fragments_on_index": []
+      }
+    }
+  ],
+  "all_passed": false
+}
