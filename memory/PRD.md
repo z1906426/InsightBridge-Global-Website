@@ -725,3 +725,35 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - 简体中文校验的正则过紧（`繁` 误报）— 建议改用完整 traditional-only Unicode range
 - 若未来主站改 slug（重命名文件），aliases 字典可通过 populate 脚本自动填
 
+
+
+---
+
+## Status — 2026-02 · Publications GEO/SEO 移植（30 篇 landing pages）
+
+**背景**: 用户请求把姐妹站的 GEO/SEO 升级复刻到主站 `publications/` 目录的 30 份 PDF/DOCX 论文。因为它们是二进制文件，唯一做法是**为每份生成 HTML landing page**。
+
+**用户选择** (2026-02): A1（30 份全做）· b2（kebab-case slug）· c（完整元数据 + 卡片 + PDF 嵌入 + 引用格式 + 交叉链接）· d1（写入 geo_fields.json + 通过 /api/articles/{slug}/ai-tldr 提供）· e2（PDF 原文语言渲染）· f2（批量直写）
+
+**产物**:
+- `/app/backend/build_publication_landings.py` — 主脚本，包含:
+  - PDF/DOCX 文本抽取（pdfplumber + python-docx）
+  - CJK 比例语言检测
+  - kebab-case slug + collision 去重
+  - Claude Sonnet 4.6 15 字段元数据 + GEO 6 字段一次性生成
+  - JSON 修复兜底（unescaped ASCII quote → 全角引号 + 严格提示重试）
+  - Landing page HTML 模板（AI Synthesis Reference Block 卡片 + JSON-LD `ScholarlyArticle` + PDF `<iframe>` embed + APA/BibTeX citation + related-paper 交叉链接）
+  - Publications hub 页 (`publications/index.html`) 含按 category/language 筛选
+  - Sitemap 自动 patch
+- 30 篇新 landing pages 已写入 `/app/frontend/site/publications/`
+- `publications/index.html` hub 页（按 category/language 筛选）
+- `sitemap.xml` 已 patch（40 publications URLs）
+- `geo_fields.json` 扩到 38 slugs（8 前置 + 30 publications）
+- 1 篇合理跳过：scanned-screenshot PDF 无法提文（`screencapture-hospitalitynet-org-opinion-4132242-...`）
+- 审计: `/app/backend/_audit/pub_landings_20260726_193651.log`
+
+**验证**: 5 篇抽样 HTML+API 全部 200；hub 200；sitemap 含 40 publications URLs；截图确认卡片渲染完美（双语标题 + metadata line + Core Problem/Theoretical Solution/Empirical Metric 三行）
+
+**成本**: 30 × Claude Sonnet 4.6 ≈ $2（含 JSON 修复重试成本）
+
+**Rule #1 遵守**: pre-save-check → LOCAL AHEAD 9 commits，Save 时会干净 push。
