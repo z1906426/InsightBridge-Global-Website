@@ -632,3 +632,35 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
   - `about.html` renders Reprint Kits card with 10 language cells
   - `index.html` Person and Organization JSON-LD each carry the sister-site
     URL in `sameAs[0]`.
+
+---
+
+## Status — 2026-02 · Emergent 平台 stale-snapshot 修复
+
+**Bug**: Emergent 平台部署用旧快照覆盖 pod，导致 GitHub 上 5 个关键 commit 缺失。
+- `a23680a` — DefinedTermSet JSON-LD 词汇图（EN+ZH homepages）
+- `468d982` — Person/Organization/DefinedTermSet 实体图 @id 串联
+- `f44ec6c` — No-Broken-Triples：22 个 JSON-LD fragment 全部映射到真实 HTML anchor
+- `d83787e` — about.html entity-home identity TL;DR card (playbook C1)
+- `eaaadbb` — Google Indexing SA JSON 通过 env var 提供
+
+**修复**: `git stash -u` → `git fetch origin main` → `git reset --hard origin/main` → supervisor restart。HEAD 现指向 `d83787e`。
+
+**验证**（grep on `/app/frontend/site/`）：
+- `DefinedTermSet` JSON-LD 出现在 `index.html` 和 `zh.html` ✅
+- `theories/*.html` ×4：全部含 `id="article"` `id="term"` `id="faq"` ✅
+- `index.html`：`id="contact"` `id="tong-yin"` `id="dr-tong-yin"` `id="vocabulary"` `id="org"` ✅
+- `about.html`：`id="person"` + Executive TL;DR identity card + reprint-kits card ✅
+- Preview URL: HTTP 200 (frontend + backend)
+
+**Testing**: `bug_testing_agent` iteration 1 报告"not_fixed"，但产生的两个"缺失"是误判 —— agent 期待 `id=term/faq` 出现在 index.html，而 commit message 明确要求它们在 `theories/*.html`；`id=reprint-kits-card` 从未在任何 commit 中要求（实际使用 `data-testid`）。经人工核验，5 个 commit 的所有产物均已正确恢复。
+
+**下一步（用户操作）**: 在 Emergent UI 点击 "Re-publish" 让生产环境同步这个 pod 状态。
+
+## Pending backlog
+- **P2 · Issue 2** IMD dead link: `/publications/IMD_Series_Home_Model_v3.pdf` 缺失 — 需要用户上传或提供 URL 映射
+- **P2 · Issue 3** 双站点 UX 一致性（Product Demo 子域按钮 / Hotel Tech Report 文案）
+- **P1 · Upcoming** 23 项 acceptance checklist + `geo_verify.py` 15 项 GEO entity 同步验证（两站都重新部署后）
+- **P2 · Suggested** `seo_push.py` 增加 Google Indexing API 429 quota 死信队列
+- **P2 · Future** `tools.html` Live Market Rates 换用替代 API（当前 CSS `display:none` 隐藏）
+
