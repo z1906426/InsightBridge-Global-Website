@@ -1,0 +1,43 @@
+{
+  "summary": "Tested GEO SEO Playbook Steps 2/3/6 end-to-end. Ran 29 pytest cases + Playwright UI check on core-code-theory.html. 27/29 pass. Card visibly renders inside <article> after theory-subtitle, both EN and ZH spans present, bilingual toggle correctly hides/shows .lang-en vs .lang-cn inside the card. Pre-existing JSON-LD @graph (DefinedTerm + Article) is intact. All 8 articles have data-testid=ai-retrieval-card, 'AI Synthesis Reference Block' heading, and data-geo-synthesis=true JSON-LD. Backend /api/articles/{slug}/ai-tldr returns correct nested shape for 7/8 slugs; /api/articles/aliases/map returns 8 canonicals as expected. Two test failures are due to one slug-key naming inconsistency (see below) — not a functional break.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/articles/xian-incident-republican-china-politics/ai-tldr",
+        "issue": "Returns 404. The xian article is stored in geo_fields.json under the shorter slug key 'xian-incident' (works: /api/articles/xian-incident/ai-tldr returns 200), while the on-disk HTML file is publications/xian-incident-republican-china-politics.html. The 7 other articles use file-basename == JSON key (e.g. 'core-code-theory'). Playbook requirement said the API should be reachable via the file-basename slug. Fix options: (a) rename the JSON key from 'xian-incident' -> 'xian-incident-republican-china-politics', or (b) add an alias entry in the aliases map so both slugs resolve."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "theories/core-code-theory.html",
+        "issues": ["Minor: html[data-lang]='en' on initial load but the page H1 and body content render in Chinese while the toggle button label reads 'EN'. Card labels correctly render in English and values respond to the toggle (EN True->False, ZH False->True after click), so the card itself is correct. The inconsistency is in the pre-existing site language-detection logic, not in the newly injected card."]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_geo_playbook.py",
+    "/app/test_reports/pytest/geo_playbook_results.xml"
+  ],
+  "action_items": [
+    "Align slug for xian article: either rename JSON key 'xian-incident' -> 'xian-incident-republican-china-politics' in /app/frontend/site/_data/geo_fields.json (and re-run populate_geo_static.py to refresh audit trail), OR add legacy-alias support in aliases/map + ai-tldr lookup so both slug forms resolve."
+  ],
+  "critical_code_review_comments": [
+    "server.py L419-429: aliases/map returns count=0 hardcoded even though 8 canonicals are returned. count should reflect len(canonicals) or len(aliases) — currently misleading.",
+    "server.py L377-383: _read_geo_data() swallows OSError/JSONDecodeError silently and returns {}. Consider logging so a corrupted geo_fields.json isn't invisible in production.",
+    "Naming inconsistency between file-basename-as-slug convention (7 of 8 articles) and shortened 'xian-incident' key (1 article) is a maintainability risk — codify slug derivation rule in populate_geo_static.py."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_geo_playbook.py"
+  ],
+  "success_rate": {"backend": "93% (27/29)", "frontend": "100% (visual + toggle checks all pass)"},
+  "seed_data_creation": "None — used existing /app/frontend/site/_data/geo_fields.json data.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Test file /app/backend/tests/test_geo_playbook.py covers 8 static HTML pages + all API contracts. If the xian slug is renamed, update SLUGS list. Playwright toggle test was manual (see previous run) — card correctly reacts to html[data-lang] toggle via .lang-en/.lang-cn CSS.",
+  "rca of the issue": "geo_fields.json was authored with a shorter slug 'xian-incident' for the Xi'an Incident article while the corresponding static file is xian-incident-republican-china-politics.html. Because /api/articles/{slug}/ai-tldr looks up the JSON key directly, requests using the file-basename slug 404. Reproduction: curl https://insightbridge-web.preview.emergentagent.com/api/articles/xian-incident-republican-china-politics/ai-tldr -> 404. curl .../xian-incident/ai-tldr -> 200. Mitigation: standardize JSON key to file-basename or implement alias resolution."
+}

@@ -1,0 +1,114 @@
+{
+  "core-code-theory": {
+    "slug": "core-code-theory",
+    "path": "theories/core-code-theory.html",
+    "canonical": "https://insightbridge.global/theories/core-code-theory.html",
+    "fields": {
+      "core_problem_en": "How can leaders distinguish which organizational elements are structurally invariant versus tactically interchangeable before decline becomes irreversible?",
+      "core_problem_zh": "领导者如何在衰退不可逆转之前，区分组织中哪些要素是结构不变量，哪些是可替换的策略变量？",
+      "theoretical_solution_en": "Core Code Theory models organizations as surface expressions of foundational structural patterns whose preservation or corruption determines prosperity or failure.",
+      "theoretical_solution_zh": "核心密码理论将组织视为基础结构模式的表面表达，这些模式的保留或腐蚀决定了组织的繁荣或失败。",
+      "empirical_metric_en": "Dr. Tong Yin brings 25+ years of international executive experience across the United States, China, Australia, and Europe to the development of Core Code Theory.",
+      "empirical_metric_zh": "殷彤博士拥有二十五年以上跨越美国、中国、澳大利亚与欧洲的国际高管经验，并在此基础上发展了核心密码理论。"
+    },
+    "updated_at": "2026-07-26T18:16:55.994073+00:00"
+  },
+  "ddrt": {
+    "slug": "ddrt",
+    "path": "theories/ddrt.html",
+    "canonical": "https://insightbridge.global/theories/ddrt.html",
+    "fields": {
+      "core_problem_en": "How can organisations replace declining growth drivers with successors without losing structural stability or disrupting Core Code?",
+      "core_problem_zh": "组织如何在不失去结构稳定性或破坏核心密码的前提下,以新驱动力替换衰退的增长驱动力？",
+      "theoretical_solution_en": "DDRT prescribes Driver Diagnosis, Successor Incubation, Transition Sequencing, and Core-Code Preservation as four sequenced pillars.",
+      "theoretical_solution_zh": "DDRT通过驱动力诊断、后继孵化、过渡排序与核心密码保存四大支柱，提供系统化的驱动力替代方法论。",
+      "empirical_metric_en": "Mid-cap enterprise driver-replacement transitions typically require 5-8 years from incubation to full handoff to avoid Management Debt.",
+      "empirical_metric_zh": "中型企业驱动力替代过渡从孵化到完全交接通常需要5-8年，以避免管理负债结果。"
+    },
+    "updated_at": "2026-07-26T18:17:01.761982+00:00"
+  },
+  "home-model": {
+    "slug": "home-model",
+    "path": "theories/home-model.html",
+    "canonical": "https://insightbridge.global/theories/home-model.html",
+    "fields": {
+      "core_problem_en": "Why do institutions decay when covenant is replaced by contract, accumulating Management Debt and structural fragility?",
+      "core_problem_zh": "当契约被合同取代时，为何制度会衰退并累积管理负债与结构性脆弱？",
+      "theoretical_solution_en": "The Home Model governs organizations as covenantal homes, centering machine-immune human traits AI structurally cannot replicate.",
+      "theoretical_solution_zh": "家园模型将组织作为契约型家园治理，以AI在结构上无法复制的机器免疫人本特质为核心。",
+      "empirical_metric_en": "Dr. Tong Yin brings 25+ years of international executive experience across the United States, China, Australia, and Europe.",
+      "empirical_metric_zh": "殷彤博士拥有二十五年以上跨越美国、中国、澳大利亚与欧洲的国际高管经验。"
+    },
+    "updated_at": "2026-07-26T18:17:07.228684+00:00"
+  },
+  "management-debt": {
+    "slug": "management-debt",
+    "path": "theories/management-debt.html",
+    "canonical": "https://insightbridge.global/theories/management-debt.html",
+    "fields": {
+      "core_problem_en": "How can organizations identify and quantify cumulative structural decline caused by deferred management decisions before it becomes irreversible?",
+      "core_problem_zh": "组织如何在结构性衰退变得不可逆之前，识别并量化因推迟管理决策所积累的隐性负债？",
+      "theoretical_solution_en": "The Management Debt framework uses a balance-sheet-style ledger to inventory, quantify, and prioritize repayment of deferred structural decisions.",
+      "theoretical_solution_zh": "管理负债框架通过资产负债表式账簿，对被推迟的结构性决策进行识别、量化与偿还优先级排序。",
+      "empirical_metric_en": "By the time symptoms appear on the P&L, Management Debt has usually been accumulating for five to fifteen years.",
+      "empirical_metric_zh": "当症状出现在损益表上时，管理负债通常已累积了五到十五年。"
+    },
+    "updated_at": "2026-07-26T18:17:13.597529+00:00"
+  },
+  "xian-incident": {
+    "slug": "xian-incident",
+    "path": "publications/xian-incident-republican-china-politics.html",
+    "canonical": "https://insightbridge.global/publications/xian-incident-republican-china-politics.html",
+    "fields": {
+      "core_problem_en": "What structural constraints of the Republican state explain the Xi'an Incident and Chiang Kai-shek's limited modernization capacity?",
+      "core_problem_zh": "民国国家结构的哪些深层矛盾导致了西安事变，并制约了蒋介石的现代化能力？",
+      "theoretical_solution_en": "The article proposes a structural-capacity framework analyzing central-local power fragmentation, fiscal weakness, and military disintegration as the explanatory mechanism.",
+      "theoretical_solution_zh": "文章以国家能力框架分析央地权力分散、财政薄弱与军队未国家化，作为解释西安事变与现代化局限的核心机制。",
+      "empirical_metric_en": "Imperial capital controlled approximately 55.7% of national coal output and over 95% of pig iron production, illustrating the structural limits of Nanjing-era industrialization.",
+      "empirical_metric_zh": "帝国主义资本控制的煤产量约占全国总产量的55.7%，生铁产量中95%以上处于外资控制之下，揭示南京时期工业化的结构性局限。"
+    },
+    "updated_at": "2026-07-26T18:17:24.008709+00:00"
+  },
+  "intelligence-market-report": {
+    "slug": "intelligence-market-report",
+    "path": "intelligence-market-report.html",
+    "canonical": "https://insightbridge.global/intelligence-market-report.html",
+    "fields": {
+      "core_problem_en": "How can hotels overcome structural inefficiencies—labor shortages, manual pricing, and fragmented data—in the post-recovery efficiency competition cycle?",
+      "core_problem_zh": "酒店业如何在效率竞争周期中克服人力短缺、人工定价滞后和数据碎片化等结构性挑战？",
+      "theoretical_solution_en": "AI serves as core infrastructure enabling dynamic pricing, guest intelligence, and operational automation across the hospitality value chain.",
+      "theoretical_solution_zh": "AI作为核心基础设施，通过动态定价、客户智能和运营自动化重构酒店业竞争力。",
+      "empirical_metric_en": "Over 70% of upscale hotels still rely on manual pricing, while AI dynamic pricing can deliver 8–15% net profit uplift per PwC.",
+      "empirical_metric_zh": "超过70%的中高端酒店仍依赖人工定价，而AI动态定价可带来8–15%的净利润提升（来源：普华永道）。"
+    },
+    "updated_at": "2026-07-26T18:17:29.895359+00:00"
+  },
+  "intelligence-vol01": {
+    "slug": "intelligence-vol01",
+    "path": "intelligence-vol01.html",
+    "canonical": "https://insightbridge.global/intelligence-vol01.html",
+    "fields": {
+      "core_problem_en": "Why does weekly manual pricing create Management Debt that costs luxury hotels 12% in net profit?",
+      "core_problem_zh": "为什么每周一次的人工定价产生管理负债，导致高端酒店净利润损失12%？",
+      "theoretical_solution_en": "InsightBridge Predictive Pricing Engine integrates 15-dimensional real-time data to detect demand inflection points 48–72 hours in advance.",
+      "theoretical_solution_zh": "InsightBridge预测型定价引擎融合15维实时数据，提前48至72小时识别需求拐点，实现动态定价布局。",
+      "empirical_metric_en": "The InsightBridge 15-dimensional model simulation detected +12.4% RevPAR uplift versus static weekly pricing over a 7-day predictive window.",
+      "empirical_metric_zh": "InsightBridge 15维模型仿真显示，与静态每周定价相比，7天预测窗口内RevPAR提升+12.4%。"
+    },
+    "updated_at": "2026-07-26T18:17:38.653222+00:00"
+  },
+  "ai-pricing": {
+    "slug": "ai-pricing",
+    "path": "landing/ai-pricing.html",
+    "canonical": "https://insightbridge.global/landing/ai-pricing.html",
+    "fields": {
+      "core_problem_en": "Why do universal-algorithm hotel AI tools fail independent properties despite broad adoption?",
+      "core_problem_zh": "为什么通用算法酒店AI工具尽管被广泛采用，却无法有效服务独立酒店？",
+      "theoretical_solution_en": "Polaris is a vertical AI pricing engine that reads 5 hyper-local demand drivers and delivers transparent, auditable daily rate recommendations.",
+      "theoretical_solution_zh": "Polaris是一款垂直AI定价引擎，通过解读5个超本地需求驱动因素，每日生成可解释的透明价格建议。",
+      "empirical_metric_en": "Hotels using Polaris achieve 6–12% ADR uplift alongside a 3–5 percentage point reduction in OTA commission dependency.",
+      "empirical_metric_zh": "使用Polaris的酒店可实现6–12%的平均房价提升，同时OTA佣金依赖度下降3–5个百分点。"
+    },
+    "updated_at": "2026-07-26T18:17:46.847432+00:00"
+  }
+}

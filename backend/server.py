@@ -1,8 +1,9 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import json
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
@@ -360,6 +361,75 @@ async def rss_status():
         "bytes": stat.st_size,
         "modified_at": datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc).isoformat(),
     }
+
+
+# ---------------------------------------------------------------------------
+# GEO Playbook Step 6 — AI TL;DR + alias map endpoints.
+# Serves the 6-field synthesis (Core Problem / Theoretical Solution /
+# Empirical Metric × EN+ZH) that populate_geo_static.py writes to
+# /app/frontend/site/_data/geo_fields.json. The aliases/map endpoint is a
+# thin stub for static-site parity — path IS the slug so we return an empty
+# but well-formed mapping for now, expandable when we start renaming files.
+# ---------------------------------------------------------------------------
+_GEO_JSON_PATH = Path("/app/frontend/site/_data/geo_fields.json")
+
+
+def _read_geo_data() -> dict:
+    if not _GEO_JSON_PATH.exists():
+        return {}
+    try:
+        return json.loads(_GEO_JSON_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+@api_router.get("/articles/{slug}/ai-tldr")
+async def article_ai_tldr(slug: str):
+    """Structured 6-field AI synthesis for the given article slug.
+
+    Designed for LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, …) that
+    prefer JSON over HTML. Mirrors what the visible AI Synthesis Reference
+    Block on the article page already shows.
+    """
+    data = _read_geo_data()
+    entry = data.get(slug)
+    if not entry:
+        raise HTTPException(status_code=404, detail=f"No AI synthesis for slug '{slug}'")
+    fields = entry.get("fields", {})
+    return {
+        "slug": slug,
+        "canonical": entry.get("canonical"),
+        "path": entry.get("path"),
+        "updated_at": entry.get("updated_at"),
+        "core_problem": {
+            "en": fields.get("core_problem_en", ""),
+            "zh": fields.get("core_problem_zh", ""),
+        },
+        "theoretical_solution": {
+            "en": fields.get("theoretical_solution_en", ""),
+            "zh": fields.get("theoretical_solution_zh", ""),
+        },
+        "empirical_metric": {
+            "en": fields.get("empirical_metric_en", ""),
+            "zh": fields.get("empirical_metric_zh", ""),
+        },
+    }
+
+
+@api_router.get("/articles/aliases/map")
+async def article_aliases_map():
+    """Legacy-slug → canonical-slug mapping. Empty on the static main site
+    because the file path IS the slug — kept for API parity with the sister
+    intelligence site so cross-site crawlers can call it uniformly."""
+    data = _read_geo_data()
+    return {
+        "count": 0,
+        "aliases": {},
+        "canonicals": {slug: entry.get("canonical") for slug, entry in data.items()},
+    }
+
+
+
 
 
 # Include the router in the main app
