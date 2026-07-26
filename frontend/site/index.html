@@ -41,7 +41,16 @@
   (function () {
     try {
       var p = location.pathname;
-      if (p === '/' || p === '/index.html') return;   // legitimate load — do nothing
+      // Canonicalize the duplicate homepage URL: Emergent's CDN serves this
+      // file directly at /index.html (bypassing static-server.js, so the
+      // 301 there never fires), and Clarity shows ~21% of homepage pageviews
+      // landing on the duplicate. Consolidate humans + JS-executing crawlers
+      // to / here; link-equity is already consolidated by the canonical tag.
+      if (p === '/index.html') {
+        location.replace('/' + location.search + location.hash);
+        return;
+      }
+      if (p === '/') return;   // legitimate load — do nothing
 
       var originalPath = location.pathname + location.search;
 
