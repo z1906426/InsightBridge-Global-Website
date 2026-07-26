@@ -1,5 +1,28 @@
 # InsightBridge Global — Corporate Site (Static Deployment)
 
+> ## 🚨 AGENT OPERATING RULES (READ FIRST — 用户强制要求)
+>
+> **Rule #1 · Pull-before-Save 铁律**
+> 在任何"Save to GitHub"、部署、Re-publish、或告知用户去发布之前，**第一件事必须先从 GitHub 拉最新代码**：
+>
+> ```bash
+> cd /app && git fetch origin main && git reset --hard origin/main
+> ```
+>
+> 拉完、`git status` 干净、必要文件 grep 通过之后，才能提示用户去 Save/Deploy/Re-publish。
+> 原因：Emergent 平台会用 stale pod snapshot 覆盖 GitHub，且如果 pod ↔ main 不同步，"Save to GitHub" 会产生 `conflict_*` 分支需要用户手工合并（已发生过多次）。
+>
+> **Rule #2 · robots.txt 不要碰**
+> 智库子站（另一个 Emergent 项目）的 `frontend/public/robots.txt` **禁止创建** —— 它由 `frontend/src/app/robots.js` 动态生成（约 30 条规则含 AI/中文爬虫全套），静态文件会被 Next.js 遮蔽。主站 (`/app/frontend/site/robots.txt`) 是静态部署可以照常维护，但涉及智库站的 fork agent 请遵守此约束。
+>
+> **Rule #3 · Git 远程与凭据**
+> 如果 `git remote -v` 为空（reset 有时会丢），用 `git remote add origin https://github.com/z1906426/InsightBridge-Global-Website.git` 重加。PAT 已存在 `/root/.git-credentials`，credential.helper 已配置。
+>
+> **Rule #4 · Bug 修复必跑 bug_testing_agent**
+> 任何 bug 报告修完之后，必须调用 `bug_testing_agent` 官方验证，不能只靠自测。
+
+
+
 ## Original problem statement
 Deploy the static InsightBridge Global corporate site (`insightbridge-corporate-site.zip`, 8.6 MB, 25 files) as-is per the `HANDOFF_corporate_site.md` rules:
 - No styling, font, or palette changes
