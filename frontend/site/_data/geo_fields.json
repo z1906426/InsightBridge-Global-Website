@@ -55,20 +55,6 @@
     },
     "updated_at": "2026-07-26T18:17:13.597529+00:00"
   },
-  "xian-incident": {
-    "slug": "xian-incident",
-    "path": "publications/xian-incident-republican-china-politics.html",
-    "canonical": "https://insightbridge.global/publications/xian-incident-republican-china-politics.html",
-    "fields": {
-      "core_problem_en": "What structural constraints of the Republican state explain the Xi'an Incident and Chiang Kai-shek's limited modernization capacity?",
-      "core_problem_zh": "民国国家结构的哪些深层矛盾导致了西安事变，并制约了蒋介石的现代化能力？",
-      "theoretical_solution_en": "The article proposes a structural-capacity framework analyzing central-local power fragmentation, fiscal weakness, and military disintegration as the explanatory mechanism.",
-      "theoretical_solution_zh": "文章以国家能力框架分析央地权力分散、财政薄弱与军队未国家化，作为解释西安事变与现代化局限的核心机制。",
-      "empirical_metric_en": "Imperial capital controlled approximately 55.7% of national coal output and over 95% of pig iron production, illustrating the structural limits of Nanjing-era industrialization.",
-      "empirical_metric_zh": "帝国主义资本控制的煤产量约占全国总产量的55.7%，生铁产量中95%以上处于外资控制之下，揭示南京时期工业化的结构性局限。"
-    },
-    "updated_at": "2026-07-26T18:17:24.008709+00:00"
-  },
   "intelligence-market-report": {
     "slug": "intelligence-market-report",
     "path": "intelligence-market-report.html",
@@ -110,5 +96,19 @@
       "empirical_metric_zh": "使用Polaris的酒店可实现6–12%的平均房价提升，同时OTA佣金依赖度下降3–5个百分点。"
     },
     "updated_at": "2026-07-26T18:17:46.847432+00:00"
+  },
+  "xian-incident-republican-china-politics": {
+    "slug": "xian-incident-republican-china-politics",
+    "path": "publications/xian-incident-republican-china-politics.html",
+    "canonical": "https://insightbridge.global/publications/xian-incident-republican-china-politics.html",
+    "fields": {
+      "core_problem_en": "What structural constraints of the Republican state explain the Xi'an Incident and Chiang Kai-shek's limited modernization capacity?",
+      "core_problem_zh": "民国国家结构的哪些深层矛盾导致了西安事变，并制约了蒋介石的现代化能力？",
+      "theoretical_solution_en": "The article proposes a structural-capacity framework analyzing central-local power fragmentation, fiscal weakness, and military disintegration as the explanatory mechanism.",
+      "theoretical_solution_zh": "文章以国家能力框架分析央地权力分散、财政薄弱与军队未国家化，作为解释西安事变与现代化局限的核心机制。",
+      "empirical_metric_en": "Imperial capital controlled approximately 55.7% of national coal output and over 95% of pig iron production, illustrating the structural limits of Nanjing-era industrialization.",
+      "empirical_metric_zh": "帝国主义资本控制的煤产量约占全国总产量的55.7%，生铁产量中95%以上处于外资控制之下，揭示南京时期工业化的结构性局限。"
+    },
+    "updated_at": "2026-07-26T18:17:24.008709+00:00"
   }
 }

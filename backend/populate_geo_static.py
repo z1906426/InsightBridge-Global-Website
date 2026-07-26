@@ -82,7 +82,7 @@ ARTICLES: list[dict] = [
         "insert_after": r'<p class="theory-subtitle">.*?</p>\s*',
     },
     {
-        "slug": "xian-incident",
+        "slug": "xian-incident-republican-china-politics",
         "path": "publications/xian-incident-republican-china-politics.html",
         "lang_mode": "zh_dominant",
         # Insert after first <h1> in the article body.

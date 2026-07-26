@@ -692,3 +692,36 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 - **P2 · Suggested** `seo_push.py` 增加 Google Indexing API 429 quota 死信队列
 - **P2 · Future** `tools.html` Live Market Rates 换用替代 API（当前 CSS `display:none` 隐藏）
 
+
+---
+
+## Status — 2026-02 · GEO/SEO Playbook 主站移植完成
+
+**背景**: 从姐妹站 InsightBridge Intelligence 的 GEO SEO 作战手册（2026-07-25/26 迭代产物，230 文档 · Next.js + FastAPI + MongoDB）移植到主静态站。因架构差异（静态 HTML vs Next.js + DB），Step 1（Preview→Prod DB 同步）和 Step 5（PUT 自动 alias）N/A；Step 2/3/4/6 全部适配上线。
+
+**实施范围（8 篇文章）**:
+- theories/ ×4: core-code-theory, ddrt, home-model, management-debt
+- publications/ ×1: xian-incident-republican-china-politics
+- intelligence-*.html ×2: market-report, vol01
+- landing/ ×1: ai-pricing
+
+**产物**:
+- `/app/backend/populate_geo_static.py` — Claude Sonnet 4.6 (Emergent LLM key) 生成 6 字段并注入 HTML + JSON-LD，幂等，可重跑
+- `/app/frontend/site/_data/geo_fields.json` — 中央数据，8 slugs
+- `/app/backend/server.py` L365-433 — `/api/articles/{slug}/ai-tldr` + `/api/articles/aliases/map`
+- 8 篇 HTML 各含: `<section data-testid="ai-retrieval-card">` 可见卡片 + `<script data-geo-synthesis="true">` JSON-LD
+- 审计: `/app/backend/_audit/geo_static_20260726_181649.log`
+
+**Testing agent iteration 3**: 27/29 pass · 93% backend · 100% frontend. 修复的 issue:
+1. xian-incident slug 一致性: JSON key 改为 file basename `xian-incident-republican-china-politics`
+2. `aliases/map` count 语义: 增加 `alias_count` / `canonical_count` 区分
+3. `_read_geo_data()` 异常日志: 添加 `logging.error`
+
+**成本**: 8 篇 × Claude Sonnet 4.6 ≈ $0.12（playbook 230 篇预算 $3.5 的等比缩放）
+
+**Rule #1 遵守**: Pull → Merge → Implement → Test → Fix → 提示用户 Save+Re-publish。整个流程 pod 与 remote 干净同步。
+
+**未来提升方向**（backlog）:
+- 简体中文校验的正则过紧（`繁` 误报）— 建议改用完整 traditional-only Unicode range
+- 若未来主站改 slug（重命名文件），aliases 字典可通过 populate 脚本自动填
+

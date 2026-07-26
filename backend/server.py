@@ -379,7 +379,8 @@ def _read_geo_data() -> dict:
         return {}
     try:
         return json.loads(_GEO_JSON_PATH.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+    except (OSError, json.JSONDecodeError) as exc:
+        logging.error("Failed to read geo_fields.json: %s", exc)
         return {}
 
 
@@ -422,10 +423,14 @@ async def article_aliases_map():
     because the file path IS the slug — kept for API parity with the sister
     intelligence site so cross-site crawlers can call it uniformly."""
     data = _read_geo_data()
+    aliases: dict = {}  # populate when we start renaming files
+    canonicals = {slug: entry.get("canonical") for slug, entry in data.items()}
     return {
-        "count": 0,
-        "aliases": {},
-        "canonicals": {slug: entry.get("canonical") for slug, entry in data.items()},
+        "count": len(aliases),
+        "alias_count": len(aliases),
+        "canonical_count": len(canonicals),
+        "aliases": aliases,
+        "canonicals": canonicals,
     }
 
 
