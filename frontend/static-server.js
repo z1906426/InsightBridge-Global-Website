@@ -143,6 +143,17 @@ const server = http.createServer((req, res) => {
     return send(res, 200, { 'Content-Type': 'text/plain' }, 'ok');
   }
 
+  // 301 canonicalization — /index.html must not split homepage ranking
+  // signals with /. Clarity (2026-07-25) showed ~21% of homepage pageviews
+  // landing on /index.html via legacy links; consolidating to / keeps one
+  // canonical URL for search engines and AI crawlers.
+  if (pathname === '/index.html') {
+    return send(res, 301, {
+      'Location': '/' + (parsed.search || ''),
+      'Cache-Control': 'public, max-age=86400',
+    });
+  }
+
   // 410 Gone — permanently retired phantom URLs (GSC cleanup)
   if (isGone(pathname)) {
     return sendGone(res);
