@@ -434,6 +434,78 @@ async def article_aliases_map():
     }
 
 
+@api_router.post("/seo/push-all-geo")
+async def push_all_geo():
+    """One-shot: push EVERY canonical URL registered in geo_fields.json
+    (main articles + publications landing pages) plus the publications hub,
+    sitemap and RSS to all four search engines (IndexNow / Baidu / Google
+    Indexing / Seznam). Use after a big batch GEO enrichment.
+    """
+    from seo_push import run_push_urls, get_urls as _core_urls
+    data = _read_geo_data()
+    urls: list[str] = []
+    # Priority pages first — homepage, RSS, executive bio, hub, sitemap
+    urls.extend(_core_urls())
+    urls.append("https://insightbridge.global/publications/")
+    urls.append("https://insightbridge.global/sitemap.xml")
+    # Every GEO-registered canonical URL
+    for slug, entry in data.items():
+        canonical = entry.get("canonical")
+        if canonical:
+            urls.append(canonical)
+    # De-dup while preserving order
+    seen: set[str] = set()
+    unique_urls = []
+    for u in urls:
+        if u not in seen:
+            seen.add(u)
+            unique_urls.append(u)
+    return await run_push_urls(db, unique_urls, label="geo-batch-all-2026-02")
+
+
+@api_router.post("/wayback/archive-all-geo")
+async def wayback_archive_all_geo():
+    """One-shot: archive EVERY canonical URL registered in geo_fields.json
+    to the Internet Archive Wayback Machine, in addition to main pages.
+    Use after a big batch to guarantee the AI-citation snapshots are
+    preserved for future retrieval."""
+    import asyncio
+    from wayback import save_pages_now
+    from seo_push import get_urls as _core_urls
+    data = _read_geo_data()
+    urls: list[str] = list(_core_urls())
+    urls.append("https://insightbridge.global/publications/")
+    for slug, entry in data.items():
+        canonical = entry.get("canonical")
+        if canonical:
+            urls.append(canonical)
+    # De-dup
+    seen: set[str] = set()
+    unique_urls = []
+    for u in urls:
+        if u not in seen:
+            seen.add(u)
+            unique_urls.append(u)
+    main_count = len(_core_urls())
+    results = await asyncio.to_thread(save_pages_now, unique_urls)
+    record = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "label": "geo-batch-all-2026-02",
+        "urls_count": len(unique_urls),
+        "main_urls_count": main_count,
+        "geo_urls_count": len(unique_urls) - main_count,
+        "ok_count": sum(1 for r in results if r.get("ok")),
+        "results": results,
+        "manual": True,
+    }
+    try:
+        await db.wayback_runs.insert_one(dict(record))
+    except Exception:
+        logger.exception("Failed to persist wayback run record (geo-all)")
+    return record
+
+
+
 
 
 
