@@ -323,9 +323,10 @@ a:hover { color: var(--color-primary-hover); }
 }
 /* Dark mode: the near-black --color-bg at 0.78-0.95 opacity was blacking out
    the hero background image entirely (user reported "背景图完全消失").
-   Drop opacity substantially so the architectural photo shows through. */
-[data-theme="dark"] .hero__bg::after,
-:root:not([data-theme]) .hero__bg::after {
+   Drop opacity substantially so the architectural photo shows through.
+   Applied ONLY when the theme is explicitly dark OR the OS prefers dark and
+   the user hasn't set an explicit theme — light users are never affected. */
+[data-theme="dark"] .hero__bg::after {
   background:
     linear-gradient(95deg,
       oklch(from var(--color-bg) l c h / 0.55) 0%,
