@@ -206,6 +206,17 @@ a:hover { color: var(--color-primary-hover); }
 /* Hide wordmark on cramped viewports — logo image already carries the brand */
 @media (max-width: 1180px) {
   .header__wordmark { display: none; }
+  /* …but on Chinese mode keep it visible: the logo image is English-dominant
+     so mobile-CN users need the Chinese wordmark to see 洞见桥全球洞察. */
+  [data-lang="cn"] .header__wordmark {
+    display: flex;
+  }
+  [data-lang="cn"] .header__wordmark-name {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+  [data-lang="cn"] .header__wordmark-tagline {
+    font-size: 0.55rem;
+  }
 }
 /* Language toggle for the wordmark */
 [data-lang="en"] .header__wordmark .lang-cn { display: none; }
