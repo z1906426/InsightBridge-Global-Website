@@ -1,0 +1,29 @@
+{
+  "summary": "Backend verification of /api/articles/aliases/map (real alias resolution) and alias-aware /api/articles/{slug}/ai-tldr. Tested via external preview URL. 8/8 pytest tests PASSED. aliases/map now returns alias_count=56, canonical_count=38, count=56 (backward-compat mirror). Specific aliases verified: xian-incident -> xian-incident-republican-china-politics; HBS_Case_Study_FINAL -> hbs-case-study-final; Tourism_Case_Hospitality_2025 -> tourism-case-hospitality-2025. ai-tldr transparent resolution works for legacy slug (xian-incident), Title_Case underscore stem (HBS_Case_Study_FINAL), lowercase underscore stem (hbs_case_study_final); direct canonical (core-code-theory) still works with resolved_via_alias=false; nonexistent slug still returns 404. Stub complaint fully resolved.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/articles/{slug}/ai-tldr", "issue": "Response field is named 'canonical' (full URL) — spec/review-request called it 'canonical_url'. Consumers depending on either name should be documented; consider adding a canonical_url alias field for clarity."}
+    ]
+  },
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_article_aliases.py",
+    "/app/test_reports/pytest/aliases_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Field naming inconsistency: ai-tldr returns 'canonical' while review spec references 'canonical_url'. Either rename or add alias key.",
+    "server.py continues to grow (~490+ line endpoints); consider extracting alias helpers (_slugify, _compute_aliases, _LEGACY_SLUG_RENAMES) into a dedicated module for testability."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_article_aliases.py"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "n/a"},
+  "test_credentials": "none required",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Alias resolution feature verified end-to-end against https://insightbridge-web.preview.emergentagent.com. Test file /app/backend/tests/test_article_aliases.py can be re-run as a regression check. 56 aliases / 38 canonicals is the current expected shape; update test_counts if canonical set grows.",
+  "rca of the issue": "Prior bug: /api/articles/aliases/map returned empty aliases dict (stub). Fix implemented by main agent: _compute_aliases() registers every publication filename stem (Title_Case + lowercase) plus hand-curated _LEGACY_SLUG_RENAMES entries; ai-tldr endpoint resolves via alias map before returning 404. Verified working."
+}

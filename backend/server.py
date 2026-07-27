@@ -384,21 +384,92 @@ def _read_geo_data() -> dict:
         return {}
 
 
+# ---------------------------------------------------------------------------
+# Alias computation — every publication PDF/DOCX filename stem that differs
+# from the kebab-case canonical slug is a valid legacy alias, plus a small
+# hand-curated table of past slug renames (e.g., the xian-incident shortening
+# that was flagged by the testing agent on iteration 3).
+# ---------------------------------------------------------------------------
+_PUBLICATIONS_DIR = Path("/app/frontend/site/publications")
+
+# Hand-maintained legacy-slug map — add entries here when we rename an article
+# that already had inbound links or citations.
+_LEGACY_SLUG_RENAMES = {
+    "xian-incident": "xian-incident-republican-china-politics",
+}
+
+
+def _slugify(stem: str) -> str:
+    """Mirror of the same function in build_publication_landings.py."""
+    import re as _re
+    s = stem.lower()
+    s = _re.sub(r"[_\s]+", "-", s)
+    s = _re.sub(r"[^a-z0-9\-]+", "", s)
+    return _re.sub(r"-+", "-", s).strip("-")
+
+
+def _compute_aliases(canonicals: dict) -> dict:
+    """Return legacy-or-alternative → canonical-slug for every article whose
+    canonical slug differs from a plausible legacy form. Sources:
+
+      1. Publications: original PDF/DOCX filename stem (Title_Case with
+         underscores) — any crawler or hand-typed URL using the raw filename
+         should resolve to the kebab-case landing page slug.
+      2. `_LEGACY_SLUG_RENAMES` — manually curated table of past renames.
+    """
+    aliases: dict[str, str] = {}
+    canonical_slugs = set(canonicals.keys())
+
+    if _PUBLICATIONS_DIR.exists():
+        for p in _PUBLICATIONS_DIR.iterdir():
+            if p.suffix.lower() not in (".pdf", ".docx"):
+                continue
+            stem = p.stem
+            canonical = _slugify(stem)
+            if canonical not in canonical_slugs:
+                continue
+            # Underscore-preserved case-preserved form (raw filename stem)
+            if stem != canonical and stem not in aliases:
+                aliases[stem] = canonical
+            # Lower-cased underscore form
+            stem_lower = stem.lower()
+            if stem_lower != canonical and stem_lower not in aliases:
+                aliases[stem_lower] = canonical
+
+    for legacy, canonical in _LEGACY_SLUG_RENAMES.items():
+        if canonical in canonical_slugs:
+            aliases[legacy] = canonical
+
+    return aliases
+
+
 @api_router.get("/articles/{slug}/ai-tldr")
 async def article_ai_tldr(slug: str):
     """Structured 6-field AI synthesis for the given article slug.
 
     Designed for LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, …) that
     prefer JSON over HTML. Mirrors what the visible AI Synthesis Reference
-    Block on the article page already shows.
+    Block on the article page already shows. If `slug` is a legacy alias
+    (e.g., original PDF filename stem), the endpoint resolves it to the
+    canonical slug transparently — no 404, no redirect chain.
     """
     data = _read_geo_data()
+    resolved_slug = slug
     entry = data.get(slug)
+    if not entry:
+        canonicals = {s: e.get("canonical") for s, e in data.items()}
+        alias_map = _compute_aliases(canonicals)
+        canonical_slug = alias_map.get(slug)
+        if canonical_slug:
+            resolved_slug = canonical_slug
+            entry = data.get(canonical_slug)
     if not entry:
         raise HTTPException(status_code=404, detail=f"No AI synthesis for slug '{slug}'")
     fields = entry.get("fields", {})
     return {
-        "slug": slug,
+        "slug": resolved_slug,
+        "requested_slug": slug,
+        "resolved_via_alias": resolved_slug != slug,
         "canonical": entry.get("canonical"),
         "path": entry.get("path"),
         "updated_at": entry.get("updated_at"),
@@ -419,12 +490,18 @@ async def article_ai_tldr(slug: str):
 
 @api_router.get("/articles/aliases/map")
 async def article_aliases_map():
-    """Legacy-slug → canonical-slug mapping. Empty on the static main site
-    because the file path IS the slug — kept for API parity with the sister
-    intelligence site so cross-site crawlers can call it uniformly."""
+    """Legacy-slug → canonical-slug mapping.
+
+    Populated from two sources:
+      * Original PDF/DOCX filename stems (Title_Case, underscores) for every
+        publication whose landing page uses the kebab-case slugified form.
+        Crawlers or bookmark URLs typed against the raw filename resolve here.
+      * A hand-curated table of past article-slug renames (see
+        `_LEGACY_SLUG_RENAMES`) so old inbound links still work.
+    """
     data = _read_geo_data()
-    aliases: dict = {}  # populate when we start renaming files
     canonicals = {slug: entry.get("canonical") for slug, entry in data.items()}
+    aliases = _compute_aliases(canonicals)
     return {
         "count": len(aliases),
         "alias_count": len(aliases),
