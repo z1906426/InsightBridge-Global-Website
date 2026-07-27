@@ -321,6 +321,35 @@ a:hover { color: var(--color-primary-hover); }
       oklch(from var(--color-bg) l c h / 0.86) 55%,
       oklch(from var(--color-bg) l c h / 0.78) 100%);
 }
+/* Dark mode: the near-black --color-bg at 0.78-0.95 opacity was blacking out
+   the hero background image entirely (user reported "背景图完全消失").
+   Drop opacity substantially so the architectural photo shows through. */
+[data-theme="dark"] .hero__bg::after,
+:root:not([data-theme]) .hero__bg::after {
+  background:
+    linear-gradient(95deg,
+      oklch(from var(--color-bg) l c h / 0.55) 0%,
+      oklch(from var(--color-bg) l c h / 0.40) 55%,
+      oklch(from var(--color-bg) l c h / 0.25) 100%);
+}
+/* Light mode explicitly wins the specificity war back — the :not() rule
+   above would otherwise fire on default light users too. */
+[data-theme="light"] .hero__bg::after {
+  background:
+    linear-gradient(95deg,
+      oklch(from var(--color-bg) l c h / 0.95) 0%,
+      oklch(from var(--color-bg) l c h / 0.86) 55%,
+      oklch(from var(--color-bg) l c h / 0.78) 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero__bg::after {
+    background:
+      linear-gradient(95deg,
+        oklch(from var(--color-bg) l c h / 0.55) 0%,
+        oklch(from var(--color-bg) l c h / 0.40) 55%,
+        oklch(from var(--color-bg) l c h / 0.25) 100%);
+  }
+}
 
 /* ===== Hero 2-column grid (editorial layout, sister-site aligned) ===== */
 .hero__layout {

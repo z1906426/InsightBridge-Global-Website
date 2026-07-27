@@ -1,0 +1,27 @@
+{
+  "summary": "Frontend-only verification of the two bug fixes: (1) hero background image visibility in dark+CN mode, (2) consistent Chinese company name '美国洞见桥全球公司'. All primary tests PASS. Hero image loads (naturalW=2752, complete=true, visibility=visible) with dark-mode overlay opacities dropped to 0.55/0.40/0.25 — architectural pyramid ceiling is clearly visible behind the hero text (screenshot confirmed). Light-mode cream overlay (0.95/0.86/0.78) preserved. Chinese branding verified: header wordmark, hero brand, zh.html nav logo, and mobile 390x844 all show '美国洞见桥全球公司'. Zero occurrences of the incorrect string '洞见桥全球洞察' across index.html, zh.html, tools.html (filesystem grep). One minor CSS specificity concern flagged.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Homepage (default first-visit, no data-theme attribute set yet, OS prefers light)", "issues": ["CSS rule ':root:not([data-theme]) .hero__bg::after' at style.css line 328 unconditionally applies the reduced-opacity overlay (0.55/0.40/0.25 of light cream --color-bg) when data-theme is absent, regardless of the user's OS light/dark preference. Result: light-preferring users who haven't interacted with the theme toggle yet see a weaker cream wash than intended (image bleeds through more). The @media (prefers-color-scheme: dark) block at line 344 correctly overrides for dark-preferring OS users, but there is no matching guard for light-preferring OS users. Suggested fix: wrap the line 327-334 rule in @media (prefers-color-scheme: dark) OR narrow the selector to only [data-theme=\"dark\"]. Priority: LOW (only affects first-visit users; disappears after they interact with the toggle since localStorage sets data-theme)."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "OPTIONAL/LOW: Narrow the ':root:not([data-theme]) .hero__bg::after' rule at /app/frontend/site/style.css line 327-334 so it only fires when the user's OS actually prefers dark (either move it inside @media (prefers-color-scheme: dark) or remove it since the existing @media block at line 344 already handles that case). Otherwise default first-visit light-OS users get a diluted cream overlay."
+  ],
+  "critical_code_review_comments": [
+    "style.css line 327-343: dark/light overlay specificity is correct for the two explicit data-theme values, but the ':root:not([data-theme])' branch is over-broad — it should not fire on OS-light users. Existing @media (prefers-color-scheme: dark) block already handles the OS-dark case correctly, so the :not() branch is redundant/harmful.",
+    "index.html (line 786, 887): Chinese wordmark and hero brand correctly reference '美国洞见桥全球公司' — matches user's LLC-name rule.",
+    "No structural CSS regression observed on hero — z-index and grid layout still function; image element loads the full-res webp (2752x1536)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "100% on requested tests (7/7)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Both bugs are fixed and verified via Playwright DOM + visual screenshots. Hero image visibility confirmed in dark+CN (opacity overlay 0.25-0.55). Chinese branding '美国洞见桥全球公司' consistent across index.html header wordmark, index.html hero brand, zh.html nav logo, and mobile viewport. Grep of the wrong string returns 0 across index.html/zh.html/tools.html (filesystem). Only one LOW-priority CSS specificity concern remains around the ':root:not([data-theme])' selector on first-visit light-OS users — non-blocking. Backend API regression checks (/api/articles/aliases/map alias_count=56, /api/articles/xian-incident/ai-tldr) were not executed since request explicitly said 'frontend only(skip backend)'; iteration_4 covered backend previously.",
+  "rca of the issue": "Bug 1 RCA: In dark mode, --color-bg = #111110 (near-black). The .hero__bg::after overlay used oklch(from var(--color-bg) l c h / 0.78-0.95) which is 78-95% opaque near-black — effectively a black curtain over the hero image. Fix (verified): added [data-theme=\"dark\"] .hero__bg::after rule dropping opacity to 0.55/0.40/0.25 while explicitly re-asserting the original 0.95/0.86/0.78 for [data-theme=\"light\"]. Verified via computed style on ::after pseudo-element and visual screenshot showing the pyramid ceiling architecture clearly through the overlay. Bug 2 RCA: An earlier iteration inserted the invented brand '洞见桥全球洞察' as CN wordmark; user's actual LLC Chinese name is '美国洞见桥全球公司'. Fix (verified): batch-replaced all 10 occurrences; filesystem grep confirms 0 residual matches and 24 correct occurrences across the 3 files."
+}
