@@ -471,6 +471,7 @@ async def article_ai_tldr(slug: str):
         "requested_slug": slug,
         "resolved_via_alias": resolved_slug != slug,
         "canonical": entry.get("canonical"),
+        "canonical_url": entry.get("canonical"),  # alias field for API-name parity
         "path": entry.get("path"),
         "updated_at": entry.get("updated_at"),
         "core_problem": {
