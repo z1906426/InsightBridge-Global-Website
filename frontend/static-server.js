@@ -43,6 +43,7 @@ const MIME = {
   '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
   '.ppt':  'application/vnd.ms-powerpoint',
   '.py':   'text/plain; charset=utf-8',
+  '.md':   'text/markdown; charset=utf-8',
 };
 
 // ─── HTTP 410 Gone patterns ─────────────────────────────────────────────────
