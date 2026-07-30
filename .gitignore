@@ -87,3 +87,8 @@ credentials.json
 *.key
 .credentials
 backend/secrets/
+
+# GCP service account keys — NEVER commit (exposed 2026-07-30, key rotated)
+backend/secrets/
+*.pem
+*.key
