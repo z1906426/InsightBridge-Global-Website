@@ -36,6 +36,19 @@ def _is_configured() -> bool:
     return bool(SA_JSON_CONTENT) or (bool(SA_JSON_PATH) and os.path.exists(SA_JSON_PATH))
 
 
+def _config_diagnostic() -> str:
+    """Human-readable one-liner explaining WHY _is_configured() said False.
+    Never leaks secret material — only reports 'set/unset' + length hints."""
+    env_len = len(SA_JSON_CONTENT)
+    path_exists = bool(SA_JSON_PATH) and os.path.exists(SA_JSON_PATH)
+    return (
+        f"Google Indexing not configured. "
+        f"GOOGLE_INDEXING_SA_JSON env var: {'set (' + str(env_len) + ' chars)' if env_len else 'UNSET'}; "
+        f"GOOGLE_INDEXING_SA_JSON_PATH: {'set → ' + ('file exists' if path_exists else 'file MISSING at ' + SA_JSON_PATH) if SA_JSON_PATH else 'UNSET'}. "
+        f"Fix: add GOOGLE_INDEXING_SA_JSON (full service-account JSON) to Backend Secrets and redeploy."
+    )
+
+
 def _get_access_token() -> str:
     """Refresh and return a bearer token for the Indexing API scope."""
     from google.oauth2 import service_account  # lazy import
@@ -98,7 +111,7 @@ def push_to_google(urls: List[str]) -> Dict[str, Any]:
         return {
             "engine": engine_name,
             "ok": False,
-            "skipped": "GOOGLE_INDEXING_SA_JSON_PATH not set or file missing",
+            "skipped": _config_diagnostic(),
             "urls_submitted": 0,
         }
 

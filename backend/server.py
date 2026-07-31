@@ -111,6 +111,41 @@ async def seo_status():
         "interval_hours": 24,
     }
 
+
+@api_router.get("/seo/google-indexing/status")
+async def google_indexing_status():
+    """Read-only diagnostic for the Google Indexing API auth wiring.
+
+    Never returns secret material — only reports whether the two supported
+    env vars are set and, if a path is given, whether the referenced file
+    exists on the container. Useful for verifying the Emergent Secrets
+    injection into the backend container after a redeploy.
+    """
+    import os as _os
+    env_content = _os.environ.get("GOOGLE_INDEXING_SA_JSON", "")
+    env_path = _os.environ.get("GOOGLE_INDEXING_SA_JSON_PATH", "").strip()
+    from google_indexing import _is_configured as _cfg
+    return {
+        "configured": _cfg(),
+        "sources": {
+            "GOOGLE_INDEXING_SA_JSON": {
+                "set": bool(env_content),
+                "length": len(env_content),
+                "starts_with_brace": env_content.strip().startswith("{") if env_content else False,
+            },
+            "GOOGLE_INDEXING_SA_JSON_PATH": {
+                "set": bool(env_path),
+                "value": env_path or None,
+                "file_exists": bool(env_path) and _os.path.exists(env_path),
+            },
+        },
+        "hint": (
+            "OK — configured. Ready to push."
+            if _cfg()
+            else "Add GOOGLE_INDEXING_SA_JSON (full service-account JSON) to Backend Secrets in Manage Publishing, then redeploy."
+        ),
+    }
+
 @api_router.get("/seo/history")
 async def seo_history(limit: int = 20):
     """Return the most recent SEO push records (newest first)."""
