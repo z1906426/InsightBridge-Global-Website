@@ -116,27 +116,46 @@ async def seo_status():
 async def google_indexing_status():
     """Read-only diagnostic for the Google Indexing API auth wiring.
 
-    Never returns secret material — only reports whether the two supported
-    env vars are set and, if a path is given, whether the referenced file
-    exists on the container. Useful for verifying the Emergent Secrets
-    injection into the backend container after a redeploy.
+    SECURITY: This endpoint is publicly reachable on production. It MUST
+    NEVER echo any env-var value verbatim — the operator may (by mistake)
+    stuff the full service-account JSON into either variable, so the only
+    safe report is set/unset + a masked prefix.
     """
     import os as _os
     env_content = _os.environ.get("GOOGLE_INDEXING_SA_JSON", "")
-    env_path = _os.environ.get("GOOGLE_INDEXING_SA_JSON_PATH", "").strip()
+    env_path_raw = _os.environ.get("GOOGLE_INDEXING_SA_JSON_PATH", "").strip()
     from google_indexing import _is_configured as _cfg
+
+    def _mask(value: str, keep: int = 6) -> str:
+        """Return a fixed-safe fingerprint that never reveals key material.
+
+        For any value ≤ `keep` chars we return '(too short — hidden)' so
+        that even short values do not round-trip verbatim. For longer
+        values we return only the first `keep` characters, then '…',
+        then the total length. This is enough to tell 'is it a path or a
+        JSON blob' at a glance ('/app/…' vs '{"type…') without exposing
+        anything sensitive.
+        """
+        if not value:
+            return ""
+        if len(value) <= keep:
+            return "(too short — hidden)"
+        return f"{value[:keep]}… (len={len(value)})"
+
+    # Never expose whether the JSON parses / starts with brace — that
+    # itself can hint at whether an operator pasted content into the
+    # PATH variable by mistake. Just report set/length.
     return {
         "configured": _cfg(),
         "sources": {
             "GOOGLE_INDEXING_SA_JSON": {
                 "set": bool(env_content),
                 "length": len(env_content),
-                "starts_with_brace": env_content.strip().startswith("{") if env_content else False,
             },
             "GOOGLE_INDEXING_SA_JSON_PATH": {
-                "set": bool(env_path),
-                "value": env_path or None,
-                "file_exists": bool(env_path) and _os.path.exists(env_path),
+                "set": bool(env_path_raw),
+                "masked_prefix": _mask(env_path_raw),
+                "file_exists": bool(env_path_raw) and _os.path.exists(env_path_raw),
             },
         },
         "hint": (

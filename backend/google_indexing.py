@@ -38,13 +38,29 @@ def _is_configured() -> bool:
 
 def _config_diagnostic() -> str:
     """Human-readable one-liner explaining WHY _is_configured() said False.
-    Never leaks secret material — only reports 'set/unset' + length hints."""
+
+    SECURITY: This string is returned to public API callers via
+    /api/seo/push. It MUST NEVER contain any env-var value verbatim —
+    an operator may (by mistake) stuff the full service-account JSON
+    into GOOGLE_INDEXING_SA_JSON_PATH. Only report set/unset + lengths.
+    """
     env_len = len(SA_JSON_CONTENT)
-    path_exists = bool(SA_JSON_PATH) and os.path.exists(SA_JSON_PATH)
+    path_set = bool(SA_JSON_PATH)
+    path_exists = path_set and os.path.exists(SA_JSON_PATH)
+    if env_len:
+        env_desc = f"set (len={env_len})"
+    else:
+        env_desc = "UNSET"
+    if not path_set:
+        path_desc = "UNSET"
+    elif path_exists:
+        path_desc = "set → file exists"
+    else:
+        path_desc = "set → file MISSING (value hidden)"
     return (
         f"Google Indexing not configured. "
-        f"GOOGLE_INDEXING_SA_JSON env var: {'set (' + str(env_len) + ' chars)' if env_len else 'UNSET'}; "
-        f"GOOGLE_INDEXING_SA_JSON_PATH: {'set → ' + ('file exists' if path_exists else 'file MISSING at ' + SA_JSON_PATH) if SA_JSON_PATH else 'UNSET'}. "
+        f"GOOGLE_INDEXING_SA_JSON env var: {env_desc}; "
+        f"GOOGLE_INDEXING_SA_JSON_PATH: {path_desc}. "
         f"Fix: add GOOGLE_INDEXING_SA_JSON (full service-account JSON) to Backend Secrets and redeploy."
     )
 
