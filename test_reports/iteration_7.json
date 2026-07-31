@@ -1,0 +1,27 @@
+{
+  "summary": "Frontend-only re-verification of Vision 2030 Scorecard cross-site sync after iteration_6 hydration fixes. All 8 review checkpoints PASS. The two previously failing hydration paths (hero brief + press citations) now preserve required data-testids and place the Scorecard/HNR row at position #0 in the post-JS rendered DOM. No regressions observed on article page, sitemap/RSS, publications hub, featured card, or JSON-LD.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "verification_results": [
+    {"check": "hero brief top item — data-testid=brief-scorecard, date Jul 29 2026, href=/publications/vision-2030-scorecard.html", "status": "PASS", "evidence": "First li in #hero-brief-list rendered with href=/publications/vision-2030-scorecard.html, data-testid=brief-scorecard, parent text starts with 'Jul 29, 2026' and title contains 'Scorecard on Vision 2030's Ultra-Luxury Tourism Program'"},
+    {"check": "Cited & Syndicated first item — HNR with data-testid=press-hnr-scorecard-link, href=https://www.hotelnewsresource.com/article142297.html", "status": "PASS", "evidence": "First li in #ib-cited-logos: href=https://www.hotelnewsresource.com/article142297.html, data-testid=press-hnr-scorecard-link, text 'Hotel News Resource · Vision 2030 Scorecard — first-run Jul 29, 2026 · article 142297'"},
+    {"check": "Standalone article page loads with cover, EN/中文 toggle, attrib-box, backlinks-panel, JSON-LD (NewsArticle isBasedOn=HNR, sameAs=[HNR,sister], citation array)", "status": "PASS", "evidence": "HTTP 200; attrib-box, backlinks-panel, lang-btn-en, lang-btn-cn all present; NewsArticle JSON-LD has isBasedOn.@id=HNR, sameAs=[HNR, intelligence.insightbridge.global/...], citation array length=3"},
+    {"check": "Featured News card testids (scorecard-featured-card, scorecard-read-btn, scorecard-hnr-btn)", "status": "PASS", "evidence": "All three testids found in DOM"},
+    {"check": "sitemap.xml + rss.xml contain scorecard URL", "status": "PASS", "evidence": "sitemap.xml grep-count=2, rss.xml grep-count=2"},
+    {"check": "publications hub /publications/ pub-scorecard-item present at top", "status": "PASS", "evidence": "pub-scorecard-item found (count=1) in publications hub HTML"},
+    {"check": "no console/page errors on / and /publications/vision-2030-scorecard.html; cover image returns 200", "status": "PASS", "evidence": "0 pageerrors on both pages; /assets/vision-2030-scorecard-cover.jpg → HTTP 200"},
+    {"check": "/api/press/citations list[0] contains hotelnewsresource.com/article142297", "status": "PASS", "evidence": "First item: platform='Hotel News Resource', url='https://www.hotelnewsresource.com/article142297.html'; total citations counter=24, list length=23"}
+  ],
+  "test_report_links": ["/app/test_reports/iteration_7.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "index.html remains ~5678 lines — still well past the 700-line guideline. The hydration merge logic (preserve testid by URL match) is a good pattern but should be extracted to a shared module in /assets/js/.",
+    "Client-side URL rewriting of the Scorecard sister-site loc to the local /publications/... path is a workaround; long term the /api/headlines source-of-truth should own the canonical URL to avoid drift if the frontend HTML is served from a CDN cache."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (frontend-only run)", "frontend": "100% (8/8 review checkpoints pass)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Iteration_6 hydration bugs are fully resolved. Hero brief and press-citations both preserve data-testid via URL-match merge and force the HNR/Scorecard row to position #0. Backend /api/press/citations now includes HNR at index 0; /api/headlines still returns sister-site URL but frontend rewrites it client-side to /publications/vision-2030-scorecard.html as designed. Citations counter shows 24 (aligned with live API, per updated review spec)."
+}

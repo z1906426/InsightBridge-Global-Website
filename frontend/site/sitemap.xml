@@ -44,6 +44,19 @@
     </image:image>
   </url>
 
+  <!-- Vision 2030 Ultra-Luxury Tourism Scorecard (Jul 29, 2026 · HNR sync) -->
+  <url>
+    <loc>https://insightbridge.global/publications/vision-2030-scorecard.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://insightbridge.global/assets/vision-2030-scorecard-cover.jpg</image:loc>
+      <image:title>Vision 2030 Ultra-Luxury Tourism — Scorecard</image:title>
+      <image:caption>Cover art for the July 29, 2026 scorecard on Saudi Arabia's Vision 2030 ultra-luxury tourism program. Originally published on Hotel News Resource.</image:caption>
+    </image:image>
+  </url>
+
   <!-- Vision 2030 Predictions vs Reality — Bilingual Archive (Featured, Jul 2026) -->
   <url>
     <loc>https://insightbridge.global/media/yin-vision-2030-predictions-vs-reality-bilingual-archive.pdf</loc>

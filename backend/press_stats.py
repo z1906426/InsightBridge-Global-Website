@@ -202,5 +202,36 @@ async def get_press_citations(db) -> Dict[str, Any]:
     snap = await db.press_stats_snapshot.find_one({"_id": "latest"})
     if snap and snap.get("list"):
         snap.pop("_id", None)
+        _ensure_hnr_scorecard(snap)
         return snap
-    return {**_FALLBACK_STATS, "list": _FALLBACK_LIST, "fallback": True}
+    fallback = {**_FALLBACK_STATS, "list": list(_FALLBACK_LIST), "fallback": True}
+    _ensure_hnr_scorecard(fallback)
+    return fallback
+
+
+# ------------------------------------------------------------------
+# HNR Vision 2030 Scorecard — always present at position #0
+# ------------------------------------------------------------------
+_HNR_SCORECARD_ROW = {
+    "flag": "🇺🇸",
+    "platform": "Hotel News Resource",
+    "note": "Vision 2030 Scorecard — first-run Jul 29, 2026 · article 142297",
+    "url": "https://www.hotelnewsresource.com/article142297.html",
+}
+
+
+def _ensure_hnr_scorecard(payload: Dict[str, Any]) -> None:
+    """Guarantee the HNR Scorecard citation is always the first row of the
+    'Cited & Syndicated Worldwide' strip. Sister-site scrape can lag behind
+    a same-day cross-publication (as happened on Jul 29, 2026), so this is
+    the durable server-side fallback."""
+    lst = payload.get("list")
+    if not isinstance(lst, list):
+        return
+    has_hnr = any(
+        "hotelnewsresource.com/article142297" in (it.get("url") or "")
+        for it in lst
+    )
+    if not has_hnr:
+        lst.insert(0, dict(_HNR_SCORECARD_ROW))
+        payload["list"] = lst

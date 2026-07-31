@@ -757,3 +757,33 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 **成本**: 30 × Claude Sonnet 4.6 ≈ $2（含 JSON 修复重试成本）
 
 **Rule #1 遵守**: pre-save-check → LOCAL AHEAD 9 commits，Save 时会干净 push。
+
+
+---
+
+### 2026-07-29 — 🇸🇦 Vision 2030 Ultra-Luxury Tourism Scorecard · 跨站同步发布 ✅
+
+姐妹站 (`intelligence.insightbridge.global`) 与 Hotel News Resource 同日发布 Dr. Tong Yin 的 Vision 2030 超奢旅游成绩单文章 (`article142297`)。本主站已完成 6 步同步：
+
+1. **独立文章页**: 新建 `/publications/vision-2030-scorecard.html` — 双语正文 (EN/中文，语言切换 JS)、封面图、AI Reference Block、3 层跨站署名框、Backlinks 面板；完整 JSON-LD 图谱含 `NewsArticle` + `BreadcrumbList`
+2. **Hero Pin**: `index.html` 顶部 hero 卡片 (`data-testid=vision2030-hero-teaser`) 与新闻区 Featured 卡 (`data-testid=scorecard-featured-card`) 完全指向新文章；旧的 predictions-vs-reality PDF 卡片已被替换；hero 右侧 THE BRIEF 头条位 (`data-testid=brief-scorecard`) 加入 Jul 29 条目
+3. **封面图**: `/assets/vision-2030-scorecard-cover.jpg` (1376×768, 从姐妹站 URL 拉取)
+4. **3 层署名**:
+   - Layer 1 (HNR 原发): `https://www.hotelnewsresource.com/article142297.html` — 首发编辑渠道，注入 `isBasedOn` schema
+   - Layer 2 (姐妹站扩展版): `https://intelligence.insightbridge.global/articles/vision-2030-ultra-luxury-tourism-scorecard-may-predictions-july-confirmed` — 双语扩展版，注入 `sameAs` + `citation`
+   - Layer 3 (作者归属): `insightbridge.global/about.html` + framework 内链 (`core-code-theory`, `home-model`, `management-debt`)
+5. **Press 收录**: `index.html` "Cited & Syndicated Worldwide" 静态 fallback 首行加入 HNR/article142297 (`data-testid=press-hnr-scorecard-link`)；后端 `press_stats.py` 新增 `_ensure_hnr_scorecard()` 保证 API 响应第一行永远是 HNR；前端 JS hydration 保留 testid
+6. **反向链接**: 独立文章页与首页 hero/news 卡都有指向 HNR 原文 + 姐妹站扩展版的双向链接
+
+**新增 / 修改的文件**:
+- `frontend/site/publications/vision-2030-scorecard.html` (NEW)
+- `frontend/site/assets/vision-2030-scorecard-cover.jpg` (NEW)
+- `frontend/site/index.html` — hero teaser, brief news, featured news card, cited-worldwide list, 新 NewsArticle JSON-LD
+- `frontend/site/publications/index.html` — hub 页首加入 scorecard 条目
+- `frontend/site/sitemap.xml` + `rss.xml` — 新增 URL/item
+- `backend/press_stats.py` — `_ensure_hnr_scorecard()` 客户端 fallback + 服务端保障
+
+**测试**: `iteration_7.json` — 全部 8 项 checkpoint PASS，无回归、无 console error、JSON-LD 全部 valid。前端 `testing_agent` 双次验证（iteration_6 发现 hydration bug → fixed → iteration_7 全绿）。
+
+**Rule #1 遵守**: 已执行 `pre-save-check.sh` → SYNCED with origin/main。
+
