@@ -92,3 +92,8 @@ backend/secrets/
 backend/secrets/
 *.pem
 *.key
+
+# Environment files — may contain API keys (SendGrid key blocked by GitHub push protection 2026-07-31)
+.env
+backend/.env
+setup-local-env.sh
