@@ -1,0 +1,21 @@
+{
+  "summary": "Frontend-only verification of the 'InsightBridge 2027 Strategic Intelligence Compendium — Restricted Edition v2' handoff. All 12 acceptance criteria in the review request PASS. Standalone landing page /publications/compendium-2027.html loads HTTP 200 with sticky download card, working EN/中文 language toggle (verified via getComputedStyle: EN mode -> [editor-en]=flex/[editor-cn]=none; CN mode -> [editor-en]=none/[editor-cn]=flex), and all 4 Parts (part-i..part-iv) present. PDF endpoint returns 200 with content-type application/pdf and content-length 836949 bytes (>800KB). JSON-LD is valid — packaged as a single @graph containing @type=Book (numberOfPages=38, hasPart array of 4 PublicationVolume, encoding.contentUrl -> PDF, audience mentions PIF/ADIA/Temasek/GIC) and BreadcrumbList (3 items). Homepage /: #page-services present, compendium-showcase inserted, existing download-capability-proposal and vision2030-hero-teaser intact, 18 JSON-LD blocks all valid parse, home Book JSON-LD present with correct contentUrl. Publications hub: pub-compendium-item + pub-compendium-link -> /publications/compendium-2027.html, 'Advisory / Restricted' tag visible, scorecard entry preserved. sitemap.xml has both new <loc> entries with lastmod 2026-08-01; rss.xml has the new <item> with correct title/link. Only console message on any page is an unrelated CSP frame-ancestors warning for an iframe from intelligence.insightbridge.global — pre-existing and not caused by this handoff.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_8.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "JSON-LD is nested under @graph (correct schema.org pattern). Any future automated JSON-LD validators should be @graph-aware.",
+    "Pre-existing CSP frame-ancestors console error from embedded iframe pointing to intelligence.insightbridge.global — unrelated to compendium handoff, but consider aligning frame-ancestors policy across the two sites."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per request)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static-HTML site. Compendium handoff verified end-to-end. Language toggle uses body[data-lang=en|cn] with CSS override rules. Base URL: https://insightbridge-web.preview.emergentagent.com."
+}
