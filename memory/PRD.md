@@ -787,3 +787,22 @@ Full implementation of the "AI 与搜索引擎爬虫优化 · 姐妹站完整实
 
 **Rule #1 遵守**: 已执行 `pre-save-check.sh` → SYNCED with origin/main。
 
+
+
+---
+
+### 2026-08-04 — 📕 2027 Strategic Intelligence Compendium (Restricted Edition v2) · 姐妹站 Advisory 交接落地 ✅
+
+姐妹站（intelligence.insightbridge.global）交接了完整的 38 页双语战略情报合集资产包。本主站已完成 6 项集成：
+
+1. **独立 Advisory 落地页** `/publications/compendium-2027.html` — 双语（EN/中文，切换 JS）、Hero 主视觉、左侧 sticky download card、右侧 Contents · Four Parts、Intended Readership、完整 JSON-LD 图谱（`Book` + `BreadcrumbList`）
+2. **首页 Services 展位** — `#page-services` 保留原 DOCX Capability Proposal CTA，在其下方**新增**深色（navy + gold）Compendium showcase 卡（`data-testid=compendium-showcase`），含 4 Parts 简目 + Intended Readership 侧栏 + 双 CTA（View Compendium / Download PDF）
+3. **PDF 资产** `/publications/InsightBridge_2027_Strategic_Intelligence_Compendium.pdf` — 836 KB，HTTP 200，`Content-Type: application/pdf`
+4. **首页 `<head>` JSON-LD** — 新增 `Book` schema（Part I–IV → 4 × `PublicationVolume`、audience 覆盖 PIF/ADIA/Temasek/GIC、encoding.contentUrl → PDF）
+5. **Publications hub** `/publications/index.html` 首行 `data-testid=pub-compendium-item` tag `Advisory / Restricted`
+6. **Sitemap + RSS** — sitemap.xml 加 landing + PDF 两条 `<url>`（priority 0.90/0.80）；rss.xml 顶部 `<item>` 附完整双语描述
+
+**CSS 修复**：初版 `.cta-secondary` 基础规则被后置的 `.lang-en/.lang-cn { display:none }` 覆盖失败，导致双语按钮同时渲染。已在 `.cta-secondary:hover` 后追加 `body[data-lang="en"] a.cta-secondary.lang-cn { display: none }` / 反向规则修正。DOM `getComputedStyle` 双向验证通过。
+
+**测试**：`iteration_8.json` — 全部 12 项 PASS，零 issues、零 console error、19/19 JSON-LD 全部有效。testing_agent 通过 getComputedStyle 双向验证语言切换的实际计算样式。
+
