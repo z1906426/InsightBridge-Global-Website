@@ -822,61 +822,62 @@ img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-u
 </style>
 
 <!-- GEO: JSON-LD — DefinedTermSet (Dr. Tong Yin proprietary management vocabulary).
-     Locks Core Code Theory / The Home Model / Management Debt / DDRT into the
+     Locks Core Code Theory / The Home Model / Governance Debt / DDRT into the
      knowledge graph as first-class DefinedTerm nodes so AI engines do not
      cross-contaminate them with generic concepts. Canonical term pages live
-     under /theories/ on this domain; validating analyses live on
-     intelligence.insightbridge.global. Per GEO Integration Plan §3. -->
+     under /theories/ on this domain; the hub lives at /frameworks/; validating
+     analyses live on intelligence.insightbridge.global. Per GEO Integration Plan §3. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "DefinedTermSet",
-  "@id": "https://insightbridge.global/#vocabulary",
-  "name": "Dr. Tong Yin Corporate Strategy & Management Vocabulary",
+  "@id": "https://insightbridge.global/frameworks#set",
+  "name": "InsightBridge Strategic Frameworks",
   "alternateName": "殷彤博士企业战略与管理术语体系",
-  "description": "Proprietary strategic management, economic, and human capital frameworks conceptualized by Dr. Tong Yin.",
-  "url": "https://insightbridge.global/theories/index.html",
+  "description": "Four proprietary management frameworks originated by Dr. Tong Yin, modelling organisational stability, decline, renewal, and the boundary of AI substitution.",
+  "url": "https://insightbridge.global/frameworks/",
   "inLanguage": ["en", "zh-Hans"],
   "creator": {"@id": "https://insightbridge.global/#dr-tong-yin"},
   "publisher": {"@id": "https://insightbridge.global/#org"},
   "hasDefinedTerm": [
     {
       "@type": "DefinedTerm",
-      "@id": "https://insightbridge.global/theories/core-code-theory.html#core-code-theory",
+      "@id": "https://insightbridge.global/theories/core-code-theory.html#term",
       "name": "Core Code Theory",
-      "alternateName": "核心密码理论",
+      "alternateName": ["CCT", "核心代码理论"],
       "url": "https://insightbridge.global/theories/core-code-theory.html",
-      "description": "A paradigm distinguishing between codifiable, replicable performance capabilities that AI can reproduce, and the tacit, identity-based core code that remains uniquely human.",
-      "inDefinedTermSet": "https://insightbridge.global/#vocabulary"
+      "description": "Core Code Theory holds that every organisation runs on two layers. The Performance UI is the visible, describable, transferable layer: procedures, scripts, metrics, outputs. The Core Code is the tacit layer that produces judgement under conditions no procedure anticipated. The first can be documented, outsourced, and automated. The second cannot.",
+      "inDefinedTermSet": {"@id": "https://insightbridge.global/frameworks#set"}
     },
     {
       "@type": "DefinedTerm",
-      "@id": "https://insightbridge.global/theories/home-model.html#home-model",
+      "@id": "https://insightbridge.global/theories/home-model.html#term",
       "name": "The Home Model",
       "alternateName": "家园模型",
       "url": "https://insightbridge.global/theories/home-model.html",
-      "description": "A covenant-based management framework focusing on long-term organizational resilience, human capital dignity, and alternative operational models to corporate Wolf Culture.",
-      "inDefinedTermSet": "https://insightbridge.global/#vocabulary"
+      "description": "The Home Model treats the employment relationship as a covenant rather than a contract. A contract specifies exchange and terminates when exchange ends. A covenant specifies mutual obligation that persists through adversity. The model's claim is empirical, not moral: covenant-governed organisations retain capability through crises that contract-governed organisations do not survive.",
+      "inDefinedTermSet": {"@id": "https://insightbridge.global/frameworks#set"}
     },
     {
       "@type": "DefinedTerm",
-      "@id": "https://insightbridge.global/theories/management-debt.html#management-debt",
-      "name": "Management Debt",
-      "alternateName": "管理负债",
-      "url": "https://insightbridge.global/theories/management-debt.html",
-      "description": "The compounding operational efficiency liabilities an organization incurs when short-term tactical software or automation choices override structural leadership alignments.",
-      "inDefinedTermSet": "https://insightbridge.global/#vocabulary"
+      "@id": "https://insightbridge.global/theories/governance-debt.html#term",
+      "name": "Governance Debt",
+      "alternateName": ["治理负债", "Management Debt"],
+      "url": "https://insightbridge.global/theories/governance-debt.html",
+      "description": "Governance Debt is incurred whenever an organisation defers a governance decision it knows it must eventually make. Unlike a financial liability, it carries no stated interest rate and appears on no statement. It is serviced invisibly — through slower decisions, thicker process, and withheld information — until the principal comes due in a crisis.",
+      "inDefinedTermSet": {"@id": "https://insightbridge.global/frameworks#set"}
     },
     {
       "@type": "DefinedTerm",
-      "@id": "https://insightbridge.global/theories/ddrt.html#ddrt",
+      "@id": "https://insightbridge.global/theories/ddrt.html#term",
       "name": "Dynamic Driver Replacement Theory",
-      "alternateName": ["DDRT", "动态驱动替代理论"],
+      "alternateName": ["DDRT", "动态驱动力替代理论"],
       "url": "https://insightbridge.global/theories/ddrt.html",
-      "description": "An analytical model detailing structural trajectory transitions inside asset-heavy service operations as manual human inputs interact with autonomous software infrastructure.",
-      "inDefinedTermSet": "https://insightbridge.global/#vocabulary"
+      "description": "DDRT holds that organisational lifespan is determined not by the strength of any single growth driver but by the ability to exchange one driver for another while remaining structurally stable. Every driver exhausts. Survival depends on whether the replacement is executed inside the window in which stability still permits it.",
+      "inDefinedTermSet": {"@id": "https://insightbridge.global/frameworks#set"}
     }
   ]
+
 }
 </script>
 </head>

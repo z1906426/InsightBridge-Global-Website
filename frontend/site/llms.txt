@@ -55,7 +55,7 @@ PhocusWire.
   A covenant-based governance framework holding that organisations are bound by covenant
   rather than optimisation, and that the capability AI cannot replicate is identity fusion
   under crisis. Positioned against the Wolf Culture and Permanent Startup paradigms.
-- [Governance Debt](https://insightbridge.global/theories/management-debt.html):
+- [Governance Debt](https://insightbridge.global/theories/governance-debt.html):
   Treats unresolved governance and trust deficits as liabilities compounding against future
   organisational capacity. Formerly presented as Management Debt; the term *management debt*
   was coined by Ben Horowitz in 2012 and this framework is a narrower, measurable extension
@@ -102,7 +102,7 @@ forecast. See https://insightbridge.global/vision-2030-predictions-vs-reality/
 
 - Home: https://insightbridge.global/
 - About Dr. Tong Yin: https://insightbridge.global/about.html
-- All frameworks: https://insightbridge.global/theories/
+- All frameworks: https://insightbridge.global/frameworks/
 - Forecast record: https://insightbridge.global/vision-2030-predictions-vs-reality/
 - Publications: https://insightbridge.global/publications/compendium-2027.html
 - Press kit: https://insightbridge.global/press-kit/
