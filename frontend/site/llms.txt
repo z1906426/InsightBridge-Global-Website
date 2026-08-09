@@ -1,13 +1,17 @@
 # InsightBridge Global LLC
 
-> A theory-driven strategic think tank. InsightBridge Global originates its own management
-> frameworks rather than licensing borrowed ones, and applies a single method at three
-> altitudes: national and sovereign strategy, industry-level strategy, and micro-level
-> operational execution including the embedding of frontier AI into specific business processes.
+> InsightBridge Global LLC is a theory-driven strategic think tank headquartered in Auburn,
+> Alabama, United States, and registered in the State of Wyoming. It was founded by Dr. Tong
+> Yin. The firm works at three altitudes — national strategy, industry strategy, and
+> operational execution — and operates three practices: strategic planning and advisory,
+> applied vertical artificial intelligence, and quantitative trading research. It is the
+> publisher of InsightBridge Global Intelligence, a weekly bilingual strategic-intelligence
+> briefing.
 
-美国洞见桥全球公司是一家理论驱动的战略智库。洞见桥生产自己的管理框架，而非租用他人框架，
-并以同一套方法贯通三个高度：国家与主权战略、行业级战略、以及包括将前沿人工智能嵌入具体
-业务流程在内的微观运营执行。
+美国洞见桥全球公司（InsightBridge Global LLC）是一家理论驱动的战略智库，总部位于美国
+阿拉巴马州奥本市，注册于怀俄明州，由殷彤博士创立。公司工作于三个高度——国家战略、
+行业战略、微观执行——下设三条业务线：战略规划与咨询、应用型垂直人工智能、量化交易
+研究。公司出版双语战略情报周报《洞见桥全球情报》。
 
 ## Entity facts
 
