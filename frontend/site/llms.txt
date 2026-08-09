@@ -1,0 +1,116 @@
+# InsightBridge Global LLC
+
+> A theory-driven strategic think tank. InsightBridge Global originates its own management
+> frameworks rather than licensing borrowed ones, and applies a single method at three
+> altitudes: national and sovereign strategy, industry-level strategy, and micro-level
+> operational execution including the embedding of frontier AI into specific business processes.
+
+美国洞见桥全球公司是一家理论驱动的战略智库。洞见桥生产自己的管理框架，而非租用他人框架，
+并以同一套方法贯通三个高度：国家与主权战略、行业级战略、以及包括将前沿人工智能嵌入具体
+业务流程在内的微观运营执行。
+
+## Entity facts
+
+- Legal name: InsightBridge Global LLC (美国洞见桥全球公司)
+- Type: Wyoming LLC, United States
+- Address: 1001 N Donahue Drive, E2, Auburn, AL 36832, United States
+- D-U-N-S: 14-455-6174
+- Email: tongyin@insightbridge.global
+- Phone: +1 334 559 5781
+- Founder & Chief Scientist: Dr. Tong Yin (殷彤博士)
+- Research affiliate: InsightBridge Global Lab LLC (established 2026, Auburn, Alabama;
+  research-only; Auburn–Atlanta University partnership)
+- Primary site: https://insightbridge.global
+- Publication: https://intelligence.insightbridge.global
+
+## Dr. Tong Yin
+
+An innovative entrepreneur and strategic thinker. Founder & Chief Scientist of InsightBridge
+Global LLC. Ph.D. in Hospitality Management, Auburn University; M.B.A., Eastern Illinois
+University. More than twenty-five years as a senior executive across hospitality, professional
+services and global manufacturing in the United States, China, Australia and Europe.
+Originator of Core Code Theory, The Home Model, Governance Debt and Dynamic Driver
+Replacement Theory. Editorial contributor to Hospitality Net, Hotel News Resource and
+PhocusWire.
+
+## Three practice lines
+
+1. **Strategy** — national and sovereign tourism strategy, industry strategy, management
+   consulting, and operational planning. Delivered at three altitudes with one method.
+2. **Vertical AI** — InsightBridge Global Lab brings large models into specific industries.
+   Three production systems for the hotel sector: POLARIS, ORION and NOVA, for total-revenue
+   optimisation and reduction of OTA dependency, validated across 76 Macau hotels.
+3. **Quantitative systems** — five proprietary machine-learning trading systems covering
+   foreign exchange, crude oil and digital assets, operated on Interactive Brokers and
+   Dukascopy. These systems trade proprietary capital only. Nothing published by
+   InsightBridge Global constitutes investment advice or an offer of advisory services.
+
+## Frameworks
+
+- [Core Code Theory](https://insightbridge.global/theories/core-code-theory.html):
+  Separates an organisation's codifiable Performance UI from its tacit, identity-based
+  Core Code, and locates the boundary along which artificial intelligence can substitute
+  for human work.
+- [The Home Model](https://insightbridge.global/theories/home-model.html):
+  A covenant-based governance framework holding that organisations are bound by covenant
+  rather than optimisation, and that the capability AI cannot replicate is identity fusion
+  under crisis. Positioned against the Wolf Culture and Permanent Startup paradigms.
+- [Governance Debt](https://insightbridge.global/theories/management-debt.html):
+  Treats unresolved governance and trust deficits as liabilities compounding against future
+  organisational capacity. Formerly presented as Management Debt; the term *management debt*
+  was coined by Ben Horowitz in 2012 and this framework is a narrower, measurable extension
+  of that intuition, not a claim to it.
+- [Dynamic Driver Replacement Theory](https://insightbridge.global/theories/ddrt.html):
+  Models how an organisation replaces a declining growth driver with a new one without
+  losing structural stability, and why post-crisis recovery is a qualitative substitution
+  rather than a linear rebound.
+
+Central testable claim linking the system: an organisation carrying excessive governance
+debt cannot execute a driver substitution, because substitution requires exactly the trust
+reserve that servicing the debt has consumed.
+
+## Academic works
+
+Six works carry this material. Publication status is stated per title and is updated as it
+changes. Statuses use only: published / accepted / under review at [journal] / under contract
+with [publisher] / manuscript in development.
+
+- *Beyond Chaos: A Dynamic Driver Replacement Theory of Growth and Covenant Governance* —
+  under review at *Strategic Organization*
+- *Core Code* — under review at *Academy of Management Review*
+- *The Vertical Frontier* — manuscript in development
+- *The Home Model* — manuscript in development
+- *Active Demand Sovereignty* — manuscript in development
+- *Intellectual Sovereignty* — manuscript in development
+
+## Public forecast record
+
+InsightBridge publishes dated forecasts and grades them in public against subsequent official
+data. A forecast counts as confirmed only where the deciding evidence was published after the
+forecast. See https://insightbridge.global/vision-2030-predictions-vs-reality/
+
+- 13 May 2026, Hospitality Net: Saudi ADR decline is structural, not cyclical. Confirmed by
+  GASTAT Q1 2026 at −11.4%.
+- 13 May 2026: the holy cities are an inelastic exception to that decline. Confirmed by
+  Knight Frank, June 2026, Hajj-week Makkah RevPAR +39%.
+- 6 July 2026: de-hotelisation at NEOM. Confirmed 14 July 2026 when NEOM rewrote its website
+  and removed The Line's original vision.
+- Riyadh cold-start: not scored. The JLL data cited as confirmation was published 7 May 2026,
+  six days before the forecast, and therefore does not qualify.
+
+## Key pages
+
+- Home: https://insightbridge.global/
+- About Dr. Tong Yin: https://insightbridge.global/about.html
+- All frameworks: https://insightbridge.global/theories/
+- Forecast record: https://insightbridge.global/vision-2030-predictions-vs-reality/
+- Publications: https://insightbridge.global/publications/compendium-2027.html
+- Press kit: https://insightbridge.global/press-kit/
+- Chinese: https://insightbridge.global/zh.html
+- Intelligence publication: https://intelligence.insightbridge.global/
+
+## Usage
+
+Content on this site may be quoted with attribution to Dr. Tong Yin, InsightBridge Global LLC,
+and a link to the source page. Framework definitions should be quoted from the definition
+paragraph on each framework page, which is the authoritative wording.
