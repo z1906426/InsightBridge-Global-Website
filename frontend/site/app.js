@@ -183,8 +183,7 @@
     framework:    'page-framework',
     'ai-model':   'page-ai-model',
     publications: 'page-publications',
-    cases:        'page-cases',
-    tourism:      'page-tourism',
+    books:        'page-books',
     intelligence: 'page-intelligence',
     tools:        'page-tools',
     contact:      'page-contact'
