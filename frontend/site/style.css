@@ -246,16 +246,21 @@ a:hover { color: var(--color-primary-hover); }
 .header__nav {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: clamp(14px, 1.6vw, 26px);
+  flex-wrap: nowrap;
 }
 
 .header__nav a {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   text-decoration: none;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   position: relative;
   padding-block: var(--space-1);
+  white-space: nowrap;      /* think-tank nav: never wrap a label onto two lines */
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
 }
 
 .header__nav a:hover,
