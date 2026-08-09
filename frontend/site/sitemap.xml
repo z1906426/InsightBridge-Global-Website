@@ -81,6 +81,12 @@
 
   <!-- Strategic Frameworks (hub + 4 theory pages) -->
   <url>
+    <loc>https://insightbridge.global/insights/from-industry-proof-to-general-method/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://insightbridge.global/frameworks/</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
