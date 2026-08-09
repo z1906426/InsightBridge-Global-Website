@@ -660,4 +660,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Legal registrations — crawler-discovery only (no on-site navigation links) -->
+  <url>
+    <loc>https://insightbridge.global/legal/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/legal/dba-insightbridge-global-50-social-books-wy-2026-002014508.pdf</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/legal/dba-insightbridge-global-intelligence-wy-2026-002021493.pdf</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://insightbridge.global/legal/dba-insightbridge-global-press-wy-2026-002021590.pdf</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
 </urlset>
