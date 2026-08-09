@@ -40,6 +40,23 @@ REFRESH_INTERVAL_HOURS = 6
 ARTICLES_FOR_BRIEF = 7        # how many to show on main site hero
 ARTICLES_FOR_SEO_PUSH = 4     # newest 4 included in SEO push (keeps Baidu 10/day quota)
 
+# Legacy hotel-vertical republications (restored 2026-08-08). They stay live
+# on the sister site for the archive, but per owner directive (2026-08-09)
+# they are excluded from the main-site hero brief and from SEO push: the
+# homepage surfaces positioning content, not legacy hotel-operations pieces.
+EXCLUDED_FROM_BRIEF = {
+    "the-real-cost-of-bookingcom-five-practical-steps-for-southeast-asian-hotels",
+    "when-the-crisis-comes-will-your-hotels-people-stay-or-go",
+    "why-vision-2030-hotels-need-more-than-traditional-revenue-management",
+    "ai-will-not-make-hotels-smarter-unless-managers-become-smarter-decision-makers",
+    "ai-will-not-transform-hotels-until-it-changes-the-meeting",
+    "saudi-arabias-next-hospitality-chapter-why-demand-is-not-enough-without-profitab",
+}
+
+
+def _article_slug(loc: str) -> str:
+    return loc.rstrip("/").rsplit("/", 1)[-1]
+
 
 # ============================================================
 #  Primary source: RSS feed
@@ -82,6 +99,8 @@ def _fetch_rss_articles(limit: int) -> List[Dict[str, Any]]:
             continue
         loc = link_el.text.strip()
         if "/articles/" not in loc:
+            continue
+        if _article_slug(loc) in EXCLUDED_FROM_BRIEF:
             continue
         title = (title_el.text or "").strip() if title_el is not None else ""
         pub_dt = _parse_rss_date(item)
@@ -127,6 +146,8 @@ def _fetch_sister_sitemap_articles() -> List[Dict[str, Any]]:
             continue
         loc = loc_el.text.strip()
         if "/articles/" not in loc:
+            continue
+        if _article_slug(loc) in EXCLUDED_FROM_BRIEF:
             continue
 
         lastmod_el = url_el.find("sm:lastmod", _NS)
