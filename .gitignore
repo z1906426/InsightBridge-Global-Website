@@ -86,6 +86,7 @@ android-sdk/
 credentials.json
 *.key
 .credentials
+.git-credentials
 backend/secrets/
 
 # GCP service account keys — NEVER commit (exposed 2026-07-30, key rotated)
