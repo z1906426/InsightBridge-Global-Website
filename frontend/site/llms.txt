@@ -154,6 +154,7 @@ forecast. See https://insightbridge.global/vision-2030-predictions-vs-reality/
 - All frameworks: https://insightbridge.global/frameworks/
 - Forecast record: https://insightbridge.global/vision-2030-predictions-vs-reality/
 - Publications: https://insightbridge.global/publications/compendium-2027.html
+- Jensen Huang's Hardware Sovereignty Loop — full bilingual research report: https://insightbridge.global/publications/jensen-huang-sovereignty-loop-report.html
 - Press kit: https://insightbridge.global/press-kit/
 - Chinese: https://insightbridge.global/zh.html
 - Intelligence publication: https://intelligence.insightbridge.global/
