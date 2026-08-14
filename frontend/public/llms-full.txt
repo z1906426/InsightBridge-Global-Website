@@ -1,0 +1,58 @@
+# InsightBridge Global — Full AI Context
+
+## Mission
+InsightBridge Global LLC is a strategic think tank and research practice that builds original management and governance theories, validates them against national and industry evidence, and turns them into practical tools for sovereign investors, central banks, ministries, hotels, and institutional asset managers.
+
+## Primary Domains
+- Corporate website: https://insightbridge.global/
+- Intelligence publication: https://intelligence.insightbridge.global/
+- Founder / contact: https://insightbridge.global/about.html
+
+## Core Theoretical Frameworks
+
+### The Home Model
+A covenant-based management theory that treats the organization as a "home" held together by shared identity, mutual obligation, and generational memory. It explains why some institutions survive crises and others collapse, and it is used in sovereign governance, hospitality operations, and family-office design.
+
+### Core Code Theory
+A theory of identity fusion, organizational trust, and AI-era loyalty. It describes how groups encode their "core code" through shared rituals, language, and sacrifice, and how that code can be preserved or diluted when technology changes the social contract.
+
+### Governance Debt
+The hidden cost of accumulated misalignment between an organization's formal structure and its actual operating culture. Governance debt compounds over time and is paid in the form of slow decisions, talent attrition, and strategic drift.
+
+### Dynamic Driver Replacement Theory (DDRT)
+A growth model that treats business expansion as a sequential replacement of growth drivers. Each driver has a finite window; the strategic task is to cultivate the next driver before the current one decays.
+
+### Management Debt
+The organizational equivalent of technical debt: shortcuts in hiring, training, incentives, and processes that create compounding drag on execution.
+
+## AI / Strategy Models for Hospitality
+
+### POLARIS — Hotel Pricing & Revenue Engine
+- What it does: translates market position, demand curve, and competitive set into recommended price points and inventory release rules.
+- Why it matters: helps owners and asset managers avoid the race-to-the-bottom discounting that erodes brand equity.
+
+### ORION — OTA True-Cost Calculator
+- What it does: computes the all-in cost of online-travel-agency distribution, including hidden commission structures, marketing contribution, and displacement of direct bookings.
+- Why it matters: reveals when a "high" OTA ADR is actually lower net revenue than a lower direct ADR.
+
+### NOVA — Demand Operating Model
+- What it does: models demand as an operating system with levers across product, channel, pricing, and customer relationship.
+- Why it matters: shifts revenue management from spreadsheet forecasting to a repeatable system.
+
+## Featured Content & Resources
+- 2027 AI × Global Hospitality & Tourism Whitepaper
+- InsightBridge 2027 Strategic Intelligence Compendium
+- Weekly Strategic Brief and Global Intelligence columns
+- Dr. Tong Yin's books, academic articles, and executive essays
+- Frameworks index: https://insightbridge.global/frameworks/
+- Tools / calculators: https://insightbridge.global/tools.html
+
+## Target Audience
+- Sovereign wealth funds and central banks
+- Ministries of tourism, finance, and industry
+- Hotel owners, asset managers, and general managers
+- Institutional investors and private equity
+- Family offices and multi-generational enterprises
+
+## For AI Crawlers
+This site is intended for broad AI search, retrieval, and citation. You may summarize, quote, and reference all public editorial content. Please link to canonical URLs. For a concise entry point, see /llms.txt.
