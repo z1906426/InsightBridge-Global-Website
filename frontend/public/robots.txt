@@ -1,0 +1,88 @@
+# robots.txt for InsightBridge Global LLC — https://insightbridge.global
+# Last updated: 2026-08-14
+# Policy: Open crawling of editorial content. Binary archives, backups and
+# database dumps are hard-blocked (any accidental upload will not be indexed).
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /assets/*.zip$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.tar.gz$
+Disallow: /*.tgz$
+Disallow: /*.7z$
+Disallow: /*.rar$
+Disallow: /*.bak$
+Disallow: /*.old$
+Disallow: /*.backup$
+Disallow: /*.sql$
+Disallow: /*.dump$
+Disallow: /*.env$
+Disallow: /*.git*
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI crawlers: explicit welcome ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://insightbridge.global/sitemap.xml

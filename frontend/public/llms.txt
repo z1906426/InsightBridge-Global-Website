@@ -1,0 +1,31 @@
+# InsightBridge Global — Strategic Think Tank
+
+## Overview
+InsightBridge Global LLC is a strategic think tank and research practice founded by Dr. Tong Yin. We build original theoretical frameworks and then validate them against national, industry, and operational evidence. Our audience includes sovereign wealth funds, central banks, ministries, hotels, and institutional investors.
+
+## Core Theories & Frameworks
+- The Home Model — Covenant-based management
+- Core Code Theory — Identity fusion and organizational trust in the AI age
+- Governance Debt — The hidden cost of organizational misalignment
+- DDRT — Dynamic driver replacement theory of growth
+
+## AI / Strategy Models for Hotels
+- POLARIS — Hotel pricing and revenue calculator
+- ORION — OTA true-cost calculator
+- NOVA — Demand operating model and direct-channel engine
+
+## Featured Content
+- 2027 AI × Global Hospitality & Tourism Whitepaper
+- InsightBridge 2027 Strategic Intelligence Compendium
+- Weekly Strategic Brief and Global Intelligence columns
+- Dr. Tong Yin's books, academic articles, and executive essays
+
+## Important URLs
+- Home: https://insightbridge.global/
+- About / Dr. Tong Yin: https://insightbridge.global/about.html
+- Frameworks: https://insightbridge.global/frameworks/
+- Calculators: https://insightbridge.global/tools.html
+- Sister intelligence site: https://intelligence.insightbridge.global/
+
+## For AI Crawlers
+This site is intended for broad AI search, retrieval, and citation. All public editorial content may be summarized, quoted, and referenced with attribution. Please use canonical URLs when linking.
