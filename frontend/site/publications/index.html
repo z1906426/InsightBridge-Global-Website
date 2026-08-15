@@ -48,6 +48,13 @@
   .pub-list-meta { font-family:'Helvetica Neue',Arial,sans-serif; font-size:13px; color:#666; margin:6px 0 8px; }
   .pub-list-tag { background:#e9edf1; color:var(--ib-navy); padding:2px 8px; border-radius:3px; font-size:11px; font-weight:600; }
   .pub-list-abstract { font-size:.98rem; color:#444; margin:8px 0 0; }
+  .pub-featured { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin:0 0 36px; }
+  .pub-featured a { display:block; text-decoration:none; border:1px solid #e6e8eb; border-radius:6px; overflow:hidden; background:#fff; transition:box-shadow .2s, transform .15s; }
+  .pub-featured a:hover { box-shadow:0 6px 18px rgba(0,45,98,.12); transform:translateY(-2px); }
+  .pub-featured img { width:100%; aspect-ratio:3/2; object-fit:cover; display:block; }
+  .pub-featured .pf-body { padding:12px 14px 14px; }
+  .pub-featured .pf-tag { font-family:'Helvetica Neue',Arial,sans-serif; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ib-gold); font-weight:700; margin-bottom:4px; }
+  .pub-featured .pf-title { font-family:Georgia,serif; font-size:.98rem; color:var(--ib-navy); font-weight:600; line-height:1.35; }
 </style>
 </head>
 <body>
@@ -59,6 +66,24 @@
     <div class="hub-header">
       <h1>Publications</h1>
       <p>Peer-reviewed articles, case studies, teaching notes and policy essays by Dr. Tong Yin — spanning Core Code Theory, the Home Model, Governance Debt, hospitality AI, and cross-strait strategy. <span style="color:#888;">论文 · 案例 · 政策评论 · 教学笔记（33 篇）</span></p>
+    </div>
+    <div class="pub-featured">
+      <a href="/publications/jensen-huang-sovereignty-loop-report.html">
+        <img src="/assets/covers/technology-01.jpg" alt="Jensen Huang hardware sovereignty loop report — cover art" loading="lazy" decoding="async">
+        <div class="pf-body"><div class="pf-tag">Industry Report · 行业报告</div><div class="pf-title">Jensen Huang's Hardware Sovereignty Loop — Full Research Report</div></div>
+      </a>
+      <a href="/publications/compendium-2027.html">
+        <img src="/assets/covers/national-strategy-01.jpg" alt="InsightBridge 2027 Strategic Intelligence Compendium — cover art" loading="lazy" decoding="async">
+        <div class="pf-body"><div class="pf-tag">Advisory · 战略情报</div><div class="pf-title">The InsightBridge 2027 Strategic Intelligence Compendium</div></div>
+      </a>
+      <a href="/publications/vision-2030-scorecard.html">
+        <img src="/assets/covers/industry-briefings-01.jpg" alt="Vision 2030 scorecard — cover art" loading="lazy" decoding="async">
+        <div class="pf-body"><div class="pf-tag">Scorecard · 预测验证</div><div class="pf-title">What We Wrote in May — And What July Confirmed</div></div>
+      </a>
+      <a href="/publications/from-extraction-to-home-civilization-think-tank-report.html">
+        <img src="/assets/covers/deep-analysis-01.jpg" alt="From Extraction Civilization to Home Civilization — cover art" loading="lazy" decoding="async">
+        <div class="pf-body"><div class="pf-tag">Think-Tank Report · 智库报告</div><div class="pf-title">From Extraction Civilization to Home Civilization</div></div>
+      </a>
     </div>
     <div class="hub-filters" role="tablist" data-testid="publications-filters">
       <button class="active" data-filter="all" data-testid="filter-all">All</button>
