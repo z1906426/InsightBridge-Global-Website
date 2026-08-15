@@ -888,12 +888,28 @@ img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-u
 </head>
 <body>
 
+<!-- ===== TOP UTILITY BAR — live signal + language/intel switchboard (redesign 2026-08-15) ===== -->
+<div class="topbar" translate="no">
+  <div class="container topbar__inner">
+    <span class="topbar__left">
+      <span class="topbar__dot" aria-hidden="true"></span>
+      <span class="topbar__signal">THE SIGNAL · LIVE</span>
+      <span class="topbar__date lang-en" id="topbar-date-en"></span>
+      <span class="topbar__date lang-cn" id="topbar-date-cn"></span>
+    </span>
+    <span class="topbar__right">
+      <a href="zh.html" hreflang="zh-Hans">中文版</a>
+      <span class="topbar__sep" aria-hidden="true">·</span>
+      <a href="https://intelligence.insightbridge.global" target="_blank" rel="noopener">INTELLIGENCE.INSIGHTBRIDGE.GLOBAL</a>
+    </span>
+  </div>
+</div>
+
 <!-- ===== HEADER ===== -->
 <header class="header">
   <div class="container header__inner">
     <a href="index.html#home" class="header__logo">
-      <img src="assets/logo-en.jpg" alt="InsightBridge Global — Hotel · Strategy · AI" class="header__logo-img lang-en" width="344" height="160" style="height: 40px; width: auto; display: block; border-radius: 4px;">
-      <img src="assets/logo-cn.jpg" alt="美国洞见桥全球公司 — 酒店 · 战略 · 人工智能" class="header__logo-img lang-cn" width="823" height="367" style="height: 40px; width: auto; display: block; border-radius: 4px;">
+      <span class="header__logo-mark" aria-hidden="true">IB</span>
       <span class="header__wordmark" aria-hidden="true">
         <span class="header__wordmark-name">
           <span class="lang-en">InsightBridge Global</span>
@@ -907,14 +923,14 @@ img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-u
     </a>
 
     <nav class="header__nav">
-      <a href="index.html#home" class="active"><span class="lang-en">Home</span><span class="lang-cn">首页</span></a>
-      <a href="index.html#about"><span class="lang-en">About</span><span class="lang-cn">关于我们</span></a>
-      <a href="/frameworks/"><span class="lang-en">Frameworks</span><span class="lang-cn">理论框架</span></a>
-      <a href="/books.html"><span class="lang-en">Books</span><span class="lang-cn">著作</span></a>
-      <a href="/track-record.html"><span class="lang-en">Track Record</span><span class="lang-cn">预测战绩</span></a>
-      <a href="index.html#publications"><span class="lang-en">Publications</span><span class="lang-cn">出版研究</span></a>
-      <a href="index.html#intelligence"><span class="lang-en">Intelligence</span><span class="lang-cn">全球洞察</span></a>
-      <a href="index.html#contact"><span class="lang-en">Contact</span><span class="lang-cn">联系我们</span></a>
+      <a href="index.html#home" class="active"><span class="nav-main"><span class="lang-en">Home</span><span class="lang-cn">首页</span></span><span class="nav-sub"><span class="lang-en">首页</span><span class="lang-cn">HOME</span></span></a>
+      <a href="index.html#about"><span class="nav-main"><span class="lang-en">About</span><span class="lang-cn">关于我们</span></span><span class="nav-sub"><span class="lang-en">关于我们</span><span class="lang-cn">ABOUT</span></span></a>
+      <a href="/frameworks/"><span class="nav-main"><span class="lang-en">Frameworks</span><span class="lang-cn">理论框架</span></span><span class="nav-sub"><span class="lang-en">理论框架</span><span class="lang-cn">FRAMEWORKS</span></span></a>
+      <a href="/books.html"><span class="nav-main"><span class="lang-en">Books</span><span class="lang-cn">著作</span></span><span class="nav-sub"><span class="lang-en">著作</span><span class="lang-cn">BOOKS</span></span></a>
+      <a href="/track-record.html"><span class="nav-main"><span class="lang-en">Track Record</span><span class="lang-cn">预测战绩</span></span><span class="nav-sub"><span class="lang-en">预测战绩</span><span class="lang-cn">TRACK RECORD</span></span></a>
+      <a href="index.html#publications"><span class="nav-main"><span class="lang-en">Publications</span><span class="lang-cn">出版研究</span></span><span class="nav-sub"><span class="lang-en">出版研究</span><span class="lang-cn">PUBLICATIONS</span></span></a>
+      <a href="index.html#intelligence"><span class="nav-main"><span class="lang-en">Intelligence</span><span class="lang-cn">全球洞察</span></span><span class="nav-sub"><span class="lang-en">全球洞察</span><span class="lang-cn">INTELLIGENCE</span></span></a>
+      <a href="index.html#contact"><span class="nav-main"><span class="lang-en">Contact</span><span class="lang-cn">联系我们</span></span><span class="nav-sub"><span class="lang-en">联系我们</span><span class="lang-cn">CONTACT</span></span></a>
     </nav>
 
     <div class="header__controls" translate="no">
@@ -980,41 +996,38 @@ img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-u
 
 
   <section class="hero">
-    <div class="hero__bg">
-      <picture>
-        <source media="(max-width: 768px)" type="image/webp" srcset="assets/hero-main-mobile.webp">
-        <source type="image/webp" srcset="assets/hero-main.webp">
-        <source type="image/jpeg" srcset="assets/hero-main-opt.jpg">
-        <img src="assets/hero-main-opt.jpg" alt="Architectural detail" loading="eager" fetchpriority="high" decoding="async" width="2752" height="1536">
-      </picture>
-    </div>
     <div class="container hero__layout">
 
       <!-- LEFT — main hero content -->
       <div class="hero__content">
-        <div class="hero__brand reveal">
-          <span class="hero__brand-name">
-            <span class="lang-en">InsightBridge Global LLC</span>
-            <span class="lang-cn">美国洞见桥全球公司</span>
-          </span>
-          <span class="hero__brand-tagline">
-            <span class="lang-en">A Theory-Driven Strategic Think Tank</span>
-            <span class="lang-cn">理论驱动的战略智库</span>
-          </span>
+        <div class="hero__eyebrow reveal">
+          <span class="lang-en">A Theory-Driven Strategic Think Tank</span>
+          <span class="lang-cn">理论驱动的战略智库</span>
         </div>
         <h1 class="hero__title reveal">
-          <span class="lang-en">We build the frameworks.<br>Then we prove them.</span>
-          <span class="lang-cn">我们生产框架，<br>然后证明它。</span>
+          <span class="lang-en">We build the frameworks.<br><span class="hero__title-accent">Then we prove them.</span></span>
+          <span class="lang-cn">我们生产框架，<br><span class="hero__title-accent">然后证明它。</span></span>
         </h1>
+        <p class="hero__title-alt reveal" aria-hidden="true">
+          <span class="lang-en">我们生产框架，然后证明它。</span>
+          <span class="lang-cn">We build the frameworks. Then we prove them.</span>
+        </p>
         <p class="hero__subtitle reveal">
           <span class="lang-en">InsightBridge Global is a theory-driven strategic think tank. We originate our own analytical frameworks rather than licensing others', test them against one industry's published statistics, and apply them at three altitudes — national strategy, industry strategy, and operational execution.</span>
           <span class="lang-cn">美国洞见桥全球公司是一家理论驱动的战略智库。我们生产自己的分析框架而非租用他人的，在一个行业的公开统计数据上检验它们，并把它们应用于三个高度——国家战略、行业战略、微观执行。</span>
         </p>
-        <a href="/vision-2030-predictions-vs-reality/" class="hero__cta reveal">
-          <span class="lang-en">See the track record</span>
-          <span class="lang-cn">查看预测记录</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <div class="hero__actions reveal">
+          <a href="/vision-2030-predictions-vs-reality/" class="hero__cta hero__cta--primary">
+            <span class="lang-en">See the track record</span>
+            <span class="lang-cn">查看预测记录</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/practices.html" class="hero__cta hero__cta--secondary">
+            <span class="lang-en">Explore the three practices</span>
+            <span class="lang-cn">了解三条业务线</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
         <p class="hero__publication-link reveal">
           <span class="lang-en">
             <a href="/practices.html">The three practices<span aria-hidden="true"> →</span></a> ·
@@ -1145,44 +1158,44 @@ img{-webkit-touch-callout:none!important;-webkit-user-drag:none!important;-moz-u
     </div>
   </section>
 
-  <!-- ===== PROOF STRIP — verifiable numbers before any self-description (repositioning kit §1.2) ===== -->
+  <!-- ===== PROOF STRIP — verifiable numbers before any self-description (repositioning kit §1.2; restyled to editorial light band 2026-08-15) ===== -->
   <section class="proof-strip" aria-label="Verifiable track record"
-    style="background:var(--color-primary,#0A192F);color:#fff;padding:clamp(28px,4vw,44px) 0;">
+    style="background:var(--color-surface,#FBF7F0);color:var(--color-text,#0A192F);padding:clamp(28px,4vw,44px) 0;border-top:2px solid var(--color-primary,#0A192F);border-bottom:1px solid var(--color-divider,#D5CBB8);">
     <div class="container" style="max-width:1200px;margin:0 auto;padding:0 var(--space-6,24px);">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-6,24px);text-align:center;">
         <div>
-          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;line-height:1;">11.4%</div>
-          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:rgba(255,255,255,0.82);">
-            <span class="lang-en">Forecast: ADR decline structural, 13 May 2026. Official statistic, July 2026: −11.4%.</span>
-            <span class="lang-cn">5 月 13 日判断 ADR 结构性下跌；7 月官方数据 −11.4%</span>
+          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(2rem,3.8vw,2.9rem);font-weight:700;line-height:1;color:var(--color-accent,#7A1F2B);">−11.4%</div>
+          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:var(--color-text-muted,#4A5468);">
+            <span class="lang-en">Forecast: structural ADR decline (May 13) — confirmed by July official statistics.</span>
+            <span class="lang-cn">预测：ADR 结构性下滑（5 月 13 日）· 七月官方统计确认</span>
           </p>
         </div>
         <div>
-          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;line-height:1;">8 days</div>
-          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:rgba(255,255,255,0.82);">
-            <span class="lang-en">From published call to NEOM's public repositioning, July 2026.</span>
-            <span class="lang-cn">从公开判断到 NEOM 公开重新定位</span>
+          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(2rem,3.8vw,2.9rem);font-weight:700;line-height:1;color:var(--color-primary,#0A192F);"><span class="lang-en">8 days</span><span class="lang-cn">8 天</span></div>
+          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:var(--color-text-muted,#4A5468);">
+            <span class="lang-en">From public forecast to NEOM's public repositioning.</span>
+            <span class="lang-cn">从公开预测到 NEOM 公开调整定位</span>
           </p>
         </div>
         <div>
-          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;line-height:1;">4</div>
-          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:rgba(255,255,255,0.82);">
-            <span class="lang-en">Proprietary frameworks in active use.</span>
-            <span class="lang-cn">在用的自有理论框架</span>
+          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(2rem,3.8vw,2.9rem);font-weight:700;line-height:1;color:var(--color-primary,#0A192F);">4</div>
+          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:var(--color-text-muted,#4A5468);">
+            <span class="lang-en">Original analytical frameworks in active use.</span>
+            <span class="lang-cn">正在活跃使用的原创分析框架</span>
           </p>
         </div>
         <div>
-          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;line-height:1;">6</div>
-          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:rgba(255,255,255,0.82);">
-            <span class="lang-en">Academic works under contract or review.</span>
-            <span class="lang-cn">签约或评审中的学术著作</span>
+          <div style="font-family:var(--font-display,Georgia,serif);font-size:clamp(2rem,3.8vw,2.9rem);font-weight:700;line-height:1;color:var(--color-primary,#0A192F);">6</div>
+          <p style="margin:8px 0 0;font-size:0.85rem;line-height:1.5;color:var(--color-text-muted,#4A5468);">
+            <span class="lang-en">Academic books under contract or in review.</span>
+            <span class="lang-cn">已签约或评审中的学术著作</span>
           </p>
         </div>
       </div>
       <p style="text-align:center;margin:20px 0 0;font-size:0.82rem;">
-        <a href="/vision-2030-predictions-vs-reality/" style="color:rgba(255,255,255,0.9);text-decoration:underline;">
-          <span class="lang-en">Every forecast on this page is dated and sourced</span>
-          <span class="lang-cn">本页每条预测均带日期与出处</span>
+        <a href="/vision-2030-predictions-vs-reality/" style="color:var(--color-accent,#7A1F2B);text-decoration:none;border-bottom:1px solid rgba(122,31,43,0.4);padding-bottom:1px;">
+          <span class="lang-en">Every forecast on this page is dated and sourced →</span>
+          <span class="lang-cn">本页每条预测均带日期与出处 →</span>
         </a>
       </p>
     </div>
@@ -5819,5 +5832,23 @@ document.querySelectorAll('.credential-wrap, [data-protected], .about__image-wra
 
 <!-- WeCom Three-Layer Visitor Intelligence (only activates in WeCom/WeChat browser) -->
 <script src="wecom-track.js" defer></script>
+<script>
+/* Topbar live date — bilingual, follows the active display language. */
+(function () {
+  function fillTopbarDate() {
+    var now = new Date();
+    var en = document.getElementById('topbar-date-en');
+    var cn = document.getElementById('topbar-date-cn');
+    if (!en || !cn) return;
+    try {
+      en.textContent = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+      cn.textContent = now.getFullYear() + ' 年 ' + (now.getMonth() + 1) + ' 月 ' + now.getDate() + ' 日 星期' + '日一二三四五六'[now.getDay()];
+    } catch (e) { /* date is decorative — never break the page */ }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fillTopbarDate);
+  } else { fillTopbarDate(); }
+})();
+</script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a07a6f5cb8d810dd',t:'MTc4MDc4MDU1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
