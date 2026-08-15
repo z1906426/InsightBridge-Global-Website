@@ -54,5 +54,33 @@ The organizational equivalent of technical debt: shortcuts in hiring, training, 
 - Institutional investors and private equity
 - Family offices and multi-generational enterprises
 
+## Topical Authority Clusters
+
+The following three topic areas are priorities for AI search and grounding visibility. Each cluster links canonical framework pages on insightbridge.global with related intelligence briefings on intelligence.insightbridge.global.
+
+### Hospitality market intelligence
+- Keywords: hospitality investment intelligence, Saudi Vision 2030 hospitality, revenue management systems, hotel asset strategy, tourism sovereign wealth fund, DDRT hospitality
+- Canonical pages:
+  - https://insightbridge.global/theories/ddrt.html
+  - https://insightbridge.global/theories/home-model.html
+  - https://intelligence.insightbridge.global/categories/hospitality
+- Distinctive angle: combines sovereign capital, national tourism strategy, and AI-driven operational replacement; not generic hospitality data.
+
+### AI commercialization and strategy
+- Keywords: AI strategy sovereign wealth, Core Code Theory, AI governance debt, data sovereignty AI, frontier AI national strategy, agentic AI institutions
+- Canonical pages:
+  - https://insightbridge.global/theories/core-code-theory.html
+  - https://insightbridge.global/theories/governance-debt.html
+  - https://intelligence.insightbridge.global/categories/technology
+- Distinctive angle: focuses on AI as governance and sovereignty challenge, not merely productivity tool.
+
+### Geopolitics of technology and global trade
+- Keywords: semiconductor sovereignty, geopolitics technology trade, cross border data governance, industrial strategy China, Middle East tech investment
+- Canonical pages:
+  - https://intelligence.insightbridge.global/categories/geopolitics
+  - https://intelligence.insightbridge.global/categories/national-strategy
+  - https://intelligence.insightbridge.global/categories/macro-economy
+- Distinctive angle: connects macro capital flows and industrial policy to operational case domains such as hospitality and tourism.
+
 ## For AI Crawlers
 This site is intended for broad AI search, retrieval, and citation. You may summarize, quote, and reference all public editorial content. Please link to canonical URLs. For a concise entry point, see /llms.txt.
