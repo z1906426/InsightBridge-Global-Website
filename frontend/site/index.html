@@ -46,11 +46,18 @@
       // 301 there never fires), and Clarity shows ~21% of homepage pageviews
       // landing on the duplicate. Consolidate humans + JS-executing crawlers
       // to / here; link-equity is already consolidated by the canonical tag.
+      //
+      // CRITICAL: The noindex injection below ONLY fires for 404-fallback
+      // paths (CDN rewrites missing URLs to this page). The whitelist here
+      // must cover ALL legitimate homepage entry points to avoid accidental
+      // de-indexing of the root URL.
+      if (p === '/' || p === '') {
+        return;   // legitimate root load — do nothing, keep index,follow
+      }
       if (p === '/index.html') {
         location.replace('/' + location.search + location.hash);
         return;
       }
-      if (p === '/') return;   // legitimate load — do nothing
 
       var originalPath = location.pathname + location.search;
 
@@ -240,9 +247,8 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "https://insightbridge.global/#org",
-  "name": "InsightBridge Global",
-  "legalName": "InsightBridge Global LLC",
-  "alternateName": "InsightBridge Strategy & AI Research",
+  "name": "InsightBridge Global LLC",
+  "alternateName": ["InsightBridge Global", "InsightBridge Strategy & AI Research", "洞察桥全球"],
   "url": "https://insightbridge.global",
   "logo": "https://insightbridge.global/assets/logo-en.jpg",
   "description": "Sovereign-grade strategic intelligence, macroeconomic forecasting, and frontier-AI policy advisory firm serving sovereign wealth funds, central banks, ministries, and institutional investors. Applied research also covers national tourism master-planning and AI-driven revenue governance as case domains. Founded by Dr. Tong Yin, Ph.D., Auburn University.",
