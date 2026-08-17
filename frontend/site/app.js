@@ -303,35 +303,6 @@
     setTimeout(loadGA, 2500);
   }
 
-  /* ===== LAZY ZOHO SALESIQ (first interaction or 6 s idle) ===== */
-  function loadZoho() {
-    if (window._zohoLoaded) return;
-    window._zohoLoaded = true;
-
-    window.$zoho = window.$zoho || {};
-    $zoho.salesiq = $zoho.salesiq || { ready: function () {} };
-
-    var s = document.createElement('script');
-    s.id = 'zsiqscript';
-    s.src = 'https://salesiq.zohopublic.com/widget?wc=siq76f4656c64d4e5065c3194d7d468d59d7e82783c33020b302bf072dc0b1090d4';
-    s.defer = true;
-    document.body.appendChild(s);
-
-    ['scroll', 'touchstart', 'click', 'keydown'].forEach(function (evt) {
-      document.removeEventListener(evt, loadZoho);
-    });
-  }
-
-  ['scroll', 'touchstart', 'click', 'keydown'].forEach(function (evt) {
-    document.addEventListener(evt, loadZoho, { once: true, passive: true });
-  });
-
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(function () { setTimeout(loadZoho, 1000); }, { timeout: 6000 });
-  } else {
-    setTimeout(loadZoho, 6000);
-  }
-
   /* ===== iPad/Tablet safety: auto-close drawer when viewport >768px ===== */
   function autoCloseDrawerOnResize() {
     if (window.innerWidth > 768) {

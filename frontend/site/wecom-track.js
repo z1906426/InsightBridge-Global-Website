@@ -1,9 +1,8 @@
 /**
- * InsightBridge × WeCom — Three-Layer Visitor Intelligence
+ * InsightBridge × WeCom — Two-Layer Visitor Intelligence
  * =========================================================
  * Layer 1 · OAuth2 identity   — silently identifies who is viewing
  * Layer 2 · Behaviour tracker — pushes WeCom notifications to owner
- * Layer 3 · SalesIQ binding   — auto-fills chat identity
  *
  * Only activates inside WeCom / WeChat browser.
  * Zero effect on regular desktop/mobile visitors.
@@ -44,28 +43,6 @@
     setTimeout(startOAuth, 1500);
     return;
   }
-
-  /* ── Layer 3 · Zoho SalesIQ — bind identity once chat loads ────────── */
-  function bindSalesIQ() {
-    if (!window.$zoho || !window.$zoho.salesiq) return;
-    var display = identity.name || '访客';
-    if (identity.company) display += ' · ' + identity.company;
-    window.$zoho.salesiq.visitor.name(display);
-    if (identity.email) window.$zoho.salesiq.visitor.email(identity.email);
-    if (identity.company || identity.position) {
-      window.$zoho.salesiq.visitor.info({
-        company:  identity.company  || '',
-        position: identity.position || '',
-      });
-    }
-  }
-
-  var salesIQPoll = setInterval(function () {
-    if (window.$zoho && window.$zoho.salesiq) {
-      bindSalesIQ();
-      clearInterval(salesIQPoll);
-    }
-  }, 800);
 
   /* ── Layer 2 · Behaviour tracker ───────────────────────────────────── */
   function sendEvent(eventType, label, url) {
