@@ -16,7 +16,7 @@ import os
 import logging
 import requests
 from datetime import datetime, timezone
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -163,7 +163,16 @@ def get_urls() -> List[str]:
 
 
 def push_to_baidu(urls: List[str]) -> Dict[str, Any]:
-    """POST URLs as newline-separated text to Baidu Zhanzhang API."""
+    """Submit URLs to Baidu Zhanzhang API **one at a time** (serial), stopping
+    as soon as the daily quota is exhausted.
+
+    Why serial: Baidu rejects an ENTIRE batch with 400 "over quota" when the
+    remaining daily quota is smaller than the batch size — so a single batch
+    POST can silently discard every otherwise-valid URL. Pushing one URL per
+    request guarantees each accepted URL is banked before we hit the limit,
+    and we stop immediately on `remain<=0` or an over-quota error rather than
+    burning further requests.
+    """
     if not BAIDU_PUSH_TOKEN:
         return {"engine": "baidu", "ok": False, "error": "BAIDU_PUSH_TOKEN not set"}
 
@@ -171,28 +180,62 @@ def push_to_baidu(urls: List[str]) -> Dict[str, Any]:
         f"http://data.zz.baidu.com/urls"
         f"?site={SITE_URL}&token={BAIDU_PUSH_TOKEN}"
     )
-    body = "\n".join(urls).encode("utf-8")
-    try:
-        r = requests.post(
-            endpoint,
-            data=body,
-            headers={"Content-Type": "text/plain"},
-            timeout=15,
-        )
+
+    pushed: List[str] = []
+    per_url: List[Dict[str, Any]] = []
+    remain: Optional[int] = None
+    quota_exhausted = False
+
+    for url in urls:
         try:
-            payload = r.json()
-        except Exception:
-            payload = r.text[:500]
-        return {
-            "engine": "baidu",
-            "ok": r.status_code == 200 and isinstance(payload, dict) and "success" in payload,
-            "status_code": r.status_code,
-            "response": payload,
-            "urls_submitted": len(urls),
-        }
-    except Exception as e:
-        logger.exception("Baidu push failed")
-        return {"engine": "baidu", "ok": False, "error": str(e)}
+            r = requests.post(
+                endpoint,
+                data=url.encode("utf-8"),
+                headers={"Content-Type": "text/plain"},
+                timeout=15,
+            )
+            try:
+                payload = r.json()
+            except Exception:
+                payload = r.text[:300]
+        except Exception as e:
+            logger.warning("Baidu push failed for %s: %s", url, e)
+            per_url.append({"url": url, "ok": False, "error": str(e)})
+            continue
+
+        # Explicit API error → inspect. Over-quota means stop immediately.
+        if isinstance(payload, dict) and payload.get("error"):
+            per_url.append({"url": url, "ok": False, "response": payload})
+            msg = str(payload.get("message", "")).lower()
+            if payload.get("error") == 400 and "quota" in msg:
+                logger.info("Baidu quota exhausted at %s — stopping serial push", url)
+                quota_exhausted = True
+                break
+            continue  # other error → skip this URL, keep trying the rest
+
+        # Success payload: {"remain": N, "success": M, ...}
+        if isinstance(payload, dict) and payload.get("success"):
+            pushed.append(url)
+            if isinstance(payload.get("remain"), int):
+                remain = payload["remain"]
+            per_url.append({"url": url, "ok": True, "remain": remain})
+            if isinstance(remain, int) and remain <= 0:
+                logger.info("Baidu remain=0 after %s — stopping serial push", url)
+                quota_exhausted = True
+                break
+        else:
+            per_url.append({"url": url, "ok": False, "response": payload})
+
+    return {
+        "engine": "baidu",
+        "ok": len(pushed) > 0,
+        "urls_submitted": len(pushed),
+        "urls_attempted": len(per_url),
+        "pushed_urls": pushed,
+        "remain": remain,
+        "quota_exhausted": quota_exhausted,
+        "per_url": per_url,
+    }
 
 
 def push_to_indexnow(urls: List[str]) -> Dict[str, Any]:
@@ -268,8 +311,8 @@ async def run_push_urls(db, urls: List[str], *, label: str = "custom") -> Dict[s
         push_to_google(google_urls),
         push_to_seznam(seznam_urls),              # Seznam Webmaster reindex API (Czech search)
     ]
-    # Track per-URL Baidu push timestamps so the 3-day cooldown works next round
-    await _record_baidu_push(db, baidu_urls, results[0].get("ok", False))
+    # Track per-URL Baidu push timestamps (only URLs Baidu actually accepted)
+    await _record_baidu_push(db, results[0].get("pushed_urls", []), results[0].get("ok", False))
 
     record: Dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -321,8 +364,8 @@ async def run_push_and_save(db) -> Dict[str, Any]:
         push_to_google(google_urls),
         push_to_seznam(_prepend_must_push(main_urls)),   # Seznam Webmaster reindex API (Czech search)
     ]
-    # Track per-URL Baidu push timestamps so the 3-day cooldown works next round
-    await _record_baidu_push(db, baidu_urls, results[0].get("ok", False))
+    # Track per-URL Baidu push timestamps (only URLs Baidu actually accepted)
+    await _record_baidu_push(db, results[0].get("pushed_urls", []), results[0].get("ok", False))
 
     record: Dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
