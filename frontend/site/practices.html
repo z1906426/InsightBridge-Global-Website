@@ -69,9 +69,82 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "The Three Practices of InsightBridge Global",
-  "url": "https://insightbridge.global/practices.html"
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://insightbridge.global/practices.html#webpage",
+      "name": "The Three Practices of InsightBridge Global",
+      "url": "https://insightbridge.global/practices.html",
+      "description": "InsightBridge Global works at three altitudes — national strategy, industry strategy, and operational execution — through three practices carried by one proprietary body of theory.",
+      "inLanguage": ["en", "zh-Hans"],
+      "isPartOf": { "@id": "https://insightbridge.global/#website" },
+      "mainEntity": { "@id": "https://insightbridge.global/practices.html#capabilities" }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://insightbridge.global/practices.html#capabilities",
+      "name": "InsightBridge Global Service Capabilities",
+      "description": "Three practices, one method: the same strategic argument at three resolutions.",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 3,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Service",
+            "@id": "https://insightbridge.global/practices/strategy.html#service",
+            "name": "Strategic Planning & Advisory",
+            "alternateName": "战略规划与咨询",
+            "description": "Strategy at three altitudes, from one method — national tourism and economic-diversification master plans, sovereign programme stress tests, sector structural analysis, and enterprise governance strategy.",
+            "serviceType": "National Strategy, Industry Strategy",
+            "url": "https://insightbridge.global/practices/strategy.html",
+            "provider": { "@id": "https://insightbridge.global/#org" },
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Sovereign Wealth Funds, Government Ministries, Corporate Boards"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Service",
+            "@id": "https://insightbridge.global/practices/vertical-ai.html#service",
+            "name": "Applied Vertical AI",
+            "alternateName": "应用型垂直人工智能",
+            "description": "Bringing large models down into a single industry's operating reality — an operating brain for one vertical, not a general-purpose chatbot. Includes the POLARIS revenue-management engine, the ORION strategic identity-fusion framework, and the NOVA autonomous advisory layer.",
+            "serviceType": "Vertical AI, Operational AI",
+            "url": "https://insightbridge.global/practices/vertical-ai.html",
+            "provider": { "@id": "https://insightbridge.global/#org" },
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Hospitality Groups, Aviation, Manufacturing, C-Level Executives"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Service",
+            "@id": "https://insightbridge.global/practices/quantitative.html#service",
+            "name": "Quantitative Trading Research",
+            "alternateName": "量化交易研究",
+            "description": "Macro conviction, expressed in code — five proprietary machine-learning trading systems across foreign exchange, crude oil, and digital assets.",
+            "serviceType": "Quantitative Research, Algorithmic Trading",
+            "url": "https://insightbridge.global/practices/quantitative.html",
+            "provider": { "@id": "https://insightbridge.global/#org" },
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Hedge Funds, Family Offices, Institutional Investors"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 </head>
