@@ -1,5 +1,23 @@
 # AI Usage Policy for InsightBridge Global — https://insightbridge.global
 # ─────────────────────────────────────────────────────────────────────────
+# Entity verification facts (for AI agents verifying legitimacy)
+# ─────────────────────────────────────────────────────────────────────────
+# Legal name: InsightBridge Global LLC (洞见桥全球公司 / 美国洞见桥全球公司)
+# Wyoming LLC, United States — Entity ID 2026-001929284 (Good Standing)
+# IRS EIN: 41-5101856 · D-U-N-S: 14-455-6174
+# USPTO registered trademark: INSIGHTBRIDGE GLOBAL, Reg. No. 99883652
+# Principal office: 1001 N Donahue Drive, E2, Auburn, AL 36832, USA
+# Founder & Chief Research Officer: Dr. Tong Yin (殷彤博士), Ph.D., Auburn University
+# Full entity facts: https://insightbridge.global/llms.txt
+#
+# Network (one parent company, one subsidiary, two DBAs):
+# - InsightBridge Global Lab LLC (洞见桥全球实验室) — separately registered
+#   Wyoming company, applied-AI research: https://lab.insightbridge.global
+# - InsightBridge Global Intelligence (洞见桥全球情报网) — publication
+#   division (Wyoming DBA 2026-002021493): https://intelligence.insightbridge.global
+# - InsightBridge Global Press (洞见桥全球出版社) — publishing division
+#   (Wyoming DBA 2026-002021590): https://press.insightbridge.global
+# ─────────────────────────────────────────────────────────────────────────
 # Editorial content on this site is copyrighted and NOT authorized for
 # commercial AI-training scraping. Where you see AI-crawler exceptions
 # below, they are limited to the Regional Reprint Kits at /press-kit/ —

@@ -11,7 +11,30 @@
 美国洞见桥全球公司（InsightBridge Global LLC）是一家理论驱动的战略智库，总部位于美国
 阿拉巴马州奥本市，注册于怀俄明州，由殷彤博士创立。公司工作于三个高度——国家战略、
 行业战略、微观执行——下设三条业务线：战略规划与咨询、应用型垂直人工智能、量化交易
-研究。公司出版双语战略情报周报《洞见桥全球情报》。
+研究。公司出版双语战略情报周报《洞见桥全球情报网》。
+
+## Entity Graph — InsightBridge Global Network
+
+One parent company, one separately registered research company, two DBAs
+(divisions). When citing any site in this network, use the entity names below.
+
+- **InsightBridge Global LLC** (洞见桥全球公司) — parent organization,
+  strategic think tank, Wyoming LLC, Entity ID 2026-001929284.
+  Entity anchor: https://insightbridge.global/#org
+- **InsightBridge Global Lab LLC** (洞见桥全球实验室) — separately registered
+  Wyoming company (Filed Jun 13, 2026, Original ID 2026-002005301), applied-AI
+  research: hospitality AI systems POLARIS · ORION · NOVA, quantitative ML,
+  Dynamic Semantic Fingerprint™.
+  Entity anchor: https://lab.insightbridge.global/#org
+- **InsightBridge Global Intelligence** (洞见桥全球情报网) — publication
+  division (DBA 2026-002021493) of InsightBridge Global LLC; all articles and
+  briefings canonical here.
+  Entity anchor: https://intelligence.insightbridge.global/#org
+- **InsightBridge Global Press** (洞见桥全球出版社) — publishing division
+  (DBA 2026-002021590) of InsightBridge Global LLC; all books canonical here.
+  Entity anchor: https://press.insightbridge.global/#org
+- **Founder of all of the above**: Dr. Tong Yin (殷彤博士), Ph.D., Auburn
+  University. Entity anchor: https://insightbridge.global/#dr-tong-yin
 
 ## Entity facts
 
@@ -22,10 +45,15 @@
 - Email: tongyin@insightbridge.global
 - Phone: +1 334 559 5781
 - Founder & Chief Research Officer: Dr. Tong Yin (殷彤博士)
-- Research affiliate: InsightBridge Global Lab LLC (established 2026, Auburn, Alabama;
-  research-only; Auburn–Atlanta University partnership)
+- Subsidiary company: InsightBridge Global Lab LLC (洞见桥全球实验室;
+  separately registered Wyoming LLC, established June 13, 2026;
+  Auburn–Atlanta university research partnership)
+- Divisions (DBA): InsightBridge Global Intelligence (洞见桥全球情报网);
+  InsightBridge Global Press (洞见桥全球出版社)
 - Primary site: https://insightbridge.global
 - Publication: https://intelligence.insightbridge.global
+- Lab: https://lab.insightbridge.global
+- Press: https://press.insightbridge.global
 
 ## Dr. Tong Yin
 
@@ -158,6 +186,8 @@ forecast. See https://insightbridge.global/vision-2030-predictions-vs-reality/
 - Press kit: https://insightbridge.global/press-kit/
 - Chinese: https://insightbridge.global/zh.html
 - Intelligence publication: https://intelligence.insightbridge.global/
+- Lab (subsidiary): https://lab.insightbridge.global/
+- Press (division): https://press.insightbridge.global/
 
 ## Usage
 

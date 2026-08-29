@@ -181,7 +181,7 @@
   "@type": "Person",
   "@id": "https://insightbridge.global/#dr-tong-yin",
   "name": "Tong Yin",
-  "alternateName": "Dr. Tong Yin",
+  "alternateName": ["Dr. Tong Yin", "殷彤", "殷彤博士"],
   "jobTitle": "Founder & Chief Research Officer, Scholar-Practitioner",
   "description": "Management scholar, strategic analyst, and quantitative systems developer. Originator of Core Code Theory, the Home Model, Governance Debt, and Dynamic Driver Replacement Theory (DDRT). Ph.D. in Hospitality Management from Auburn University. Founder & Chief Research Officer of InsightBridge Global LLC, based in Auburn, Alabama, USA. Not affiliated with same-name researchers in biomedical fields or with the University of Birmingham business economics department.",
   "disambiguatingDescription": "Management scholar and strategic analyst (Ph.D. in Hospitality Management, Auburn University; MBA, Eastern Illinois University), founder of InsightBridge Global LLC. Not the same-name researchers publishing in biomedical sciences, and not affiliated with the University of Birmingham business economics department.",
@@ -288,11 +288,12 @@
   "@type": "Organization",
   "@id": "https://insightbridge.global/#org",
   "name": "InsightBridge Global LLC",
-  "alternateName": ["InsightBridge Global", "InsightBridge Strategy & AI Research", "洞察桥全球"],
-  "url": "https://insightbridge.global",
+  "legalName": "InsightBridge Global LLC",
+  "alternateName": ["InsightBridge Global", "洞见桥全球公司", "美国洞见桥全球公司"],
+  "url": "https://insightbridge.global/",
   "logo": "https://insightbridge.global/assets/logo-en.jpg",
   "description": "Sovereign-grade strategic intelligence, macroeconomic forecasting, and frontier-AI policy advisory firm serving sovereign wealth funds, central banks, ministries, and institutional investors. Applied research also covers national tourism master-planning and AI-driven revenue governance as case domains. Founded by Dr. Tong Yin, Ph.D., Auburn University.",
-  "disambiguatingDescription": "Independent strategic intelligence and advisory firm founded by Dr. Tong Yin, registered in Wyoming and based in Auburn, Alabama, USA. Operates insightbridge.global, intelligence.insightbridge.global and press.insightbridge.global. Not affiliated with any other organisation using the 'InsightBridge' name.",
+  "disambiguatingDescription": "Independent strategic intelligence and advisory firm founded by Dr. Tong Yin, registered in Wyoming and based in Auburn, Alabama, USA. Operates insightbridge.global plus two divisions (DBA): InsightBridge Global Intelligence (intelligence.insightbridge.global) and InsightBridge Global Press (press.insightbridge.global); parent company of InsightBridge Global Lab LLC (lab.insightbridge.global), a separately registered Wyoming company. Not affiliated with any other organisation using the 'InsightBridge' name.",
   "knowsAbout": [
     "Sovereign wealth advisory",
     "Strategic intelligence",
@@ -312,18 +313,7 @@
   "foundingDate": "2025",
   "foundingLocation": {"@type": "Place", "name": "Wyoming, USA"},
   "founder": {
-    "@id": "https://insightbridge.global/#dr-tong-yin",
-    "@type": "Person",
-    "name": "Tong Yin",
-    "sameAs": [
-      "https://www.wikidata.org/wiki/Q139565442",
-      "https://orcid.org/0009-0007-6810-9888",
-      "https://scholar.google.com/citations?hl=en&user=dP7vYgMAAAAJ",
-      "https://www.researchgate.net/profile/Tong-Yin-18",
-      "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=10401996",
-      "https://www.linkedin.com/in/tong-yin-315249396",
-      "https://www.hospitalitynet.org/author/148006911/dr-tong-yin"
-    ]
+    "@id": "https://insightbridge.global/#dr-tong-yin"
   },
   "address": {
     "@type": "PostalAddress",
@@ -333,24 +323,30 @@
     "postalCode": "36832",
     "addressCountry": "US"
   },
+  "identifier": [
+    {"@type": "PropertyValue", "propertyID": "Wyoming Secretary of State Entity ID", "value": "2026-001929284"},
+    {"@type": "PropertyValue", "propertyID": "D-U-N-S", "value": "14-455-6174"},
+    {"@type": "PropertyValue", "propertyID": "USPTO Registered Trademark", "value": "INSIGHTBRIDGE GLOBAL, Reg. No. 99883652"},
+    {"@type": "PropertyValue", "propertyID": "Wyoming Trade Name (DBA) Filing", "name": "InsightBridge Global Intelligence", "value": "2026-002021493"},
+    {"@type": "PropertyValue", "propertyID": "Wyoming Trade Name (DBA) Filing", "name": "InsightBridge Global Press", "value": "2026-002021590"}
+  ],
   "sameAs": [
-    "https://intelligence.insightbridge.global",
-    "https://press.insightbridge.global",
     "https://www.wikidata.org/wiki/Q139565256",
     "https://wyobiz.wyo.gov/Business/FilingDetails.aspx?fNum=240130118085100220230034050033015076185227003255",
     "https://www.linkedin.com/company/insightbridge-global",
-    "https://www.facebook.com/profile.php?id=61591393072163",
-    "https://scholar.google.com/citations?hl=en&user=dP7vYgMAAAAJ",
-    "https://www.researchgate.net/profile/Tong-Yin-18",
-    "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=10401996"
+    "https://www.facebook.com/profile.php?id=61591393072163"
   ],
   "subOrganization": {
-    "@type": "Organization",
-    "@id": "https://intelligence.insightbridge.global/#org",
-    "name": "InsightBridge Intelligence Platform",
-    "url": "https://intelligence.insightbridge.global",
-    "description": "AI-powered hotel market intelligence and revenue analytics platform by InsightBridge Global LLC."
+    "@id": "https://lab.insightbridge.global/#org"
   },
+  "department": [
+    {
+      "@id": "https://intelligence.insightbridge.global/#org"
+    },
+    {
+      "@id": "https://press.insightbridge.global/#org"
+    }
+  ],
   "makesOffer": [
     {
       "@type": "Offer",
@@ -359,7 +355,8 @@
         "name": "POLARIS — Strategic Pricing Engine",
         "description": "XGBoost + LSTM hybrid AI pricing engine for hotels. Live results: OTA commission reduction of 3–5 percentage points, material RevPAR improvement.",
         "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web"
+        "operatingSystem": "Web",
+        "url": "https://lab.insightbridge.global/#hospitality"
       }
     },
     {
@@ -369,7 +366,8 @@
         "name": "NOVA — Tactical Action Engine",
         "description": "AI direct booking and OTA-decoupling system delivering 6–12% ADR uplift in live hotel deployments.",
         "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web"
+        "operatingSystem": "Web",
+        "url": "https://lab.insightbridge.global/#hospitality"
       }
     },
     {
@@ -379,7 +377,8 @@
         "name": "ORION — Guest Intelligence Engine",
         "description": "Real-time hotel performance dashboard covering occupancy, ADR, RevPAR, channel mix, and competitive benchmarking. Reduces management reporting time by 70%.",
         "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web"
+        "operatingSystem": "Web",
+        "url": "https://lab.insightbridge.global/#hospitality"
       }
     }
   ]
