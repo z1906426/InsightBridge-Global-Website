@@ -1,0 +1,2 @@
+# SPA fallback — real static files/dirs win, unknown paths return homepage (same as previous Emergent behavior)
+/* /index.html 200

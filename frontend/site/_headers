@@ -1,0 +1,9 @@
+# Cloudflare Pages custom headers — 2026-08-29 migration from Emergent
+# Mirrors the zone-level security header set (zone rule excludes this hostname)
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
