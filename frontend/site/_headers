@@ -7,3 +7,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
+
+/api/press/citations
+  Content-Type: application/json
+  Cache-Control: public, max-age=3600
