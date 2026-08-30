@@ -1,2 +1,10 @@
-# SPA fallback — real static files/dirs win, unknown paths return homepage (same as previous Emergent behavior)
-/* /index.html 200
+# Not-found handling (2026-08-30): the previous SPA catch-all
+#   /* /index.html 200
+# served the homepage with HTTP 200 for every unknown path (soft-404 — bad for
+# SEO, and relative asset URLs broke on deep unknown paths). Removed.
+#
+# Unknown paths now fall through to /404.html, which Cloudflare Pages serves
+# automatically with a real 404 status. Real pages are unaffected: Pages'
+# built-in pretty URLs resolve /about → about.html, /frameworks/ →
+# frameworks/index.html, etc. (audited 2026-08-30: all 122 internal hrefs and
+# all 83 sitemap entries map to real files).
