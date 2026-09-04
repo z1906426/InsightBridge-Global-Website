@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>InsightBridge Research</ShortName>
+  <Description>Search InsightBridge Global research — strategic intelligence, hospitality AI, national strategy by Dr. Tong Yin</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" method="get" template="https://intelligence.insightbridge.global/search?q={searchTerms}"/>
+  <Image width="16" height="16" type="image/svg+xml">https://insightbridge.global/favicon.svg</Image>
+  <Developer>InsightBridge Global LLC</Developer>
+  <Language>en-us</Language>
+</OpenSearchDescription>
