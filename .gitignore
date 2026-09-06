@@ -98,3 +98,4 @@ backend/secrets/
 .env
 backend/.env
 setup-local-env.sh
+.wrangler/

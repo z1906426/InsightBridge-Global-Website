@@ -10,7 +10,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/"/>
     <image:image>
       <image:loc>https://insightbridge.global/assets/hero-main.jpg</image:loc>
@@ -30,13 +30,13 @@
 
   <!-- Executive Biography (standalone page) -->
   <url>
-    <loc>https://insightbridge.global/about.html</loc>
+    <loc>https://insightbridge.global/about</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/about"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/about"/>
     <image:image>
       <image:loc>https://insightbridge.global/assets/dr-tong-yin-v2.jpg</image:loc>
       <image:title>Dr. Tong Yin — Executive Biography</image:title>
@@ -46,7 +46,7 @@
 
   <!-- Jensen Huang Hardware Sovereignty Loop — Full Research Report (Aug 12, 2026 · bilingual · companion to sister-site essay) -->
   <url>
-    <loc>https://insightbridge.global/publications/jensen-huang-sovereignty-loop-report.html</loc>
+    <loc>https://insightbridge.global/publications/jensen-huang-sovereignty-loop-report</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
@@ -60,7 +60,7 @@
 
   <!-- 2027 Strategic Intelligence Compendium — Restricted Edition v2 (Aug 2026) -->
   <url>
-    <loc>https://insightbridge.global/publications/compendium-2027.html</loc>
+    <loc>https://insightbridge.global/publications/compendium-2027</loc>
     <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
@@ -74,7 +74,7 @@
 
   <!-- Vision 2030 Ultra-Luxury Tourism Scorecard (Jul 29, 2026 · HNR sync · Jul 31: Yahoo Scout AI verification layer) -->
   <url>
-    <loc>https://insightbridge.global/publications/vision-2030-scorecard.html</loc>
+    <loc>https://insightbridge.global/publications/vision-2030-scorecard</loc>
     <lastmod>2026-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
@@ -107,25 +107,25 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/theories/core-code-theory.html</loc>
+    <loc>https://insightbridge.global/theories/core-code-theory</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/theories/home-model.html</loc>
+    <loc>https://insightbridge.global/theories/home-model</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/theories/governance-debt.html</loc>
+    <loc>https://insightbridge.global/theories/governance-debt</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/theories/ddrt.html</loc>
+    <loc>https://insightbridge.global/theories/ddrt</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -133,18 +133,18 @@
 
   <!-- Homepage (Chinese) -->
   <url>
-    <loc>https://insightbridge.global/zh.html</loc>
+    <loc>https://insightbridge.global/zh</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://insightbridge.global/zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/"/>
   </url>
 
   <!-- Interactive Calculator (POLARIS) -->
   <url>
-    <loc>https://insightbridge.global/tools.html</loc>
+    <loc>https://insightbridge.global/tools</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -152,7 +152,7 @@
 
   <!-- Long-form Market Report -->
   <url>
-    <loc>https://insightbridge.global/intelligence-market-report.html</loc>
+    <loc>https://insightbridge.global/intelligence-market-report</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -160,7 +160,7 @@
 
   <!-- Intelligence Vol. 01 -->
   <url>
-    <loc>https://insightbridge.global/intelligence-vol01.html</loc>
+    <loc>https://insightbridge.global/intelligence-vol01</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -168,7 +168,7 @@
 
   <!-- Privacy Policy -->
   <url>
-    <loc>https://insightbridge.global/privacy.html</loc>
+    <loc>https://insightbridge.global/privacy</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -176,7 +176,7 @@
 
   <!-- Long-form Essay: Xi'an Incident & Republican-Era China (Chinese) -->
   <url>
-    <loc>https://insightbridge.global/publications/xian-incident-republican-china-politics.html</loc>
+    <loc>https://insightbridge.global/publications/xian-incident-republican-china-politics</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -201,197 +201,197 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://insightbridge.global/press-kit/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://insightbridge.global/"/>
   </url>
 
   <!-- Regional Reprint Kit: AR -->
   <url>
-    <loc>https://insightbridge.global/press-kit/ar.html</loc>
+    <loc>https://insightbridge.global/press-kit/ar</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: RU -->
   <url>
-    <loc>https://insightbridge.global/press-kit/ru.html</loc>
+    <loc>https://insightbridge.global/press-kit/ru</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: KO -->
   <url>
-    <loc>https://insightbridge.global/press-kit/ko.html</loc>
+    <loc>https://insightbridge.global/press-kit/ko</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: ID -->
   <url>
-    <loc>https://insightbridge.global/press-kit/id.html</loc>
+    <loc>https://insightbridge.global/press-kit/id</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: TR -->
   <url>
-    <loc>https://insightbridge.global/press-kit/tr.html</loc>
+    <loc>https://insightbridge.global/press-kit/tr</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: VI -->
   <url>
-    <loc>https://insightbridge.global/press-kit/vi.html</loc>
+    <loc>https://insightbridge.global/press-kit/vi</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: ZH -->
   <url>
-    <loc>https://insightbridge.global/press-kit/zh.html</loc>
+    <loc>https://insightbridge.global/press-kit/zh</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: DE -->
   <url>
-    <loc>https://insightbridge.global/press-kit/de.html</loc>
+    <loc>https://insightbridge.global/press-kit/de</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: FR -->
   <url>
-    <loc>https://insightbridge.global/press-kit/fr.html</loc>
+    <loc>https://insightbridge.global/press-kit/fr</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
   <!-- Regional Reprint Kit: ES -->
   <url>
-    <loc>https://insightbridge.global/press-kit/es.html</loc>
+    <loc>https://insightbridge.global/press-kit/es</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar.html"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru.html"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id.html"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr.html"/>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh.html"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr.html"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://insightbridge.global/press-kit/ar"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://insightbridge.global/press-kit/ru"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://insightbridge.global/press-kit/ko"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://insightbridge.global/press-kit/id"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://insightbridge.global/press-kit/tr"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://insightbridge.global/press-kit/vi"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://insightbridge.global/press-kit/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://insightbridge.global/press-kit/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://insightbridge.global/press-kit/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://insightbridge.global/press-kit/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intelligence.insightbridge.global/articles/2027-ai-global-hospitality-tourism-whitepaper-frontier-framework-frontier-market"/>
   </url>
 
@@ -452,210 +452,210 @@
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/antecedents-consumer-reference-price-2007.html</loc>
+    <loc>https://insightbridge.global/publications/antecedents-consumer-reference-price-2007</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/cong-zha-qu-wen-ming-dao-jia-yuan-wen-ming-zhi-ku-zhuan-gao-xiu-ding-ban.html</loc>
+    <loc>https://insightbridge.global/publications/cong-zha-qu-wen-ming-dao-jia-yuan-wen-ming-zhi-ku-zhuan-gao-xiu-ding-ban</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/core-code-theory-amr.html</loc>
+    <loc>https://insightbridge.global/publications/core-code-theory-amr</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/ddrt-strategic-organization-v3.html</loc>
+    <loc>https://insightbridge.global/publications/ddrt-strategic-organization-v3</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/dpr-plc-neural-financial-model.html</loc>
+    <loc>https://insightbridge.global/publications/dpr-plc-neural-financial-model</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/from-extraction-to-home-civilization-think-tank-report.html</loc>
+    <loc>https://insightbridge.global/publications/from-extraction-to-home-civilization-think-tank-report</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hbs-case-study-chinese.html</loc>
+    <loc>https://insightbridge.global/publications/hbs-case-study-chinese</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hbs-case-study-chinese-pdf.html</loc>
+    <loc>https://insightbridge.global/publications/hbs-case-study-chinese-pdf</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hbs-case-study-final.html</loc>
+    <loc>https://insightbridge.global/publications/hbs-case-study-final</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hbs-case-study-publication-grade.html</loc>
+    <loc>https://insightbridge.global/publications/hbs-case-study-publication-grade</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hn2-strategic-verticalism-polished.html</loc>
+    <loc>https://insightbridge.global/publications/hn2-strategic-verticalism-polished</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hn-a-vision2030-rms.html</loc>
+    <loc>https://insightbridge.global/publications/hn-a-vision2030-rms</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/hn-b-ota-direct-booking.html</loc>
+    <loc>https://insightbridge.global/publications/hn-b-ota-direct-booking</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/ib-hotel-crisis-trust-hospitalitynet.html</loc>
+    <loc>https://insightbridge.global/publications/ib-hotel-crisis-trust-hospitalitynet</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/imd-article-final-1.html</loc>
+    <loc>https://insightbridge.global/publications/imd-article-final-1</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/insightbridge-hotel-ai-market-report-2026.html</loc>
+    <loc>https://insightbridge.global/publications/insightbridge-hotel-ai-market-report-2026</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/kinship-capability-and-cost-cross-strait-stability-2026-2030-v3.html</loc>
+    <loc>https://insightbridge.global/publications/kinship-capability-and-cost-cross-strait-stability-2026-2030-v3</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/lian-he-zao-bao-tou-gao-qin-yuan-shi-li-yu-dai-jia-tai-hai-wen-ding-de-xian-shi-zhu-yi-xin-kuang-jia.html</loc>
+    <loc>https://insightbridge.global/publications/lian-he-zao-bao-tou-gao-qin-yuan-shi-li-yu-dai-jia-tai-hai-wen-ding-de-xian-shi-zhu-yi-xin-kuang-jia</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/lianhe-zaobao-cross-strait-realist-framework.html</loc>
+    <loc>https://insightbridge.global/publications/lianhe-zaobao-cross-strait-realist-framework</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/mba-crisis-performance-ui-vs-core-code.html</loc>
+    <loc>https://insightbridge.global/publications/mba-crisis-performance-ui-vs-core-code</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/mit-smr-jin-qian-mai-bu-dao-zhong-cheng-wan-zheng-zhong-wen-ban.html</loc>
+    <loc>https://insightbridge.global/publications/mit-smr-jin-qian-mai-bu-dao-zhong-cheng-wan-zheng-zhong-wen-ban</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/mei-guo-jing-ji-1.html</loc>
+    <loc>https://insightbridge.global/publications/mei-guo-jing-ji-1</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/nvidia-sage-case-teaching-note-v3.html</loc>
+    <loc>https://insightbridge.global/publications/nvidia-sage-case-teaching-note-v3</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/nvidia-sage-case-and-teaching-note.html</loc>
+    <loc>https://insightbridge.global/publications/nvidia-sage-case-and-teaching-note</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/qin-yuan-neng-li-yu-cheng-ben-liang-an-wen-ding-fen-xi-kuang-jia-2026-2030-zhong-wen-ban.html</loc>
+    <loc>https://insightbridge.global/publications/qin-yuan-neng-li-yu-cheng-ben-liang-an-wen-ding-fen-xi-kuang-jia-2026-2030-zhong-wen-ban</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/reclaiming-leadership-intuition-revised.html</loc>
+    <loc>https://insightbridge.global/publications/reclaiming-leadership-intuition-revised</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/san-yi-mei-yuan-de-guan-li-fu-zhai-jia-yuan-wen-hua-jing-shi-yin-tong-bo-shi.html</loc>
+    <loc>https://insightbridge.global/publications/san-yi-mei-yuan-de-guan-li-fu-zhai-jia-yuan-wen-hua-jing-shi-yin-tong-bo-shi</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/the-tyranny-of-mediocrity-why-our-systems-are-designed-to-exile-the-heroes-we-need-1.html</loc>
+    <loc>https://insightbridge.global/publications/the-tyranny-of-mediocrity-why-our-systems-are-designed-to-exile-the-heroes-we-need-1</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/tourism-case-hospitality-2025.html</loc>
+    <loc>https://insightbridge.global/publications/tourism-case-hospitality-2025</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://insightbridge.global/publications/zhao-hui-ling-xiu-zhi-jue-zhong-wen-ban.html</loc>
+    <loc>https://insightbridge.global/publications/zhao-hui-ling-xiu-zhi-jue-zhong-wen-ban</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -689,49 +689,49 @@
 
   <!-- New positioning pages (2026-08-09) -->
   <url>
-    <loc>https://insightbridge.global/books.html</loc>
+    <loc>https://insightbridge.global/books</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/books/subduing-without-fighting.html</loc>
+    <loc>https://insightbridge.global/books/subduing-without-fighting</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/practices.html</loc>
+    <loc>https://insightbridge.global/practices</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/practices/strategy.html</loc>
+    <loc>https://insightbridge.global/practices/strategy</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/practices/vertical-ai.html</loc>
+    <loc>https://insightbridge.global/practices/vertical-ai</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/practices/quantitative.html</loc>
+    <loc>https://insightbridge.global/practices/quantitative</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/track-record.html</loc>
+    <loc>https://insightbridge.global/track-record</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://insightbridge.global/faq.html</loc>
+    <loc>https://insightbridge.global/faq</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
