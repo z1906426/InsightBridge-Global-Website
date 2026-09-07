@@ -1,0 +1,111 @@
+<!-- Place this JSON-LD script block inside the <head> tag of https://www.buildtelligence.com. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.buildtelligence.com/#organization",
+      "name": "Buildtelligence",
+      "url": "https://www.buildtelligence.com",
+      "description": "AI enablement and implementation company for mid-sized businesses. Helps companies move from AI experimentation to governed implementation through strategy, workflow design, governance, training, and operating support.",
+      "knowsAbout": [
+        "AI Implementation",
+        "AI Governance",
+        "AI Workflow Design",
+        "AI Readiness Assessment",
+        "Private Knowledge Assistants",
+        "AI Operating Layer",
+        "Enterprise AI Adoption",
+        "AI Skills Development"
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.buildtelligence.com/#thinkfreely",
+      "name": "ThinkFreely",
+      "description": "AI Operating Layer for practical implementation. Provides controlled management of AI activity across models, workloads, privacy boundaries, workflows, and teams. Features RouteFreely (routing, queueing, privacy-aware dispatch, and failover engine) and DriftHold (instruction-stability layer for preserving constraints across long-running AI work).",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Cloud",
+      "featureList": [
+        "RouteFreely capability-aware routing",
+        "Priority-aware queueing",
+        "Privacy-aware dispatch",
+        "Failover and recovery",
+        "DriftHold instruction stability",
+        "Multi-model management",
+        "Usage visibility and governance"
+      ],
+      "provider": {
+        "@id": "https://www.buildtelligence.com/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.buildtelligence.com/#ai-readiness-assessment",
+      "name": "AI Readiness Assessment",
+      "description": "Structured assessment of current AI activity, risks, priorities, governance gaps, and the most practical next step for AI adoption.",
+      "provider": {
+        "@id": "https://www.buildtelligence.com/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.buildtelligence.com/#ai-workflow-implementation",
+      "name": "AI Workflow Implementation",
+      "description": "Translates promising AI use cases into workflow changes, operating systems, and implementation that teams can actually use inside real operations.",
+      "provider": {
+        "@id": "https://www.buildtelligence.com/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.buildtelligence.com/#ai-governance-and-training",
+      "name": "AI Governance and Training",
+      "description": "Creates clearer AI policies, safer adoption patterns, and a stronger operating model for teams using AI in real work.",
+      "provider": {
+        "@id": "https://www.buildtelligence.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.buildtelligence.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Buildtelligence?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Buildtelligence is an AI enablement and implementation company that helps mid-sized businesses move from AI experimentation to practical implementation through strategy, workflow design, governance, training, and operating support."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is ThinkFreely?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ThinkFreely is the AI Operating Layer that Buildtelligence implements. It helps companies manage AI activity through routing, queueing, privacy-aware handling, usage visibility, workflow control, failover, prompt anchoring, and governance support."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the RouteFreely Engine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RouteFreely is the routing, queueing, privacy-aware dispatch, and failover subsystem inside ThinkFreely. It determines where AI work should go, what capabilities it requires, how it should be prioritized, and how it should recover when something goes wrong."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is DriftHold?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DriftHold is the instruction-stability layer inside ThinkFreely. It preserves important instructions, constraints, role definitions, and workflow expectations during longer or more complex AI interactions where context drift can weaken the original instruction set."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- Keep this script in the site-wide <head> so search engines can discover Buildtelligence structured data. -->
