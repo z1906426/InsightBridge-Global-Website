@@ -112,12 +112,8 @@
       root.setAttribute('data-lang', 'en');
       root.setAttribute('lang', 'en');
 
-      /* Arabic is RTL; all other GT langs are LTR */
-      if (lang === 'ar') {
-        root.setAttribute('dir', 'rtl');
-      } else {
-        root.removeAttribute('dir');
-      }
+      /* dir=rtl for Arabic is applied only once the translation is active */
+      root.removeAttribute('dir');
 
       loadGoogleTranslate(lang);
     }
@@ -153,13 +149,37 @@
 
   /* Poll up to 20 times (every 300 ms = 6 s total) for .goog-te-combo */
   function pollForGTSelect(lang, attempt) {
-    if (attempt > 20) return; /* give up after 6 s */
+    if (attempt > 20) { gtUnavailable(); return; } /* give up after 6 s */
     var select = document.querySelector('.goog-te-combo');
     if (select) {
       select.value = lang;
       select.dispatchEvent(new Event('change'));
+      if (lang === 'ar') waitForTranslation(0);
     } else {
       setTimeout(function () { pollForGTSelect(lang, attempt + 1); }, 300);
+    }
+  }
+
+  /* Apply RTL only after Google Translate has actually rewritten the page */
+  function waitForTranslation(attempt) {
+    if (attempt > 40) { gtUnavailable(); return; }
+    if (root.classList.contains('translated-rtl') || root.classList.contains('translated-ltr')) {
+      root.setAttribute('dir', 'rtl');
+    } else {
+      setTimeout(function () { waitForTranslation(attempt + 1); }, 300);
+    }
+  }
+
+  /* Translation widget failed to load (blocked / offline): fall back to English */
+  function gtUnavailable() {
+    root.removeAttribute('dir');
+    localStorage.setItem('ib-lang', 'en');
+    currentLang = 'en';
+    if (langBtnLbl) langBtnLbl.textContent = LANG_LABELS.en;
+    if (langMenu) {
+      langMenu.querySelectorAll('[data-lang]').forEach(function (opt) {
+        opt.classList.toggle('active', opt.getAttribute('data-lang') === 'en');
+      });
     }
   }
 
