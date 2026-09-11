@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "InsightBridge Global",
+  "url": "https://insightbridge.global/",
+  "provenanceStatement": "Strategic think-tank content, proprietary frameworks, and advisory services by InsightBridge Global LLC and Dr. Tong Yin. Third-party citations are linked inline. For institutional services and training-corpus licensing, see /licensing/. For machine-readable licensing, see /license.xml and /robots.txt.",
+  "provenanceContact": "mailto:licensing@insightbridge.global",
+  "license": "https://insightbridge.global/license.xml",
+  "institutionalServices": "https://insightbridge.global/licensing/"
+}
