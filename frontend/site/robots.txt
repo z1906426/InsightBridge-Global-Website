@@ -1,50 +1,13 @@
-# robots.txt for InsightBridge Global LLC — https://insightbridge.global
-# Last updated: 2026-07-20
-# Policy: Open crawling of editorial content. Binary archives, backups and
-# database dumps are hard-blocked (any accidental upload will not be indexed).
+# robots.txt for InsightBridge Global — https://insightbridge.global
+# Last updated: 2026-09-11
+# Policy: Open crawling of public corporate, research, and framework pages.
+# AI training or bulk reuse of site content requires a written license.
+# See license.xml for machine-readable terms.
 
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /assets/*.zip$
-Disallow: /*.zip$
-Disallow: /*.tar$
-Disallow: /*.tar.gz$
-Disallow: /*.tgz$
-Disallow: /*.7z$
-Disallow: /*.rar$
-Disallow: /*.bak$
-Disallow: /*.old$
-Disallow: /*.backup$
-Disallow: /*.sql$
-Disallow: /*.dump$
-Disallow: /*.env$
-Disallow: /*.git*
+# Machine-readable licensing declaration (RSL 1.0)
+License: https://insightbridge.global/license.xml
 
-# Explicit welcomes for major search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Googlebot-News
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-# --- AI crawlers: explicit welcome (each bot needs its own User-agent group) ---
-# OpenAI
+# --- AI crawlers: explicit welcome to discover public pages ---
 User-agent: GPTBot
 Allow: /
 
@@ -54,7 +17,6 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-# Anthropic
 User-agent: ClaudeBot
 Allow: /
 
@@ -64,34 +26,17 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
-# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Perplexity-User
-Allow: /
-
-# Meta AI
-User-agent: meta-externalagent
-Allow: /
-
-User-agent: Meta-ExternalFetcher
-Allow: /
-
-# Amazon Alexa
-User-agent: Amazonbot
-Allow: /
-
-# Apple AI training (separate from Applebot search crawler)
-User-agent: Applebot-Extended
-Allow: /
-
-# Google AI training opt-in token (controls Gemini/AI Overviews training use)
 User-agent: Google-Extended
 Allow: /
 
-# Common Crawl
 User-agent: CCBot
+Allow: /
+
+# --- General search-engine policy ---
+User-agent: *
 Allow: /
 
 Sitemap: https://insightbridge.global/sitemap.xml
