@@ -1,10 +1,16 @@
 {
-    "citations": 42,
-    "countries": 8,
+    "citations": 43,
+    "countries": 9,
     "languages": 5,
     "source": "https://intelligence.insightbridge.global/press#press-citations-section",
-    "updated": "2026-09-12",
+    "updated": "2026-09-14",
     "list": [
+        {
+            "flag": "🇰🇪",
+            "platform": "EcoWatch Kenya",
+            "note": "Kenya Tourism–Infrastructure Dual Engine — Core–Periphery Zonation Model cited in national mineral-policy roundup, Sep 12, 2026 (HNR 142774)",
+            "url": "https://www.ecowatchkenya.blessedcitron.com/2026/09/kenya-shifts-toward-domestic-mineral.html"
+        },
         {
             "flag": "🌐",
             "platform": "Hospitality Trends (htrends.com)",
